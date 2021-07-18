@@ -1,6 +1,8 @@
 const router = require("express").Router();
 
 const userCtrl = require("../controllers/authControllers");
+const passwordChangeControllers=require('../controllers/passwordChange.controllers')
+const profileCtrl=require('../controllers/profile.controllers')
 const auth=require("../middleware/auth")
 
 
@@ -9,11 +11,11 @@ router.post("/activation", userCtrl.activateEmail);
 
 router.post("/login",userCtrl.login)
 router.post('/refresh_token', userCtrl.getAccessToken)
-router.post('/forgot', userCtrl.forgotPassword)
-router.post('/reset', auth, userCtrl.resetPassword)
-router.get('/infor', auth, userCtrl.getUserInfor)
+router.post('/forgot', passwordChangeControllers.forgotPassword)
+router.post('/reset', auth, passwordChangeControllers.resetPassword)
+router.get('/infor', auth, profileCtrl.getUserInfor)
 router.get('/logout', userCtrl.logout)
-router.patch('/update', auth, userCtrl.updateUser)
+router.patch('/update', auth, profileCtrl.updateUser)
 router.post('/google_login', userCtrl.googleLogin)
 
 

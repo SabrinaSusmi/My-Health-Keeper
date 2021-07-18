@@ -69,8 +69,10 @@ function DisplayMedReminders() {
     setOngoingMedReminderList(removedMed);
   };
   return (
-    <div className="reminder"> &nbsp;
-      <div className="reminder_buttons"> 
+    <div className="reminder">
+      {" "}
+      &nbsp;
+      <div className="reminder_buttons">
         <Link href="/medicine-reminder" className="reminder_buttons_sub">
           {""} Add New
         </Link>
@@ -78,18 +80,16 @@ function DisplayMedReminders() {
           {""} Medicines Today
         </Link>
       </div>
-
       <div className="reminder_body">
         <div>
-          <h2> &nbsp;Ongoing Medicine</h2>  <hr></hr>
+          <h2> &nbsp;Ongoing Medicine</h2> <hr></hr>
         </div>
         {ongoingMedReminderList.map((medicines) => (
-          <div className="reminder_card">
+          <div variant="outlined" className="reminder_card">
             <h2>{medicines.medname}</h2>
             <p>Description: {medicines.descriptionmed}</p>
             <p>Starting Date: {medicines.startdate.substring(0, 10)}</p>
             <p>Ending Date: {medicines.enddate.substring(0, 10)}</p>
-
             <IconButton
               className="btn"
               data-toggle="tooltip"
@@ -102,17 +102,14 @@ function DisplayMedReminders() {
               <VisibilityIcon />
             </IconButton>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            <IconButton  
-              class="btn"
-             
+            <IconButton
+              className="btn"
               data-toggle="tooltip"
               title="Delete the Medicine"
               onClick={() => deleteReminder(medicines._id)}
             >
               <DeleteIcon />
-             
             </IconButton>
-
             <MedModal
               showModal={showModal}
               setShowModal={setShowModal}

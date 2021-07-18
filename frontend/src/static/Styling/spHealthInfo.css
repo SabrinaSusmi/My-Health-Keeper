@@ -1,27 +1,77 @@
-.reminder_buttons {
-    width: 30%;
-    margin-right: 0;
-    margin-left: auto;
-  }
-  
-  .reminder_buttons > .reminder_buttons_sub {
-    width: 20%;
-    background-color: #063742;
-    color: white;
-    display: inline;
-    margin-left: 1em;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .info-save{
-padding: .5%;
-padding-left: 3%;
-padding-right: 3%;
-  }
+.sp_reminder_buttons {
+  width: 20%;
+  background-color: #063742;
+  color: white;
+  display: inline;
+  margin-left: 1em;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-  .description{
-   
-  }
+.info-save {
+  padding: 0.5%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.reminder_card >.clrDiv> .clrCardAction>.viewBtn {
+  align-items: flex-end;
+
+  color: #063742;
+}
+
+.reminder_card > .viewBtn:hover {
+  background-color: #cdecf9;
+  color: #063742;
+}
+
+.media_card {
+  display: flex;
+  flex-direction: column;
+  display: inline-block;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+  width: 210px;
+  height: auto;
+  margin: 1.7rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  /* margin-left: 10px; */
+  max-width: 350px;
+  border-radius: 10px;
+  /* background: #cdecf9; */
+  box-shadow: 2px 8px 16px #47565c, -2px -8px 16px #feffff;
+}
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  width: 80% !important;
+  height: 100% !important;
+}
+.fileButton{
+  color:#063742;
+  align-content: flex-end;
+}
+.clrDiv{
+  color:#063742;
+}
+
+.index>.reminder_card{
+  display: flex;
+  flex-direction: column;
+  display: inline-block;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+  width: 210px;
+  height: auto;
+  margin: 1.7rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  /* margin-left: 10px; */
+  max-width: 350px;
+  border-radius: 10px;
+  /* background: #cdecf9; */
+  box-shadow: 2px 8px 16px #47565c, -2px -8px 16px #feffff;
+}

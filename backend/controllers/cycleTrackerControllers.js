@@ -1,5 +1,5 @@
 const Cycle = require("../models/periodTracker.model");
-const sendMail = require("./sendMail");
+const sendMail = require("./sendMail.Controllers");
 
 setInterval(() => {
   // console.log('ss')
@@ -178,7 +178,7 @@ const cycleTrackerControllers = {
     try {
       let user = req.headers["userid"];
 
-      console.log("check ", user);
+      // console.log("check ", user);
       const check = await Cycle.findOne({
         user,
       });
@@ -211,7 +211,7 @@ const cycleTrackerControllers = {
     await initialinfo
       .save()
       .then(() => {
-        return res.json({ msg: "Initial data is saved" });
+        return res.json({ msg: "Initial data is saved.  Please refresh the page now" });
       })
       .catch((err) => {
         return res.status(500).json({ msg: err.message });

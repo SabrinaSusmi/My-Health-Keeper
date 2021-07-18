@@ -14,6 +14,8 @@ import Landing from "./components/LandingPage";
 import ForgotPassword from "./components/body/auth/ForgotPassword";
 import ResetPassword from "./components/body/auth/ResetPassword";
 
+
+export const UserIDContext=React.createContext()
 function App() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
@@ -45,6 +47,21 @@ function App() {
 
   const { isLogged } = auth;
 
+ localStorage.setItem("userID",auth.user._id)
+ const showSPHealthNotes = () => {
+  // console.log("id     ",  auth.user._id);
+  axios
+    .get("http://localhost:5000/api/get-specializedHealthInfo", {
+      headers: { Authorization: token, userid: auth.user._id },
+    })
+    .then((res) => {
+      console.log("apppp             ",res.data);
+      // setSpHealthNotes(res.data);
+      localStorage.setItem("spUser",res.data[0].user)
+    });
+};
+showSPHealthNotes()
+
   const getMenstrualInfo = async () => {
     const id = auth.user._id;
     axios
@@ -62,6 +79,9 @@ function App() {
   getMenstrualInfo();
 
   return (
+    <>
+    <UserIDContext.Provider value={localStorage.getItem("userID")}>
+    
     <Router>
       <div className="App">
         <Switch>
@@ -75,7 +95,10 @@ function App() {
         </Switch>
       </div>
     </Router>
-  );
+ 
+    </UserIDContext.Provider>
+   </>
+   );
 }
 
 export default App;

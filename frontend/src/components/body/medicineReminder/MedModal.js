@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { MdClose } from "react-icons/md";
 import axios from "axios";
 import { Button, IconButton, Link } from "@material-ui/core";
-//import Modal from 'react-modal';
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 

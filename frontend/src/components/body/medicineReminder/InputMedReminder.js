@@ -119,7 +119,7 @@ function InputMedReminder() {
 
   return (
     <Container className="container">
-      <div>
+            <div>
         <Link href="/display-medicine-reminderList">
           <Button type="button" color="primary" size="large">
             <i class="fas fa-angle-double-left" >
@@ -227,6 +227,7 @@ function InputMedReminder() {
             >
               Add
             </Button>
+           
           </div>
         </form>
       </div>

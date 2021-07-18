@@ -183,7 +183,10 @@ function Header() {
       await axios.get("/user/logout");
       localStorage.removeItem("firstLogin");
       localStorage.removeItem("UserMenstrualInfo")
-      removeCookie("UserMenstrualInfo");
+      localStorage.removeItem("userID")
+      localStorage.removeItem("spUser")
+       removeCookie("UserMenstrualInfo");
+     
       window.location.href = "/";
     } catch (err) {
       window.location.href = "/";
@@ -196,7 +199,8 @@ function Header() {
       <div>
         <Link to="/profile"   data-toggle="tooltip"
               title="Profile Settings" component={NavLink}>
-          {<img className={classes.imageIcon} src={user.avatar} alt="" />}<font  className="link-color" >
+          {/* {<img className={classes.imageIcon} src={user.avatar} alt="" />} */}
+          <font  className="link-color" >
           {user.name}{" "}
           </font>
         

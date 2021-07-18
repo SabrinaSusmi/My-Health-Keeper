@@ -9,7 +9,7 @@ import {
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useHistory } from "react-router-dom";
-
+import SpecializedHealthInfo from "./specializedHealthInfo";
 import axios from "axios";
 const initialState = {
   folder: "",
@@ -18,7 +18,7 @@ const initialState = {
   success: "",
   err: "",
 };
-export default function AddNotes() {
+export default function AddNotes(props) {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
   const { user, isLogged } = auth;
@@ -38,6 +38,23 @@ export default function AddNotes() {
     const { name, value } = e.target;
     setNotes({ ...notes, [name]: value, err: "", success: "" });
   };
+  const [spHealthNotes, setSpHealthNotes] = useState([]);
+
+  // const showSPHealthNotes = async () => {
+
+  //   console.log("id  ",user._id)
+  //   const id = user._id;
+  //   console.log("c ",id)
+
+  //   await axios
+  //     .get("http://localhost:5000/api/get-specializedHealthInfo", {
+  //       headers: { Authorization: token, userid: id },
+  //     })
+  //     .then((res) => setSpHealthNotes(res.data));
+  // };
+  // useEffect(async () => {
+  //   showSPHealthNotes();
+  // }, []);
 
   const mulitpleFileOptions = {
     onUploadProgress: (progressEvent) => {
@@ -48,7 +65,10 @@ export default function AddNotes() {
   };
 
   const UploadMultipleFiles = async () => {
+    const id = user._id;
+
     const formData = new FormData();
+    formData.append("user", id);
     formData.append("folder", folder);
     formData.append("noteDate", noteDate);
     formData.append("description", description);
@@ -57,11 +77,10 @@ export default function AddNotes() {
       formData.append("files", multipleFiles[i]);
     }
 
-    const id = user._id;
-
+    console.log("addnotes ", id);
     const res = await axios
       .post(
-        "http://localhost:5100/api/save-specialized-health-info",
+        "http://localhost:5000/api/save-specialized-health-info",
         formData,
         mulitpleFileOptions,
         {
@@ -83,6 +102,9 @@ export default function AddNotes() {
           });
 
           history.push("/specialized-health-information");
+          console.log("SpecializedHealthInfo.showSPHealthNotes();");
+          // showSPHealthNotes()
+          props.getNote();
           setTimeout(function () {
             setNotes(initialState);
           }, 4000);
@@ -165,9 +187,9 @@ export default function AddNotes() {
                   strokeLinecap: "butt",
                   textSize: "16px",
                   pathTransitionDuration: 0.5,
-                  pathColor: `rgba(255, 136, 136, ${multipleProgress / 100})`,
-                  textColor: "#f88",
-                  trailColor: "#d6d6d6",
+                  pathColor: `rgba(6,55,66, ${multipleProgress / 100})`,
+                  textColor: "#063742",
+                  trailColor: "#cdecf9",
                   backgroundColor: "#3e98c7",
                 })}
               />
@@ -175,16 +197,12 @@ export default function AddNotes() {
           </Grid>
           <Grid item xs={3}></Grid>
           <Grid item xs={2}>
-            {/* update   */}
-            &nbsp;
-            <Button
-              type="button"
-              variant="contained"
-              onClick={UploadMultipleFiles}
-              color="primary"
-            >
-              save
-            </Button>
+            <div className="sp_reminder_buttons">
+              &nbsp;
+              <Button type="button" onClick={UploadMultipleFiles}>
+                <font className="sidebar-options-color">save</font>
+              </Button>
+            </div>
           </Grid>
           {/* <Grid item xs={1.5}>
           update  

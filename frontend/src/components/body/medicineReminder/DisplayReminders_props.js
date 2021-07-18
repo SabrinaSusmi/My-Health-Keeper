@@ -12,23 +12,7 @@ const initialState = {
   meds: [],
 };
 
-// const Medicine = (props) => (
-//   <div>
-//     <h2>{props.medicine.medname}</h2>
-//     <p>{props.medicine.descriptionmed}</p>
-//     <p>Start Date : {props.medicine.startdate.substring(0, 10)}</p>
-//     <p>End Date : {props.medicine.enddate.substring(0, 10)}</p>
-//     <IconButton className="btn">
-//       <DeleteIcon style={{ color: "red" }} />
-//     </IconButton>
-//   </div>
-//   // <tr>
-//   //   <td>{props.medicine.medname}</td>
-//   //   <td>{props.medicine.descriptionmed}</td>
-//   //   <td>{props.medicine.startdate.substring(0, 10)}</td>
-//   //   <td>{props.medicine.enddate.substring(0, 10)}</td>
-//   // </tr>
-// );
+
 
 function DisplayMedicineReminders() {
   //const auth = useSelector((state) => state.auth);
