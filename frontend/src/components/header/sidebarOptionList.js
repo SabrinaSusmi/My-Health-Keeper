@@ -33,7 +33,7 @@ export const mainListItems = (
           <FastfoodIcon />
         </font>
       </ListItemIcon>
-      <Link to="/" component={NavLink}>
+      <Link to="/diet-plans" component={NavLink}>
       <font  className="sidebar-options-color" >
           <ListItemText primary="Diet Plan" />
         </font>
