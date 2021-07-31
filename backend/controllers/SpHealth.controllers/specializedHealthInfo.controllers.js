@@ -106,12 +106,6 @@ const getFolderDataForModal = async (req, res) => {
       }
     );
 
-
-
-    // console.log("user modal          ", folder);
-    // const files = await MultipleFile.find({_id:folder})
-    // console.log("getFolderDataForModal", files[0]);
-    // res.send(files[0]._id);
  
 };
 
