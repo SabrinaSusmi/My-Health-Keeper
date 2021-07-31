@@ -40,21 +40,7 @@ export default function AddNotes(props) {
   };
   const [spHealthNotes, setSpHealthNotes] = useState([]);
 
-  // const showSPHealthNotes = async () => {
 
-  //   console.log("id  ",user._id)
-  //   const id = user._id;
-  //   console.log("c ",id)
-
-  //   await axios
-  //     .get("http://localhost:5000/api/get-specializedHealthInfo", {
-  //       headers: { Authorization: token, userid: id },
-  //     })
-  //     .then((res) => setSpHealthNotes(res.data));
-  // };
-  // useEffect(async () => {
-  //   showSPHealthNotes();
-  // }, []);
 
   const mulitpleFileOptions = {
     onUploadProgress: (progressEvent) => {
@@ -156,7 +142,7 @@ export default function AddNotes(props) {
             <TextareaAutosize
               className="description"
               variant="outlined"
-              // fullWidth
+             rows='3'
               type="text"
               id="description"
               name="description"
