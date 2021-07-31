@@ -12,6 +12,8 @@ import HealthInfo from "./genHealthInfo/HealthInfo";
 import MedicineDose from "./medicineReminder/MedDoses";
 import specializedHealthInfo from "./specializedHealthInfo/specializedHealthInfo";
 import ViewFiles from "./specializedHealthInfo/ViewFiles";
+import DietPlan from "./dietPlan/DietPlan";
+import DietGoalSetter from "./dietPlan/DietGoalSetter";
 
 export default function Body() {
   const auth = useSelector((state) => state.auth);
@@ -62,6 +64,17 @@ export default function Body() {
         <Route
           path="/view-files"
           component={isLogged ? ViewFiles : Login}
+          exact
+        />
+
+<Route
+          path="/diet-plans"
+          component={isLogged ? DietPlan : Login}
+          exact
+        />
+         <Route
+          path="/set-diet-goal"
+          component={isLogged ? DietGoalSetter : Login}
           exact
         />
         {/* <PrivateRoute path= "/display-medicine-reminderList" component={DisplayMedicineReminders} exact />

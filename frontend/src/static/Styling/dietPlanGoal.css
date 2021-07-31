@@ -1,0 +1,34 @@
+.set_diet_goal_button {
+  padding: 1%;
+  text-align: center;
+}
+
+.root {
+  flex-grow: 1;
+  padding: 1%;
+}
+.set_diet_goal_button > .set_diet_goal_button_sub {
+  color: #063742;
+  font-size: 18px;
+  /* font-weight: bold; */
+}
+.set_diet_goal_button > .set_diet_goal_button_sub:hover {
+  background-color: #063742;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.root > .goal_grid > .goal_grid_item {
+  padding: 2%;
+  padding-left: 2%;
+  padding-right: 3%;
+}
+.root > .goal_grid > .goal_grid_item > .goal_font {
+  color: #063742;
+  font-size: 20px;
+}
+.root > .goal_grid > .goal_grid_item > .goal_font:hover {
+  cursor: pointer;
+  /* font-weight: bold; */
+}
