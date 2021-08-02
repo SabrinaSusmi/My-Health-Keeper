@@ -19,3 +19,6 @@ backend: npm i ssl-commerz-node shortid morgan soap child_process
 python -m pip install zeep
 
 ****install python extension 
+
+//new
+npm i react-calendar-icon

@@ -30,6 +30,7 @@
     "react": "^17.0.2",
     "react-animated-bg": "^1.1.2",
     "react-bootstrap": "^1.6.1",
+    "react-calendar-icon": "^0.9.5",
     "react-circular-progressbar": "^2.0.4",
     "react-cookie": "^4.0.3",
     "react-datepicker": "^4.1.1",
