@@ -17,10 +17,41 @@ import WeightModal from "./WeightModal";
 import BpModal from "./BpModal";
 import SugarModal from "./SugarModal";
 import PulseModal from "./PulseModal";
+import { useSelector } from "react-redux";
+import { showErrMsg, showSuccessMsg } from "../../utils/notification/Notification";
+import axios from "axios";
 
+const weightInitialState = {
+  infoTitleWeight: 'Weight',
+  infoWeight: '',
+  errW: '',
+  successW: ''
+}
+
+const bpInitialState = {
+  infoTitleBp: 'Bp',
+  infoBp: '',
+  errB: '',
+  successB: ''
+}
+
+const pulseInitialState = {
+  infoTitlePulse: 'Pulse',
+  infoPulse: '',
+  errP: '',
+  successP: ''
+}
+
+const sugarInitialState = {
+  infoTitleSugar: 'Sugar',
+  infoSugar: '',
+  errS: '',
+  successS: ''
+}
 
 
 function GeneralHealthInfo() {
+  const token = useSelector((state) => state.token);
 
   const [showWeightModal, setShowWeightModal] = useState(false);
   const openWeightModal = () => setShowWeightModal(true);
@@ -33,6 +64,52 @@ function GeneralHealthInfo() {
  
   const [showSugarModal, setShowSugarModal] = useState(false);
   const openSugarModal = () =>  setShowSugarModal(true);
+
+  const [weight, setWeight] = useState(weightInitialState);
+  const [bp, setBp] = useState(bpInitialState);
+  const [pulse, setPulse] = useState(pulseInitialState);
+  const [sugar, setSugar] = useState(sugarInitialState);
+
+  const { infoTitleWeight, infoWeight, errW, successW } = weight;
+  const { infoTitleBp, infoBp, errB, successB } = bp;
+  const { infoTitlePulse, infoPulse, errP, successP } = pulse;
+  const { infoTitleSugar, infoSugar, errS, successS } = sugar;
+
+
+  const handleChangeWeight = (e) => {
+    const { name, value } = e.target;
+    setWeight({ ...weight, [name]: value, err: "", success: "" });
+  };
+
+  const handleChangeBp = (e) => {
+    const { name, value } = e.target;
+    setBp({ ...bp, [name]: value, err: "", success: "" });
+  };
+
+  const handleChangePulse = (e) => {
+    const { name, value } = e.target;
+    setPulse({ ...pulse, [name]: value, err: "", success: "" });
+  };
+
+  const handleChangeSugar = (e) => {
+    const { name, value } = e.target;
+    setSugar({ ...sugar, [name]: value, err: "", success: "" });
+  };
+
+  const handleSubmitWeight = async (e) => {
+    e.preventDefault();
+
+    await axios.post("http://localhost:5000/addGenHealth", {
+      infoTitleHeight,
+      infoHeight,
+    }, {
+      headers: { Authorization: token },
+    }).then((res)=> {
+      setWeight({ ...weight, errW: "", successW:"Height added successfully!" });
+    }).catch ((err) => {
+      err.response.data.msg && setWeight({ ...weight, errW: err.response.data.msg, successW:"" });
+    })
+  };
 
 
   return (
@@ -51,9 +128,9 @@ function GeneralHealthInfo() {
                     <LocalHospitalRoundedIcon />
                   </Grid>
                   <Grid item>
-                    <TextField label="KG" />
+                    <TextField label="KG" name="weight" value={weight} onChange={handleChangeWeight} />
                   </Grid>
-                  <IconButton aria-label="add" className="controls">
+                  <IconButton aria-label="add" className="controls" onClick= {handleSubmitWeight}>
                     <AddCircleOutlineRoundedIcon className="playIcon" />
                   </IconButton>
                 </Grid>
