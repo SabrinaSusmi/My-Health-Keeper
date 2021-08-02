@@ -7,6 +7,7 @@ const medReminderRouter = require("./routers/medReminder.route");
 const cycleTracker = require("./routers/cycleTracker.routers");
 const medDoses = require("./routers/medDose.route");
 const specializedHealthInformation = require('./routers/specializedHealthInformation.routers');
+const genHealthInfo = require('./routers/genHealth.route');
 const path = require("path");
 
 const app = express();
@@ -20,6 +21,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', specializedHealthInformation);
 app.use(medReminderRouter);
 app.use(medDoses);
+app.use(genHealthInfo);
+
 
 app.use("/user", cycleTracker);
 app.use("/user", router);
