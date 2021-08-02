@@ -100,8 +100,8 @@ function GeneralHealthInfo() {
     e.preventDefault();
 
     await axios.post("http://localhost:5000/addGenHealth", {
-      infoTitleHeight,
-      infoHeight,
+      infoTitleWeight,
+      infoWeight,
     }, {
       headers: { Authorization: token },
     }).then((res)=> {
@@ -128,7 +128,7 @@ function GeneralHealthInfo() {
                     <LocalHospitalRoundedIcon />
                   </Grid>
                   <Grid item>
-                    <TextField label="KG" name="weight" value={weight} onChange={handleChangeWeight} />
+                    <TextField label="KG" id="infoWeight" name="infoWeight" value={infoWeight} onChange={handleChangeWeight} />
                   </Grid>
                   <IconButton aria-label="add" className="controls" onClick= {handleSubmitWeight}>
                     <AddCircleOutlineRoundedIcon className="playIcon" />
