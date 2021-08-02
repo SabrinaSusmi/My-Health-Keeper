@@ -98,10 +98,12 @@ function GeneralHealthInfo() {
 
   const handleSubmitWeight = async (e) => {
     e.preventDefault();
+    var infoTitle = infoTitleWeight;
+    var info = infoWeight;
 
     await axios.post("http://localhost:5000/addGenHealth", {
-      infoTitleWeight,
-      infoWeight,
+      infoTitle,
+      info,
     }, {
       headers: { Authorization: token },
     }).then((res)=> {
