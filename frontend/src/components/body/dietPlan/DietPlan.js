@@ -8,12 +8,12 @@ import axios from "axios";
 import Table from "react-bootstrap/Table";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
-import CalendarIcon from "react-calendar-icon";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import AddFoodModal from "./addFoodModal";
 
 export default function DietPlan() {
+  const [showFoodModal, setShowFoodModal] = useState(false);
+  const openFoodModal = () => setShowFoodModal(true);
   const token = useSelector((state) => state.token);
   const [targetVisible, setTargetVisible] = useState(false);
   const viewtargetInfo = () => {
@@ -55,13 +55,17 @@ export default function DietPlan() {
        </div>
      </div>
         <div className="add_food">
-          <Button className="add_food_btn">
+          <Button className="add_food_btn" onClick={openFoodModal}>
             <IconButton aria-label="add">
               <AddCircleOutlineRoundedIcon />
             </IconButton>
             {""} Add Food Item
           </Button>
         </div>
+        <AddFoodModal
+        showFoodModal={showFoodModal}
+        setShowFoodModal={setShowFoodModal}
+      />
         <div className="food_table">
           <Table hover size="md">
             <thead>
