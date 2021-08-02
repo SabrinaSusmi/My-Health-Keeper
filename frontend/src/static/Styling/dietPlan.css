@@ -4,6 +4,23 @@
   margin-right: 0%;
   margin-left: auto;
 }
+.diet_body{
+  margin-top: 5%;
+}
+.diet_body > .add_food > .add_food_btn{
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: 20%;
+  color: white;
+  background-color: #69f08a;
+  display: inline;
+  margin-left: 35%;
+  margin-right: 40%;
+  padding: 0.1rem;
+  text-decoration: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
 .diet_buttons > .diet_buttons_sub {
   width: auto;
