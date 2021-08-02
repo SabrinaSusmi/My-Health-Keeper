@@ -1,7 +1,7 @@
 .diet_buttons {
   margin-top: 1%;
-  width: 30%;
-  margin-right: 0;
+  width: 39%;
+  margin-right: 0%;
   margin-left: auto;
 }
 
@@ -10,24 +10,22 @@
   color: white;
   background-color: #063742;
   display: inline;
-  margin-left: 1em;
+  margin-left: 1.5em;
   padding: 10px;
   text-decoration: none;
   border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .diet_buttons > .diet_buttons_sub:hover {
   width: auto;
   color: white;
-  background-color: #063742;
+  background-color: #0f5a6b;
   display: inline;
-  margin-left: 1em;
+  margin-left: 1.5em;
   padding: 10px;
   text-decoration: none;
   border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
 }
 
