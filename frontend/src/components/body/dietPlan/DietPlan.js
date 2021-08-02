@@ -14,13 +14,17 @@ export default function DietPlan() {
   };
   return (
     <div>
+      <div>
       <div className="diet_buttons">
         <Button className="diet_buttons_sub" onClick={viewtargetInfo}>
           {""} Set Your Goal
         </Button>
+        <Button className="diet_buttons_sub"> {""} Progress</Button>
+        <Button className="diet_buttons_sub"> {""} History</Button>
       </div>
       {targetVisible ? <DietGoalSetter
        isVisible={() => viewtargetInfo()}  /> : ""}
+       </div>
     </div>
   );
 }
