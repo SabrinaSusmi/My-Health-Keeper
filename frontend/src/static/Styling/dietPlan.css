@@ -6,8 +6,8 @@
 }
 .diet_body{
   margin-top: 2%;
- margin-left: 0.2%;
- margin-right: 0.2%;
+ margin-left: 0.5%;
+ margin-right: 0.5%;
 }
 .diet_body > .strings{
   margin-left: 2%;
@@ -70,4 +70,17 @@
   text-decoration: none;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.form_body{
+  margin: 0.2%;
+}
+.form_body > .form_btn{
+  margin: 1%;
+}
+.mod_btn{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
