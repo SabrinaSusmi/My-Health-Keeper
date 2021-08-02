@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Button, Link } from "@material-ui/core";
+import React, { useState } from "react";
+import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import "../../../static/Styling/dietPlan.css";
 import Table from 'react-bootstrap/Table'
-import { NavLink } from "react-router-dom";
 import DietGoalSetter from "./DietGoalSetter";
 import { useSelector } from "react-redux";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
-import CalendarIcon from "react-calendar-icon";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
+import AddFoodModal from "./AddFoodModal";
 
 export default function DietPlan() {
   const token = useSelector((state) => state.token);
   const [targetVisible, setTargetVisible] = useState(false);
+
+  const [showFoodModal, setShowFoodModal] = useState(false);
+  const openFoodModal = () => setShowFoodModal(true);
+
   const viewtargetInfo = () => {
     setTargetVisible((prev) => !prev);
   };
@@ -53,12 +53,17 @@ export default function DietPlan() {
        </div>
      </div>
          <div className="add_food">
-         <Button className="add_food_btn"> 
+         <Button className="add_food_btn" onClick={openFoodModal}> 
          <IconButton aria-label="add" >
              <AddCircleOutlineRoundedIcon />
         </IconButton>
-             {""} Add Food Item</Button>
+             {""} Add Food Item
+             </Button>
          </div>
+         <AddFoodModal
+        showFoodModal={showFoodModal}
+        setShowFoodModal={setShowFoodModal}
+      />
          <div className="food_table">
        <Table  hover size="md">
   <thead>
