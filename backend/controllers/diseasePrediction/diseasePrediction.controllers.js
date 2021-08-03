@@ -1,8 +1,8 @@
 const { spawn } = require("child_process");
 
-const predictDisease = (req, res) => {
+const predictDisease = async(req, res) => {
   
-  const { s1, s2, s3, s4, s5 } = req.body;
+  const { s1, s2, s3, s4, s5 } = req.headers;
   console.log(s1, " ", s2, " ", s3, " ", s4, " ", s5);
   const pyProg = spawn("python", [
     "../backend/ML/diseasePrediction.py",

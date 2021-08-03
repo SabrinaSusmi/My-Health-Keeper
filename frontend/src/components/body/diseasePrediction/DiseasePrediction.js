@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 
 import "../../../static/Styling/diseasePrediction.css";
 import { getSymptomsList } from "./Symptoms";
+import axios from "axios";
 
 const initialState = {
   s1: "",
@@ -53,6 +54,25 @@ export default function DiseasePrediction() {
     return a;
   };
   const classes = useStyles();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(s3);
+    await axios
+      .get(
+        "http://localhost:5000/disease-prediction",
+       
+        {
+          headers: { Authorization: token ,s1: s1,
+            s2: s2,
+            s3: s3,
+            s4: s4,
+            s5: s5,}
+        }
+      )
+      .then((res) => {
+        console.log("disease", res.data.a);
+      });
+  };
   return (
     <div>
       <h3>
@@ -136,7 +156,9 @@ export default function DiseasePrediction() {
         <Grid item xs={3}></Grid>
       </Grid>
       <div className="predict_button">
-        <Button className="predict">Predict</Button>
+        <Button onClick={handleSubmit} className="predict">
+          Predict
+        </Button>
       </div>
     </div>
   );
