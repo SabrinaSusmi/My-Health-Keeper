@@ -1,0 +1,26 @@
+.root {
+    flex-grow: 1;
+    padding: 1%;
+  
+  }
+
+.root>  .grid_symptoms{
+    color:#04272f ;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .predict_button{
+  
+      text-align: center;
+  }
+.predict_button>.predict{
+      justify-content: center;
+      color: white;
+      background-color: #04272f;
+      padding: .5%;
+    padding-left: 4%;
+    padding-right: 4%;
+     border-radius: 15px;
+     font-size: 16px;
+  }
