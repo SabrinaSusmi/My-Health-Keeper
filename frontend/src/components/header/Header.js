@@ -106,10 +106,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     overflow: "auto",
   },
-  // container: {
-  //   paddingTop: theme.spacing(4),
-  //   paddingBottom: theme.spacing(4),
-  // },
+ 
   paper: {
     padding: theme.spacing(2),
     display: "flex",
@@ -168,7 +165,7 @@ function Header() {
   const auth = useSelector((state) => state.auth);
   const classes = useStyles();
   const { user, isLogged } = auth;
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [cookies,  removeCookie] = useCookies(["user"]);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -340,8 +337,6 @@ function Header() {
   );
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
+
 
 export default Header;
