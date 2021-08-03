@@ -1,163 +1,74 @@
-import "../../../static/Styling/healthInfo.css";
-import React from "react";
-import { useState } from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import LocalHospitalRoundedIcon from "@material-ui/icons/LocalHospitalRounded";
-import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import InvertColorsIcon from '@material-ui/icons/InvertColors';
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import HeightIcon from "@material-ui/icons/Height";
+import React, { useRef, useEffect, useCallback } from "react";
+import "react-responsive-modal/styles.css";
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
-import WeightModal from "./WeightModal";
-import BpModal from "./BpModal";
-import SugarModal from "./SugarModal";
-import PulseModal from "./PulseModal";
+import { Line } from "react-chartjs-2";
 
+const state = {
+  labels: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+  datasets: [
+    {
+      label: "Rainfall",
+      fill: false,
+      lineTension: 0.5,
+      backgroundColor: "rgba(75,192,192,1)",
+      borderColor: "rgba(0,0,0,1)",
+      borderWidth: 2,
+      data: [65, 59, 80, 81, 56, 99, 92],
+    },
+  ],
+};
 
-
-function GeneralHealthInfo() {
-
-  const [showWeightModal, setShowWeightModal] = useState(false);
-  const openWeightModal = () => setShowWeightModal(true);
-
-  const [showBpModal, setShowBpModal] = useState(false);
-  const openBpModal = () => setShowBpModal(true);
-
-  const [showPulseModal, setShowPulseModal] = useState(false);
-  const openPulseModal = () => setShowPulseModal(true);
- 
-  const [showSugarModal, setShowSugarModal] = useState(false);
-  const openSugarModal = () =>  setShowSugarModal(true);
-
+const WeightModal = ({ showWeightModal, setShowWeightModal }) => {
+  const closeWeightModal = () => {
+    setShowWeightModal(false);
+  };
 
   return (
-    <div className=" body ">
-      {
-        <div>
-        <Card className="root">
-          <div className="details">
-            <CardContent className="content">
-              <Typography component="h5" variant="h5">
-                👣 Weight
-              </Typography>
-              <div className="margin">
-                <Grid container spacing={2} alignItems="flex-end">
-                  <Grid item>
-                    <LocalHospitalRoundedIcon />
-                  </Grid>
-                  <Grid item>
-                    <TextField label="KG" />
-                  </Grid>
-                  <IconButton aria-label="add" className="controls">
-                    <AddCircleOutlineRoundedIcon className="playIcon" />
-                  </IconButton>
-                </Grid>
-              </div>
-              <Button className="summary_btn" onClick={openWeightModal}>
-                 Show History</Button>
-            </CardContent>
-          </div>
-          <WeightModal
-        showWeightModal={showWeightModal}
-        setShowWeightModal={setShowWeightModal}
-      />
-        </Card>
-      </div>
-      }
-      {
-        <Card className="root">
-          <div className="details">
-            <CardContent className="content">
-              <Typography component="h5" variant="h5">
-                🩸 Blood Pressure
-              </Typography>
-              <div className="margin">
-                <Grid container spacing={2} alignItems="flex-end">
-                  <Grid item>
-                    <InvertColorsIcon />
-                  </Grid>
-                  <Grid item>
-                    <TextField label="bpm" />
-                  </Grid>
-                  <IconButton aria-label="add" className="controls">
-                    <AddCircleOutlineRoundedIcon className="playIcon" />
-                  </IconButton>
-                </Grid>
-              </div>
-              <Button className="summary_btn" onClick={openBpModal}> Show History</Button>
-            </CardContent>
-          </div>
-         <BpModal
-         showBpModal={showBpModal}
-         setShowBpModal={setShowBpModal}>
-         </BpModal>
-        </Card>
-      }
-      {
-        <Card className="root">
-          <div className="details">
-            <CardContent className="content">
-              <Typography component="h5" variant="h5">
-                💓 Pulse Rate
-              </Typography>
-              <div className="margin">
-                <Grid container spacing={2} alignItems="flex-end">
-                  <Grid item>
-                    <FavoriteBorderIcon />
-                  </Grid>
-                  <Grid item>
-                    <TextField label="bpm" />
-                  </Grid>
-                  <IconButton aria-label="add" className="controls">
-                    <AddCircleOutlineRoundedIcon className="playIcon" />
-                  </IconButton>
-                 </Grid>
-              </div>
-              <Button className="summary_btn" onClick={openPulseModal}> Show History</Button>
-            </CardContent>
-          </div>
-          <PulseModal
-         showPulseModal={showPulseModal}
-         setShowPulseModal={setShowPulseModal}>
-         </PulseModal>
-        </Card>
-      }
-      {
-         <Card className="root">
-         <div className="details">
-           <CardContent className="content">
-             <Typography component="h5" variant="h5">
-               🎚 Sugar Level
-             </Typography>
-             <div className="margin">
-               <Grid container spacing={2} alignItems="flex-end">
-                 <Grid item>
-                   < HeightIcon />
-                 </Grid>
-                 <Grid item>
-                   <TextField label=" " />
-                 </Grid>
-                 <IconButton aria-label="add" className="controls">
-                   <AddCircleOutlineRoundedIcon className="playIcon" />
-                 </IconButton>
-                </Grid>
-             </div>
-             <Button className="summary_btn" onClick={openSugarModal}> Show History</Button>
-           </CardContent>
-         </div>
-         <SugarModal
-         showSugarModal={showSugarModal}
-         setShowSugarModal={setShowSugarModal}>
-         </SugarModal>
-       </Card>
-      }
-    </div>
+    <>
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={showWeightModal}
+        onHide={closeWeightModal}
+      >
+        <Modal.Header>
+          <Modal.Title>
+            <h4>Hello Weight</h4>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h2>Graph</h2>
+          <Line
+            data={state}
+            options={{
+              title: {
+                display: true,
+                text: "Average Rainfall per month",
+                fontSize: 20,
+              },
+              legend: {
+                display: true,
+                position: "right",
+              },
+            }}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              closeWeightModal();
+            }}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
-}
+};
 
-export default GeneralHealthInfo;
+export default WeightModal;
