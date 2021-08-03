@@ -5,15 +5,13 @@ import { NavLink } from "react-router-dom";
 import DietGoalSetter from "./DietGoalSetter";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import Table from "react-bootstrap/Table";
-import IconButton from "@material-ui/core/IconButton";
-import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
+
 import "react-datepicker/dist/react-datepicker.css";
-import AddFoodModal from "./addFoodModal";
+
+import FoodItemTable from "./FoodItemTable";
 
 export default function DietPlan() {
-  const [showFoodModal, setShowFoodModal] = useState(false);
-  const openFoodModal = () => setShowFoodModal(true);
+ 
   const token = useSelector((state) => state.token);
   const [targetVisible, setTargetVisible] = useState(false);
   const viewtargetInfo = () => {
@@ -43,7 +41,11 @@ export default function DietPlan() {
        <hr></hr>
          <div className="diet_date">
                     <div>
-                    <TextField
+                      <Button>
+                      <i class="far fa-calendar-alt"/>
+                      </Button>
+                  
+                       <TextField
                       type="date"
                       required
                       id="dietDate"
@@ -51,44 +53,13 @@ export default function DietPlan() {
                       InputLabelProps={{
                         shrink: false,
                       }}
-                    />
+                   />
+                  
        </div>
      </div>
-        <div className="add_food">
-          <Button className="add_food_btn" onClick={openFoodModal}>
-            <IconButton aria-label="add">
-              <AddCircleOutlineRoundedIcon />
-            </IconButton>
-            {""} Add Food Item
-          </Button>
-        </div>
-        <AddFoodModal
-        showFoodModal={showFoodModal}
-        setShowFoodModal={setShowFoodModal}
-      />
-        <div className="food_table">
-          <Table hover size="md">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Food Name</th>
-                <th>Quantity</th>
-                <th>Meal Description</th>
-                <th>Calories Consumed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {/* <td>1</td>
-                <td>Rice</td>
-                <td>2 cups</td>
-                <td>Lunch</td>
-                <td>173</td> */}
-              </tr>
-            </tbody>
-          </Table>
-        </div>
-      </div>
+     </div>
+  
+  <FoodItemTable/>
     </div>
   );
 }
