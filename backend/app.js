@@ -9,6 +9,7 @@ const medDosesRoutes = require("./routers/medDose.route");
 const paymentRoutes = require("./routers/payment.routers");
 const dietPlanRoutes=require('./routers/dietPlan.routers')
 const spHealthInformationRoutes = require("./routers/specializedHealthInformation.routers");
+const diseasePrediction=require('./routers/diseasePrediction.routers')
 const path = require("path");
 
 const app = express();
@@ -25,7 +26,7 @@ app.use(medDosesRoutes);
 app.use('/diet-plan',dietPlanRoutes)
 app.use("/user", cycleTracker);
 app.use("/user", authRoutes);
-
+app.use(diseasePrediction)
 app.use("/payment", paymentRoutes);
 
 
