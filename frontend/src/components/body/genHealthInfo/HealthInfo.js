@@ -111,6 +111,11 @@ function GeneralHealthInfo() {
     }).catch ((err) => {
       err.response.data.msg && setWeight({ ...weight, errW: err.response.data.msg, successW:"" });
     })
+
+    setTimeout(function () {
+      setWeight(weightInitialState);
+    }, 3000);
+
   };
 
   const handleSubmitBp = async (e) => {
@@ -128,6 +133,11 @@ function GeneralHealthInfo() {
     }).catch ((err) => {
       err.response.data.msg && setBp({ ...bp, errB: err.response.data.msg, successB:"" });
     })
+
+    setTimeout(function () {
+      setBp(bpInitialState);
+    }, 3000);
+
   };
 
   const handleSubmitPulse = async (e) => {
@@ -145,6 +155,11 @@ function GeneralHealthInfo() {
     }).catch ((err) => {
       err.response.data.msg && setPulse({ ...pulse, errP: err.response.data.msg, successP:"" });
     })
+
+    setTimeout(function () {
+      setPulse(pulseInitialState);
+    }, 3000);
+
   };
 
   const handleSubmitSugar = async (e) => {
@@ -162,6 +177,11 @@ function GeneralHealthInfo() {
     }).catch ((err) => {
       err.response.data.msg && setSugar({ ...sugar, errS: err.response.data.msg, successS:"" });
     })
+     
+    setTimeout(function () {
+      setSugar(sugarInitialState);
+    }, 3000);
+    
   };
 
 
