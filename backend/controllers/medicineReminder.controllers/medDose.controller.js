@@ -31,15 +31,16 @@ setInterval(() => {
                 if (err) {
                   console.log(err);
                 }
-                let msg = `REMINDER for ${remind.medname}!!`;
 
                 UserModel.find({ email: remind.userEmail }).then((res1) => {
                   const userPhone = res1[0].phone;
-
+                  let username = res1[0].name;
+                  let msg = `Medicine REMINDER for ${username}!!\nYou should take ${remind.medname} at ${remind.medtime}!!`;
                   PaymentModel.find({
                     user: remind.user,
                     paymentDone: true,
                   }).then((res2) => {
+                    sendEmail(remind.userEmail, "", msg, "", "");
                     if (res2.length > 0) {
                       sendSMS(userPhone, msg);
                     } else {
@@ -47,8 +48,6 @@ setInterval(() => {
                     }
                   });
                 });
-
-                sendEmail(remind.userEmail, "", msg, "", "");
               }
             );
           }
