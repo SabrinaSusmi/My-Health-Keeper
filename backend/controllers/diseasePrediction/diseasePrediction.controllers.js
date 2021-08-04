@@ -13,21 +13,26 @@ const predictDisease = async (req, res) => {
     s5,
   ]);
 
-  const tryy = (sss) => {
+  const tryy = (predictedAns) => {
     try {
+      let specialist = [];
     
       const jsonString = fs.readFileSync(
-        "../backend/controllers/diseasePrediction/try.json"
+        "../backend/controllers/diseasePrediction/specialistList.json"
       );
       const diseaseSpecialistJsonFile = JSON.parse(jsonString);
       const diseaseList = Object.values(diseaseSpecialistJsonFile);
-      for (let i = 0; i < diseaseList.length; i++) {
+      for (let j = 0; j <3 ; j++) {
         let z = Object.keys(diseaseSpecialistJsonFile).toString().split(",");
-        if (String(sss.substring(0)) == z[i]) {
-          console.log("hi ", diseaseList[i]);
-          return diseaseList[i];
+        for (let i = 0; i < diseaseList.length; i++) {
+          if (String(predictedAns[j].substring(0)) == z[i]) {
+            console.log("hi ", diseaseList[i]);
+            specialist.push(diseaseList[i]);
+          }
         }
+      
       }
+      return specialist;
     } catch (err) {
       console.log(err);
       return;
@@ -35,14 +40,14 @@ const predictDisease = async (req, res) => {
   };
   pyProg.stdout.on("data", function (data) {
     const ans = data.toString().split("\r\n");
-      const aa = [];
-    aa.push(ans[1].toString());
-    aa.push(ans[3].toString());
+    const aa = [];
     aa.push(ans[0].toString());
+    aa.push(ans[1].toString());
+    aa.push(ans[2].toString());
     //  const q = aa[2].split("  ");
 
-    const specialist = tryy(aa[2]);
-
+    const specialist = tryy(aa);
+console.log('sss: ',specialist)
     res.send({
       diseaseName: aa,
       diseasePercenatge: aa[1],
