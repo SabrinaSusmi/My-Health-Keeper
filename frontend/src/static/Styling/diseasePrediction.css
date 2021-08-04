@@ -24,3 +24,27 @@
      border-radius: 15px;
      font-size: 16px;
   }
+
+  .prediction_label{
+   margin-top: 2%;
+   margin-left: 2.5%;
+   margin-right: 2.5%;
+   margin-bottom: 0%;
+    height: 220px;
+   border-color:#04272f;
+   border-style: double;
+   border-width: 5px;
+   border-radius: 10px;
+ 
+  }
+
+  .prediction_label>.prediction_div{
+    padding: 1.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .footer{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
