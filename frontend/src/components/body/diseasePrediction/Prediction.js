@@ -2,7 +2,7 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import { InputLabel } from "@material-ui/core";
 export default function Prediction(props) {
-  const aa = props.getPrediction[0];
+  const diseaseName = props.getPrediction;
   return (
     <div>
       <InputLabel className="prediction_label">
@@ -21,23 +21,23 @@ export default function Prediction(props) {
               {" "}
               <td>1</td> &emsp;
               <td>
-                {aa} &emsp; &emsp; &emsp; {props.percent}{" "}
+                {diseaseName[0]} &emsp; &emsp; &emsp; {props.percent}{" "}
               </td>
               &emsp; &emsp; &emsp; &emsp; &emsp;
-              <td>&emsp;{props.specialist}</td>
+              <td>&emsp;{props.specialist[0]}</td>
             </tr>
             <br /> <br />{" "}
             <tr>
               <td>2</td> &emsp;
-              {/*   <td>Rice</td>
-                <td>2 cups</td>
-                 */}
+                <td>  {diseaseName[1]} &emsp; &emsp; &emsp; {props.percent}{" "}</td>
+                &emsp; &emsp; &emsp; &emsp; &emsp;   <td>&emsp;{props.specialist[1]}</td>
+                
             </tr>
             <br /> <br />{" "}
             <tr>
               <td>3</td> &emsp;
               {/*   <td>Rice</td>
-                <td>2 cups</td>
+          &emsp; &emsp; &emsp; &emsp; &emsp;       <td>2 cups</td>
                  */}
             </tr>
           </Table>
