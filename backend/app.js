@@ -10,6 +10,7 @@ const paymentRoutes = require("./routers/payment.routers");
 const dietPlanRoutes=require('./routers/dietPlan.routers')
 const spHealthInformationRoutes = require("./routers/specializedHealthInformation.routers");
 const diseasePrediction=require('./routers/diseasePrediction.routers')
+const genHealth =require('./routers/genHealth.route')
 const path = require("path");
 
 const app = express();
@@ -28,6 +29,7 @@ app.use("/user", cycleTracker);
 app.use("/user", authRoutes);
 app.use(diseasePrediction)
 app.use("/payment", paymentRoutes);
+app.use(genHealth)
 
 
 module.exports = app;
