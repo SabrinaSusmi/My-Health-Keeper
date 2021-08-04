@@ -71,7 +71,7 @@ export const mainListItems = (
           <HealingIcon />
         </font>
       </ListItemIcon>
-      <Link to="/" component={NavLink}>
+      <Link to="/disease-prediction" component={NavLink}>
       <font  className="sidebar-options-color" >
         <ListItemText primary="Disease Prediction" />
         </font>
