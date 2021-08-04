@@ -22,5 +22,5 @@ router.get("/getFolderItems", getFolderItems);
 router.delete('/deleteFolder/:folderId',deleteFolder)
 router.get('/getFolderDataForModal/:folderId',getFolderDataForModal)
 router.put("/updateMediaFiles",  upload.array("files"),updateMediaFiles);
-router.delete('/deleteFiles/:filePath',deleteFiles)
+router.delete('/deleteFiles/:folder',deleteFiles)
 module.exports = router;

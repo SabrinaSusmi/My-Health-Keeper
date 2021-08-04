@@ -11,35 +11,31 @@ const getallMediaFiles = async (req, res) => {
   }
 };
 
-const deleteFiles=async(req,res)=>{
-  let filePath = req.params.filePath;
-let folder=req.params.folderID
-  console.log("folder", folder);
-  const filepath=await MultipleFile.findOne({ _id:folder }).then((filedata) => {
-    console.log('filedata',filedata)
-   
-  });
-  // await MultipleFile.findByIdAndDelete(folder)
-  //   .then(() => {
-  //     res.json({ msg: "Folder Successfully Deleted!" });
-  //   })
-  //   .catch((err) => {
-  //     res.json({ msg: err.message });
-  //   });
-}
+const deleteFiles = async (req, res) => {
+  const filePaths = req.headers["filepath"];
+  let folder = req.params.folder;
+  console.log("folder", filePaths);
+  MultipleFile.updateOne(
+    { folder: folder },
+    { $pull: { files: { filePath: filePaths } } }
+  )
+    .then((qq) => console.log("ko ", qq))
+    .catch((err) => {
+      console.log(err);
+    });
+};
 const updateMediaFiles = async (req, res) => {
   const folder = req.headers["folder"];
   console.log("folderID: ", folder);
   let filesArray = [];
   await MultipleFile.findOne({ folder: folder }).then((filedata) => {
-    console.log('filedata',filedata)
-    if (filedata.files.length!=0) {
+    //console.log('filedata',filedata)
+    if (filedata.files.length != 0) {
       for (let i = 0; i < filedata.files.length; i++) {
         filesArray.push(filedata.files[i]);
       }
-    }
-    else{
-      filesArray=[]
+    } else {
+      filesArray = [];
     }
   });
 
@@ -52,9 +48,9 @@ const updateMediaFiles = async (req, res) => {
     };
     filesArray.push(file);
   });
-  console.log(filesArray);
+  //console.log(filesArray);
   await MultipleFile.findOneAndUpdate(
-    {  folder },
+    { folder },
 
     { $set: { files: filesArray, numberOfFiles: filesArray.length } },
 
@@ -75,14 +71,14 @@ const updateMediaFiles = async (req, res) => {
 const getFolderItems = async (req, res) => {
   try {
     const folderID = req.headers["folderid"];
-    console.log("folderID: ", folderID);
+    // console.log("folderID: ", folderID);
     const files = await MultipleFile.findById(folderID, function (err, ans) {
       if (err) {
         console.log("getallMediaFiles>err: ", "no files found");
         res.send("no files found");
       }
       if (ans) {
-        console.log("getallMediaFiles>ans: ", ans.files);
+        //  console.log("getallMediaFiles>ans: ", ans.files);
         res.status(200).send(ans.files);
       }
     });
