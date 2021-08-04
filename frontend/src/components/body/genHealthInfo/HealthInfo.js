@@ -17,10 +17,41 @@ import WeightModal from "./WeightModal";
 import BpModal from "./BpModal";
 import SugarModal from "./SugarModal";
 import PulseModal from "./PulseModal";
+import { useSelector } from "react-redux";
+import { showErrMsg, showSuccessMsg } from "../../utils/notification/Notification";
+import axios from "axios";
 
+const weightInitialState = {
+  infoTitleWeight: 'Weight',
+  infoWeight: '',
+  errW: '',
+  successW: ''
+}
+
+const bpInitialState = {
+  infoTitleBp: 'Bp',
+  infoBp: '',
+  errB: '',
+  successB: ''
+}
+
+const pulseInitialState = {
+  infoTitlePulse: 'Pulse',
+  infoPulse: '',
+  errP: '',
+  successP: ''
+}
+
+const sugarInitialState = {
+  infoTitleSugar: 'Sugar',
+  infoSugar: '',
+  errS: '',
+  successS: ''
+}
 
 
 function GeneralHealthInfo() {
+  const token = useSelector((state) => state.token);
 
   const [showWeightModal, setShowWeightModal] = useState(false);
   const openWeightModal = () => setShowWeightModal(true);
@@ -34,6 +65,105 @@ function GeneralHealthInfo() {
   const [showSugarModal, setShowSugarModal] = useState(false);
   const openSugarModal = () =>  setShowSugarModal(true);
 
+  const [weight, setWeight] = useState(weightInitialState);
+  const [bp, setBp] = useState(bpInitialState);
+  const [pulse, setPulse] = useState(pulseInitialState);
+  const [sugar, setSugar] = useState(sugarInitialState);
+
+  const { infoTitleWeight, infoWeight, errW, successW } = weight;
+  const { infoTitleBp, infoBp, errB, successB } = bp;
+  const { infoTitlePulse, infoPulse, errP, successP } = pulse;
+  const { infoTitleSugar, infoSugar, errS, successS } = sugar;
+
+
+  const handleChangeWeight = (e) => {
+    const { name, value } = e.target;
+    setWeight({ ...weight, [name]: value, errW: "", successW: "" });
+  };
+
+  const handleChangeBp = (e) => {
+    const { name, value } = e.target;
+    setBp({ ...bp, [name]: value, errB: "", successB: "" });
+  };
+
+  const handleChangePulse = (e) => {
+    const { name, value } = e.target;
+    setPulse({ ...pulse, [name]: value, err: "", success: "" });
+  };
+
+  const handleChangeSugar = (e) => {
+    const { name, value } = e.target;
+    setSugar({ ...sugar, [name]: value, err: "", success: "" });
+  };
+
+  const handleSubmitWeight = async (e) => {
+    e.preventDefault();
+    var infoTitle = infoTitleWeight;
+    var info = infoWeight;
+
+    await axios.post("http://localhost:5000/addGenHealth", {
+      infoTitle,
+      info,
+    }, {
+      headers: { Authorization: token },
+    }).then((res)=> {
+      setWeight({ ...weight, errW: "", successW:"Weight added successfully!" });
+    }).catch ((err) => {
+      err.response.data.msg && setWeight({ ...weight, errW: err.response.data.msg, successW:"" });
+    })
+  };
+
+  const handleSubmitBp = async (e) => {
+    e.preventDefault();
+    var infoTitle = infoTitleBp;
+    var info = infoBp;
+
+    await axios.post("http://localhost:5000/addGenHealth", {
+      infoTitle,
+      info,
+    }, {
+      headers: { Authorization: token },
+    }).then((res)=> {
+      setWeight({ ...bp, errB: "", successB:"BP added successfully!" });
+    }).catch ((err) => {
+      err.response.data.msg && setWeight({ ...bp, errB: err.response.data.msg, successB:"" });
+    })
+  };
+
+  const handleSubmitPulse = async (e) => {
+    e.preventDefault();
+    var infoTitle = infoTitlePulse;
+    var info = infoPulse;
+
+    await axios.post("http://localhost:5000/addGenHealth", {
+      infoTitle,
+      info,
+    }, {
+      headers: { Authorization: token },
+    }).then((res)=> {
+      setWeight({ ...pulse, errP: "", successP:"Pulse added successfully!" });
+    }).catch ((err) => {
+      err.response.data.msg && setWeight({ ...pulse, errP: err.response.data.msg, successP:"" });
+    })
+  };
+
+  const handleSubmitSugar = async (e) => {
+    e.preventDefault();
+    var infoTitle = infoTitleSugar;
+    var info = infoSugar;
+
+    await axios.post("http://localhost:5000/addGenHealth", {
+      infoTitle,
+      info,
+    }, {
+      headers: { Authorization: token },
+    }).then((res)=> {
+      setWeight({ ...sugar, errS: "", successS:"Sugar added successfully!" });
+    }).catch ((err) => {
+      err.response.data.msg && setWeight({ ...sugar, errS: err.response.data.msg, successS:"" });
+    })
+  };
+
 
   return (
     <div className=" body ">
@@ -42,6 +172,8 @@ function GeneralHealthInfo() {
         <Card className="root">
           <div className="details">
             <CardContent className="content">
+            {errW && showErrMsg(errW)}
+        {successW && showSuccessMsg(successW)}
               <Typography component="h5" variant="h5">
                 👣 Weight
               </Typography>
@@ -51,9 +183,9 @@ function GeneralHealthInfo() {
                     <LocalHospitalRoundedIcon />
                   </Grid>
                   <Grid item>
-                    <TextField label="KG" />
+                    <TextField label="KG" id="infoWeight" name="infoWeight" value={infoWeight} onChange={handleChangeWeight} />
                   </Grid>
-                  <IconButton aria-label="add" className="controls">
+                  <IconButton aria-label="add" className="controls" onClick= {handleSubmitWeight}>
                     <AddCircleOutlineRoundedIcon className="playIcon" />
                   </IconButton>
                 </Grid>
@@ -73,6 +205,8 @@ function GeneralHealthInfo() {
         <Card className="root">
           <div className="details">
             <CardContent className="content">
+            {errB && showErrMsg(errB)}
+        {successB && showSuccessMsg(successB)}
               <Typography component="h5" variant="h5">
                 🩸 Blood Pressure
               </Typography>
@@ -82,9 +216,9 @@ function GeneralHealthInfo() {
                     <InvertColorsIcon />
                   </Grid>
                   <Grid item>
-                    <TextField label="bpm" />
+                    <TextField label="bpm" id="infoBp" name="infoBp" value={infoBp} onChange={handleChangeBp} />
                   </Grid>
-                  <IconButton aria-label="add" className="controls">
+                  <IconButton aria-label="add" className="controls" onClick= {handleSubmitBp} >
                     <AddCircleOutlineRoundedIcon className="playIcon" />
                   </IconButton>
                 </Grid>
@@ -102,6 +236,8 @@ function GeneralHealthInfo() {
         <Card className="root">
           <div className="details">
             <CardContent className="content">
+            {errP && showErrMsg(errP)}
+        {successP && showSuccessMsg(successP)}
               <Typography component="h5" variant="h5">
                 💓 Pulse Rate
               </Typography>
@@ -111,9 +247,9 @@ function GeneralHealthInfo() {
                     <FavoriteBorderIcon />
                   </Grid>
                   <Grid item>
-                    <TextField label="bpm" />
+                    <TextField label="bpm" id="infoPulse" name="infoPulse" value={infoPulse} onChange={handleChangePulse} />
                   </Grid>
-                  <IconButton aria-label="add" className="controls">
+                  <IconButton aria-label="add" className="controls" onClick= {handleSubmitPulse}>
                     <AddCircleOutlineRoundedIcon className="playIcon" />
                   </IconButton>
                  </Grid>
@@ -131,6 +267,8 @@ function GeneralHealthInfo() {
          <Card className="root">
          <div className="details">
            <CardContent className="content">
+           {errS && showErrMsg(errS)}
+        {successS && showSuccessMsg(successS)}
              <Typography component="h5" variant="h5">
                🎚 Sugar Level
              </Typography>
@@ -140,9 +278,9 @@ function GeneralHealthInfo() {
                    < HeightIcon />
                  </Grid>
                  <Grid item>
-                   <TextField label=" " />
+                   <TextField label=" " id="infoSugar" name="infoSugar" value={infoSugar} onChange={handleChangeSugar} />
                  </Grid>
-                 <IconButton aria-label="add" className="controls">
+                 <IconButton aria-label="add" className="controls" onClick= {handleSubmitSugar} >
                    <AddCircleOutlineRoundedIcon className="playIcon" />
                  </IconButton>
                 </Grid>
