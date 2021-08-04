@@ -12,7 +12,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
     const [inputFields,setInputField] = useState([
         { foodName: '', quantity: ''},
     ])
-    
+
     const closeFoodModal = () => {
         setShowFoodModal(false);
       };
@@ -30,7 +30,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
        values[index][event.target.name]= event.target.value;
        setInputField(values);
       };
-    
+
         return (
             <>
               <Modal
@@ -39,7 +39,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                 centered
                 show={showFoodModal}
                 onHide={closeFoodModal}
-               
+
                 >
                     <Modal.Header>
                     <Modal.Title><h4>🍀 Add Food Items</h4></Modal.Title>
@@ -54,7 +54,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                                     name="meal_name"
                                 />
                             </div>
-                            
+
                                 { inputFields.map((inputField, index)=>(
                                     <div key = {index} className="form_body">
                                          <TextField
@@ -76,7 +76,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                                          value={inputField.quantity}
                                          onChange={event=>handleChangeInputFood(index,event)}
                                          ></TextField>
-                                         
+
                                          <IconButton
                                           className="form_btn" 
                                           disabled={inputFields.length === 1}
@@ -88,10 +88,10 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                                          onClick={handleAddFields}>
                                              <AddIcon/>
                                          </IconButton>
-                                         
+
                                     </div>
                                 ))}
-                           
+
                         </form>
                         </Modal.Body>
                         <Modal.Footer>
@@ -103,10 +103,10 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                             </Button>
                         </Modal.Footer>
                </Modal>
-              
+
             </>
       )
 
 }
 
-export default AddFoodModal;
+export default AddFoodModal; 
