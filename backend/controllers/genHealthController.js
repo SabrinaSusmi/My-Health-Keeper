@@ -17,29 +17,25 @@ const postHealthInfo = async (req,res) => {
 
 const getWeightGraph = async (req,res)=>{
     let user = req.user.id;
-    const weightdata = [];
-      await genHealthSchema.findOne({ user })
-        .then((response) => {
-         
-            const strDate = inputDate.getMonth();
-            const month = new Date().getMonth();
-  
-            if (strDate ==  month) {
-              weightdata.push(response.info);
-            } else {
-              console.log("no data found");
+    
+        genHealthSchema.find(
+          {
+            user: user,
+            infoTitle: "Weight",
+            inputDate: new Date().getMonth(),
+          },
+          (err, info) => {
+            if (info) {
+              console.log(user);
+              console.log("Test :" + err);
             }
-          
-          if ( weightdata.length == 0) {
-            res.send();
-          } else {
-            res.send( weightdata);
+            if (info) {
+              res.send(info);
+              console.log(info);
+              
+            }
           }
-        })
-        .catch((err) => {
-          console.log(err);
-          return res.status(500).json({ msg: err.message });
-        });
+        );
 }
 
 module.exports = { postHealthInfo,getWeightGraph };
