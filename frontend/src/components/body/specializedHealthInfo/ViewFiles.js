@@ -73,7 +73,16 @@ export default function AddFiles() {
         console.log(err);
       });
   };
-
+  const deleteFile = async (filepath) => {
+    await axios
+      .delete("http://localhost:5000/api/deleteFiles/" + state.folder, {
+        headers: { Authorization: token, filepath: filepath },
+      })
+      .then(showMediaFiles(state))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const classes = useStyles();
 
   return (
@@ -84,7 +93,7 @@ export default function AddFiles() {
           component={NavLink}
           to="/specialized-health-information"
         >
-          <ArrowBackIcon /> Return 
+          <ArrowBackIcon /> Return
         </Link>
         <div className="spHealth_reminder_buttons">
           <div className="viewFiles_Btn">
@@ -120,7 +129,7 @@ export default function AddFiles() {
                 >
                   <div className="media_card">
                     {element.fileType != "application/pdf" ? (
-                      <LazyLoad key={element.fileName}>
+                      <LazyLoad className="lazyload" key={element.fileName}>
                         <ModalImage
                           className={classes.media}
                           small={`http://localhost:5000/${element.filePath}`}
@@ -132,10 +141,19 @@ export default function AddFiles() {
                         <h7>
                           <b>Name:</b> {element.fileName}
                         </h7>
+                        <div className="media_file_delete">
+                          <Button
+                            className="media_file_delete_sub"
+                            onClick={() => {
+                              deleteFile(element.filePath);
+                            }}
+                          >
+                            <DeleteIcon />
+                          </Button>
+                        </div>
                       </LazyLoad>
                     ) : (
-                      <div
-                       
+                      <div className='pdf'
                         onClick={(e) => {
                           window.open(
                             `http://localhost:5000/${element.filePath}`,
@@ -143,11 +161,22 @@ export default function AddFiles() {
                           );
                         }}
                       >
-                        <LazyLoad key={element.fileName}>
+                        <LazyLoad className="lazyload" key={element.fileName}>
                           <PdfView getFilePath={element.filePath} />
+                         <pre></pre>
                           <h7>
                             <b>Name:</b> {element.fileName}
                           </h7>
+                          <div className="media_file_delete">
+                            <Button
+                              className="media_file_delete_sub"
+                              onClick={() => {
+                                deleteFile(element.filePath);
+                              }}
+                            >
+                              <DeleteIcon />
+                            </Button>
+                          </div>
                         </LazyLoad>
                       </div>
                     )}
