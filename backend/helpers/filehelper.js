@@ -18,9 +18,7 @@ const filefilter = (req, file, cb) => {
     file.mimetype === "image/png" ||
     file.mimetype === "image/jpg" ||
     file.mimetype === "image/jpeg" ||
-    file.mimetype === "application/pdf" ||
-    file.mimetype ===
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    file.mimetype === "application/pdf" 
   ) {
     cb(null, true);
   } else {
