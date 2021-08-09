@@ -110,6 +110,7 @@ function DisplayMedReminders() {
             >
               <DeleteIcon />
             </IconButton>
+            {console.log('missedList ',missedList)}
             <MedModal
               showModal={showModal}
               setShowModal={setShowModal}

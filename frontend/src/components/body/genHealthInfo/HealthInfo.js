@@ -111,6 +111,11 @@ function GeneralHealthInfo() {
     }).catch ((err) => {
       err.response.data.msg && setWeight({ ...weight, errW: err.response.data.msg, successW:"" });
     })
+
+    setTimeout(function () {
+      setWeight(weightInitialState);
+    }, 3000);
+
   };
 
   const handleSubmitBp = async (e) => {
@@ -124,10 +129,15 @@ function GeneralHealthInfo() {
     }, {
       headers: { Authorization: token },
     }).then((res)=> {
-      setWeight({ ...bp, errB: "", successB:"BP added successfully!" });
+      setBp({ ...bp, errB: "", successB:"BP added successfully!" });
     }).catch ((err) => {
-      err.response.data.msg && setWeight({ ...bp, errB: err.response.data.msg, successB:"" });
+      err.response.data.msg && setBp({ ...bp, errB: err.response.data.msg, successB:"" });
     })
+
+    setTimeout(function () {
+      setBp(bpInitialState);
+    }, 3000);
+
   };
 
   const handleSubmitPulse = async (e) => {
@@ -141,10 +151,15 @@ function GeneralHealthInfo() {
     }, {
       headers: { Authorization: token },
     }).then((res)=> {
-      setWeight({ ...pulse, errP: "", successP:"Pulse added successfully!" });
+      setPulse({ ...pulse, errP: "", successP:"Pulse added successfully!" });
     }).catch ((err) => {
-      err.response.data.msg && setWeight({ ...pulse, errP: err.response.data.msg, successP:"" });
+      err.response.data.msg && setPulse({ ...pulse, errP: err.response.data.msg, successP:"" });
     })
+
+    setTimeout(function () {
+      setPulse(pulseInitialState);
+    }, 3000);
+
   };
 
   const handleSubmitSugar = async (e) => {
@@ -158,10 +173,15 @@ function GeneralHealthInfo() {
     }, {
       headers: { Authorization: token },
     }).then((res)=> {
-      setWeight({ ...sugar, errS: "", successS:"Sugar added successfully!" });
+      setSugar({ ...sugar, errS: "", successS:"Sugar added successfully!" });
     }).catch ((err) => {
-      err.response.data.msg && setWeight({ ...sugar, errS: err.response.data.msg, successS:"" });
+      err.response.data.msg && setSugar({ ...sugar, errS: err.response.data.msg, successS:"" });
     })
+     
+    setTimeout(function () {
+      setSugar(sugarInitialState);
+    }, 3000);
+    
   };
 
 

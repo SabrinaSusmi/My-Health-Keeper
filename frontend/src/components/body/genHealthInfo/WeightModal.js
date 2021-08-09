@@ -15,7 +15,7 @@ const state = {
       backgroundColor: "rgba(75,192,192,1)",
       borderColor: "rgba(0,0,0,1)",
       borderWidth: 2,
-      data: [65, 59, 80, 81, 56, 99, 92],
+      data: [65, 59, (59+56)/2,(((59+56)/2)+56)/2, 56, 99, 92],
     },
   ],
 };

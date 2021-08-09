@@ -1,0 +1,52 @@
+.diet_buttons {
+  margin-top: 1%;
+  width: 39%;
+  margin-right: 0%;
+  margin-left: auto;
+}
+.diet_body{
+  margin-top: 2%;
+ margin-left: 0.5%;
+ margin-right: 0.5%;
+}
+.diet_body > .strings{
+  margin-left: 2%;
+  font-family: 'Arial Narrow Bold', sans-serif;
+  color: #063742;
+}
+.diet_body > .diet_date{
+  margin-top: 2%;
+  margin-left: 2%;
+  padding: 1rem;
+}
+
+.diet_buttons > .diet_buttons_sub {
+  width: auto;
+  color: white;
+  background-color: #063742;
+  display: inline;
+  margin-left: 1.5em;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.diet_buttons > .diet_buttons_sub:hover {
+  width: auto;
+  color: white;
+  background-color: #0f5a6b;
+  display: inline;
+  margin-left: 1.5em;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.form_body{
+  margin: 0.2%;
+}
+.form_body > .form_btn{
+  margin: 1%;
+}

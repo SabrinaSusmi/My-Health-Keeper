@@ -1,46 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../../static/Styling/spHealthInfo.css";
+import "../../../static/Styling/spViewFiles.css";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import { Button, IconButton, Link, Grid } from "@material-ui/core";
+import ModalImage from "react-modal-image";
+import LazyLoad from "react-lazyload";
+import { Button, Grid, Link } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { Document, Page, pdfjs } from "react-pdf";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
+import PdfView from "./pdfView";
+import Modal from "react-bootstrap/Modal";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 const useStyles = makeStyles({
   root: {
     maxWidth: "100mvh",
   },
   media: {
     resizeMode: "contain",
-    height: 180,
+    height: 225,
     width: 190,
   },
 });
 
 export default function AddFiles() {
+  // const inputRef = useRef(null);
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
-  const { user, isLogged } = auth;
-
-  const [mediaFileType, setMediaFileType] = useState("");
-
-  let history = useHistory();
-  //   console.log("viewFiles ", folderid);
 
   const [mediaFiles, setMediaFiles] = useState([]);
   const { state } = useLocation();
-  console.log("state1: ", state);
-  const showMediaFiles = async () => {
-    // console.log("id  ", user._id);
 
-    console.log("state: ", state);
-    const userid = user._id;
-
+  const showMediaFiles = async (state) => {
     await axios
       .get("http://localhost:5000/api/getFolderItems", {
         headers: { Authorization: token, folderid: state._id },
@@ -51,111 +41,152 @@ export default function AddFiles() {
       });
   };
 
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [multipleFiles, setMultipleFiles] = useState("");
+  const MultipleFileChange = (e) => {
+    setMultipleFiles(e.target.files);
+  };
 
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
+  const folderName = state.folder;
+  const fileLength = state.numberOfFiles;
 
-  
   useEffect(async () => {
-    showMediaFiles();
+    showMediaFiles(state);
   }, []);
 
+  const updateFiles = async () => {
+    const formData = new FormData();
+    console.log("swdxs", state.folder);
+
+    for (let i = 0; i < multipleFiles.length; i++) {
+      formData.append("files", multipleFiles[i]);
+    }
+    await axios
+      .put("http://localhost:5000/api/updateMediaFiles", formData, {
+        headers: { Authorization: token, folder: folderName },
+      })
+      .then((result) => {
+        // history.push("/view-files");
+        showMediaFiles(state);
+        setMultipleFiles("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const deleteFile = async (filepath) => {
+    await axios
+      .delete("http://localhost:5000/api/deleteFiles/" + state.folder, {
+        headers: { Authorization: token, filepath: filepath },
+      })
+      .then(showMediaFiles(state))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <pre></pre>
-      <div className="reminder_buttons">
-        &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;
-        <Link href="/medicine-reminder" className="reminder_buttons_sub">
-          {""} ➕ Add New Files
-        </Link>
-      </div>
-      <div>
-        {" "}
-        <h3 justify="center">{state.folder}</h3>
-        <hr></hr>
-      </div>
-      {state.numberOfFiles==0?(<>NO Files Added 😢</>):(<div>
-        <Grid
-          container
-          spacing={1}
-          direction="row"
-          justify="flex-start"
-          alignItems="flex-start"
+      <div className="heading">
+        <Link
+          className="return_to_spHealth"
+          component={NavLink}
+          to="/specialized-health-information"
         >
-          {mediaFiles.map((element) => (
-            <div>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={3}
-                key={mediaFiles.indexOf(element)}
-              >
-                <div className="media_card">
-                  {element.fileType != "application/pdf" ? (
-                    <>
-                      {" "}
-                      {console.log(element.fileType)}
-                      <img
-                        className={classes.media}
-                        component="img"
-                        src={`http://localhost:5000/${element.filePath}`}
-                        title="Contemplative Reptile"
-                        alt="lpl"
-                      />
-                      <CardContent>
-                        <h7>
-                          <b>Name:</b> {element.fileName}
-                        </h7>
-                        <div >
-                          <IconButton
-                       className="viewBtn"      data-toggle="tooltip"
-                            title="Delete this file"
-                            // onClick={() => deleteReminder(medicines._id)}
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </div>
-                      </CardContent>
-                    </>
-                  ) : (
-                    <div className="react-pdf__Page__canvas">
-                      <Document
-                        file={`http://localhost:5000/${element.filePath}`}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                      >
-                        <Page pageNumber={pageNumber} />
-                      </Document>
-                      {/* <p>Page {pageNumber} of {numPages}</p> */}
-                      <CardContent>
-                        <h7>
-                          <b>Name:</b> {element.fileName}
-                        </h7>
-                        <div>
-                          <IconButton
-                           className="viewBtn"
-                            data-toggle="tooltip"
-                            title="Delete this file"
-                            // onClick={() => deleteReminder(medicines._id)}
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </div>
-                      </CardContent>
-                    </div>
-                  )}
-                </div>
-              </Grid>
-            </div>
-          ))}
-        </Grid>
+          <ArrowBackIcon /> Return
+        </Link>
+        <div className="spHealth_reminder_buttons">
+          <div className="viewFiles_Btn">
+            <Button className="viewFiles_addBtn" onClick={updateFiles} multiple>
+              Save
+            </Button>
+            <input
+              type="file"
+              onChange={(e) => {
+                MultipleFileChange(e);
+              }}
+              multiple
+            ></input>
+          </div>
+        </div>
       </div>
-)}
+
+      <h3>&nbsp; {folderName}</h3>
+      <hr></hr>
+      {fileLength == 0 ? (
+        <>NO Files Added 😢</>
+      ) : (
+        <div>
+          <Grid container spacing={1} direction="row">
+            {mediaFiles.map((element) => (
+              <div>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={3}
+                  key={mediaFiles.indexOf(element)}
+                >
+                  <div className="media_card">
+                    {element.fileType != "application/pdf" ? (
+                      <LazyLoad className="lazyload" key={element.fileName}>
+                        <ModalImage
+                          className={classes.media}
+                          small={`http://localhost:5000/${element.filePath}`}
+                          large={`http://localhost:5000/${element.filePath}`}
+                          alt={element.fileName}
+                          hideDownload={false}
+                          hideZoom={false}
+                        />
+                        <h7>
+                          <b>Name:</b> {element.fileName}
+                        </h7>
+                        <div className="media_file_delete">
+                          <Button
+                            className="media_file_delete_sub"
+                            onClick={() => {
+                              deleteFile(element.filePath);
+                            }}
+                          >
+                            <DeleteIcon />
+                          </Button>
+                        </div>
+                      </LazyLoad>
+                    ) : (
+                      <div className='pdf'
+                        onClick={(e) => {
+                          window.open(
+                            `http://localhost:5000/${element.filePath}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <LazyLoad className="lazyload" key={element.fileName}>
+                          <PdfView getFilePath={element.filePath} />
+                         <pre></pre>
+                          <h7>
+                            <b>Name:</b> {element.fileName}
+                          </h7>
+                          <div className="media_file_delete">
+                            <Button
+                              className="media_file_delete_sub"
+                              onClick={() => {
+                                deleteFile(element.filePath);
+                              }}
+                            >
+                              <DeleteIcon />
+                            </Button>
+                          </div>
+                        </LazyLoad>
+                      </div>
+                    )}
+                  </div>
+                </Grid>
+              </div>
+            ))}
+          </Grid>
+        </div>
+      )}
     </div>
   );
 }

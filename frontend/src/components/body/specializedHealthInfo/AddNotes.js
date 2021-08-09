@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../../static/Styling/spHealthInfo.css";
+import "../../../static/Styling/spAddNotes.css";
 import { useSelector } from "react-redux";
-import { Button, Grid, TextField } from "@material-ui/core";
+import { Button, Grid, TextareaAutosize, TextField } from "@material-ui/core";
 import {
   showErrMsg,
   showSuccessMsg,
@@ -40,21 +40,7 @@ export default function AddNotes(props) {
   };
   const [spHealthNotes, setSpHealthNotes] = useState([]);
 
-  // const showSPHealthNotes = async () => {
 
-  //   console.log("id  ",user._id)
-  //   const id = user._id;
-  //   console.log("c ",id)
-
-  //   await axios
-  //     .get("http://localhost:5000/api/get-specializedHealthInfo", {
-  //       headers: { Authorization: token, userid: id },
-  //     })
-  //     .then((res) => setSpHealthNotes(res.data));
-  // };
-  // useEffect(async () => {
-  //   showSPHealthNotes();
-  // }, []);
 
   const mulitpleFileOptions = {
     onUploadProgress: (progressEvent) => {
@@ -150,12 +136,13 @@ export default function AddNotes(props) {
             />
           </Grid>
 
-          <Grid item xs={11}>
+          <Grid className='addNotes_textArea'
+          item xs={11}>
             <h5>Description</h5>
-            <TextField
+            <TextareaAutosize
               className="description"
               variant="outlined"
-              fullWidth
+             rows='3'
               type="text"
               id="description"
               name="description"

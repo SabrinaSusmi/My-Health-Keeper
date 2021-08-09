@@ -1,26 +1,35 @@
-.sp_reminder_buttons {
-  width: 20%;
-  background-color: #063742;
-  color: white;
-  display: inline;
-  margin-left: 1em;
-  padding: 10px;
-  text-decoration: none;
-  border-radius: 20px;
-  cursor: pointer;
+.sp_reminder_card {
+  flex-direction: column;
+  display: inline-block;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  margin: 2rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  /* padding-top: 0.5rem; */
+  max-width: 350px;
+  border-radius: 10px;
+  background: #cdecf9;
+  box-shadow: 8px 8px 16px #aec9d4;
+}
+.sp_reminder_card:hover {
   font-weight: bold;
+  box-shadow: 8px 8px 16px #063742;
 }
 
-.info-save {
-  padding: 0.5%;
-  padding-left: 3%;
-  padding-right: 3%;
+.folderName:hover {
+  font-weight: bold;
+  margin: 0px;
 }
 
-.reminder_card >.clrDiv> .clrCardAction>.viewBtn {
+.SPiconBtn {
+  padding: 0%;
+}
+
+.clrCardAction > .viewBtn {
   align-items: flex-end;
-
   color: #063742;
+  padding-top: 0%;
 }
 
 .reminder_card > .viewBtn:hover {
@@ -28,50 +37,30 @@
   color: #063742;
 }
 
-.media_card {
-  display: flex;
-  flex-direction: column;
-  display: inline-block;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 13px;
-  width: 210px;
-  height: auto;
-  margin: 1.7rem;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  /* margin-left: 10px; */
-  max-width: 350px;
-  border-radius: 10px;
-  /* background: #cdecf9; */
-  box-shadow: 2px 8px 16px #47565c, -2px -8px 16px #feffff;
-}
-.react-pdf__Page__canvas {
-  margin: 0 auto;
-  width: 80% !important;
-  height: 100% !important;
-}
-.fileButton{
-  color:#063742;
+.fileButton {
+  color: #063742;
   align-content: flex-end;
 }
-.clrDiv{
-  color:#063742;
+.clrDiv {
+  font-weight: bold;
+  color: #063742;
 }
 
-.index>.reminder_card{
-  display: flex;
-  flex-direction: column;
-  display: inline-block;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 13px;
-  width: 210px;
-  height: auto;
-  margin: 1.7rem;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  /* margin-left: 10px; */
-  max-width: 350px;
+
+.sp_reminder_card > .content > .editingBox {
   border-radius: 10px;
-  /* background: #cdecf9; */
-  box-shadow: 2px 8px 16px #47565c, -2px -8px 16px #feffff;
+  border-color: #063742;
+  background: #d9ebf3;
+  width: 100%;
+}
+.sp_reminder_card > .content {
+  width: 90%;
+  margin-right: 0px;
+  padding-bottom: 0%;
+  padding-top: 0%;
+}
+
+.editTextBox{
+  width:100%;
+  border-radius: 10px;
 }

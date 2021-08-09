@@ -9,7 +9,13 @@ import {
 } from "../../utils/notification/Notification";
 import profile from "../../../static/Styling/profile.css";
 
-import { FormControl, Select, InputLabel, makeStyles } from "@material-ui/core";
+import {
+  FormControl,
+  Select,
+  InputLabel,
+  makeStyles,
+  Button,
+} from "@material-ui/core";
 
 const initialState = {
   name: "",
@@ -40,46 +46,6 @@ function Profile() {
     setData({ ...data, [name]: value, err: "", success: "" });
   };
 
-  // const changeAvatar = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const file = e.target.files[0];
-
-  //     if (!file)
-  //       return setData({
-  //         ...data,
-  //         err: "No files were uploaded.",
-  //         success: "",
-  //       });
-
-  //     if (file.size > 10 * 1024 * 1024)
-  //       return setData({ ...data, err: "Size too large.", success: "" });
-
-  //     if (file.type !== "image/jpeg" && file.type !== "image/png")
-  //       return setData({
-  //         ...data,
-  //         err: "File format is incorrect.",
-  //         success: "",
-  //       });
-
-  //     let formData = new FormData();
-  //     formData.append("file", file);
-
-  //     setLoading(true);
-  //     const res = await axios.post("/api/upload_avatar", formData, {
-  //       headers: {
-  //         "content-type": "multipart/form-data",
-  //         Authorization: token,
-  //       },
-  //     });
-
-  //     setLoading(false);
-  //     setAvatar(res.data.url);
-  //   } catch (err) {
-  //     setData({ ...data, err: err.response.data.msg, success: "" });
-  //   }
-  // };
-
   const updateInfor = () => {
     try {
       axios.patch(
@@ -88,7 +54,6 @@ function Profile() {
           name: name ? name : user.name,
           gender: gender ? gender : user.gender,
           phone: phone ? phone : user.phone,
-         
         },
         {
           headers: { Authorization: token },
@@ -106,21 +71,51 @@ function Profile() {
     // console.log(gender)
   };
 
+  const onHandleCheckout = async () => {
+    // setLoading(true);
+
+    const id = user._id;
+    const phone = user.phone;
+    const name = user.name;
+    const res = await axios.post("http://localhost:5000/payment",{},
+     {
+      headers: {
+        Authorization: token,
+        userid: id,
+        phone: phone,
+        userName: name,
+      },
+    });
+
+    console.log(res.data);
+    if (res.data?.length > 30) {
+      
+        window.location.replace(res.data);
+    } else {
+        alert('Payment failed'); // eslint-disable-line no-alert
+    }
+  };
   const useStyles = makeStyles((theme) => ({
     formControl: {
       minWidth: 300,
       background: "rgb(223, 221, 221)",
     },
     position: {
-      paddingTop: "45%",
+      paddingTop: "25%",
     },
-    button:{
+    button: {
+      paddingTop: "8%",
+      paddingLeft: "33%",
+    },
+
+    buttonCLr: {
       // width: '20%',
-      // backgroundColor: '#063742',
-      // color: 'white',
+      backgroundColor: "#063742",
+      color: "white",
       // display: 'inline',
-      paddingTop:'8%',
-      paddingLeft:'33%'},
+      paddingTop: "8%",
+      paddingLeft: "33%",
+    },
   }));
 
   const classes = useStyles();
@@ -197,11 +192,14 @@ function Profile() {
               </Select>
             </div>
             <div className={classes.button}>
-            <button  onClick={handleUpdate}>
-              Update
-            </button>
+              <button className={classes.buttonCLr} onClick={handleUpdate}>
+                Update
+              </button>
             </div>
-           
+
+            <button className={classes.buttonCLr} onClick={onHandleCheckout}>
+              Enable SMS Notification !!!
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,21 @@
+.sp_reminder_buttons {
+    width: 20%;
+    background-color: #063742;
+    color: white;
+    display: inline;
+    margin-left: 1em;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .info-save {
+    padding: 0.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .info-save > .addNotes_textArea > .description {
+    width: 100%;
+  }

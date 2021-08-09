@@ -55,9 +55,9 @@ function App() {
       headers: { Authorization: token, userid: auth.user._id },
     })
     .then((res) => {
-      console.log("apppp             ",res.data);
+      // console.log("apppp             ",res.data);
       // setSpHealthNotes(res.data);
-      //localStorage.setItem("spUser",res.data[0].user)
+      // localStorage.setItem("spUser",res.data[0].user)
     });
 };
 showSPHealthNotes()
