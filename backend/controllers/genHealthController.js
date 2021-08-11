@@ -25,9 +25,8 @@ const postHealthInfo = async (req,res) => {
 
 }
 
-const getChartData = async (req,res)=>{
+const getSugarData = async (req,res)=>{
     let user = req.user.id;
-    console.log(req.params.title)
     let health_data = [];
     let chart_data = [];
     let chart_date = [];
@@ -37,7 +36,7 @@ const getChartData = async (req,res)=>{
     genHealthSchema.find(
         {
           user: user,
-          infoTitle: req.params.title,
+          infoTitle: "Sugar",
           inputDate: {$gte:fromDate},
         }, (err, data) =>{
             if(err) {
@@ -61,27 +60,110 @@ const getChartData = async (req,res)=>{
         })
 }
 
-// const getWeightGraph = async (req,res)=>{
-//     let user = req.user.id;
-    
-//         genHealthSchema.find(
-//           {
-//             user: user,
-//             infoTitle: "Weight",
-//             inputDate: new Date().getMonth(),
-//           },
-//           (err, info) => {
-//             if (info) {
-//               console.log(user);
-//               console.log("Test :" + err);
-//             }
-//             if (info) {
-//               res.send(info);
-//               console.log(info);
-              
-//             }
-//           }
-//         );
-// }
+const getWeightData = async (req,res)=>{
+    let user = req.user.id;
+    let health_data = [];
+    let chart_data = [];
+    let chart_date = [];
+    const fromDate=new Date()
+    fromDate.setDate(fromDate.getDate()-7)
 
-module.exports = { postHealthInfo, getChartData };
+    genHealthSchema.find(
+        {
+          user: user,
+          infoTitle: "Weight",
+          inputDate: {$gte:fromDate},
+        }, (err, data) =>{
+            if(err) {
+                console.log(user);
+                console.log("Chart Data :" + err);
+            }
+            if(data) {
+                health_data = data;
+                console.log(health_data);
+                health_data.forEach(cdata=>{
+                    chart_data.push(cdata.info)
+                    chart_date.push(cdata.inputDate.toISOString().slice(0, 10))
+                });
+
+                console.log(chart_date)
+                console.log(chart_data)
+
+                res.send({infoData : chart_data, dates : chart_date});
+            }
+            
+        })
+}
+
+const getBpData = async (req,res)=>{
+    let user = req.user.id;
+    let health_data = [];
+    let chart_data = [];
+    let chart_date = [];
+    const fromDate=new Date()
+    fromDate.setDate(fromDate.getDate()-7)
+
+    genHealthSchema.find(
+        {
+          user: user,
+          infoTitle: "Bp",
+          inputDate: {$gte:fromDate},
+        }, (err, data) =>{
+            if(err) {
+                console.log(user);
+                console.log("Chart Data :" + err);
+            }
+            if(data) {
+                health_data = data;
+                console.log(health_data);
+                health_data.forEach(cdata=>{
+                    chart_data.push(cdata.info)
+                    chart_date.push(cdata.inputDate.toISOString().slice(0, 10))
+                });
+
+                console.log(chart_date)
+                console.log(chart_data)
+
+                res.send({infoData : chart_data, dates : chart_date});
+            }
+            
+        })
+}
+
+const getPulseData = async (req,res)=>{
+    let user = req.user.id;
+    let health_data = [];
+    let chart_data = [];
+    let chart_date = [];
+    const fromDate=new Date()
+    fromDate.setDate(fromDate.getDate()-7)
+
+    genHealthSchema.find(
+        {
+          user: user,
+          infoTitle: "Pulse",
+          inputDate: {$gte:fromDate},
+        }, (err, data) =>{
+            if(err) {
+                console.log(user);
+                console.log("Chart Data :" + err);
+            }
+            if(data) {
+                health_data = data;
+                console.log(health_data);
+                health_data.forEach(cdata=>{
+                    chart_data.push(cdata.info)
+                    chart_date.push(cdata.inputDate.toISOString().slice(0, 10))
+                });
+
+                console.log(chart_date)
+                console.log(chart_data)
+
+                res.send({infoData : chart_data, dates : chart_date});
+            }
+            
+        })
+}
+
+
+module.exports = { postHealthInfo, getSugarData, getWeightData, getBpData, getPulseData };

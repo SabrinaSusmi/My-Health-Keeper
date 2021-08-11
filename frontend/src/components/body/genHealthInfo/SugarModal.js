@@ -12,26 +12,28 @@ const SugarModal = ({ showSugarModal, setShowSugarModal }) => {
   const [chartData, setChartData] = useState({});
 
   const chart = () => {
-    let sugar_array = [15];
-    let date_array = [1];
+    let sugar_array = [];
+    let date_array = [];
     axios
-      .get("http://localhost:5000/getChart/Sugar", {
+      .get("http://localhost:5000/getChart/Weight", {
         headers: { Authorization: token },
       }) //get info and input date from db
       .then((res) => {
-        console.log(res);
-        sugar_array.push(parseInt(res.infoData)); //push data from db into the array
-        date_array.push(parseInt(res.dates));
-        // for (const dataObj of res.data.data) {
-        //   sugar_array.push(parseInt(dataObj.infoData)); //push data from db into the array
-        //   date_array.push(parseInt(dataObj.dates));
-        // }
+
+        res.data.infoData.forEach(element => {
+            sugar_array.push(element);
+        });
+        res.data.dates.forEach(element=> {
+            date_array.push(element);
+        });
+        console.log(date_array);
+
         setChartData({
           labels: date_array,
           datasets: [
             {
               data: sugar_array,
-              label: "Rainfall",
+              label: "Weight (Last 7 days)",
               fill: false,
               lineTension: 0.5,
               backgroundColor: "rgba(75,192,192,1)",

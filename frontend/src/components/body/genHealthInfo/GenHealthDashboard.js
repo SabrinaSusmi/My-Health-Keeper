@@ -9,38 +9,34 @@ import { Line } from "react-chartjs-2";
 
 function GenHealthDashboard() {
     const token = useSelector((state) => state.token);
-    const [chartData, setChartData] = useState({});
+    const [weightChartData, setWeightChartData] = useState({});
+    const [bpChartData, setBpChartData] = useState({});
+    const [pulseChartData, setPulseChartData] = useState({});
+    const [sugarChartData, setSugarChartData] = useState({});
 
-  const chart = () => {
-    let sugar_array = [];
-    let date_array = [];
+  const weightChart = () => {
+    let weight_array = [];
+    let weight_date_array = [];
     axios
       .get("http://localhost:5000/getChart/Weight", {
         headers: { Authorization: token },
       }) //get info and input date from db
       .then((res) => {
-        console.log(res.data.infoData);
-        console.log(res.data.dates);
-        // sugar_array.push(parseInt(res.data.infoData)); //push data from db into the array
-        // date_array.push((res.data.dates));
-        console.log(date_array);
+
         res.data.infoData.forEach(element => {
-            sugar_array.push(element);
+            weight_array.push(element);
         });
         res.data.dates.forEach(element=> {
-            date_array.push(element);
+            weight_date_array.push(element);
         });
-        
-        // for (const dataObj of res.data.data) {
-        //   sugar_array.push(parseInt(dataObj.infoData)); //push data from db into the array
-        //   date_array.push(parseInt(dataObj.dates));
-        // }
-        setChartData({
-          labels: date_array,
+        console.log(weight_date_array);
+
+        setWeightChartData({
+          labels: weight_date_array,
           datasets: [
             {
-              data: sugar_array,
-              label: "Rainfall",
+              data: weight_array,
+              label: "Weight (Last 7 days)",
               fill: false,
               lineTension: 0.5,
               backgroundColor: "rgba(75,192,192,1)",
@@ -54,8 +50,123 @@ function GenHealthDashboard() {
         console.log(err);
       });
   };
+
+  const bpChart = () => {
+    let bp_array = [];
+    let bp_date_array = [];
+    axios
+      .get("http://localhost:5000/getChart/Bp", {
+        headers: { Authorization: token },
+      }) //get info and input date from db
+      .then((res) => {
+
+        res.data.infoData.forEach(element => {
+            bp_array.push(element);
+        });
+        res.data.dates.forEach(element=> {
+            bp_date_array.push(element);
+        });
+        console.log(bp_date_array);
+
+        setBpChartData({
+          labels: bp_date_array,
+          datasets: [
+            {
+              data: bp_array,
+              label: "Blood Pressure (Last 7 days)",
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: "rgba(75,192,192,1)",
+              borderColor: "rgba(0,0,0,1)",
+              borderWidth: 2,
+            },
+          ],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const pulseChart = () => {
+    let pulse_array = [];
+    let pulse_date_array = [];
+    axios
+      .get("http://localhost:5000/getChart/Pulse", {
+        headers: { Authorization: token },
+      }) //get info and input date from db
+      .then((res) => {
+
+        res.data.infoData.forEach(element => {
+            pulse_array.push(element);
+        });
+        res.data.dates.forEach(element=> {
+            pulse_date_array.push(element);
+        });
+        console.log(pulse_date_array);
+
+        setPulseChartData({
+          labels: pulse_date_array,
+          datasets: [
+            {
+              data: pulse_array,
+              label: "Pulse (Last 7 days)",
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: "rgba(75,192,192,1)",
+              borderColor: "rgba(0,0,0,1)",
+              borderWidth: 2,
+            },
+          ],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const sugarChart = () => {
+    let sugar_array = [];
+    let sugar_date_array = [];
+    axios
+      .get("http://localhost:5000/getChart/Sugar", {
+        headers: { Authorization: token },
+      }) //get info and input date from db
+      .then((res) => {
+
+        res.data.infoData.forEach(element => {
+            sugar_array.push(element);
+        });
+        res.data.dates.forEach(element=> {
+            sugar_date_array.push(element);
+        });
+        console.log(sugar_date_array);
+
+        setSugarChartData({
+          labels: sugar_date_array,
+          datasets: [
+            {
+              data: sugar_array,
+              label: "Sugar (Last 7 days)",
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: "rgba(75,192,192,1)",
+              borderColor: "rgba(0,0,0,1)",
+              borderWidth: 2,
+            },
+          ],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    chart();
+    weightChart();
+    bpChart();
+    pulseChart();
+    sugarChart();
   }, []);
   return (
     <div>
@@ -73,7 +184,7 @@ function GenHealthDashboard() {
       <div class="container">
   <div>
       <Line
-            data={chartData}
+            data={weightChartData}
             options={{
               responsive: true,
               title: { text: "Sugar Graph", display: true },
@@ -100,9 +211,96 @@ function GenHealthDashboard() {
               },
             }}
           /></div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
+  <div>
+  <Line
+            data={bpChartData}
+            options={{
+              responsive: true,
+              title: { text: "Sugar Graph", display: true },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 10,
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      display: false,
+                    },
+                  },
+                ],
+                xAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                  },
+                ],
+              },
+            }}
+          />
+  </div>
+  <div>
+  <Line
+            data={pulseChartData}
+            options={{
+              responsive: true,
+              title: { text: "Sugar Graph", display: true },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 10,
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      display: false,
+                    },
+                  },
+                ],
+                xAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                  },
+                ],
+              },
+            }}
+          />
+  </div>
+  <div>
+  <Line
+            data={sugarChartData}
+            options={{
+              responsive: true,
+              title: { text: "Sugar Graph", display: true },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 10,
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      display: false,
+                    },
+                  },
+                ],
+                xAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                  },
+                ],
+              },
+            }}
+          />
+  </div>
 </div>
     </div>
   );
