@@ -9,6 +9,7 @@ import MedicineInput from "./medicineReminder/InputMedReminder";
 import DisplayMedicineReminders from "./medicineReminder/DisplayMedReminders";
 import MenstrualCycle from "./MenstrualCycle/MenstrualCycle";
 import HealthInfo from "./genHealthInfo/HealthInfo";
+import GenHealthDashboard from "./genHealthInfo/GenHealthDashboard";
 import MedicineDose from "./medicineReminder/MedDoses";
 import specializedHealthInfo from "./specializedHealthInfo/specializedHealthInfo";
 import ViewFiles from "./specializedHealthInfo/ViewFiles";
@@ -44,6 +45,11 @@ export default function Body() {
         <Route
           path="/menstrual-cycle"
           component={isLogged ? MenstrualCycle : Login}
+          exact
+        />
+        <Route
+          path="/general-health-dashboard"
+          component={isLogged ? GenHealthDashboard : Login}
           exact
         />
         <Route
