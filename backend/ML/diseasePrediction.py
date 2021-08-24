@@ -61,10 +61,10 @@ df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chron
                           '(vertigo) Paroymsal  Positional Vertigo': 36, 'Acne': 37, 'Urinary tract infection': 38, 'Psoriasis': 39,
                           'Impetigo': 40}}, inplace=True)
 
-X = df[l1]
+X_train = df[l1]
 
-y = df[["prognosis"]]
-np.ravel(y)
+y_train = df[["prognosis"]]
+np.ravel(y_train)
 
 # TESTING DATA
 tr = pd.read_csv("../backend/ML/Testing.csv")
@@ -84,14 +84,17 @@ np.ravel(y_test)
 # print(np.ravel(y_test))
 result=[]
 
-def NaiveBayes():
-    from sklearn.naive_bayes import MultinomialNB
-    gnb = MultinomialNB()
-    gnb = gnb.fit(X, np.ravel(y))
-    from sklearn.metrics import accuracy_score
-    y_pred = gnb.predict(X_test)
-    # print(accuracy_score(y_test, y_pred))
-    # print(accuracy_score(y_test, y_pred, normalize=False))
+def SVM():
+    from sklearn import svm
+    clf = svm.SVC(kernel='linear') # Linear Kernel
+    clf=svm.SVC(probability=True)
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    from sklearn import metrics
+
+# Model Accuracy: how often is the classifier correct?
+    # print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
+    
 
     psymptoms = [str(sys.argv[1]), str(sys.argv[2]), str(
         sys.argv[3]), str(sys.argv[4]), str(sys.argv[5])]
@@ -103,8 +106,8 @@ def NaiveBayes():
 
     inputtest = [l2]
     # print(np.ravel(y))
-    predict = gnb.predict(inputtest)
-    predict_prob = gnb.predict_proba(inputtest)
+    predict = clf.predict(inputtest)
+    predict_prob = clf.predict_proba(inputtest)
     # print(predict_prob)
     prob1 = disease
     try1 = predict_prob[0]
@@ -123,7 +126,6 @@ def NaiveBayes():
                 ind = q
         # print(ind)
         flist2.append(prob1[ind])
-        # flist2.append(max1)
         try1 = np.delete(try1, ind)
         # print(try1)
         prob1 = np.delete(prob1, ind)
@@ -134,4 +136,4 @@ def NaiveBayes():
     print(flist)
 
 
-NaiveBayes()
+SVM()
