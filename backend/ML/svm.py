@@ -99,15 +99,7 @@ def NaiveBayes():
     
 
 
-    # from sklearn.naive_bayes import MultinomialNB
-    # gnb = MultinomialNB()
-    # gnb = gnb.fit(X_train, np.ravel(y_train))
-    # from sklearn.metrics import accuracy_score
-    # y_pred = gnb.predict(X_test)
-    # print(accuracy_score(y_test, y_pred))
-    # print(accuracy_score(y_test, y_pred, normalize=False))
-
-    psymptoms = ['itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing', 'shivering']
+    psymptoms = ['stomach_pain', 'acidity',  'chest_pain','vomiting', 'cough']
 
     for k in range(0, len(l1)):
         for z in psymptoms:
@@ -118,7 +110,7 @@ def NaiveBayes():
     # print(np.ravel(y))
     predict = clf.predict(inputtest)
     predict_prob = clf.predict_proba(inputtest)
-    # print(predict_prob)
+    print(predict_prob)
     prob1 = disease
     try1 = predict_prob[0]
     # print(try1)
