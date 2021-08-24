@@ -21,4 +21,8 @@ python -m pip install zeep
 ****install python extension 
 
 //new
-npm i react-calendar-icon
+backend :
+pip install sklearn numpy pandas 
+pip install metrics naive_bayes
+
+file>preference>settings> search(execute in file dir)> python>terminal:execute in file dir [check: when executing a file in the terminal......]
