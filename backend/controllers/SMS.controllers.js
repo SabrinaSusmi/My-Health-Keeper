@@ -1,7 +1,7 @@
 const { spawn } = require("child_process");
 
 const sendSMS = (phone, msg) => {
-  const pyProg = spawn("python", ["../backend/helpers/SMS.api.py", phone, msg]);
+  const pyProg = spawn("python", ["../backend/utilities/SMS.api.py", phone, msg]);
 
   pyProg.stdout.on("data", function (data) {
     console.log(data.toString());

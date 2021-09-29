@@ -1,5 +1,5 @@
 const express = require("express");
-const { upload } = require("../helpers/filehelper");
+const { upload } = require("../utilities/filehelper");
 const router = express.Router();
 const {
   saveSpecializedHealthInfo,
