@@ -10,7 +10,7 @@ const calorieChart = new mongoose.Schema({
     required: true,
   },
   calories: {
-    type: String,
+    type: Number,
     required: true,
   },
 });

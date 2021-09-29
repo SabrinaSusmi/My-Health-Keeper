@@ -10,23 +10,22 @@ const saveCalorieToDB = () => {
     .on("data", function (data) {
       csvData.push({
         name: data[0],
-        qty: data[1],
-        calories: data[2],
+        qty: 1,
+        calories: data[1],
       });
     })
     .on("end", function () {
       // remove the first line: header
       csvData.shift();
-     // console.log(csvData);
-
+      // console.log(csvData);
       for (let i = 0; i < csvData.length; i++) {
         // console.log(csvData[i]["name"]);
         calorieModel.findOne({ name: csvData[i]["name"] }).then((ans) => {
           if (!ans) {
             calorieModel.create(csvData[i], (err, res) => {
               if (err) throw err;
-   });
-          } 
+            });
+          }
         });
       }
     });
