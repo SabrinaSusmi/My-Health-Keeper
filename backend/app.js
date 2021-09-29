@@ -32,4 +32,7 @@ app.use("/payment", paymentRoutes);
 app.use(genHealth)
 
 
+const saveCalorieToDB=require('./utilities/calorieChart')
+saveCalorieToDB()
+
 module.exports = app;
