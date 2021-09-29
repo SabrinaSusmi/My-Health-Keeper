@@ -15,7 +15,7 @@ const SugarModal = ({ showSugarModal, setShowSugarModal }) => {
     let sugar_array = [];
     let date_array = [];
     axios
-      .get("http://localhost:5000/getChart/Weight", {
+      .get("http://localhost:5000/getChart/Sugar", {
         headers: { Authorization: token },
       }) //get info and input date from db
       .then((res) => {
@@ -33,7 +33,7 @@ const SugarModal = ({ showSugarModal, setShowSugarModal }) => {
           datasets: [
             {
               data: sugar_array,
-              label: "Weight (Last 7 days)",
+              label: "Sugar Level (Last 7 days)",
               fill: false,
               lineTension: 0.5,
               backgroundColor: "rgba(75,192,192,1)",
@@ -66,7 +66,7 @@ const SugarModal = ({ showSugarModal, setShowSugarModal }) => {
       >
         <Modal.Header>
           <Modal.Title>
-            <h4>Hello Sugar Level</h4>
+            <h4>Sugar Level</h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
