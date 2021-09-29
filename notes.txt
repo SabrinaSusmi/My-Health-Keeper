@@ -26,3 +26,6 @@ pip install sklearn numpy pandas
 pip install metrics naive_bayes
 
 file>preference>settings> search(execute in file dir)> python>terminal:execute in file dir [check: when executing a file in the terminal......]
+
+
+npm install fast-csv
