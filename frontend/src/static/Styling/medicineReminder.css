@@ -47,7 +47,6 @@
   margin-right: 20%;
   border-radius: 5px;
 }
-
 .containerMed > .labels {
   margin-left: 20%;
   margin-bottom: 4px;
@@ -72,15 +71,14 @@
   height: 20%;
 } */
 .containerMed > .form_btns > .add_btn {
-
   width: 33%;
   margin-bottom: 1%;
   margin-right: 15%;
   margin-left: 35%;
-margin-top: 13px;
+  margin-top: 13px;
   display: grid;
-font-weight: bolder;
-font-size: large;
+  font-weight: bolder;
+  font-size: large;
   background-color: #fd8412;
 }
 
