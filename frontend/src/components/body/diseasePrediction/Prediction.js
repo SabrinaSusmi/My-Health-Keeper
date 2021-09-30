@@ -21,7 +21,7 @@ export default function Prediction(props) {
               {" "}
               <td>1</td> &emsp;
               <td>
-                {diseaseName[0]} &emsp; &emsp; &emsp; {props.percent}{" "}
+                {diseaseName[0]} &emsp; &emsp; &emsp; {props.percent[0]}%{" "}
               </td>
               &emsp; &emsp; &emsp; &emsp; &emsp;
               <td>&emsp;{props.specialist[0]}</td>
@@ -29,16 +29,16 @@ export default function Prediction(props) {
             <br /> <br />{" "}
             <tr>
               <td>2</td> &emsp;
-                <td>  {diseaseName[1]} &emsp; &emsp; &emsp; {props.percent}{" "}</td>
+                <td>  {diseaseName[1]} &emsp; &emsp; &emsp; {props.percent[1]}%{" "}</td>
                 &emsp; &emsp; &emsp; &emsp; &emsp;   <td>&emsp;{props.specialist[1]}</td>
                 
             </tr>
             <br /> <br />{" "}
             <tr>
               <td>3</td> &emsp;
-              {/*   <td>Rice</td>
-          &emsp; &emsp; &emsp; &emsp; &emsp;       <td>2 cups</td>
-                 */}
+              <td>  {diseaseName[2]} &emsp; &emsp; &emsp; {props.percent[2]}%{" "}</td>
+                &emsp; &emsp; &emsp; &emsp; &emsp;   <td>&emsp;{props.specialist[2]}</td>
+               
             </tr>
           </Table>
         </div>

@@ -24,60 +24,62 @@
   padding: 8px;
 } */
 
-.container {
+.containerMed {
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  /* padding: 1rem; */
   margin: 1rem;
 }
 
-.container > .paper {
+.containerMed {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
   min-width: 40%;
   width: 40%;
-  min-height: 100%;
+
   background: inherit;
   margin-left: 30%;
   margin-right: 20%;
   border-radius: 5px;
-  background: #eeeeee;
-  box-shadow: 20px 20px 40px #bebebe, -20px -20px 60px #ffffff;
+}
+.containerMed > .labels {
+  margin-left: 20%;
+  margin-bottom: 4px;
 }
 
-.container > .paper > .form_body {
-  padding: 1rem;
-  width: 80%;
+.containerMed > .textfield {
+  width: 60%;
+  margin-left: 20%;
+  height: 70px;
 }
-.container > .paper > .form_body > .form_inputs > Textfield {
-  padding: 1rem;
-  margin: 1rem;
-}
-.container > .paper > .form_body > .form_btns {
+/* .containerMed > .form_btns {
+  border-radius: 10px;
   margin: 1%;
+  margin-left: 40%;
   padding: 0.2rem;
+  margin-top: 12px;
   display: grid;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  background-color: #063742;
-}
-.container > .paper > .form_body > .form_btns > .add_btn {
-  width: 70%;
+  width: 25%;
+  background-color: #fd8412;
+  height: 20%;
+} */
+.containerMed > .form_btns > .add_btn {
+  width: 33%;
   margin-bottom: 1%;
   margin-right: 15%;
-  margin-left: 15%;
-  padding: 0.2rem;
+  margin-left: 35%;
+  margin-top: 13px;
   display: grid;
-  align-items: center;
-  justify-content: center;
-  background-color: #063742;
+  font-weight: bolder;
+  font-size: large;
+  background-color: #fd8412;
 }
 
 .reminder {

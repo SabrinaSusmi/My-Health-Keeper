@@ -5,109 +5,118 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-
-const BpModal = ({showBpModal, setShowBpModal}) => {
-
+const BpModal = ({ showBPModal,   setShowBPModal }) => {
+  const token = useSelector((state) => state.token);
   const [chartData, setChartData] = useState({});
-  
 
   const chart = () => {
-    let bp_array = [];
+    let sugar_array = [];
     let date_array = [];
     axios
-      .get("http://dummy.restapiexample.com/api/v1/employees") //get info and input date from db
-      .then(res => {
-        console.log(res);
-        for (const dataObj of res.data.data) {
-          bp_array.push(parseInt(dataObj.employee_salary)); //push data from db into the array
-          date_array.push(parseInt(dataObj.employee_age));
-        }
+      .get("http://localhost:5000/getChart/Bp", {
+        headers: { Authorization: token },
+      }) //get info and input date from db
+      .then((res) => {
+
+        res.data.infoData.forEach(element => {
+            sugar_array.push(element);
+        });
+        res.data.dates.forEach(element=> {
+            date_array.push(element);
+        });
+        console.log(date_array);
+
         setChartData({
           labels: date_array,
           datasets: [
             {
-              data: bp_array,
-              label: "Rainfall",
+              data: sugar_array,
+              label: "Blood Pressure (Last 7 days)",
               fill: false,
               lineTension: 0.5,
               backgroundColor: "rgba(75,192,192,1)",
               borderColor: "rgba(0,0,0,1)",
               borderWidth: 2,
-            }
-          ]
+            },
+          ],
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-    
   };
   useEffect(() => {
     chart();
   }, []);
 
+  const closeBPModal = () => {
+    setShowBPModal(false);
+  };
 
-    const closeBpModal = () => {
-        setShowBpModal(false);
-      };
-    
-        return (
-            <>
-              <Modal
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                show={showBpModal}
-                onHide={closeBpModal}
-               
-                >
-                    <Modal.Header>
-                    <Modal.Title><h4>Hello Blood Pressure</h4></Modal.Title>
-                    </Modal.Header>
-                        <Modal.Body>
-                        <h2>Graph</h2>
-                                 
-                        <Line
-          data={chartData}
-          options={{
-            responsive: true,
-            title: { text: "Blood Pressure Graph", display: true },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 10,
-                    beginAtZero: true
+  return (
+    <>
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={showBPModal}
+        onHide={closeBPModal}
+      >
+        <Modal.Header>
+          <Modal.Title>
+            <h4>Blood Pressure</h4>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h2>Graph</h2>
+
+          <Line
+            data={chartData}
+            options={{
+              responsive: true,
+              title: { text: "Blood Pressure Graph", display: true },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      autoSkip: true,
+                      maxTicksLimit: 10,
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      display: false,
+                    },
                   },
-                  gridLines: {
-                    display: false
-                  }
-                }
-              ],
-              xAxes: [
-                {
-                  gridLines: {
-                    display: false
-                  }
-                }
-              ]
-            }
-          }}
-        />
+                ],
+                xAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                  },
+                ],
+              },
+            }}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              closeBPModal();
+            }}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
 
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary"  onClick={() => {closeBpModal()}}>
-                                        Close
-                            </Button>
-                        </Modal.Footer>
-               </Modal>
-              
-            </>
-      )
 
-}
+
 
 export default BpModal;

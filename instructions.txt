@@ -10,6 +10,7 @@ npm install react-file-base64 react-google-login web-vitals
 
 npm i @fullcalendar/bootstrap @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction @fullcalendar/react @react-spring/web bootstrap jquery react-animated-bg popper.js react-datetime react-modal
 npm i react-responsive-modal
+npm i @react-spring/web react-scripts react-tabs
 ------ server
 
 cd server
@@ -17,7 +18,7 @@ npm init -y
 npm install body-parser cors express mongoose nodemon
 
 npm install bcrypt bcryptjs body-parser cloudinary cookie-parser cors dotenv express express-fileupload gaxios googleapis gravatar jsonwebtoken mongoose node-fetch nodemailer nodemon
-
+npm i chai child_process cloudinary csvtojson date-and-time fast-csv jest mocha morgan soap supertest web-push
 
 --------ML
 https://www.kaggle.com/nih-chest-xrays/data

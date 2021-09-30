@@ -47,7 +47,7 @@ export default function Body() {
           component={isLogged ? MenstrualCycle : Login}
           exact
         />
-        <Route
+             <Route
           path="/general-health-dashboard"
           component={isLogged ? GenHealthDashboard : Login}
           exact
