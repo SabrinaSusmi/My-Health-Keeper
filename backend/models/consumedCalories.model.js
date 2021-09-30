@@ -10,8 +10,8 @@ const consumedCalories = new mongoose.Schema({
     required: true,
   },
   food: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "calorie_charts",
+    type : String,
+    required: true,
   },
   quantity: {
     type: Number,
