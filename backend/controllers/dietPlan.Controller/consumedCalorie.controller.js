@@ -9,9 +9,31 @@ const postFood = async (req, res) => {
       food,
       quantity,
     } = req.body;
+    const calorie = calculateCalorie(food, quantity);
+    console.log("main"+calorie);
+  
+//     const foodItem = new consumedCalories({
+//       user,
+//       meal: meal,
+//       food,
+//       quantity: quantity,
+//       consumedCalories: calorie,
+//     });
+//     foodItem
+//       .save()
+//       .then((data) => {
+//         res.json(data);
+        
+//       })
+//       .catch((error) => {
+//         res.json(error);
+//       });
+   };
 
-    var calorie = null;
-
+  const calculateCalorie = (
+    food, quantity
+  ) => {
+    let calorie=0;
     calorie_charts.find(
         {
           name: food,
@@ -21,31 +43,18 @@ const postFood = async (req, res) => {
                 console.log("Chart Data Food not found :" + err);
             }
             if(data) {
-                health_data = data;
-                foodCal = data.calories;
+                //console.log(data[0].calories);
+                foodCal = data[0].calories;
+                console.log(foodCal);
                 calorie = quantity*foodCal;
                 console.log(calorie);
+                return calorie;
             }
             
         })
-  
-    const foodItem = new consumedCalories({
-      user,
-      meal: meal,
-      food,
-      quantity: quantity,
-      consumedCalories: calorie,
-    });
-    foodItem
-      .save()
-      .then((data) => {
-        res.json(data);
-        
-      })
-      .catch((error) => {
-        res.json(error);
-      });
-  };
+
+        // return calorie;
+  }
 
 
   module.exports = { postFood };

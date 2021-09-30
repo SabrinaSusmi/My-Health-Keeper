@@ -5,8 +5,8 @@ import "react-responsive-modal/styles.css";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button,TextField,IconButton } from "@material-ui/core";
-import RemoveIcon from "@material-ui/icons/Remove";
-import AddIcon from "@material-ui/icons/Add";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
 import { useSelector } from "react-redux";
 import {
   showErrMsg,
@@ -29,10 +29,22 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
 
     const { meal, food, quantity, err, success } = item;
 
+    const [items] = React.useState([
+        { label: "Breakfast",value: "Breakfast" },
+        { label: "Lunch",value: "Lunch" },
+        { label: "Dinner",value: "Dinner" },
+        { label: "Snacks",value: "Snacks" }
+      ]);
+
     const handleChange = (e) => {
+        // console.log(e.target);
         const { name, value } = e.target;
         setItem({ ...item, [name]: value, err: "", success: "" });
       };
+
+      const handleSelect=(e)=>{
+        console.log(e);
+      }
 
 
     const closeFoodModal = () => {
@@ -44,7 +56,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
     
         await axios
           .post(
-            "http://localhost:5000/",
+            "http://localhost:5000/diet-plan/addFoodItem",
             {
               meal,
               food,
@@ -82,56 +94,79 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <form onSubmit={handleSubmit}>
-                  <label>
-                    Meal Description :
-                    <select onChange={handleChange}>
+                <form>
+                  {/* <label>
+                    Meal Description : */}
+                    {/* <DropdownButton
+                      title=""
+                      onSelect={handleSelect}
+                    >
+                      <Dropdown.Item eventKey="Breakfast">
+                      Breakfast
+                      </Dropdown.Item>
+                      <Dropdown.Item eventKey="Lunch">
+                        Lunch
+                      </Dropdown.Item>
+                      <Dropdown.Item eventKey="Dinner">
+                        Dinner
+                      </Dropdown.Item>
+                      <Dropdown.Item eventKey="Snacks">
+                        Snacks
+                      </Dropdown.Item>
+                    </DropdownButton> */}
+                    {/* <select onSelect={handleSelect}>
+                      {items.map((item) => (
+                        <option onChange={handleSelect} name="meal" key={item.value} value={item.value}>
+                          {item.label}
+                        </option>
+                      ))}
+                    </select> */}
+                    {/* <select value={meal} onSelect={handleSelect} onChange={handleChange}>
                       <option name="meal" value="Breakfast">
                         Breakfast
                       </option>
                       <option name="meal" value="Lunch">
                         Lunch
                       </option>
-                      <option name="meal" value="Dinner">
+                      <option eventKey="Dinner" name="meal" value="Dinner">
                         Dinner
                       </option>
                       <option name="meal" value="Snacks">
                         Snacks
                       </option>
-                    </select>
-                  </label>
+                    </select> */}
+                  {/* </label> */}
 
-                  <div  className="form_body">
+                  <div className="form_body">
                   <TextField
-                    className="form_btn"
-                    type="text"
-                    id="foodName"
-                    name="food"
-                    label="Food Name"
-                    value={food}
-                    onChange={handleChange}
-                  ></TextField>
+                      className="form_btn"
+                      type="text"
+                      id="meal"
+                      name="meal"
+                      label="Meal Description"
+                      value={meal}
+                      onChange={handleChange}
+                    ></TextField>
+                    <TextField
+                      className="form_btn"
+                      type="text"
+                      id="foodName"
+                      name="food"
+                      label="Food Name"
+                      value={food}
+                      onChange={handleChange}
+                    ></TextField>
 
-                  <TextField
-                    className="form_btn"
-                    type="text"
-                    id="foodName"
-                    name="quantity"
-                    label="Quantity"
-                    value={quantity}
-                    onChange={handleChange}
-                  ></TextField>
+                    <TextField
+                      className="form_btn"
+                      type="text"
+                      id="foodName"
+                      name="quantity"
+                      label="Quantity"
+                      value={quantity}
+                      onChange={handleChange}
+                    ></TextField>
                   </div>
-                </form>
-                <form>
-                  {/* <div className="mod_btn">
-                    <label for="meal_name">Meal Description : </label>
-                    <input
-                      type="meal_name"
-                      // onChange={handleChangeInput}
-                      name="meal_name"
-                    />
-                  </div> */}
                 </form>
               </Modal.Body>
               <Modal.Footer>
