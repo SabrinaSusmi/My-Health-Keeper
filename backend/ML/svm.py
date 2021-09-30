@@ -49,7 +49,7 @@ for x in range(0, len(l1)):
     l2.append(0)
 
 # TRAINING DATA
-df = pd.read_csv("../backend/ML/Training.csv")
+df = pd.read_csv("./Training.csv")
 
 df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3, 'Drug Reaction': 4,
                           'Peptic ulcer diseae': 5, 'AIDS': 6, 'Diabetes ': 7, 'Gastroenteritis': 8, 'Bronchial Asthma': 9, 'Hypertension ': 10,
@@ -60,6 +60,7 @@ df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chron
                           'Hyperthyroidism': 32, 'Hypoglycemia': 33, 'Osteoarthristis': 34, 'Arthritis': 35,
                           '(vertigo) Paroymsal  Positional Vertigo': 36, 'Acne': 37, 'Urinary tract infection': 38, 'Psoriasis': 39,
                           'Impetigo': 40}}, inplace=True)
+df.drop('Unnamed: 133', axis=1, inplace=True)
 
 X_train = df[l1]
 
@@ -67,7 +68,7 @@ y_train = df[["prognosis"]]
 np.ravel(y_train)
 
 # TESTING DATA
-tr = pd.read_csv("../backend/ML/Testing.csv")
+tr = pd.read_csv("./Testing.csv")
 tr.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3, 'Drug Reaction': 4,
                           'Peptic ulcer diseae': 5, 'AIDS': 6, 'Diabetes ': 7, 'Gastroenteritis': 8, 'Bronchial Asthma': 9, 'Hypertension ': 10,
                           'Migraine': 11, 'Cervical spondylosis': 12,
@@ -77,14 +78,15 @@ tr.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chron
                           'Hyperthyroidism': 32, 'Hypoglycemia': 33, 'Osteoarthristis': 34, 'Arthritis': 35,
                           '(vertigo) Paroymsal  Positional Vertigo': 36, 'Acne': 37, 'Urinary tract infection': 38, 'Psoriasis': 39,
                           'Impetigo': 40}}, inplace=True)
-# print(tr)
+# print(df[0:5])
+# print(tr[0:5])
 X_test = tr[l1]
 y_test = tr[["prognosis"]]
 np.ravel(y_test)
-# print(np.ravel(y_test))
+# print((y_test))
 result=[]
 
-def SVM():
+def NaiveBayes():
     from sklearn import svm
     clf = svm.SVC(kernel='linear') # Linear Kernel
     clf=svm.SVC(probability=True)
@@ -93,11 +95,11 @@ def SVM():
     from sklearn import metrics
 
 # Model Accuracy: how often is the classifier correct?
-    # print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
+    print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
     
 
-    psymptoms = [str(sys.argv[1]), str(sys.argv[2]), str(
-        sys.argv[3]), str(sys.argv[4]), str(sys.argv[5])]
+
+    psymptoms = ['stomach_pain', 'acidity',  'chest_pain','vomiting', 'cough']
 
     for k in range(0, len(l1)):
         for z in psymptoms:
@@ -108,7 +110,7 @@ def SVM():
     # print(np.ravel(y))
     predict = clf.predict(inputtest)
     predict_prob = clf.predict_proba(inputtest)
-    # print(predict_prob)
+    print(predict_prob)
     prob1 = disease
     try1 = predict_prob[0]
     # print(try1)
@@ -126,6 +128,7 @@ def SVM():
                 ind = q
         # print(ind)
         flist2.append(prob1[ind])
+        # flist2.append(max1)
         try1 = np.delete(try1, ind)
         # print(try1)
         prob1 = np.delete(prob1, ind)
@@ -136,4 +139,4 @@ def SVM():
     print(flist)
 
 
-SVM()
+NaiveBayes()

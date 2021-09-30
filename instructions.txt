@@ -17,3 +17,9 @@ npm init -y
 npm install body-parser cors express mongoose nodemon
 
 npm install bcrypt bcryptjs body-parser cloudinary cookie-parser cors dotenv express express-fileupload gaxios googleapis gravatar jsonwebtoken mongoose node-fetch nodemailer nodemon
+
+
+--------ML
+https://www.kaggle.com/nih-chest-xrays/data
+
+https://developer.edamam.com/food-database-api

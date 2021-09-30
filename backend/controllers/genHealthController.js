@@ -45,14 +45,14 @@ const getSugarData = async (req,res)=>{
             }
             if(data) {
                 health_data = data;
-                console.log(health_data);
+              //  console.log(health_data);
                 health_data.forEach(cdata=>{
                     chart_data.push(cdata.info)
                     chart_date.push(cdata.inputDate.toISOString().slice(0, 10))
                 });
 
-                console.log(chart_date)
-                console.log(chart_data)
+                // console.log(chart_date)
+                // console.log(chart_data)
 
                 res.send({infoData : chart_data, dates : chart_date});
             }
@@ -80,14 +80,14 @@ const getWeightData = async (req,res)=>{
             }
             if(data) {
                 health_data = data;
-                console.log(health_data);
+              //  console.log(health_data);
                 health_data.forEach(cdata=>{
                     chart_data.push(cdata.info)
                     chart_date.push(cdata.inputDate.toISOString().slice(0, 10))
                 });
 
-                console.log(chart_date)
-                console.log(chart_data)
+                // console.log(chart_date)
+                // console.log(chart_data)
 
                 res.send({infoData : chart_data, dates : chart_date});
             }
@@ -115,14 +115,14 @@ const getBpData = async (req,res)=>{
             }
             if(data) {
                 health_data = data;
-                console.log(health_data);
+               // console.log(health_data);
                 health_data.forEach(cdata=>{
                     chart_data.push(cdata.info)
                     chart_date.push(cdata.inputDate.toISOString().slice(0, 10))
                 });
 
-                console.log(chart_date)
-                console.log(chart_data)
+                // console.log(chart_date)
+                // console.log(chart_data)
 
                 res.send({infoData : chart_data, dates : chart_date});
             }
@@ -150,14 +150,14 @@ const getPulseData = async (req,res)=>{
             }
             if(data) {
                 health_data = data;
-                console.log(health_data);
+               // console.log(health_data);
                 health_data.forEach(cdata=>{
                     chart_data.push(cdata.info)
                     chart_date.push(cdata.inputDate.toISOString().slice(0, 10))
                 });
 
-                console.log(chart_date)
-                console.log(chart_data)
+                // console.log(chart_date)
+                // console.log(chart_data)
 
                 res.send({infoData : chart_data, dates : chart_date});
             }

@@ -15,7 +15,7 @@ const genHealthSchema = new mongoose.Schema({
     },
     inputDate: {
         type : Date,
-        required : true
+        default : Date.now
     }
 })
 
