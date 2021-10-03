@@ -76,5 +76,13 @@ const deleteFood = async (req, res) => {
         .catch((err) => res.status(400).json("Food delete Error: " + err));
 }
 
+const updateFood = async (req, res) => {
+  let user = req.user.id;
+  const {food, meal, gender} = req.body
+            // await User.findOneAndUpdate({_id: req.user.id}, {
+            //     name,phone,gender
+            // })
+}
+
 
   module.exports = { postFood, getFood, deleteFood };

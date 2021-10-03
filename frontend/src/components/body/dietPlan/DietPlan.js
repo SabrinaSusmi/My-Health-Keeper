@@ -42,7 +42,7 @@ export default function DietPlan() {
           </p>
         </div>
         <hr></hr>
-        <div className="diet_date">
+        {/* <div className="diet_date">
           <div>
             <Button>
               <i class="far fa-calendar-alt" />
@@ -58,7 +58,7 @@ export default function DietPlan() {
               }}
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <FoodItemTable />
