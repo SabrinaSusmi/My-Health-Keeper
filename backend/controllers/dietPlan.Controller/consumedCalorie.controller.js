@@ -32,6 +32,7 @@ const postFood = async (req, res) => {
                 food,
                 quantity: quantity,
                 consumedCalories: calorie,
+                date : new Date().toISOString().slice(0, 10)
               });
               foodItem
                 .save()
@@ -48,31 +49,24 @@ const postFood = async (req, res) => {
       })
    };
 
-  const calculateCalorie = (
-    food, quantity
-  ) => {
-    let calorie=0;
-    calorie_charts.find(
-        {
-          name: food,
-        }, (err, data) =>{
-            if(err) {
-                console.log(user);
-                console.log("Chart Data Food not found :" + err);
-            }
-            if(data) {
-                //console.log(data[0].calories);
-                foodCal = data[0].calories;
-                console.log(foodCal);
-                calorie = quantity*foodCal;
-                console.log(calorie);
-                return calorie;
-            }
-            
-        })
-
-        // return calorie;
-  }
+const getFood = async (req, res) => {
+  let user = req.user.id;
+const todayDate=new Date()
+console.log(todayDate);
+todayDate.setDate(todayDate.getDate()-1)
+console.log(todayDate);
+consumedCalories.find({ user,date:{$gte:todayDate} }, (err, foodList) => {
+    if (err) {
+      //console.log(user);
+      console.log("Diet food get :" + err);
+    }
+    if (foodList) {
+      //console.log(foodList);
+      res.send(foodList);
+     
+    }
+  });
+}
 
 
-  module.exports = { postFood };
+  module.exports = { postFood, getFood };
