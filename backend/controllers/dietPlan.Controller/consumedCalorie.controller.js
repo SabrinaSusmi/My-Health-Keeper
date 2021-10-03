@@ -52,10 +52,8 @@ const postFood = async (req, res) => {
 const getFood = async (req, res) => {
   let user = req.user.id;
 const todayDate=new Date()
-console.log(todayDate);
 todayDate.setDate(todayDate.getDate()-1)
-console.log(todayDate);
-consumedCalories.find({ user,date:{$gte:todayDate} }, (err, foodList) => {
+consumedCalories.find({ user,date:new Date().toISOString().slice(0, 10) }, (err, foodList) => {
     if (err) {
       //console.log(user);
       console.log("Diet food get :" + err);

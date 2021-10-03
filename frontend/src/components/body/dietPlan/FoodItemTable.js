@@ -47,7 +47,6 @@ export default function FoodItemTable() {
         <Table hover size="md">
           <thead>
             <tr>
-              <th>#</th>
               <th>Food Name</th>
               <th>Quantity</th>
               <th>Meal Description</th>
