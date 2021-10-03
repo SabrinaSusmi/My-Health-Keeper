@@ -66,5 +66,15 @@ consumedCalories.find({ user,date:new Date().toISOString().slice(0, 10) }, (err,
   });
 }
 
+const deleteFood = async (req, res) => {
+  consumedCalories
+        .findByIdAndDelete(req.params.id)
+        .then(() => {
+          res.json("Food deleted.")
+          console.log("Food deleted.");
+        })
+        .catch((err) => res.status(400).json("Food delete Error: " + err));
+}
 
-  module.exports = { postFood, getFood };
+
+  module.exports = { postFood, getFood, deleteFood };

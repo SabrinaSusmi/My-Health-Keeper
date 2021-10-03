@@ -29,6 +29,21 @@ export default function FoodItemTable() {
     getFoodConsumed(); 
   }, []);
 
+  const deleteFood = async (id) => {
+    await axios
+      .delete("http://localhost:5000/diet-plan/foodList/delete/" + id, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+
+    const removedFood = [...foodList].filter(
+      (el) => el._id !== id
+    );
+    setFoodList(removedFood);
+  };
+
   return (
       <div>
           <div className="add_food">
@@ -77,7 +92,7 @@ export default function FoodItemTable() {
                         className="btn"
                         data-toggle="tooltip"
                         title="Delete"
-                        //onClick={() => deleteReminder(medicines._id)}
+                        onClick={() => deleteFood(food._id)}
                       >
                         <DeleteIcon />
                       </IconButton>
