@@ -5,13 +5,47 @@ import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import AddAlertIcon from "@material-ui/icons/AddAlert";
 import HealingIcon from "@material-ui/icons/Healing";
+import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 import { Button, Link, Grid } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import featureButton from "../../static/Styling/featureButton.css";
 
-export const showFeatureButtons = () => {
+import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
+
+export const ShowFeatureButtons = () => {
+  const auth = useSelector((state) => state.auth);
+  // const classes = useStyles();
+  const { user, isLogged } = auth;
+
+
+  const genderOfTheUser = () => {
+    if (user.gender == "Female") {
+      return (
+        <Grid item className="item">
+        
+            <Link
+              className="sidebar-icon-link"
+              to="/menstrual-cycle"
+              component={NavLink}
+            >
+              {" "}
+              <Button
+                className="menstrualButton"
+                data-toggle="tooltip"
+                title="Menstrual Cycle"
+              >
+                <BubbleChartIcon />
+              </Button>
+            </Link>
+          
+        </Grid>
+      );
+    }
+  };
+
   return (
-    <div className='div'>
+    <div className="div">
       <Grid item className="item">
         <Link
           className="sidebar-icon-link"
@@ -108,6 +142,9 @@ export const showFeatureButtons = () => {
           </Button>
         </Link>
       </Grid>
+      {genderOfTheUser()}
     </div>
   );
 };
+
+
