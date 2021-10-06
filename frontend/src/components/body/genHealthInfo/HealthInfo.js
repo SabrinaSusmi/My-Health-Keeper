@@ -311,7 +311,7 @@ function GeneralHealthInfo() {
                     {errB && showErrMsg(errB)}
                     {successB && showSuccessMsg(successB)}
                     <Typography component="h5" variant="h5">
-                      🩸 Blood Pressure
+                      🩸 Blood Pressure (systolic/diastolic)
                     </Typography>
                     <div className="margin">
                       <Grid container spacing={2} alignItems="flex-end">
@@ -320,7 +320,7 @@ function GeneralHealthInfo() {
                         </Grid>
                         <Grid item>
                           <TextField
-                            label="bpm"
+                            label="120/80"
                             id="infoBp"
                             name="infoBp"
                             value={infoBp}
