@@ -1,11 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React,{useEffect,useState} from 'react';
 import { Redirect } from "react-router-dom";
 import clsx from "clsx";
-import { Button, AppBar, Toolbar, Typography, Link } from "@material-ui/core";
+import { Button, AppBar, Toolbar, Typography, Link,useScrollTrigger } from "@material-ui/core";
 import { useCookies } from "react-cookie";
+// import useScrollTrigger from '@material/useScrollTrigger';
+import PropTypes, { func } from 'prop-types';
 
 import Grid from "@material-ui/core/Grid";
-import { showFeatureButtons } from "./featureButton";
+import { ShowFeatureButtons } from "./featureButton";
 
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 
@@ -34,12 +36,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
 
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: "none",
-  },
+  
   title: {
     flexGrow: 1,
   },
@@ -99,7 +96,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header() {
+
+export const ShowHeader=(appBarClr)=> {
   const auth = useSelector((state) => state.auth);
   const classes = useStyles();
   const { user, isLogged } = auth;
@@ -149,41 +147,17 @@ function Header() {
       </div>
     );
   };
-
-  const genderOfTheUser = () => {
-    if (user.gender == "Female") {
-      return (
-        <Grid item className="item">
-        
-            <Link
-              className="sidebar-icon-link"
-              to="/menstrual-cycle"
-              component={NavLink}
-            >
-              {" "}
-              <Button
-                className="menstrualButton"
-                data-toggle="tooltip"
-                title="Menstrual Cycle"
-              >
-                <BubbleChartIcon />
-              </Button>
-            </Link>
-          
-        </Grid>
-      );
-    }
-  };
-
+console.log('mjiihxdiwh ',appBarClr)
+  
   return (
-    <React.Fragment>
-      <div className={classes.root}>
-        <CssBaseline />
+  <>
+  
         <AppBar
-          position="absolute"
-          className={clsx(classes.appBar)}
-          color="default"
-          elevation={0.5}
+        style={{ backgroundColor:appBarClr,  }}
+          // position="absolute"
+          // className={clsx(classes.appBar)}
+          // color='blue'
+          // elevation={0.5}
         >
           <Toolbar className={classes.toolbar}>
             <Typography
@@ -206,8 +180,8 @@ function Header() {
             </Typography>
           </Toolbar>
         </AppBar>
-
-        <Grid className="side-button-grid">
+        
+        {/* <Grid className="side-button-grid">
          {showFeatureButtons()}
           {genderOfTheUser()}
         </Grid>
@@ -216,10 +190,10 @@ function Header() {
           <div className={classes.appBarSpacer} />
 
           <Body />
-        </main>
-      </div>
-    </React.Fragment>
+        </main> */}
+      </>
+    
   );
 }
 
-export default Header;
+
