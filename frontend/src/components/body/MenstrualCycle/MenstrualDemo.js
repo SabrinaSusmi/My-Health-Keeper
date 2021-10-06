@@ -61,19 +61,6 @@ export default function MenstrualDemo(){
                                 
                             </div>
                         </div>
-
-                        {/* <div className="mens_input">
-                            <div className="input_form">
-                                <Grid align='center'>
-                                    <h2>Sign In</h2>
-                                </Grid>
-                                <TextField label='Username' placeholder='Enter username' fullWidth required/>
-                                <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
-                            
-                                <Button className="mens_button" variant="contained" type="submit">Submit</Button>
-                                
-                            </div>
-                        </div> */}
                         <div className="mens_cal">
                             <div className="cal_body">
                                 <FullCalendar
@@ -81,7 +68,9 @@ export default function MenstrualDemo(){
                                     initialView="dayGridMonth"
                                     editable={false}
                                     contentHeight="auto"
-                                    
+                                    events = {[
+                                        {date : '2021-10-05', backgroundColor: 'red', display:"background"}
+                                    ]}
                                 />
                             </div>
                         </div>
