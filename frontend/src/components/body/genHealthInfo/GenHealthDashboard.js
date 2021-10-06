@@ -13,6 +13,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
 import { Container, Row, Col } from "react-grid-system";
 import featureButton from '../../../static/Styling/featureButton.css'
+
 import { COLORS } from "../../themeColors";
 
 function GenHealthDashboard() {
@@ -322,7 +323,6 @@ function GenHealthDashboard() {
           </div>
         </div>
       </Col>
-      <Grid className="side-button-grid">{/* <Body/> */}</Grid>
     </Row>
   </Container>
  );

@@ -1,3 +1,8 @@
+.body_container{
+  background:linear-gradient(#d1eef560,#afecfa,#7ee2f8);
+}
+
+
 .body_container>.body_feature_row>.body_feature_column {
   padding: 40px;
   padding-right: 50px;
