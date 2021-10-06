@@ -18,47 +18,47 @@
   margin-top: 20px;
 }
 .div > .item > .sidebar-icon-link > .genHealthButton {
-  background-color: #0ac6f0;
-  height: 60px;
-  color: antiquewhite;
+  background-color: #fc6018;
+    height: 60px;
+    color: rgb(41, 37, 32);
 }
 
  .div > .item > .sidebar-icon-link > .dietButton {
-  background-color: #16f1a8;
-  height: 60px;
-  color: rgb(26, 48, 245);
+  background-color: #f3de1f;
+    height: 60px;
+    color: rgb(41, 37, 32);
 }
 
  .div > .item > .sidebar-icon-link > .spHealthButton {
-  background-color: #9a63f3;
-  height: 60px;
-  color: antiquewhite;
+  background-color: #9fdd3a;
+    height: 60px;
+    color: rgb(41, 37, 32);
 }
 
  .div > .item > .sidebar-icon-link > .reportButton {
-  background-color: #3c39f5;
-  height: 60px;
-  color: antiquewhite;
+  background-color: #29eeb3;
+    height: 60px;
+    color: rgb(41, 37, 32);
 }
 
 .div > .item > .sidebar-icon-link > .diseasePredictButton {
-  background-color: #ffe600;
-  height: 60px;
-  color: rgb(97, 40, 230);
+  background-color: #2392d3;
+    height: 60px;
+    color: rgb(41, 37, 32);
 }
 
  .div
   > .item
   > .sidebar-icon-link
   > .medicineReminderButton {
-  background-color: #fd8412;
-  height: 60px;
-  color: rgb(255, 255, 255);
+    background-color: #8189f5;
+    height: 60px;
+    color: rgb(41, 37, 32);
 }
 
   .div>.item > .sidebar-icon-link > .menstrualButton {
     background-color: #f03a86;
     height: 60px;
-    color: antiquewhite;
+    color: rgb(41, 37, 32);
   
   }

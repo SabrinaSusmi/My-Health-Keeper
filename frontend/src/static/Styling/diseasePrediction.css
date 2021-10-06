@@ -54,3 +54,21 @@
     font-size: 29px;
     
   }
+
+  .disease_main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+  }
+  
+  .symptoms_body {
+    margin: 3em;
+    margin-top: em;
+  }
+  
+  .prediction_body {
+    margin: 3em;
+    margin-top: 6em;
+  } 
