@@ -1,5 +1,5 @@
 .body_container{
-  background:linear-gradient(#eff6f8,#cedcdf,#c0c6c7);
+  background:linear-gradient(#eff3f1,#EBFBF2,#e0f8ea);
  
 }
 
@@ -12,6 +12,7 @@
   max-width: 200px;
   margin-right: 200px;
   padding-top: 0px;
+ 
 }
 .div > .item {
   margin-top: 20px;

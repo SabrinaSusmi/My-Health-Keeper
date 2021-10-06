@@ -196,6 +196,9 @@ setIsPaid(res.data)
       paddingTop: "8%",
       paddingLeft: "33%",
     },
+    emailField:{
+      fontWeight:'bold'
+    },
   }));
 
   const classes = useStyles();
@@ -207,12 +210,12 @@ setIsPaid(res.data)
     <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.profileBackground)}</div>
     
     
-    <pre></pre>
-    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+     <pre></pre> <pre></pre> <pre></pre>
     <pre></pre>
     <Row className='body_feature_row' >
       <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
-        
+      <pre></pre>
+    <pre></pre>
         {ShowFeatureButtons()}</Col>
       <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
         <div>
@@ -269,12 +272,13 @@ setIsPaid(res.data)
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <TextField
-                      type="email"
+className={classes.emailField}                      type="email"
                       name="email"
                       id="email"
                       defaultValue={user.email}
                       placeholder="Your email address"
                       disabled
+                      
                     />
                   </div>
                   <div className="profile_input">
@@ -324,7 +328,8 @@ setIsPaid(res.data)
 
                     <Card className="card_grid_profile">
                       <CardContent className="card_content_grid_profile">
-                        <h7>PERSONAL INFORMATION</h7>
+                        <h7><b>PERSONAL INFORMATION</b></h7>
+                        <pre></pre>
                         <div className="grid_profile_input">
               <label className="grid_profile_label">Gender  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
               <Select
