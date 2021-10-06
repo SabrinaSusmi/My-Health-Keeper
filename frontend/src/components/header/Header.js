@@ -147,13 +147,13 @@ export const ShowHeader=(appBarClr)=> {
       </div>
     );
   };
-console.log('mjiihxdiwh ',appBarClr)
+// console.log('mjiihxdiwh ',appBarClr)
   
   return (
   <>
   
         <AppBar
-        style={{ backgroundColor:appBarClr,  }}
+        style={{ backgroundColor:appBarClr, boxShadow:'none' }}
           // position="absolute"
           // className={clsx(classes.appBar)}
           // color='blue'
