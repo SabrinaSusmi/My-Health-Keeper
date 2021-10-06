@@ -56,7 +56,8 @@ export default function MenstrualDemo(){
                                 <TextField label='Username' placeholder='Enter username' fullWidth required/>
                                 <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
                                 
-                                <Button className="mens_button" type='submit' color='primary' variant="contained">Sign in</Button>
+                                {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
+                                <Button className="mens_button" variant="contained" type="submit">Submit</Button>
                                 
                             </div>
                         </div>
