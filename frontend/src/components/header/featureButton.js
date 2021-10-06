@@ -143,6 +143,24 @@ export const ShowFeatureButtons = () => {
         </Link>
       </Grid>
       {genderOfTheUser()}
+      <Grid item className="item">
+        
+            <Link
+              className="sidebar-icon-link"
+              to="/menstrual-cycle_demo"
+              component={NavLink}
+            >
+              {" "}
+              <Button
+                className="menstrualButton"
+                data-toggle="tooltip"
+                title="Menstrual Cycle"
+              >
+                <BubbleChartIcon />
+              </Button>
+            </Link>
+          
+        </Grid>
     </div>
   );
 };

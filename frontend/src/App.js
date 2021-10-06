@@ -28,6 +28,7 @@ import ViewFiles from "./components/body/specializedHealthInfo/ViewFiles";
 import DietPlan from "./components/body/dietPlan/DietPlan";
 import DietGoalSetter from "./components/body/dietPlan/DietGoalSetter";
 import DiseasePrediction from "./components/body/diseasePrediction/DiseasePrediction";
+import MenstrualDemo from "./components/body/MenstrualCycle/MenstrualDemo";
 
 export const UserIDContext = React.createContext();
 function App() {
@@ -136,6 +137,12 @@ function App() {
                 component={isLogged ? MenstrualCycle : Login}
                 exact
               />
+
+<Route
+          path="/menstrual-cycle_demo"
+          component={isLogged ? MenstrualDemo : Login}
+          exact
+        />
               <Route
                 path="/general-health-dashboard"
                 component={isLogged ? GenHealthDashboard : Login}
