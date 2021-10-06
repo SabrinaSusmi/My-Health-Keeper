@@ -67,6 +67,7 @@ export default function MenstrualDemo(){
                                     plugins={[dayGridPlugin, interactionPlugin]}
                                     initialView="dayGridMonth"
                                     editable={false}
+                                    contentHeight="auto"
                                     
                                 />
                             </div>
