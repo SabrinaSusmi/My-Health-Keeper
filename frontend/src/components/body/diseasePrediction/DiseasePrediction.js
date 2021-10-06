@@ -111,7 +111,90 @@ export default function SymptomSelection() {
               Identify possible conditions and treatments related to your
               symptoms{" "}
             </div>
-            <Grid className="root" container>
+            <div className="disease_main">
+              <div className="symptoms_body">
+                <div className="symptom">
+                  Symptom 1 :{" "}
+                  <Select
+                    id="s1"
+                    name="s1"
+                    value={s1}
+                    onChange={handleChangeInput}
+                    // displayEmpty
+                    className={classes.selectEmpty}
+                  >
+                    {symptomList()}
+                  </Select>
+                </div>
+                <div className="symptom">
+                  Symptom 2 :{" "}
+                  <Select
+                    id="s2"
+                    name="s2"
+                    value={s2}
+                    onChange={handleChangeInput}
+                    // displayEmpty
+                    className={classes.selectEmpty}
+                  >
+                    {symptomList()}
+                  </Select>
+                </div>
+                <div className="symptom">
+                  Symptom 3 :{" "}
+                  <Select
+                    id="s3"
+                    name="s3"
+                    value={s3}
+                    onChange={handleChangeInput}
+                    // displayEmpty
+                    className={classes.selectEmpty}
+                  >
+                    {symptomList()}
+                  </Select>
+                </div>
+                <div className="symptom">
+                  Symptom 4 :{" "}
+                  <Select
+                    id="s4"
+                    name="s4"
+                    value={s4}
+                    onChange={handleChangeInput}
+                    // displayEmpty
+                    className={classes.selectEmpty}
+                  >
+                    {symptomList()}
+                  </Select>
+                </div>
+                <div className="symptom">
+                  Symptom 5 :{" "}
+                  <Select
+                    id="s5"
+                    name="s5"
+                    value={s5}
+                    onChange={handleChangeInput}
+                    // displayEmpty
+                    className={classes.selectEmpty}
+                  >
+                    {symptomList()}
+                  </Select>
+                </div>
+                <div className="predict_button">
+                  <Button onClick={handleSubmit} className="predict">
+                    Predict
+                  </Button>
+                </div>
+              </div>
+
+              <div className="prediction_body">
+                <Prediction
+                getPrediction={disease}
+                percent={percentage}
+                specialist={doctor}
+              />
+              </div>
+
+            </div>
+            {/* <Grid className="root" container>
               <Grid className="grid_symptoms" item xs={5}>
                 Symptoms 1 :{" "}
                 <Select
@@ -187,17 +270,17 @@ export default function SymptomSelection() {
                 </Select>
               </Grid>
               <Grid item xs={3}></Grid>
-            </Grid>
-            <div className="predict_button">
+            </Grid> */}
+            {/* <div className="predict_button">
               <Button onClick={handleSubmit} className="predict">
                 Predict
               </Button>
-            </div>
-            <Prediction
+            </div> */}
+            {/* <Prediction
               getPrediction={disease}
               percent={percentage}
               specialist={doctor}
-            />
+            /> */}
           </Col>
         </Row>
       </Container>
