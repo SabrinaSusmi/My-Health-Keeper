@@ -17,12 +17,12 @@
 .predict_button>.predict{
       justify-content: center;
       color: white;
-      background-color: #04272f;
-      padding: .5%;
+      background-color: #522d58;
+      padding: .9%;
     padding-left: 4%;
     padding-right: 4%;
      border-radius: 15px;
-     font-size: 16px;
+     font-size: 15px;
   }
 
   .prediction_label{
@@ -66,6 +66,13 @@
 .symptoms_body {
   margin: 3em;
   margin-top: 8em;
+  background-color: rgb(216, 183, 247);
+  padding: 15px;
+  border-radius: 15px;
+  width: 35%;
+  font-weight: 550;
+  box-shadow: 2px 5px 10px 5px rgb(125, 98, 128);
+  text-align: center;
 }
 
 .prediction_body {
