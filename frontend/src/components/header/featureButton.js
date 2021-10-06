@@ -8,6 +8,7 @@ import HealingIcon from "@material-ui/icons/Healing";
 import { Button, Link, Grid } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import featureButton from "../../static/Styling/featureButton.css";
+import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 
 export const showFeatureButtons = () => {
   return (
@@ -108,6 +109,25 @@ export const showFeatureButtons = () => {
           </Button>
         </Link>
       </Grid>
+
+      <Grid item className="item">
+        
+            <Link
+              className="sidebar-icon-link"
+              to="/menstrual-cycle_demo"
+              component={NavLink}
+            >
+              {" "}
+              <Button
+                className="menstrualButton"
+                data-toggle="tooltip"
+                title="Menstrual Cycle"
+              >
+                <BubbleChartIcon />
+              </Button>
+            </Link>
+          
+        </Grid>
     </div>
   );
 };

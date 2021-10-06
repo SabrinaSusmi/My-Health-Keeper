@@ -1,0 +1,87 @@
+.mens {
+    padding: 30px;
+}
+.mens_body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.mens_info {
+    margin: 3em 2em 0 2em;
+    margin-right: 3em;
+}
+
+.info_item {
+    border: brown 2px solid;
+    margin: 2em;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+}
+
+.info_item p {
+    font-size: small;
+}
+
+.mens_input {
+    margin: 2em 2em 0 2em;
+}
+
+.mens_cal {
+    margin: 2em 2em 0 2em;
+}
+
+.cal_body {
+    background-color: rgb(247, 188, 193);
+    border-radius: 10px;
+    padding: 15px;
+    height: 450px;
+    width: 470px;
+}
+
+.input_form {
+    background-color: rgb(247, 188, 193);
+    padding: 15px;
+    width: 350px;
+    height: 450px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mens_button {
+    margin: 30px;
+    width: 120px;
+    height: 35px;
+    background-color: rgb(202, 77, 98);
+    color: black;
+    font-style: bold;
+}
+
+.fc-daygrid-day-number {
+    color: black;
+    text-decoration: none;
+}
+
+.fc .fc-button-primary {
+    background: rgb(202, 77, 98);
+}
+
+.fc-col-header-cell-cushion {
+    color: black;
+    text-decoration: none;
+}
+
+.fc-scroller {
+    overflow-y: hidden !important;
+ }
