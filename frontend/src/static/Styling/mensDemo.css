@@ -6,29 +6,41 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    vertical-align: middle;
+    
 }
 
 .mens_info {
     margin: 3em 2em 0 2em;
     margin-right: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.info_section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .info_item {
-    border: brown 2px solid;
+    border: rgb(250, 131, 131) 2px solid;
     margin: 2em;
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     text-align: center;
     align-items: center;
     justify-content: center;
     display: flex;
     padding: 10px;
+    
 }
 
 .info_item p {
-    font-size: small;
+    font-size: 16px;
+    font-weight: 550;
 }
 
 .mens_input {
@@ -50,22 +62,23 @@
 .input_form {
     background-color: rgb(247, 188, 193);
     padding: 15px;
-    width: 350px;
-    height: 450px;
+    width: 300px;
+    height: 300px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    margin-left: 10rem;
 }
 
 .mens_button {
-    margin: 30px;
-    width: 120px;
+    margin-top: 30px !important;
+    width: 100px;
     height: 35px;
-    background-color: rgb(202, 77, 98);
+    background: rgb(202, 77, 98) !important;
     color: black;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .fc-prev-button > .fc-button > .fc-button-primary {

@@ -38,29 +38,42 @@ export default function MenstrualDemo(){
                     <div className="mens">
                     <div className="mens_body">
                         <div className="mens_info">
-                            <div className="info_item">
-                                <p>17 days since last period.</p>
+                            <div className="info_section">
+                                <div className="info_item">
+                                    <p>17 days since last period.</p>
+                                </div>
+                                <div className="info_item">
+                                    <p>The last cycle was 28 days long.</p>
+                                </div>
+                                <div className="info_item">
+                                    <p>Want to know about your period?</p>
+                                </div>
                             </div>
-                            <div className="info_item">
-                                <p>The last cycle was 28 days long.</p>
-                            </div>
-                            {/* <div className="info_item">
-                                <p>Want to know about your period?</p>
-                            </div> */}
-                        </div>
-                        <div className="mens_input">
                             <div className="input_form">
                                 <Grid align='center'>
-                                    <h2>Sign In</h2>
+                                    <h4>Input your data 💓 </h4>
                                 </Grid>
-                                <TextField label='Username' placeholder='Enter username' fullWidth required/>
-                                <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
+                                <TextField label='Start date' placeholder='Enter username' fullWidth required/>
+                                <TextField label='End date' placeholder='Enter password' type='password' fullWidth required/>
                                 
                                 {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
                                 <Button className="mens_button" variant="contained" type="submit">Submit</Button>
                                 
                             </div>
                         </div>
+
+                        {/* <div className="mens_input">
+                            <div className="input_form">
+                                <Grid align='center'>
+                                    <h2>Sign In</h2>
+                                </Grid>
+                                <TextField label='Username' placeholder='Enter username' fullWidth required/>
+                                <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
+                            
+                                <Button className="mens_button" variant="contained" type="submit">Submit</Button>
+                                
+                            </div>
+                        </div> */}
                         <div className="mens_cal">
                             <div className="cal_body">
                                 <FullCalendar
