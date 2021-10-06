@@ -8,6 +8,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MedModal from "./MedModal";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Modal from "react-modal";
+
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
+
 function DisplayMedReminders() {
   const token = useSelector((state) => state.token);
   const [ongoingMedReminderList, setOngoingMedReminderList] = useState([]);
@@ -70,6 +79,18 @@ function DisplayMedReminders() {
   };
   return (
     <div className="reminder">
+       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.medicineBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       {" "}
       &nbsp;
       <div className="reminder_buttons">
@@ -131,6 +152,9 @@ function DisplayMedReminders() {
           </div>
         ))}
       </div>
+      </Col>
+    </Row>
+  </Container>
     </div>
   );
 }

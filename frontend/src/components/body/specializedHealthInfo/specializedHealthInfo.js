@@ -7,6 +7,14 @@ import AddNotes from "./AddNotes";
 import { UserIDContext } from "../../../App";
 import ViewFolderProps from "./ViewFolderProps";
 
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
+
 export default function SpecializedHealthInfo() {
   const [spHealthNotes, setSpHealthNotes] = useState([]);
 
@@ -50,6 +58,18 @@ export default function SpecializedHealthInfo() {
 
   return (
     <div>
+       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.spHealthBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       <AddNotes getNote={() => showSPHealthNotes()} />
     
       <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Health Diary</h4>
@@ -69,6 +89,9 @@ export default function SpecializedHealthInfo() {
       ) : (
         <h2>No folder is created</h2>
       )}
+      </Col>
+    </Row>
+  </Container>
     </div>
   );
 }

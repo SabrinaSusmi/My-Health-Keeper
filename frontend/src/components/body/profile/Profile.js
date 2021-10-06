@@ -17,7 +17,15 @@ import {
   Typography,
   CardContent,
   TextField,
+  
 } from "@material-ui/core";
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
 
 const initialState = {
   name: "",
@@ -166,7 +174,7 @@ setIsPaid(res.data)
   };
   const useStyles = makeStyles((theme) => ({
     formControl: {
-      minWidth: 240,
+      minWidth: 200,
       background: "white",
     },
     position: {
@@ -195,6 +203,18 @@ setIsPaid(res.data)
   return (
     <>
       <div>
+      <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,backgroundColor:COLORS.profileBackground,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.profileBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
         <div>
           {err && showErrMsg(err)}
           {success && showSuccessMsg(success)}
@@ -366,19 +386,12 @@ setIsPaid(res.data)
         &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;     save
               </Button>
         </div>
-        
+        </Col>
+    </Row>
+  </Container>
       </div>
 
-      <div className="profile_page">
-        <div className="col-left">
-          <div className={classes.position}>
-            
-            <div className={classes.button}>
-              
-            </div>
-          </div>
-        </div>
-      </div>
+   
     </>
   );
 }

@@ -6,6 +6,14 @@ import axios from "axios";
 import { Button, IconButton, Link } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
+
 function MedDoses() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
@@ -42,6 +50,18 @@ function MedDoses() {
 
   return (
     <div>
+       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.medicineBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       <div>
         <Link href="/display-medicine-reminderList">
           <Button type="button" color="primary" size="large">
@@ -73,7 +93,9 @@ function MedDoses() {
           </div>
         ))}
       </div>
-    </div>
+      </Col>
+    </Row>
+  </Container> </div>
   );
 }
 

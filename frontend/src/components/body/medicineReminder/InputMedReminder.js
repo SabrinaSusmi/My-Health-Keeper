@@ -6,7 +6,7 @@ import {
   Paper,
   TextField,
   Button,
-  Container,
+  
   IconButton,
   Link,
 } from "@material-ui/core";
@@ -21,6 +21,14 @@ import {
 import "../../../static/Styling/medicineReminder.css";
 import { Redirect, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+import { mergeClasses } from "@material-ui/styles";
+
 const initialState = {
   username: "",
   medName: "",
@@ -118,6 +126,11 @@ function InputMedReminder() {
   };
 
   const useStyles = makeStyles((theme) => ({
+    textfield_input:{
+      width:'60%',
+      marginLeft:'20%',
+      marginBottom:'2%',
+    },
     notchedOutline: {
       borderWidth: "1px",
        borderColor: "#fd8412 !important ",
@@ -127,7 +140,20 @@ function InputMedReminder() {
  
   const classes = useStyles();
   return (
-    <Container className="containerMed">
+    <>
+     <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.genHealthBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
+    
       <Link href="/display-medicine-reminderList">
         <i class="fas fa-angle-double-left"> &nbsp; Return</i>
       </Link>
@@ -144,7 +170,8 @@ function InputMedReminder() {
               notchedOutline: classes.notchedOutline
             }
           }}
-          className="textfield"
+
+          className={classes.textfield_input}
             variant="outlined"
             required
             fullWidth
@@ -158,7 +185,7 @@ function InputMedReminder() {
                        <div className="labels"> Description</div>
 
           <TextField
-          className="textfield"
+            className={classes.textfield_input}
             variant="outlined"
             required
             fullWidth
@@ -172,7 +199,7 @@ function InputMedReminder() {
                        <div className="labels"> Start Date</div>
 
           <TextField
-          className="textfield"
+            className={classes.textfield_input}
             variant="outlined"
             required
             fullWidth
@@ -188,7 +215,7 @@ function InputMedReminder() {
           />
           <div className="labels"> End Date</div>
           <TextField
-          className="textfield"
+            className={classes.textfield_input}
             variant="outlined"
             required
             fullWidth
@@ -248,7 +275,11 @@ function InputMedReminder() {
           </Button>
         </div>
      
-    </Container>
+    
+    </Col>
+    </Row>
+  </Container>
+  </>
   );
 }
 
