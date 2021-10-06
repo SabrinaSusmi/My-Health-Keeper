@@ -11,6 +11,7 @@ npm install react-file-base64 react-google-login web-vitals
 npm i @fullcalendar/bootstrap @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction @fullcalendar/react @react-spring/web bootstrap jquery react-animated-bg popper.js react-datetime react-modal
 npm i react-responsive-modal
 npm i @react-spring/web react-scripts react-tabs
+npm i mui prop-types react-grid-system
 ------ server
 
 cd server

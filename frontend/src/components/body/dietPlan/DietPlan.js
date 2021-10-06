@@ -6,6 +6,13 @@ import DietGoalSetter from "./DietGoalSetter";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
 import "react-datepicker/dist/react-datepicker.css";
 
 import FoodItemTable from "./FoodItemTable";
@@ -19,6 +26,18 @@ export default function DietPlan() {
 
   return (
     <div>
+       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.dietBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       <div>
         <div className="diet_buttons">
           <Button className="diet_buttons_sub" onClick={viewtargetInfo}>
@@ -42,7 +61,7 @@ export default function DietPlan() {
           </p>
         </div>
         <hr></hr>
-        {/* <div className="diet_date">
+        <div className="diet_date">
           <div>
             <Button>
               <i class="far fa-calendar-alt" />
@@ -58,10 +77,13 @@ export default function DietPlan() {
               }}
             />
           </div>
-        </div> */}
+        </div>
       </div>
 
       <FoodItemTable />
+      </Col>
+    </Row>
+  </Container>
     </div>
   );
 }

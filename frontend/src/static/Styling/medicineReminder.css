@@ -47,12 +47,12 @@
   margin-right: 20%;
   border-radius: 5px;
 }
-.containerMed > .labels {
+ .labels {
   margin-left: 20%;
   margin-bottom: 4px;
 }
 
-.containerMed > .textfield {
+ .textfield {
   width: 60%;
   margin-left: 20%;
   height: 70px;
@@ -70,9 +70,9 @@
   background-color: #fd8412;
   height: 20%;
 } */
-.containerMed > .form_btns > .add_btn {
+ .form_btns > .add_btn {
   width: 33%;
-  margin-bottom: 1%;
+  margin-bottom: 3%;
   margin-right: 15%;
   margin-left: 35%;
   margin-top: 13px;
@@ -167,3 +167,4 @@
   font-weight: bold;
   margin: 0.3rem;
 }
+

@@ -11,6 +11,14 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import PdfView from "./pdfView";
 import Modal from "react-bootstrap/Modal";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: "100mvh",
@@ -87,6 +95,18 @@ export default function AddFiles() {
 
   return (
     <div className={classes.root}>
+       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.spHealthBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> 
+    
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       <div className="heading">
         <Link
           className="return_to_spHealth"
@@ -187,6 +207,11 @@ export default function AddFiles() {
           </Grid>
         </div>
       )}
+
+      
+</Col>
+    </Row>
+  </Container>
     </div>
   );
 }
