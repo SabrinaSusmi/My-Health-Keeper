@@ -24,6 +24,15 @@ import {
 } from "../../utils/notification/Notification";
 import axios from "axios";
 
+
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
+
 const weightInitialState = {
   infoTitleWeight: "Weight",
   infoWeight: "",
@@ -219,6 +228,18 @@ function GeneralHealthInfo() {
 
   return (
     <div className=" body ">
+       <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,backgroundColor:COLORS.genHealthBackground,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.genHealthBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       {
         <div>
           <Card className="root">
@@ -396,7 +417,11 @@ function GeneralHealthInfo() {
           ></SugarModal>
         </Card>
       }
-    </div>
+      </Col>
+    </Row>
+  </Container>
+  </div>
+    
   );
 }
 
