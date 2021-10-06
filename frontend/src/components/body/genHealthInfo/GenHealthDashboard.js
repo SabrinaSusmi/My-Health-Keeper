@@ -2,12 +2,21 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../../../static/Styling/medicineReminder.css";
 import "../../../static/Styling/healthInfo.css";
-import { Button, IconButton, Link } from "@material-ui/core";
+import { Button, IconButton, Link,Grid } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import { makeStyles } from '@material-ui/core/styles';
+
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
 
 function GenHealthDashboard() {
+
     const token = useSelector((state) => state.token);
     const [weightChartData, setWeightChartData] = useState({});
     const [bpChartData, setBpChartData] = useState({});
@@ -169,141 +178,154 @@ function GenHealthDashboard() {
     sugarChart();
   }, []);
   return (
-    <div>
-      {" "}
-      &nbsp;
-      <div className="reminder_buttons">
-        <Link
-          href="/general-health-information"
-          className="reminder_buttons_sub"
-        >
-          {""} Add Today's Information
-        </Link>
-      </div>
+    <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,backgroundColor:COLORS.genHealthBackground,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.genHealthBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+    <pre></pre>
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
+        <div className="reminder_buttons">
+          <Link
+            href="/general-health-information"
+            className="reminder_buttons_sub"
+          >
+            {""} Add Today's Information
+          </Link>
+        </div>
 
-      <div class="container">
-  <div>
-      <Line
-            data={weightChartData}
-            options={{
-              responsive: true,
-              title: { text: "Sugar Graph", display: true },
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10,
-                      beginAtZero: true,
+        <div class="container">
+          <div>
+            <Line
+              data={weightChartData}
+              options={{
+                responsive: true,
+                title: { text: "Sugar Graph", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                    gridLines: {
-                      display: false,
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                  },
-                ],
-                xAxes: [
-                  {
-                    gridLines: {
-                      display: false,
+                  ],
+                },
+              }}
+            />
+          </div>
+          <div>
+            <Line
+              data={bpChartData}
+              options={{
+                responsive: true,
+                title: { text: "Sugar Graph", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                  },
-                ],
-              },
-            }}
-          /></div>
-  <div>
-  <Line
-            data={bpChartData}
-            options={{
-              responsive: true,
-              title: { text: "Sugar Graph", display: true },
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10,
-                      beginAtZero: true,
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                    gridLines: {
-                      display: false,
+                  ],
+                },
+              }}
+            />
+          </div>
+          <div>
+            <Line
+              data={pulseChartData}
+              options={{
+                responsive: true,
+                title: { text: "Sugar Graph", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                  },
-                ],
-                xAxes: [
-                  {
-                    gridLines: {
-                      display: false,
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                  },
-                ],
-              },
-            }}
-          />
-  </div>
-  <div>
-  <Line
-            data={pulseChartData}
-            options={{
-              responsive: true,
-              title: { text: "Sugar Graph", display: true },
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10,
-                      beginAtZero: true,
+                  ],
+                },
+              }}
+            />
+          </div>
+          <div>
+            <Line
+              data={sugarChartData}
+              options={{
+                responsive: true,
+                title: { text: "Sugar Graph", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                    gridLines: {
-                      display: false,
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
                     },
-                  },
-                ],
-                xAxes: [
-                  {
-                    gridLines: {
-                      display: false,
-                    },
-                  },
-                ],
-              },
-            }}
-          />
-  </div>
-  <div>
-  <Line
-            data={sugarChartData}
-            options={{
-              responsive: true,
-              title: { text: "Sugar Graph", display: true },
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10,
-                      beginAtZero: true,
-                    },
-                    gridLines: {
-                      display: false,
-                    },
-                  },
-                ],
-                xAxes: [
-                  {
-                    gridLines: {
-                      display: false,
-                    },
-                  },
-                ],
-              },
-            }}
-          />
-  </div>
-</div>
-    </div>
-  );
+                  ],
+                },
+              }}
+            />
+          </div>
+        </div>
+      </Col>
+      <Grid className="side-button-grid">{/* <Body/> */}</Grid>
+    </Row>
+  </Container>
+ );
 }
 
 export default GenHealthDashboard;
