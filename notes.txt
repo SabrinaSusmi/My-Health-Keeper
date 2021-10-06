@@ -29,3 +29,7 @@ file>preference>settings> search(execute in file dir)> python>terminal:execute i
 
 
 npm install fast-csv
+
+npm install react-grid-system --save
+pip install svm rfc knn decision_tree ensemble neighbors tree clf
+npm i mui
