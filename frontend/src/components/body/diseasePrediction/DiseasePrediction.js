@@ -233,7 +233,6 @@ export default function SymptomSelection() {
                     {symptomList()}
                   </Select>
                 </Grid>
-
                 <Grid className="grid_symptoms" item xs={5}>
                   {" "}
                   Symptoms 3 :{" "}
@@ -265,7 +264,6 @@ export default function SymptomSelection() {
                 <Grid item xs={4}>
                   {" "}
                 </Grid>
-
                 <Grid className="grid_symptoms" item xs={5}>
                   {" "}
                   Symptoms 5 :{" "}

@@ -24,14 +24,12 @@ import {
 } from "../../utils/notification/Notification";
 import axios from "axios";
 
-
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
 import { Container, Row, Col } from "react-grid-system";
-import featureButton from '../../../static/Styling/featureButton.css'
+import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
-
 
 const weightInitialState = {
   infoTitleWeight: "Weight",
@@ -228,200 +226,220 @@ function GeneralHealthInfo() {
 
   return (
     <div className=" body ">
-       <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,backgroundColor:COLORS.genHealthBackground,marginRight:0}} >
-    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.genHealthBackground)}</div>
-    
-    
-    <pre></pre>
-    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
-    <pre></pre>
-    <Row className='body_feature_row' >
-      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
-        
-        {ShowFeatureButtons()}</Col>
-      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
-      {
-        <div>
-          <Card className="root">
-            <div className="details">
-              <CardContent className="content">
-                {errW && showErrMsg(errW)}
-                {successW && showSuccessMsg(successW)}
-                <Typography component="h5" variant="h5">
-                  👣 Weight
-                </Typography>
-                <div className="margin">
-                  <Grid container spacing={2} alignItems="flex-end">
-                    <Grid item>
-                      <LocalHospitalRoundedIcon />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        label="KG"
-                        id="infoWeight"
-                        name="infoWeight"
-                        value={infoWeight}
-                        onChange={handleChangeWeight}
-                      />
-                    </Grid>
-                    <IconButton
-                      aria-label="add"
-                      className="controls"
-                      onClick={handleSubmitWeight}
-                    >
-                      <AddCircleOutlineRoundedIcon className="playIcon" />
-                    </IconButton>
-                  </Grid>
-                </div>
-                <Button className="summary_btn" onClick={openWeightModal}>
-                  Show History
-                </Button>
-              </CardContent>
-            </div>
-            <WeightModal
-              showWeightModal={showWeightModal}
-              setShowWeightModal={setShowWeightModal}
-            />
-          </Card>
+      <Container
+        className="body_container"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          margin: 0,
+          maxWidth: 1900,
+          padding: 0,
+          backgroundColor: COLORS.genHealthBackground,
+          marginRight: 0,
+        }}
+      >
+        <div style={{ backgroundColor: "black", color: "black" }}>
+          {ShowHeader(COLORS.genHealthBackground)}
         </div>
-      }
-      {
-        <Card className="root">
-          <div className="details">
-            <CardContent className="content">
-              {errB && showErrMsg(errB)}
-              {successB && showSuccessMsg(successB)}
-              <Typography component="h5" variant="h5">
-                🩸 Blood Pressure
-              </Typography>
-              <div className="margin">
-                <Grid container spacing={2} alignItems="flex-end">
-                  <Grid item>
-                    <InvertColorsIcon />
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      label="bpm"
-                      id="infoBp"
-                      name="infoBp"
-                      value={infoBp}
-                      onChange={handleChangeBp}
-                    />
-                  </Grid>
-                  <IconButton
-                    aria-label="add"
-                    className="controls"
-                    onClick={handleSubmitBp}
-                  >
-                    <AddCircleOutlineRoundedIcon className="playIcon" />
-                  </IconButton>
-                </Grid>
+        <pre></pre>
+        <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+        <pre></pre>
+        <Row className="body_feature_row">
+          <Col
+            className="body_feature_column"
+            style={{ position: "fixed" }}
+            sm={2}
+          >
+            {ShowFeatureButtons()}
+          </Col>
+          <Col
+            style={{
+              marginLeft: 150,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {
+              <div>
+                <Card className="root">
+                  <div className="details">
+                    <CardContent className="content">
+                      {errW && showErrMsg(errW)}
+                      {successW && showSuccessMsg(successW)}
+                      <Typography component="h5" variant="h5">
+                        👣 Weight
+                      </Typography>
+                      <div className="margin">
+                        <Grid container spacing={2} alignItems="flex-end">
+                          <Grid item>
+                            <LocalHospitalRoundedIcon />
+                          </Grid>
+                          <Grid item>
+                            <TextField
+                              label="KG"
+                              id="infoWeight"
+                              name="infoWeight"
+                              value={infoWeight}
+                              onChange={handleChangeWeight}
+                            />
+                          </Grid>
+                          <IconButton
+                            aria-label="add"
+                            className="controls"
+                            onClick={handleSubmitWeight}
+                          >
+                            <AddCircleOutlineRoundedIcon className="playIcon" />
+                          </IconButton>
+                        </Grid>
+                      </div>
+                      <Button className="summary_btn" onClick={openWeightModal}>
+                        Show History
+                      </Button>
+                    </CardContent>
+                  </div>
+                  <WeightModal
+                    showWeightModal={showWeightModal}
+                    setShowWeightModal={setShowWeightModal}
+                  />
+                </Card>
               </div>
-              <Button className="summary_btn" onClick={openBPModal}>
-                {" "}
-                Show History
-              </Button>
-            </CardContent>
-          </div>
-          <BpModal
-            showBPModal={showBPModal}
-            setShowBPModal={setShowBPModal}
-          ></BpModal>
-        </Card>
-      }
-      {
-        <Card className="root">
-          <div className="details">
-            <CardContent className="content">
-              {errP && showErrMsg(errP)}
-              {successP && showSuccessMsg(successP)}
-              <Typography component="h5" variant="h5">
-                💓 Pulse Rate
-              </Typography>
-              <div className="margin">
-                <Grid container spacing={2} alignItems="flex-end">
-                  <Grid item>
-                    <FavoriteBorderIcon />
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      label="bpm"
-                      id="infoPulse"
-                      name="infoPulse"
-                      value={infoPulse}
-                      onChange={handleChangePulse}
-                    />
-                  </Grid>
-                  <IconButton
-                    aria-label="add"
-                    className="controls"
-                    onClick={handleSubmitPulse}
-                  >
-                    <AddCircleOutlineRoundedIcon className="playIcon" />
-                  </IconButton>
-                </Grid>
-              </div>
-              <Button className="summary_btn" onClick={openPulseModal}>
-                {" "}
-                Show History
-              </Button>
-            </CardContent>
-          </div>
-          <PulseModal
-            showPulseModal={showPulseModal}
-            setShowPulseModal={setShowPulseModal}
-          ></PulseModal>
-        </Card>
-      }
-      {
-        <Card className="root">
-          <div className="details">
-            <CardContent className="content">
-              {errS && showErrMsg(errS)}
-              {successS && showSuccessMsg(successS)}
-              <Typography component="h5" variant="h5">
-                🎚 Sugar Level
-              </Typography>
-              <div className="margin">
-                <Grid container spacing={2} alignItems="flex-end">
-                  <Grid item>
-                    <HeightIcon />
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      label=" "
-                      id="infoSugar"
-                      name="infoSugar"
-                      value={infoSugar}
-                      onChange={handleChangeSugar}
-                    />
-                  </Grid>
-                  <IconButton
-                    aria-label="add"
-                    className="controls"
-                    onClick={handleSubmitSugar}
-                  >
-                    <AddCircleOutlineRoundedIcon className="playIcon" />
-                  </IconButton>
-                </Grid>
-              </div>
-              <Button className="summary_btn" onClick={openSugarModal}>
-                {" "}
-                Show History
-              </Button>
-            </CardContent>
-          </div>
-          <SugarModal
-            showSugarModal={showSugarModal}
-            setShowSugarModal={setShowSugarModal}
-          ></SugarModal>
-        </Card>
-      }
-      </Col>
-    </Row>
-  </Container>
-  </div>
-    
+            }
+            {
+              <Card className="root">
+                <div className="details">
+                  <CardContent className="content">
+                    {errB && showErrMsg(errB)}
+                    {successB && showSuccessMsg(successB)}
+                    <Typography component="h5" variant="h5">
+                      🩸 Blood Pressure (systolic/diastolic)
+                    </Typography>
+                    <div className="margin">
+                      <Grid container spacing={2} alignItems="flex-end">
+                        <Grid item>
+                          <InvertColorsIcon />
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            label="120/80"
+                            id="infoBp"
+                            name="infoBp"
+                            value={infoBp}
+                            onChange={handleChangeBp}
+                          />
+                        </Grid>
+                        <IconButton
+                          aria-label="add"
+                          className="controls"
+                          onClick={handleSubmitBp}
+                        >
+                          <AddCircleOutlineRoundedIcon className="playIcon" />
+                        </IconButton>
+                      </Grid>
+                    </div>
+                    <Button className="summary_btn" onClick={openBPModal}>
+                      {" "}
+                      Show History
+                    </Button>
+                  </CardContent>
+                </div>
+                <BpModal
+                  showBPModal={showBPModal}
+                  setShowBPModal={setShowBPModal}
+                ></BpModal>
+              </Card>
+            }
+            {
+              <Card className="root">
+                <div className="details">
+                  <CardContent className="content">
+                    {errP && showErrMsg(errP)}
+                    {successP && showSuccessMsg(successP)}
+                    <Typography component="h5" variant="h5">
+                      💓 Pulse Rate
+                    </Typography>
+                    <div className="margin">
+                      <Grid container spacing={2} alignItems="flex-end">
+                        <Grid item>
+                          <FavoriteBorderIcon />
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            label="bpm"
+                            id="infoPulse"
+                            name="infoPulse"
+                            value={infoPulse}
+                            onChange={handleChangePulse}
+                          />
+                        </Grid>
+                        <IconButton
+                          aria-label="add"
+                          className="controls"
+                          onClick={handleSubmitPulse}
+                        >
+                          <AddCircleOutlineRoundedIcon className="playIcon" />
+                        </IconButton>
+                      </Grid>
+                    </div>
+                    <Button className="summary_btn" onClick={openPulseModal}>
+                      {" "}
+                      Show History
+                    </Button>
+                  </CardContent>
+                </div>
+                <PulseModal
+                  showPulseModal={showPulseModal}
+                  setShowPulseModal={setShowPulseModal}
+                ></PulseModal>
+              </Card>
+            }
+            {
+              <Card className="root">
+                <div className="details">
+                  <CardContent className="content">
+                    {errS && showErrMsg(errS)}
+                    {successS && showSuccessMsg(successS)}
+                    <Typography component="h5" variant="h5">
+                      🎚 Sugar Level
+                    </Typography>
+                    <div className="margin">
+                      <Grid container spacing={2} alignItems="flex-end">
+                        <Grid item>
+                          <HeightIcon />
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            label=" "
+                            id="infoSugar"
+                            name="infoSugar"
+                            value={infoSugar}
+                            onChange={handleChangeSugar}
+                          />
+                        </Grid>
+                        <IconButton
+                          aria-label="add"
+                          className="controls"
+                          onClick={handleSubmitSugar}
+                        >
+                          <AddCircleOutlineRoundedIcon className="playIcon" />
+                        </IconButton>
+                      </Grid>
+                    </div>
+                    <Button className="summary_btn" onClick={openSugarModal}>
+                      {" "}
+                      Show History
+                    </Button>
+                  </CardContent>
+                </div>
+                <SugarModal
+                  showSugarModal={showSugarModal}
+                  setShowSugarModal={setShowSugarModal}
+                ></SugarModal>
+              </Card>
+            }
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 
