@@ -334,7 +334,7 @@ className={classes.emailField}                      type="email"
               <label className="grid_profile_label">Gender  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
               <Select
                 className={classes.formControl}
-                typr="text"
+                type="text"
                 id="gender"
                 name="gender"
                 onChange={handleChange}
