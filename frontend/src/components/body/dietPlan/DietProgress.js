@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Link, TextField, Select } from "@material-ui/core";
+import { Button, Link, TextField, Select, IconButton } from "@material-ui/core";
 import "../../../static/Styling/dietProgress.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -7,6 +7,7 @@ import { Line } from "react-chartjs-2";
 // import DateFnsUtils from "@date-io/date-fns";
 // import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import DatePicker from "react-datepicker";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
@@ -25,7 +26,30 @@ export default function DietProgress() {
   const currentMonth = new Date().getMonth();
   const [selectedDate, setSelectedDate] = useState("");
   const [consumedCaloriesData, setconsumedCaloriesData] = useState({});
- 
+
+  
+  const handleSubmit = async (e) => {
+    // setSelectedDate(e.target.value)
+    e.preventDefault();
+    console.log(selectedDate);
+    await axios
+      .get(
+        "http://localhost:5000/diet-plan/get_monthly_diet_data",
+        
+        {
+          headers: { Authorization: token,
+          months:selectedDate },
+        }
+      )
+      .then((res) => {
+        console.log(selectedDate);
+        // setItem({ ...item,  err: "", success: "Food added successfully!" });
+      })
+      .catch((err) => {
+        // err.response.data.msg &&
+        // setItem({ ...item, err: err.response.data.msg, success: "" });
+      });
+  };
 
   const consumedCaloriesChart = () => {
     let weight_array = [];
@@ -65,7 +89,6 @@ export default function DietProgress() {
 
   useEffect(() => {
     consumedCaloriesChart();
-    
   }, []);
   return (
     <div>
@@ -101,11 +124,14 @@ export default function DietProgress() {
             }}
           >
             <div>
-              <Container className='progress_container'>
+              <Container className="progress_container">
                 <Row>
-                  <Col className="diet_progress_desc" style={{width:'35%',padding:'10px'}} sm={4} >
-                   
-                    <div className="month_progress_div">
+                  <Col
+                    className="diet_progress_desc"
+                    style={{ width: "35%", padding: "10px" }}
+                    sm={4}
+                  >
+                    <div className="month_progress_div" >
                       <Select
                         // className={classes.formControl}
                         type="text"
@@ -114,30 +140,42 @@ export default function DietProgress() {
                         className="month_progress_select"
                         defaultValue={currentMonth}
                         value={selectedDate}
-                        onChange={(e) => setSelectedDate(e.target.value)}
-                        padding="10px"
+                        onChange={(e)=>setSelectedDate(e.target.value)}
+                                 
+                        
+                        // padding="10px"
                         label="selectedMonth"
                       >
-                        <option value={"0"}>January</option>
-                        <option value={"1"}>February</option>
-                        <option value={"2"}>March</option>
-                        <option value={"3"}>April</option>
-                        <option value={"4"}>May</option>
-                        <option value={"5"}>June</option>
-                        <option value={"6"}>July</option>
-                        <option value={"7"}>August</option>
-                        <option value={"8"}>September</option>
-                        <option value={"9"}>October</option>
-                        <option value={"10"}>November</option>
-                        <option value={"11"}>December</option>
+                        <option value={"Jan"}>January</option>
+                        <option value={"Feb"}>February</option>
+                        <option value={"Mar"}>March</option>
+                        <option value={"Apr"}>April</option>
+                        <option value={"May"}>May</option>
+                        <option value={"Jun"}>June</option>
+                        <option value={"Jul"}>July</option>
+                        <option value={"Aug"}>August</option>
+                        <option value={"Sep"}>September</option>
+                        <option value={"Oct"}>October</option>
+                        <option value={"Nov"}>November</option>
+                        <option value={"Dec"}>December</option>
                       </Select>
+                      
+                      
+            <IconButton onClick={(e)=>handleSubmit(e)} style={{padding:0}}>
+              <VisibilityIcon />
+            </IconButton>
+           
+         
                       {console.log(selectedDate)}
                     </div>
                     <div className="avg_consumed_cal_progress_div">
                       <span>
                         {" "}
                         Last month avg. <br></br>
-               <h2>         <b>{selectedDate} </b></h2>
+                        <h2>
+                          {" "}
+                          <b>{selectedDate} </b>
+                        </h2>
                         kiloCalories were consumed
                       </span>
                     </div>
@@ -151,40 +189,39 @@ export default function DietProgress() {
                       </span>
                     </div>
                   </Col>
-                  <Col className="diet_progress_graph" style={{width:'65%',padding:'10px'}} >
-
-
-                  <h4>Weight for Last 7 days</h4>
-            <Line
-              data={consumedCaloriesData}
-              options={{
-                responsive: true,
-                title: { text: "Sugar Graph", display: true },
-                scales: {
-                  yAxes: [
-                    {
-                      ticks: {
-                        autoSkip: true,
-                        maxTicksLimit: 10,
-                        beginAtZero: true,
-                      },
-                      gridLines: {
-                        display: false,
-                      },
-                    },
-                  ],
-                  xAxes: [
-                    {
-                      gridLines: {
-                        display: false,
-                      },
-                    },
-                  ],
-                },
-              }}
-            />
-
-
+                  <Col
+                    className="diet_progress_graph"
+                    style={{ width: "65%", padding: "10px" }}
+                  >
+                    <h4>Weight for Last 7 days</h4>
+                    <Line
+                      data={consumedCaloriesData}
+                      options={{
+                        responsive: true,
+                        title: { text: "Sugar Graph", display: true },
+                        scales: {
+                          yAxes: [
+                            {
+                              ticks: {
+                                autoSkip: true,
+                                maxTicksLimit: 10,
+                                beginAtZero: true,
+                              },
+                              gridLines: {
+                                display: false,
+                              },
+                            },
+                          ],
+                          xAxes: [
+                            {
+                              gridLines: {
+                                display: false,
+                              },
+                            },
+                          ],
+                        },
+                      }}
+                    />
                   </Col>
                 </Row>
               </Container>
