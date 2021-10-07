@@ -5,20 +5,25 @@ const consumedCalories = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
-  foodItem: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "calorie_charts",
+  meal: {
+    type : String,
+    required: true,
+  },
+  food: {
+    type : String,
+    required: true,
   },
   quantity: {
-    type: number,
+    type: Number,
     required: true,
   },
   consumedCalories: {
     type: Number,
   },
-
+requiredCalories:{type:Number},
   date: {
     type: Date,
+    default : Date.now
   },
 });
 
