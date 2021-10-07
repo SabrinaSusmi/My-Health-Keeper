@@ -19,7 +19,7 @@ import { COLORS } from "../../themeColors";
 function GenHealthDashboard() {
   const token = useSelector((state) => state.token);
   const [weightChartData, setWeightChartData] = useState({});
-  const [bpSysChartData, setBpSysChartData] = useState({});
+  const [bpChartData, setBpChartData] = useState({});
   const [bpDiasChartData, setBpDiasChartData] = useState({});
   const [pulseChartData, setPulseChartData] = useState({});
   const [sugarChartData, setSugarChartData] = useState({});
@@ -60,7 +60,7 @@ function GenHealthDashboard() {
       });
   };
 
-  const bpSysChart = () => {
+  const bpChart = () => {
     let bp_sys_array = [];
     let bp_sys_date_array = [];
     axios
@@ -93,7 +93,7 @@ function GenHealthDashboard() {
             });
             console.log(bp_dias_date_array);
 
-            setBpSysChartData({
+            setBpChartData({
               labels: bp_dias_date_array,
               datasets: [
                 {
@@ -126,7 +126,7 @@ function GenHealthDashboard() {
       });
   };
 
-  const bpDiasChart = () => {};
+  
 
   const pulseChart = () => {
     let pulse_array = [];
@@ -204,8 +204,8 @@ function GenHealthDashboard() {
 
   useEffect(() => {
     weightChart();
-    bpSysChart();
-    bpDiasChart();
+    bpChart();
+    // bpDiasChart();
     pulseChart();
     sugarChart();
   }, []);
@@ -252,6 +252,37 @@ function GenHealthDashboard() {
           </div>
 
           <div class="container">
+          <h4>
+              Your Blood Pressure for last 7 days<h6>normal range 120/80</h6>{" "}
+            </h4>
+            <Line
+              data={bpChartData}
+              options={{
+                responsive: true,
+                title: { text: "Sugar Graph", display: true },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        beginAtZero: true,
+                      },
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                },
+              }}
+            />
             <h4>
               Your Pulse for last 7 days{" "}
               <h6>normal rate for an adult: 70-100</h6>{" "}
@@ -316,37 +347,7 @@ function GenHealthDashboard() {
               }}
             />
 
-            <h4>
-              Your Blood Pressure for last 7 days<h6>normal range 120/80</h6>{" "}
-            </h4>
-            <Line
-              data={bpSysChartData}
-              options={{
-                responsive: true,
-                title: { text: "Sugar Graph", display: true },
-                scales: {
-                  yAxes: [
-                    {
-                      ticks: {
-                        autoSkip: true,
-                        maxTicksLimit: 10,
-                        beginAtZero: true,
-                      },
-                      gridLines: {
-                        display: false,
-                      },
-                    },
-                  ],
-                  xAxes: [
-                    {
-                      gridLines: {
-                        display: false,
-                      },
-                    },
-                  ],
-                },
-              }}
-            />
+           
 
             <h4>Weight for Last 7 days</h4>
             <Line
