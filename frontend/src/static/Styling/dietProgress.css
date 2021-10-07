@@ -1,16 +1,3 @@
-.diet_progress_desc {
-  /* background-color: #ffe599; */
-  width: 35%;
-  padding: 10px;
-  /* margin-right: 3px; */
-}
-
-.diet_progress_graph {
-  /* background-color: #ffe599; */
-  width: 65%;
-  padding: 10px;
-}
-
 .month_progress_div {
   border: #f8d776 2px solid;
   margin-left: 3em;
@@ -36,7 +23,7 @@
   border: #f8d776 2px solid;
   /* margin: 1em; */
   /* margin-top: 4em; */
-  margin-left: 37%;
+  margin-left: 40%;
   border-radius: 50%;
   height: 180px;
   width: 180px;

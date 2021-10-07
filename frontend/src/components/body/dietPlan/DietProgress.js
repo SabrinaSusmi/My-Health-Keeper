@@ -101,9 +101,9 @@ export default function DietProgress() {
             }}
           >
             <div>
-              <Container>
+              <Container className='progress_container'>
                 <Row>
-                  <Col className="diet_progress_desc" sm={4.5}>
+                  <Col className="diet_progress_desc" style={{width:'35%',padding:'10px'}} sm={4} >
                    
                     <div className="month_progress_div">
                       <Select
@@ -137,8 +137,8 @@ export default function DietProgress() {
                       <span>
                         {" "}
                         Last month avg. <br></br>
-               <h2>         <b>{selectedDate}</b></h2>
-                        kcalories were consumed
+               <h2>         <b>{selectedDate} </b></h2>
+                        kiloCalories were consumed
                       </span>
                     </div>
                     <div className="suggestion_progress_div">
@@ -151,7 +151,7 @@ export default function DietProgress() {
                       </span>
                     </div>
                   </Col>
-                  <Col className="diet_progress_graph" sm={6}>
+                  <Col className="diet_progress_graph" style={{width:'65%',padding:'10px'}} >
 
 
                   <h4>Weight for Last 7 days</h4>
