@@ -1,5 +1,6 @@
 const consumedCalories = require("../../models/consumedCalories.model");
 const calorie_charts = require("../../models/caloriesChart.models");
+const DietTargetModel = require("../../models/diet.targetModel");
 
 const postFood = async (req, res) => {
     let user = req.user.id;
@@ -26,23 +27,30 @@ const postFood = async (req, res) => {
               calorie = quantity*foodCal;
               console.log(calorie);
 
-              const foodItem = new consumedCalories({
-                user,
-                meal: meal,
-                food,
-                quantity: quantity,
-                consumedCalories: calorie,
-                date : new Date().toISOString().slice(0, 10)
-              });
-              foodItem
-                .save()
-                .then((data) => {
-                  res.json(data);
-                  
-                })
-                .catch((error) => {
-                  res.json(error);
+              DietTargetModel.find({user:user}).sort({_id:-1}).limit(1).then((ans)=>{
+                reqCal=ans[0]['dailyRequiredCalories']
+
+                const foodItem = new consumedCalories({
+                  user,
+                  meal: meal,
+                  food,
+                  quantity: quantity,
+                  consumedCalories: calorie,
+                  date : new Date().toISOString().slice(0, 10),
+                  requiredCalories:reqCal,
                 });
+                foodItem
+                  .save()
+                  .then((data) => {
+                    console.log("wxdwd ", reqcal)
+                    res.json(data);
+                    
+                  })
+                  .catch((error) => {
+                    res.json(error);
+                  });
+              })
+             
               
           }
           

@@ -20,7 +20,7 @@ const consumedCalories = new mongoose.Schema({
   consumedCalories: {
     type: Number,
   },
-
+requiredCalories:{type:Number},
   date: {
     type: Date,
     default : Date.now

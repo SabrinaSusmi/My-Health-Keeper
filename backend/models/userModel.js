@@ -21,13 +21,13 @@ const UserSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
-  dateOfBirth: {
-    type: Date,
-  },
+ height:{type:String},
+ bloodGrp:{type:String},
   date: {
     type: Date,
     default: Date.now,
   },
+
 });
 
 module.exports = mongoose.model("users", UserSchema);
