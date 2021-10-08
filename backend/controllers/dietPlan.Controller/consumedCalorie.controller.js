@@ -105,13 +105,34 @@ consumedCalories.find({ user,date:new Date().toISOString().slice(0, 10) }, (err,
 }
 
 const deleteFood = async (req, res) => {
-  consumedCalories
+  let user = req.user.id;
+  consumedCalories.findById(req.params.id).then((data) => {
+    calorie = data.consumedCalories;
+    consumedCalories
         .findByIdAndDelete(req.params.id)
         .then(() => {
+          dailyCalorie.findOne({
+            user : user,
+            date: new Date().toISOString().slice(0, 10),
+          })
+          .then((dailyCal) => {
+              cal = dailyCal.consumedCalories;
+              newCal = cal-calorie;
+              dailyCalorie.findOneAndUpdate({
+                user : user,
+                date: new Date().toISOString().slice(0, 10),
+              },
+                { consumedCalories: newCal })
+              .then((data) => console.log("Daily calorie updated"))
+              .catch((err) => console.log("Daily calorie update error : "+err));
           res.json("Food deleted.")
           console.log("Food deleted.");
+          })
         })
         .catch((err) => res.status(400).json("Food delete Error: " + err));
+
+  })
+  
 }
 
 const updateFood = async (req, res) => {
