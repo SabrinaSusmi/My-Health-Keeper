@@ -28,7 +28,7 @@ const InitialState = {
 const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
     const token = useSelector((state) => state.token);
     const [riceItem, setRiceItem] = useState([]);
-
+const [mealType,setMealItem]=useState('')
     const getRice = async () => {
     
         await axios
@@ -71,7 +71,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
           .post(
             "http://localhost:5000/diet-plan/addFoodItem",
             {
-              meal,
+              meal:mealType,
               food,
               quantity,
             },
@@ -80,6 +80,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
             }
           )
           .then((res) => {
+            console.log("food modal ",res)
             setItem({ ...item,  err: "", success: "Food added successfully!" });
           })
           .catch((err) => {
@@ -124,8 +125,8 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                       id="meal"
                       name="meal"
                       label="Meal Description"
-                      value={meal}
-                      onChange={handleChange}
+                      value={mealType}
+                      onChange={(e)=>{setMealItem(e.target.value)}}
                     ></TextField>
                     {/* <div>
                     Food Name:{" "}
