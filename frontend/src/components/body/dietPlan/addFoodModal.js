@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../static/Styling/dietPlan.css";
 import "../../../static/Styling/healthInfo.css";
 import "react-responsive-modal/styles.css";
@@ -8,11 +8,14 @@ import { Button,TextField,IconButton } from "@material-ui/core";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import { useSelector } from "react-redux";
+import { Select, MenuItem, makeStyles } from "@material-ui/core";
 import {
   showErrMsg,
   showSuccessMsg,
 } from "../../utils/notification/Notification";
 import axios from "axios";
+//import {getRice, riceList} from "./FoodList"
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const InitialState = {
     meal: "",
@@ -24,17 +27,27 @@ const InitialState = {
 
 const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
     const token = useSelector((state) => state.token);
+    const [riceItem, setRiceItem] = useState([]);
+
+    const getRice = async () => {
+    
+        await axios
+          .get("http://localhost:5000/diet-plan/getFoodMenu", {
+            headers: { Authorization: token },
+          })
+          .then((res) => setRiceItem(res.data));
+    };
+    const options = riceItem.map((option) => {
+      const initialLetter = option.category;
+      return {
+        initialLetter,
+        ...option,
+      };
+    });
 
     const [item, setItem] = useState(InitialState);
 
     const { meal, food, quantity, err, success } = item;
-
-    const [items] = React.useState([
-        { label: "Breakfast",value: "Breakfast" },
-        { label: "Lunch",value: "Lunch" },
-        { label: "Dinner",value: "Dinner" },
-        { label: "Snacks",value: "Snacks" }
-      ]);
 
     const handleChange = (e) => {
         // console.log(e.target);
@@ -42,14 +55,14 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
         setItem({ ...item, [name]: value, err: "", success: "" });
       };
 
-      const handleSelect=(e)=>{
-        console.log(e);
-      }
-
 
     const closeFoodModal = () => {
         setShowFoodModal(false);
       };
+
+    useEffect(async () => {
+        getRice(); 
+      }, []);
 
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -79,6 +92,15 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
         }, 3000);
       };
 
+      // let riceArr = riceList();
+      // const symptomList = () => {
+      //   let a = [];
+      //   for (let i = 0; i < riceArr.length; i++) {
+      //     a.push(<MenuItem value={riceArr[i]}>{riceArr[i]}</MenuItem>);
+      //   }
+      //   return a;
+      // };
+
         return (
           <>
             <Modal
@@ -95,48 +117,6 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
               </Modal.Header>
               <Modal.Body>
                 <form>
-                  {/* <label>
-                    Meal Description : */}
-                    {/* <DropdownButton
-                      title=""
-                      onSelect={handleSelect}
-                    >
-                      <Dropdown.Item eventKey="Breakfast">
-                      Breakfast
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="Lunch">
-                        Lunch
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="Dinner">
-                        Dinner
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="Snacks">
-                        Snacks
-                      </Dropdown.Item>
-                    </DropdownButton> */}
-                    {/* <select onSelect={handleSelect}>
-                      {items.map((item) => (
-                        <option onChange={handleSelect} name="meal" key={item.value} value={item.value}>
-                          {item.label}
-                        </option>
-                      ))}
-                    </select> */}
-                    {/* <select value={meal} onSelect={handleSelect} onChange={handleChange}>
-                      <option name="meal" value="Breakfast">
-                        Breakfast
-                      </option>
-                      <option name="meal" value="Lunch">
-                        Lunch
-                      </option>
-                      <option eventKey="Dinner" name="meal" value="Dinner">
-                        Dinner
-                      </option>
-                      <option name="meal" value="Snacks">
-                        Snacks
-                      </option>
-                    </select> */}
-                  {/* </label> */}
-
                   <div className="form_body">
                   <TextField
                       className="form_btn"
@@ -147,7 +127,34 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                       value={meal}
                       onChange={handleChange}
                     ></TextField>
-                    <TextField
+                    {/* <div>
+                    Food Name:{" "}
+                    <Select
+                      id="foodName"
+                      name="food"
+                      value={food}
+                      onChange={handleChange}
+                      // displayEmpty
+                      className="form_btn"
+                    >
+                      {symptomList()}
+                    </Select>
+                    </div> */}
+                    <Autocomplete
+                      onChange={(event, value) => setItem({food : value.name})}
+                      getOptionSelected={(option, value) => option.id === value.id}
+                      options={options.sort((a, b) =>
+                        -b.initialLetter.localeCompare(a.initialLetter))}
+                      groupBy={(option) => option.initialLetter}
+                      getOptionLabel={(option) => option.name}
+                      renderInput={(params) => <TextField {...params}
+                      className="form_btn"
+                      
+                      label="Food Name"
+                      
+                       />}
+                    />
+                    {/* <TextField
                       className="form_btn"
                       type="text"
                       id="foodName"
@@ -155,7 +162,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                       label="Food Name"
                       value={food}
                       onChange={handleChange}
-                    ></TextField>
+                    ></TextField> */}
 
                     <TextField
                       className="form_btn"

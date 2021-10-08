@@ -24,7 +24,7 @@ const postFood = async (req, res) => {
               console.log("Chart Data Food not found :" + err);
           }
           if(data) {
-              //console.log(data[0].calories);
+              console.log(data);
               foodCal = data[0].calories;
               //console.log(foodCal);
               calorie = quantity*foodCal;
@@ -36,7 +36,7 @@ const postFood = async (req, res) => {
                 const foodItem = new consumedCalories({
                   user,
                   meal: meal,
-                  food,
+                  food: food,
                   quantity: quantity,
                   consumedCalories: calorie,
                   date : new Date().toISOString().slice(0, 10),
@@ -45,6 +45,7 @@ const postFood = async (req, res) => {
                 foodItem
                   .save()
                   .then((data) => {
+                    console.log("food saved")
                     dailyCalorie.findOne({
                       user : user,
                       date: new Date().toISOString().slice(0, 10),
@@ -144,4 +145,13 @@ const updateFood = async (req, res) => {
 }
 
 
-  module.exports = { postFood, getFood, deleteFood };
+const getFoodMenu = async (req, res) => {
+  calorie_charts.find().then((data)=> {
+    res.send(data)
+  }).catch((err)=> {
+    res.json(err);
+  })
+}
+
+
+  module.exports = { postFood, getFood, deleteFood, getFoodMenu };
