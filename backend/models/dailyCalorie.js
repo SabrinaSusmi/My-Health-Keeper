@@ -13,7 +13,7 @@ const dailyCalorie = new mongoose.Schema({
   },
   date: {
     type: Date,
-    
+
   },
 });
 
