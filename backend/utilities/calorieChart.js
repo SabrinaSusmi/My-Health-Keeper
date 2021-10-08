@@ -9,9 +9,10 @@ const saveCalorieToDB = () => {
     .parse()
     .on("data", function (data) {
       csvData.push({
-        name: data[0],
+        category: data[0], 
+        name: data[1],
         qty: 1,
-        calories: data[1],
+        calories: data[2],
       });
     })
     .on("end", function () {
