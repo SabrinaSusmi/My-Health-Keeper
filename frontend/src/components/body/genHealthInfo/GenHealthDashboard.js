@@ -26,7 +26,7 @@ function GenHealthDashboard() {
 
   const weightChart = () => {
     let weight_array = [];
-    let weight_date_array = [];
+    let weight_date_array = []; 
     axios
       .get("http://localhost:5000/getChart/Weight", {
         headers: { Authorization: token },
@@ -104,6 +104,7 @@ function GenHealthDashboard() {
                   backgroundColor: "rgba(75,192,192,1)",
                   borderColor: "rgba(0,0,0,1)",
                   borderWidth: 2,
+                  pointRadius:4,
                 },
                 {
                   data: bp_sys_array,
@@ -113,6 +114,7 @@ function GenHealthDashboard() {
                   backgroundColor: "#134f5c",
                   borderColor: "rgba(0,0,0,1)",
                   borderWidth: 2,
+                  pointRadius:4,
                 },
               ],
             });
