@@ -7,7 +7,7 @@ import { Line } from "react-chartjs-2";
 // import DateFnsUtils from "@date-io/date-fns";
 // import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import DatePicker from "react-datepicker";
-import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
@@ -26,24 +26,66 @@ export default function DietProgress() {
   const currentMonth = new Date().getMonth();
   const [selectedDate, setSelectedDate] = useState("");
   const [consumedCaloriesData, setconsumedCaloriesData] = useState({});
+  const [totalCal, setToalCal] = useState("");
 
-  
   const handleSubmit = async (e) => {
+    let consumed_cal_data = [];
+    let req_cal_data = [];
+    let cal_date = [];
+    // let totalCal=0
     // setSelectedDate(e.target.value)
     e.preventDefault();
     console.log(selectedDate);
     await axios
       .get(
         "http://localhost:5000/diet-plan/get_monthly_diet_data",
-        
+
         {
-          headers: { Authorization: token,
-          months:selectedDate },
+          headers: { Authorization: token, months: selectedDate },
         }
       )
       .then((res) => {
         console.log(selectedDate);
         // setItem({ ...item,  err: "", success: "Food added successfully!" });
+
+        res.data.consume_cal.forEach((element) => {
+          consumed_cal_data.push(element);
+        });
+        res.data.req_cal.forEach((element) => {
+          req_cal_data.push(element);
+        });
+        res.data.cal_date.forEach((element) => {
+          cal_date.push(element);
+        });
+        setToalCal(res.data.totalCal);
+        console.log(consumed_cal_data);
+
+        setconsumedCaloriesData({
+          labels: cal_date,
+          datasets: [
+            {
+              data: consumed_cal_data,
+              label: "Consumed Calories",
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: "#f4bf20",
+              borderColor: "#f4bf20",
+              borderWidth: 2,
+              pointRadius:5,
+            },
+
+            {
+              data: req_cal_data,
+              label: 'Required Calories',
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: '#e06666',
+              borderColor: '#e06666',
+              borderWidth: 2,
+              pointRadius:5,
+            },
+          ],
+        });
       })
       .catch((err) => {
         // err.response.data.msg &&
@@ -54,37 +96,31 @@ export default function DietProgress() {
   const consumedCaloriesChart = () => {
     let weight_array = [];
     let weight_date_array = [];
-    axios
-      .get("http://localhost:5000/getChart/Weight", {
-        headers: { Authorization: token },
-      }) //get info and input date from db
-      .then((res) => {
-        res.data.infoData.forEach((element) => {
-          weight_array.push(element);
-        });
-        res.data.dates.forEach((element) => {
-          weight_date_array.push(element);
-        });
-        console.log(weight_date_array);
-
-        setconsumedCaloriesData({
-          labels: weight_date_array,
-          datasets: [
-            {
-              data: weight_array,
-              label: "Weight (Last 7 days)",
+    setconsumedCaloriesData({
+      labels: weight_date_array,
+      datasets: [
+        {
+          data: weight_array,
+          label: 'Consumed Calories',
               fill: false,
               lineTension: 0.5,
-              backgroundColor: "rgba(75,192,192,1)",
-              borderColor: "rgba(0,0,0,1)",
-              borderWidth: 2,
-            },
-          ],
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+              backgroundColor: "#f4bf20",
+              borderColor: "#f4bf20",
+          borderWidth: 2,
+        },
+        {
+          data: weight_array,
+          label: 'Required Calories',
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: '#e06666',
+              borderColor: '#e06666',
+          borderWidth: 2,
+        },
+      
+      ],
+    });
+    
   };
 
   useEffect(() => {
@@ -131,7 +167,7 @@ export default function DietProgress() {
                     style={{ width: "35%", padding: "10px" }}
                     sm={4}
                   >
-                    <div className="month_progress_div" >
+                    <div className="month_progress_div">
                       <Select
                         // className={classes.formControl}
                         type="text"
@@ -140,9 +176,7 @@ export default function DietProgress() {
                         className="month_progress_select"
                         defaultValue={currentMonth}
                         value={selectedDate}
-                        onChange={(e)=>setSelectedDate(e.target.value)}
-                                 
-                        
+                        onChange={(e) => setSelectedDate(e.target.value)}
                         // padding="10px"
                         label="selectedMonth"
                       >
@@ -159,13 +193,14 @@ export default function DietProgress() {
                         <option value={"Nov"}>November</option>
                         <option value={"Dec"}>December</option>
                       </Select>
-                      
-                      
-            <IconButton onClick={(e)=>handleSubmit(e)} style={{padding:0}}>
-              <VisibilityIcon />
-            </IconButton>
-           
-         
+
+                      <IconButton
+                        onClick={(e) => handleSubmit(e)}
+                        style={{ padding: 0 }}
+                      >
+                        <VisibilityIcon />
+                      </IconButton>
+
                       {console.log(selectedDate)}
                     </div>
                     <div className="avg_consumed_cal_progress_div">
@@ -174,7 +209,7 @@ export default function DietProgress() {
                         Last month avg. <br></br>
                         <h2>
                           {" "}
-                          <b>{selectedDate} </b>
+                          <b>{totalCal} </b>
                         </h2>
                         kiloCalories were consumed
                       </span>
@@ -193,7 +228,8 @@ export default function DietProgress() {
                     className="diet_progress_graph"
                     style={{ width: "65%", padding: "10px" }}
                   >
-                    <h4>Weight for Last 7 days</h4>
+                    <h4 align='center'>Your Diet Progress</h4>
+                    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
                     <Line
                       data={consumedCaloriesData}
                       options={{
