@@ -24,7 +24,7 @@ const postFood = async (req, res) => {
               console.log("Chart Data Food not found :" + err);
           }
           if(data) {
-              //console.log(data[0].calories);
+              console.log(data);
               foodCal = data[0].calories;
               //console.log(foodCal);
               calorie = quantity*foodCal;
@@ -145,7 +145,7 @@ const updateFood = async (req, res) => {
 
 
 const getFoodMenu = async (req, res) => {
-  calorie_charts.find(req.params.cat).then((data)=> {
+  calorie_charts.find().then((data)=> {
     res.send(data)
   }).catch((err)=> {
     res.json(err);
