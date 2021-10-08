@@ -144,4 +144,13 @@ const updateFood = async (req, res) => {
 }
 
 
-  module.exports = { postFood, getFood, deleteFood };
+const getFoodMenu = async (req, res) => {
+  calorie_charts.find(req.params.cat).then((data)=> {
+    res.send(data)
+  }).catch((err)=> {
+    res.json(err);
+  })
+}
+
+
+  module.exports = { postFood, getFood, deleteFood, getFoodMenu };
