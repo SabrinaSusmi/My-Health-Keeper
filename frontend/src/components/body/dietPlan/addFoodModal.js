@@ -149,9 +149,7 @@ const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
                       getOptionLabel={(option) => option.name}
                       renderInput={(params) => <TextField {...params}
                       className="form_btn"
-                      type="text"
-                      id="foodName"
-                      name="food"
+                      
                       label="Food Name"
                       
                        />}

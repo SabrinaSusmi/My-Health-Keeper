@@ -36,7 +36,7 @@ const postFood = async (req, res) => {
                 const foodItem = new consumedCalories({
                   user,
                   meal: meal,
-                  food,
+                  food: food,
                   quantity: quantity,
                   consumedCalories: calorie,
                   date : new Date().toISOString().slice(0, 10),
@@ -45,6 +45,7 @@ const postFood = async (req, res) => {
                 foodItem
                   .save()
                   .then((data) => {
+                    console.log("food saved")
                     dailyCalorie.findOne({
                       user : user,
                       date: new Date().toISOString().slice(0, 10),
