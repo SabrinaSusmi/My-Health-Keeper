@@ -61,7 +61,7 @@ export default function SpecializedHealthInfo() {
       <div
         class="bg_image"
         style={{
-          backgroundImage: "url(/img/spHealth2.jpg)",
+          backgroundImage: "url(/img/spHealth4.jpg)",
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
