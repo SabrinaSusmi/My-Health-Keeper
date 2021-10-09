@@ -11,9 +11,9 @@ import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
 import { Container, Row, Col } from "react-grid-system";
-import featureButton from '../../../static/Styling/featureButton.css'
+import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
-
+import { Grid } from "@material-ui/core";
 
 export default function SpecializedHealthInfo() {
   const [spHealthNotes, setSpHealthNotes] = useState([]);
@@ -58,40 +58,82 @@ export default function SpecializedHealthInfo() {
 
   return (
     <div>
-       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
-    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.spHealthBackground)}</div>
-    
-    
-    <pre></pre>
-    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
-    <pre></pre>
-    <Row className='body_feature_row' >
-      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
-        
-        {ShowFeatureButtons()}</Col>
-      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
-      <AddNotes getNote={() => showSPHealthNotes()} />
-    
-      <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Health Diary</h4>
-      <hr></hr>
-      
-      
-      {spHealthNotes.length != 0 ? (
-        <div>
-          {spHealthNotes.map((note) => (
-            <ViewFolderProps
-              note={note}
-              deleteFolder={() => deleteFolder(note._id)}
-              showSPHealthNotes={() => showSPHealthNotes()}
-            />
-          ))}
-        </div>
-      ) : (
-        <h2>No folder is created</h2>
-      )}
-      </Col>
-    </Row>
-  </Container>
+      <div
+        class="bg_image"
+        style={{
+          backgroundImage: "url(/img/spHealth4.jpg)",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "100%",
+          width: "100%",
+          opacity: "0.9",
+          backgroundPosition: "center",
+        }}
+      >
+        <Container
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            margin: 0,
+            maxWidth: 1900,
+            padding: 0,
+            marginRight: 0,
+          }}
+        >
+          <div style={{ backgroundColor: "black", color: "black" }}>
+            {ShowHeader(COLORS.spHealthBackground)}
+          </div>
+          <pre></pre>
+          <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+          <pre></pre>
+          <Row className="body_feature_row">
+            <Col
+              className="body_feature_column"
+              style={{ position: "fixed" }}
+              sm={2}
+            >
+              {ShowFeatureButtons()}
+            </Col>
+            <Col
+              style={{
+                marginLeft: 150,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Grid container>
+                <Grid item xs={6}>
+                  <AddNotes getNote={() => showSPHealthNotes()} />
+                </Grid>
+                <Grid item xs={6}>
+                  <div className="sp_health_desc">
+                    <p>No more forgetting about bringing medical reports to doctors. <br></br>Now you can store all your MEDICAL reports and prescriptions in <b>ONE PLACE</b>!!
+                      <br></br>Also keep track of your day to day life health problems</p>
+                  </div>
+                </Grid>
+              </Grid>
+
+              <h2>&nbsp;&nbsp;&nbsp;Health Journal</h2>
+              
+
+              {spHealthNotes.length != 0 ? (
+                <div>
+                  {spHealthNotes.map((note) => (
+                    <ViewFolderProps
+                      note={note}
+                      deleteFolder={() => deleteFolder(note._id)}
+                      showSPHealthNotes={() => showSPHealthNotes()}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <h2>No folder is created</h2>
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 }
