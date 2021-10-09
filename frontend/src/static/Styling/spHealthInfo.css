@@ -3,23 +3,49 @@
   display: inline-block;
   font-family: "Times New Roman", Times, serif;
   font-size: 16px;
-  margin: 2rem;
+  margin: 1rem;
   margin-top: 1rem;
   padding: 0.5rem;
   /* padding-top: 0.5rem; */
-  max-width: 350px;
+  /* min-width: 100px; */
+  max-width: 270px;
   border-radius: 10px;
-  background: #cdecf9;
-  box-shadow: 8px 8px 16px #aec9d4;
+  background: #b0d6a0;
+  /* box-shadow: 8px 8px 16px #aec9d4; */
 }
 .sp_reminder_card:hover {
   font-weight: bold;
-  box-shadow: 8px 8px 16px #063742;
+  box-shadow: 4px 4px 8px #063742;
+}
+
+.folderName {
+  /* text-align: center; */
+  color: #063742
 }
 
 .folderName:hover {
   font-weight: bold;
-  margin: 0px;
+  /* margin: 0px; */
+}
+
+.noteDates{
+  color: #063742;
+}
+
+.folder_name {
+  /* border: #063742 2px solid; */
+  /* margin: 2em; */
+  border-radius: 2%;
+  height: 70px;
+  width: 200px;
+  text-align: start center;
+  align-items: center;
+  /* justify-content: center; */
+  /* display: flex; */
+  padding: 10px;
+  padding-top: 0px;
+  /* box-shadow: 2px 2px 2px 2px rgb(248, 214, 217); */
+  /* background-color: #063742; */
 }
 
 .SPiconBtn {

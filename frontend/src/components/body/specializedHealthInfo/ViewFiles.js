@@ -22,6 +22,7 @@ import { COLORS } from "../../themeColors";
 const useStyles = makeStyles({
   root: {
     maxWidth: "100mvh",
+    maxHeight:'100mvh',
   },
   media: {
     resizeMode: "contain",
@@ -94,7 +95,21 @@ export default function AddFiles() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div  className={classes.root}>
+      <div
+        class="bg_image"
+        style={{
+          backgroundImage: "url(/img/spHealth.jpg)",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          // minHeight:'5200',
+          height: "100%",
+          width: "100%",
+          opacity: "1",
+          backgroundPosition: "center",
+        }}
+      >
        <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
     <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.spHealthBackground)}</div>
     
@@ -113,12 +128,12 @@ export default function AddFiles() {
           component={NavLink}
           to="/specialized-health-information"
         >
-          <ArrowBackIcon /> Return
+          <ArrowBackIcon /><b> Return</b>
         </Link>
         <div className="spHealth_reminder_buttons">
           <div className="viewFiles_Btn">
             <Button className="viewFiles_addBtn" onClick={updateFiles} multiple>
-              Save
+         <h5><b>Save&nbsp;</b></h5>     
             </Button>
             <input
               type="file"
@@ -131,12 +146,12 @@ export default function AddFiles() {
         </div>
       </div>
 
-      <h3>&nbsp; {folderName}</h3>
+      <h3 >&nbsp; {folderName}</h3>
       <hr></hr>
       {fileLength == 0 ? (
-        <>NO Files Added 😢</>
+        <div style={{minHeight:'600px'}}><h3 align='center' style={{color:'red'}}><pre></pre>NO Files Added 😢</h3></div>
       ) : (
-        <div>
+        <div style={{minHeight:'600px'}}>
           <Grid container spacing={1} direction="row">
             {mediaFiles.map((element) => (
               <div>
@@ -212,6 +227,7 @@ export default function AddFiles() {
 </Col>
     </Row>
   </Container>
+  </div>
     </div>
   );
 }

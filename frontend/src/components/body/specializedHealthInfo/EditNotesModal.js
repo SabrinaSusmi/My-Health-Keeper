@@ -44,9 +44,11 @@ const EditNotesModal = ({
       });
   };
   return (
-    <>
+    <div style={{backgroundColor:'#b8d2ad'}}>
       <Modal
+      
         size="lg"
+        // style={{backgroundColor:'#b8d2ad'}}
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showEditModal}
@@ -94,7 +96,7 @@ const EditNotesModal = ({
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 

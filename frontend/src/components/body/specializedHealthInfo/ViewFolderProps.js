@@ -23,51 +23,65 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ViewFolderProps(props) {
   const [expanded, setExpanded] = React.useState(false);
-
+  const [visible, setVisible] = React.useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
   const openSpEditModal = () => setShowEditModal(true);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+    setVisible((prev) => !prev);
   };
-
+  console.log(visible);
   const classes = useStyles();
 
   return (
     <div variant="outlined" className="sp_reminder_card">
-      <h2 className="folderName">
-        <FolderSpecialIcon />
-        &nbsp;{props.note.folder}
-      </h2>
-      <hr></hr>
-      <div>Note Date: {props.note.noteDate.substring(0, 10)}</div>
-      <IconButton
+      <div className="folder_name">
+        <h2 className="folderName"><b>{props.note.folder}</b></h2>
+
+        <div className="noteDates">
+          Created at: {props.note.noteDate.substring(0, 10)}
+        </div>
+      </div>
+
+      <div
         className={
           (clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           }),
           "SPiconBtn")
         }
+        // value={visible}
         onClick={handleExpandClick}
         aria-expanded={expanded}
       >
-        <h5
-          className="clrDiv"
-          data-toggle="tooltip"
-          title="Click To View Details"
-        >
-          Your Notes
-        </h5>
-      </IconButton>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>{props.note.description}</CardContent>
-      </Collapse>
+        {/* {props.note.description.substring(0, 100)} */}
+        {visible ? (
+          <h5
+            className="clrDiv"
+            data-toggle="tooltip"
+            title="Click To View Details"
+          >
+            <pre></pre>
+            View Notes<pre></pre>
+            <pre></pre>
+          </h5>
+        ) : (
+          <div>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <h5>{props.note.description}</h5>
+              </CardContent>
+            </Collapse>
+          </div>
+        )}
+      </div>
 
       <CardActions className="clrCardAction">
         <IconButton
           className="viewBtn"
           data-toggle="tooltip"
-          title="Edit Folder"
+          title="Edit Your Notes"
           key={props.note.folder}
           value={props.note.description}
           // onClick={() => setEditing(true)}
@@ -84,7 +98,7 @@ export default function ViewFolderProps(props) {
           }}
           className="viewBtn"
           data-toggle="tooltip"
-          title="View Your Saved Files"
+          title="View Attached Files"
         >
           <VisibilityIcon />
         </IconButton>

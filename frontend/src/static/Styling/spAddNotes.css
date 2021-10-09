@@ -1,14 +1,16 @@
 .sp_reminder_buttons {
-    width: 20%;
-    background-color: #063742;
+height: 45px;
+    width: 25%;
+    background-color: #38761d;
     color: white;
     display: inline;
     margin-left: 1em;
-    padding: 10px;
+    padding: 6px;
     text-decoration: none;
-    border-radius: 20px;
+    border-radius: 15px;
     cursor: pointer;
     font-weight: bold;
+    text-align: center;
   }
 
   .info-save {
@@ -19,3 +21,26 @@
   .info-save > .addNotes_textArea > .description {
     width: 100%;
   }
+
+  .sp_health_desc {
+    /* border: #38761d 2px solid; */
+    margin: 2em;
+    border-radius: 10%;
+    height: 550px;
+    width: 550px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    /* box-shadow: 2px 2px 2px 2px rgb(248, 214, 217); */
+    
+}
+
+.sp_health_desc p {
+  font-size: 39px;
+  font-weight: 600;
+  color: #153b05;
+  font-style:italic;
+  
+}
