@@ -25,11 +25,43 @@ import { Container, Row, Col } from "react-grid-system";
 import featureButton from '../../../static/Styling/featureButton.css'
 import { COLORS } from "../../themeColors";
 
+const initialState = {
+    startdate: "",
+    enddate: "",
+    duration: "",
+    cycleLength: "",
+    err: "",
+    success: "",
+    eventDate: "",
+    mood: "",
+    symptoms: "",
+    flow: "",
+  };
+
 
 export default function MenstrualDemo(){
-    const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
-    //const calStyle ={height: 100%}
-    const btnstyle={margin:'8px 0'}
+    const [initialData, setInitialData] = useState(initialState);
+    const token = useSelector((state) => state.token);
+    const auth = useSelector((state) => state.auth);
+    const { user, isLogged } = auth;
+
+    const {
+        startDate,
+        endDate,
+        duration,
+        cycleLength,
+        err,
+        success,
+        eventDate,
+        mood,
+        symptoms,
+        flow,
+      } = initialData;
+
+    const handleChangeInput = (e) => {
+        const { name, value } = e.target;
+        setInitialData({ ...initialData, [name]: value, err: "", success: "" });
+      };
     return(
         <div>
             
@@ -73,8 +105,40 @@ export default function MenstrualDemo(){
                                 <Grid align='center'>
                                     <h4>Input your data 💓 </h4>
                                 </Grid>
-                                <TextField label='Start date' placeholder='Enter username' fullWidth required/>
-                                <TextField label='End date' placeholder='Enter password' type='password' fullWidth required/>
+                                {/* <TextField label='Start date' placeholder='Enter username' fullWidth required/>
+                                <TextField label='End date' placeholder='Enter password' type='password' fullWidth required/> */}
+                                <Grid container  alignItems="center" >
+                                    <TextField
+                                    className="input_fields"
+                                    fullWidth
+                                    required
+                                    type="date"
+                                    id="startDate"
+                                    name="startDate"
+                                    onChange={handleChangeInput}
+                                    value={startDate}
+                                    variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: false,
+                                    }}
+                                    />
+                                </Grid>
+                                <Grid container alignItems="center">
+                                    <TextField
+                                    className="input_fields"
+                                    fullWidth
+                                    type="date"
+                                    required
+                                    id="endDate"
+                                    name="endDate"
+                                    onChange={handleChangeInput}
+                                    value={endDate}
+                                    variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: false,
+                                    }}
+                                    />
+                                </Grid>
                                 
                                 {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
                                 <Button className="mens_button" variant="contained" type="submit">Submit</Button>

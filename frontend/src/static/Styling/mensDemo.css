@@ -9,6 +9,10 @@
     
 }
 
+.input_fields {
+    margin-top: 10px;
+}
+
 .mens_info {
     margin: 3em 2em 0 2em;
     margin-right: 3em;
@@ -71,6 +75,10 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 10rem;
+}
+
+.input_form h4 {
+    margin-bottom: 1.5em;
 }
 
 .mens_button {
