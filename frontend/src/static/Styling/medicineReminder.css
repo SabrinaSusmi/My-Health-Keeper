@@ -6,7 +6,7 @@
 
 .med_today_header {
   width: 70%;
-  margin: 2em auto;
+  margin: 0 auto;
   /* border: #063742 1px solid; */
   text-align: center;
   border-radius: 20px 20px 0px 0px;
@@ -20,13 +20,15 @@
   font-size: 2.4rem;
 }
 
-.med_today_box {
+.med_today_box, .ongoing_med_box {
   width: 60%;
   margin: 0 auto;
   /* border: #fd8412 1px solid; */
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 4em;
+  position: relative;
 }
 
 .med_today_card {
@@ -60,6 +62,59 @@
   transition: all 0.15s ease-in-out !important;
 }
 
+.ongoing_med_body {
+  border: #007cba 1px solid;
+  margin-top: 2rem;
+  background-image: url("../images/med3.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.overlay {
+  content: "";
+  background-color: rgba(8, 64, 184, 0.4);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.med_ongoing_header {
+  text-align: center;
+  position: relative;
+}
+
+.med_ongoing_header h3{
+  margin-top: 1em;
+  margin-bottom: 2em;
+  font-weight: 700;
+  color: rgb(234, 250, 253);
+  font-size: 2.4rem;
+}
+
+.ongoing_med_card {
+  display: inline-block;
+  width: 26%;
+  padding: 15px 35px 15px 35px;
+  background-color: transparent;
+  /* background-image: linear-gradient(180deg, #35C7DF 0%, #075AC9 100%); */
+  /* background-image: linear-gradient(180deg, #075AC9 0%, #ffffff  100%); */
+  background-color: #ffffff;
+  border-radius: 3px 3px 3px 3px;
+  border: 2px solid #007cba;
+}
+
+.ongoing_med_card h2 {
+  text-align: center;
+  margin: 20px;
+}
+
+.ongoing_med_card.btn DeleteIcon {
+  background-color: #063742;
+  color: #063742;
+  align-content: flex-end !important;
+}
+
 .reminder_buttons {
   width: 30%;
   margin-right: 0;
@@ -78,23 +133,6 @@
   cursor: pointer;
   font-weight: bold;
 }
-
-/* .reminder_buttons_sub>.button {
-  color: #aec9d4;
-  display: inline;
-  margin: 1em;
-  padding: 8px;
-} */
-
-/* .containerMed {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  margin: 1rem;
-} */
 
 .containerMed {
   display: flex;
