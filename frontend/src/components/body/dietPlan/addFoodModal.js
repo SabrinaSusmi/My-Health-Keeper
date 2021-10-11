@@ -4,9 +4,15 @@ import "../../../static/Styling/healthInfo.css";
 import "react-responsive-modal/styles.css";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button,TextField,IconButton } from "@material-ui/core";
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown'
+import {
+  Button,
+  TextField,
+  IconButton,
+  InputLabel,
+  FormControl,
+} from "@material-ui/core";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { Select, MenuItem, makeStyles } from "@material-ui/core";
 import {
@@ -15,191 +21,134 @@ import {
 } from "../../utils/notification/Notification";
 import axios from "axios";
 //import {getRice, riceList} from "./FoodList"
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const InitialState = {
-    meal: "",
-    food: "",
-    quantity: "",
-    err: "",
-    success: "",
+  meal: "",
+  food: "",
+  quantity: "",
+  err: "",
+  success: "",
+};
+
+export default function AddFoodModal({ showFoodModal, setShowFoodModal }) {
+  const token = useSelector((state) => state.token);
+  const [riceItem, setRiceItem] = useState([]);
+  const [mealType, setMealItem] = useState("");
+  const getRice = async () => {
+    await axios
+      .get("http://localhost:5000/diet-plan/getFoodMenu", {
+        headers: { Authorization: token },
+      })
+      .then((res) => setRiceItem(res.data));
+  };
+  const options = riceItem.map((option) => {
+    const initialLetter = option.category;
+    return {
+      initialLetter,
+      ...option,
+    };
+  });
+
+  const [item, setItem] = useState(InitialState);
+
+  const { meal, food, quantity, err, success } = item;
+
+  const handleChange = (e) => {
+    // console.log(e.target);
+    const { name, value } = e.target;
+    setItem({ ...item, [name]: value, err: "", success: "" });
   };
 
-const AddFoodModal = ({showFoodModal, setShowFoodModal}) => {
-    const token = useSelector((state) => state.token);
-    const [riceItem, setRiceItem] = useState([]);
-const [mealType,setMealItem]=useState('')
-    const getRice = async () => {
-    
-        await axios
-          .get("http://localhost:5000/diet-plan/getFoodMenu", {
-            headers: { Authorization: token },
-          })
-          .then((res) => setRiceItem(res.data));
-    };
-    const options = riceItem.map((option) => {
-      const initialLetter = option.category;
-      return {
-        initialLetter,
-        ...option,
-      };
-    });
+  useEffect(async () => {
+    getRice();
+  }, []);
 
-    const [item, setItem] = useState(InitialState);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const { meal, food, quantity, err, success } = item;
+    await axios
+      .post(
+        "http://localhost:5000/diet-plan/addFoodItem",
+        {
+          meal: mealType,
+          food,
+          quantity,
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((res) => {
+        console.log("food modal ", res);
+        setItem({ ...item, err: "", success: "Food added successfully!" });
+      })
+      .catch((err) => {
+        err.response.data.msg &&
+          setItem({ ...item, err: err.response.data.msg, success: "" });
+      });
 
-    const handleChange = (e) => {
-        // console.log(e.target);
-        const { name, value } = e.target;
-        setItem({ ...item, [name]: value, err: "", success: "" });
-      };
+    setTimeout(function () {
+      setItem(InitialState);
+    }, 3000);
+  };
 
+  return (
+    <>
+      <div>
+        <FormControl>
+          <InputLabel>Meal Type</InputLabel>
 
-    const closeFoodModal = () => {
-        setShowFoodModal(false);
-      };
+          <Select
+            id="meal"
+            name="meal"
+            className="meal_type_select"
+            required
+            value={mealType}
+            onChange={(e) => {
+              setMealItem(e.target.value);
+            }}
+          >
+            <option value={"Breakfast"}>Breakfast</option>
+            <option value={"Lunch"}>Lunch</option>
+            <option value={"Snacks"}>Snacks</option>
+            <option value={"Dinner"}>Dinner</option>
+          </Select>
+        </FormControl>
+        <pre></pre>
 
-    useEffect(async () => {
-        getRice(); 
-      }, []);
+        <Autocomplete className='food_name_select'
+          onChange={(event, value) => setItem({ food: value.name })}
+          getOptionSelected={(option, value) => option.id === value.id}
+          options={options.sort(
+            (a, b) => -b.initialLetter.localeCompare(a.initialLetter)
+          )}
+          groupBy={(option) => option.initialLetter}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField  {...params} label="Food Name" />}
+        />
 
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        await axios
-          .post(
-            "http://localhost:5000/diet-plan/addFoodItem",
-            {
-              meal:mealType,
-              food,
-              quantity,
-            },
-            {
-              headers: { Authorization: token },
-            }
-          )
-          .then((res) => {
-            console.log("food modal ",res)
-            setItem({ ...item,  err: "", success: "Food added successfully!" });
-          })
-          .catch((err) => {
-            err.response.data.msg &&
-            setItem({ ...item, err: err.response.data.msg, success: "" });
-          });
-    
-        setTimeout(function () {
-          setItem(InitialState);
-        }, 3000);
-      };
+        <pre></pre>
 
-      // let riceArr = riceList();
-      // const symptomList = () => {
-      //   let a = [];
-      //   for (let i = 0; i < riceArr.length; i++) {
-      //     a.push(<MenuItem value={riceArr[i]}>{riceArr[i]}</MenuItem>);
-      //   }
-      //   return a;
-      // };
-
-        return (
-          <>
-            <Modal
-              size="lg"
-              aria-labelledby="contained-modal-title-vcenter"
-              centered
-              show={showFoodModal}
-              onHide={closeFoodModal}
-            >
-              <Modal.Header>
-                <Modal.Title>
-                  <h4>🍀 Add Food Items</h4>
-                </Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <form>
-                  <div className="form_body">
-                  <TextField
-                      className="form_btn"
-                      type="text"
-                      id="meal"
-                      name="meal"
-                      label="Meal Description"
-                      value={mealType}
-                      onChange={(e)=>{setMealItem(e.target.value)}}
-                    ></TextField>
-                    {/* <div>
-                    Food Name:{" "}
-                    <Select
-                      id="foodName"
-                      name="food"
-                      value={food}
-                      onChange={handleChange}
-                      // displayEmpty
-                      className="form_btn"
-                    >
-                      {symptomList()}
-                    </Select>
-                    </div> */}
-                    <Autocomplete
-                      onChange={(event, value) => setItem({food : value.name})}
-                      getOptionSelected={(option, value) => option.id === value.id}
-                      options={options.sort((a, b) =>
-                        -b.initialLetter.localeCompare(a.initialLetter))}
-                      groupBy={(option) => option.initialLetter}
-                      getOptionLabel={(option) => option.name}
-                      renderInput={(params) => <TextField {...params}
-                      className="form_btn"
-                      
-                      label="Food Name"
-                      
-                       />}
-                    />
-                    {/* <TextField
-                      className="form_btn"
-                      type="text"
-                      id="foodName"
-                      name="food"
-                      label="Food Name"
-                      value={food}
-                      onChange={handleChange}
-                    ></TextField> */}
-
-                    <TextField
-                      className="form_btn"
-                      type="text"
-                      id="foodName"
-                      name="quantity"
-                      label="Quantity"
-                      value={quantity}
-                      onChange={handleChange}
-                    ></TextField>
-                  </div>
-                </form>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button
-                  className="add_btn"
-                  type="submit"
-                  variant="contained"
-                  onClick={handleSubmit}
-                  color="primary"
-                >
-                  Save
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => {
-                    closeFoodModal();
-                  }}
-                >
-                  Close
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </>
-        );
-
+        <TextField
+          type="text"
+          id="foodName"
+          name="quantity"
+          label="Quantity"
+          value={quantity}
+          onChange={handleChange}
+        ></TextField>
+      </div>
+      <div className="add_btn_diet">
+        <Button
+          type="submit"
+          variant="text"
+          onClick={handleSubmit}
+          // color="primary"
+        >
+          <font className="add_btn_diet_font"> Add food</font>
+        </Button>
+      </div>
+    </>
+  );
 }
-
-export default AddFoodModal; 

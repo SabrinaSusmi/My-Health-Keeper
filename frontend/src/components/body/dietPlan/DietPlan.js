@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Button, Link, TextField } from "@material-ui/core";
+import { Button, Grid, Link, TextField } from "@material-ui/core";
 import "../../../static/Styling/dietPlan.css";
 import { NavLink } from "react-router-dom";
 import DietGoalSetter from "./DietGoalSetter";
 import { useSelector } from "react-redux";
 import axios from "axios";
-
+import { IconButton } from "@material-ui/core";
+import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
+import AddFoodModal from "./addFoodModal";
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
@@ -14,10 +16,12 @@ import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import { useHistory } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-
+// import ArrowCircleDownIcon from '@material-ui/icons/ArrowCircleDown';
 import FoodItemTable from "./FoodItemTable";
 
 export default function DietPlan() {
+  const [showFoodModal, setShowFoodModal] = useState(false);
+  const openFoodModal = () => setShowFoodModal(true);
   const token = useSelector((state) => state.token);
   const [targetVisible, setTargetVisible] = useState(false);
   const viewtargetInfo = () => {
@@ -31,13 +35,24 @@ export default function DietPlan() {
   };
 
   return (
-    <div>
+    <div
+      class="bg_image"
+      style={{
+        backgroundImage: "url(/img/dietPlan.jpg)",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        height: "100%",
+        opacity: " 0.8",
+        backgroundPosition: "center",
+      }}
+    >
       <Container
         style={{
           display: "flex",
           flexDirection: "column",
           margin: 0,
-          maxWidth: 1900,
+          maxWidth: "100%",
           padding: 0,
           marginRight: 0,
         }}
@@ -47,13 +62,13 @@ export default function DietPlan() {
         </div>
         <pre></pre>
         <pre></pre> <pre></pre> <pre></pre> <pre></pre>
-        <pre></pre>
         <Row className="body_feature_row">
           <Col
             className="body_feature_column"
             style={{ position: "fixed" }}
             sm={2}
           >
+            <pre></pre>
             {ShowFeatureButtons()}
           </Col>
           <Col
@@ -65,50 +80,64 @@ export default function DietPlan() {
           >
             <div>
               <div className="diet_buttons">
-                <Button className="diet_buttons_sub" onClick={viewtargetInfo}>
-                  {""} Set Your Goal
-                </Button>
+               
                 <Button className="diet_buttons_sub" onClick={viewProgress}>
                   {" "}
                   {""} Progress
                 </Button>
                 <Button className="diet_buttons_sub"> {""} History</Button>
               </div>
-              {targetVisible ? (
-                <DietGoalSetter isVisible={() => viewtargetInfo()} />
-              ) : (
-                ""
-              )}
-            </div>
-            <div className="diet_body">
               <div className="strings">
-                <h4>🙋🏻‍♀️Welcome to the route for healthy life!</h4>
+                <h3>
+                  <i>
+                    <b>Welcome to the route for healthy life!</b>
+                  </i>
+                </h3>
                 <p>
-                  Choose your date and start tracking your calories intake
-                  according to your targetted goal!🎯
+                  Start tracking your calories intake according to your
+                  targetted goal!
                 </p>
               </div>
-              <hr></hr>
-              {/* <div className="diet_date">
-                <div>
-                  <Button>
-                    <i class="far fa-calendar-alt" />
-                  </Button>
-
-                  <TextField
-                    type="date"
-                    required
-                    id="dietDate"
-                    name="dietDate"
-                    InputLabelProps={{
-                      shrink: false,
-                    }}
-                  />
-                </div>
-              </div> */}
+              
             </div>
-
-            <FoodItemTable />
+            <Grid container>
+              <Grid item xs={4} >
+               
+                <div className='add_food_div'>
+                <h4>Add Food Items </h4>
+                  <AddFoodModal/>
+                {/* <AddFoodModal
+                  showFoodModal={showFoodModal}
+                  setShowFoodModal={setShowFoodModal}
+                />{" "} */}
+                {/* <div className="add_food">
+                  <Button className="add_food_btn" onClick={openFoodModal}>
+                    <IconButton aria-label="add">
+                      <AddCircleOutlineRoundedIcon />
+                    </IconButton>
+                    {""} Add Food Item
+                  </Button>
+                </div> */}
+                </div>
+                <div> 
+                
+                {targetVisible ? (<div>Set Your GOAL <IconButton className="diet_buttons_sub" onClick={viewtargetInfo}>
+                <i class="fas fa-arrow-down"></i>
+                </IconButton>
+                <DietGoalSetter isVisible={() => viewtargetInfo()} /></div>
+              ) : (<div>Set Your GOAL
+                <IconButton className="diet_buttons_sub" onClick={viewtargetInfo}>
+                <i class="fas fa-arrow-up"></i>
+                </IconButton></div>
+              )}
+                </div>
+              </Grid>{" "}
+              <Grid item xs={7} style={{ backgroundColor: "green" }}>
+                {" "}
+                <FoodItemTable />
+                
+              </Grid>
+            </Grid>
           </Col>
         </Row>
       </Container>
