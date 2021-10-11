@@ -90,7 +90,7 @@ export default function DietPlan() {
               <div className="strings">
                 <h3>
                   <i>
-                    <b>Welcome to the route for healthy life!</b>
+                    <b>Welcome to the route for <span style={{color:'#fcdf00', textShadow: '2px 2px #373950'}}> HEALTHY</span> life!</b>
                   </i>
                 </h3>
                 <p>
@@ -119,20 +119,20 @@ export default function DietPlan() {
                   </Button>
                 </div> */}
                 </div>
-                <div> 
+                <div className='add_food_div'> 
                 
-                {targetVisible ? (<div>Set Your GOAL <IconButton className="diet_buttons_sub" onClick={viewtargetInfo}>
+                {targetVisible ? (<div><h4>Set Your GOAL<IconButton className="diet_buttons_sub" onClick={viewtargetInfo}>
                 <i class="fas fa-arrow-down"></i>
-                </IconButton>
+                </IconButton> </h4> 
                 <DietGoalSetter isVisible={() => viewtargetInfo()} /></div>
-              ) : (<div>Set Your GOAL
+              ) : (<div ><h4>Set Your GOAL
                 <IconButton className="diet_buttons_sub" onClick={viewtargetInfo}>
                 <i class="fas fa-arrow-up"></i>
-                </IconButton></div>
+                </IconButton></h4> </div>
               )}
                 </div>
               </Grid>{" "}
-              <Grid item xs={7} style={{ backgroundColor: "green" }}>
+              <Grid item xs={7} style={{ backgroundColor: "#f4c805" }}>
                 {" "}
                 <FoodItemTable />
                 
