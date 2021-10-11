@@ -78,7 +78,15 @@ function DisplayMedReminders() {
     setOngoingMedReminderList(removedMed);
   };
   return (
-    <div className="reminder">
+    <div className="reminder"
+    style={{
+      backgroundImage: "url(/img/login.jpeg)",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "50vh",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed"
+  }}>
        <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
     <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.medicineBackground)}</div>
     
@@ -93,6 +101,10 @@ function DisplayMedReminders() {
       <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       {" "}
       &nbsp;
+      <div className="med_header_content">
+        <p>All your medicine scheduled in one place!</p>
+      </div>
+      
       <div className="reminder_buttons">
         <Link href="/medicine-reminder" className="reminder_buttons_sub">
           {""} Add New
