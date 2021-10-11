@@ -31,7 +31,7 @@
  margin-right: 2.5%;
  margin-bottom: 0%;
   height: 220px;
- border-color:#04272f;
+ border-color:#522d58;
  border-style: double;
  border-width: 5px;
  border-radius: 10px;
@@ -44,15 +44,17 @@
   padding-right: 5%;
 }
 .footer{
+  font-size: 19px;
   text-align: center;
   color: red;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .intro{
   text-align: center;
-  font-size: 29px;
-  
+  font-size: 33px;
+  color: #522d58;
+  font-weight: 550;
 } 
 
 .disease_main {
