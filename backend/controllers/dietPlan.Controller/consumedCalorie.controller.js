@@ -12,7 +12,7 @@ const postFood = async (req, res) => {
   //console.log("main"+calorie);
 
   calorie_charts.find(
-    { 
+    {
       name: food,
     },
     (err, data) => {
@@ -169,4 +169,24 @@ const getFoodMenu = async (req, res) => {
     });
 };
 
-module.exports = { postFood, getFood, deleteFood, getFoodMenu };
+const getDietSummaryOfTheDay = async (req, res) => {
+  user = req.user.id;
+  dates = new Date().toISOString().slice(0, 10);
+  console.log(dates);
+  // ,date:{'$reqex':dates}
+  dailyCalorie.find({ user: user }).then((data) => {
+    data.forEach((element) => {
+      if (element.date.toISOString().slice(0, 10) == dates)
+        console.log("dhbhynd ", element);
+      res.send(element);
+    });
+  });
+};
+
+module.exports = {
+  postFood,
+  getFood,
+  deleteFood,
+  getFoodMenu,
+  getDietSummaryOfTheDay,
+};
