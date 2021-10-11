@@ -78,6 +78,8 @@ function DisplayMedReminders() {
     setOngoingMedReminderList(removedMed);
   };
   return (
+    
+    
     <div className="reminder"
     style={{
       backgroundImage: "url(/img/login.jpeg)",
@@ -95,16 +97,18 @@ function DisplayMedReminders() {
     <pre></pre> <pre></pre> <pre></pre> <pre></pre>
     <pre></pre>
     <Row className='body_feature_row' >
-      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
-        
-        {ShowFeatureButtons()}</Col>
-      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
+      
+      <Col style={{display: 'flex', flexDirection: 'column'}}>
       {" "}
       &nbsp;
       <div className="med_header_content">
         <p>All your medicine scheduled in one place!</p>
       </div>
       <MedDoses />
+
+      <div className="ongoing_med_body">
+
+      </div>
       <div className="reminder_buttons">
         <Link href="/medicine-reminder" className="reminder_buttons_sub">
           {""} Add New
@@ -162,6 +166,9 @@ function DisplayMedReminders() {
         ))}
       </div>
       </Col>
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
     </Row>
   </Container>
     </div>
