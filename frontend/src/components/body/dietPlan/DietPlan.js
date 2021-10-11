@@ -132,7 +132,10 @@ export default function DietPlan() {
               )}
                 </div>
               </Grid>{" "}
-              <Grid item xs={7} style={{ backgroundColor: "#f4c805" }}>
+              <Grid item xs={7} 
+              className='add_food_div'
+              style={{ backgroundColor: "#f4c805" }}
+              >
                 {" "}
                 <FoodItemTable />
                 

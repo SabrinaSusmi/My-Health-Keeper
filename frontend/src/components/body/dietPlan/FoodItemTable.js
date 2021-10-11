@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import {IconButton,Button} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from '@material-ui/icons/Edit';
+import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import AddFoodModal from "./addFoodModal";
 import '../../../static/Styling/diet.foodItemTable.css'
 // import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
@@ -12,8 +13,8 @@ import axios from "axios";
 export default function FoodItemTable() {
   const token = useSelector((state) => state.token);
     
-
- 
+  const [showFoodModal, setShowFoodModal] = useState(false);
+  const openFoodModal = () => setShowFoodModal(true);
 
   const [foodList, setFoodList] = useState([]);
 
@@ -45,37 +46,37 @@ export default function FoodItemTable() {
 
   return (
       <div>
-         
-      
+   
       <div className="food_table">
+
+        <div>
+       
+         
+
+        </div>
+      
         <Table hover size="md">
           <thead>
-            <tr>
-              <th>Food Name</th>
-              <th>Quantity</th>
-              <th>Meal Description</th>
-              <th>Calories Consumed</th>
-              <th>Edit</th>
-              <th>Delete</th>
+            <tr style={{background:'#eae6e6da'}}>
+            <th>Meal Description</th>
+             <th>Item Name</th>
+              <th>Quantity (servings)</th>
+             
+              <th>Calories Consumed (kcal)</th>
+             
+              <th></th>
             </tr>
           </thead>
+          
           <tbody>
-          {foodList.map((food) => (
-                    <tr>
+          {foodList.map((food,index) => (
+                    <tr style={index % 2? { background : "#f8db57",   }:{ background : "#f4c805" }} >
+                      <td>{food.meal}</td>
                       <td>{food.food}</td>
                       <td>{food.quantity}</td>
-                      <td>{food.meal}</td>
+                      
                       <td>{food.consumedCalories}</td>
-                      <td>
-                      <IconButton
-                        className="btn"
-                        data-toggle="tooltip"
-                        title="Edit"
-                        //onClick={() => deleteReminder(medicines._id)}
-                      >
-                        <EditIcon />
-                      </IconButton>
-                      </td>
+                      
                       <td>
                       <IconButton
                         className="btn"
