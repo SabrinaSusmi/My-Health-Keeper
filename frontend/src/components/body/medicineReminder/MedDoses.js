@@ -12,6 +12,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 import { Container, Row, Col } from "react-grid-system";
 import featureButton from '../../../static/Styling/featureButton.css'
 import { COLORS } from "../../themeColors";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 
 function MedDoses() {
@@ -49,53 +50,26 @@ function MedDoses() {
   };
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}}>
-       <Container   >
-    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.medicineBackground)}</div>
-    
-    
-    <pre></pre>
-    <pre></pre> <pre></pre> <pre></pre> <pre></pre>
-    <pre></pre>
-    <Row className='body_feature_row' >
-      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
-        
-        {ShowFeatureButtons()}</Col>
-      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
-      <div>
-        <Link href="/display-medicine-reminderList">
-          <Button type="button" color="primary" size="large">
-            <i class="fas fa-angle-double-left" >
-              {" "}
-              &nbsp; Return
-            </i>
+
+  <div className="med_today_body">
+    <div className="med_today_header">
+      <h3>Medicine Today</h3>
+    </div>
+    <div className="med_today_box">
+      {doseList.map((doses) => (
+        <div className="med_today_card">
+          <h2>{doses.medname}</h2>
+          <hr></hr>
+          <p><b>Time: </b>{doses.medtime}</p>
+          <p><b>Taken:</b> Not Yet</p>
+          
+          <Button className="med_confirm_btn"  onClick={() => confirmReminder(doses._id)}>
+            Confirm
           </Button>
-        </Link>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        {" "}
-        <p></p>
-      </div>
-      <div>
-        {doseList.map((doses) => (
-          <div className="reminder_card">
-            <h2>{doses.medname}</h2>
-            <hr></hr>
-            <p><b>Time: </b>{doses.medtime}</p>
-            <p><b>Taken:</b> Not Yet</p>
-            
-            <Button className="btn"  onClick={() => confirmReminder(doses._id)}>
-              Confirm
-            </Button>
-          </div>
-        ))}
-      </div>
-      </Col>
-    </Row>
-  </Container> </div>
+        </div>
+      ))}
+    </div>
+  </div>
   );
 }
 

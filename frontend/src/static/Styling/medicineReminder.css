@@ -1,3 +1,65 @@
+.med_header_content {
+  color: #063742;
+  height: 50vh;
+  text-align: center;
+}
+
+.med_today_header {
+  width: 70%;
+  margin: 2em auto;
+  /* border: #063742 1px solid; */
+  text-align: center;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.med_today_header h3{
+  /* margin-top: 1em; */
+  margin-bottom: 2em;
+  font-weight: 700;
+  color: #007cba;
+  font-size: 2.4rem;
+}
+
+.med_today_box {
+  width: 60%;
+  margin: 0 auto;
+  /* border: #fd8412 1px solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.med_today_card {
+  display: inline-block;
+  width: 20%;
+  padding: 15px 35px 15px 35px;
+  margin: 1rem;
+  border: 1.5px solid #007cba;
+  border-radius: 35px;
+  text-align: center;
+  color: #012649;
+  /* font-family: 'Roboto'; */
+  /* box-shadow: 2px 0px 30px 0px rgb(0 0 0 / 15%); */
+}
+
+.med_today_card h2{
+  font-size: 1.5rem;
+}
+
+.med_confirm_btn {
+  margin-top: 20px;
+  color: #007cba !important;
+  width: 100px;
+  border-radius: 50px !important;
+
+}
+
+.med_confirm_btn:hover {
+  background-color: #007cba !important;
+  color: #ecffff !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
 .reminder_buttons {
   width: 30%;
   margin-right: 0;
@@ -24,15 +86,15 @@
   padding: 8px;
 } */
 
-.containerMed {
+/* .containerMed {
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
-  /* padding: 1rem; */
+  padding: 1rem;
   margin: 1rem;
-}
+} */
 
 .containerMed {
   display: flex;

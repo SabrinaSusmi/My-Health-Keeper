@@ -15,7 +15,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 import { Container, Row, Col } from "react-grid-system";
 import featureButton from '../../../static/Styling/featureButton.css'
 import { COLORS } from "../../themeColors";
-
+import MedDoses from "./MedDoses";
 
 function DisplayMedReminders() {
   const token = useSelector((state) => state.token);
@@ -104,13 +104,10 @@ function DisplayMedReminders() {
       <div className="med_header_content">
         <p>All your medicine scheduled in one place!</p>
       </div>
-      
+      <MedDoses />
       <div className="reminder_buttons">
         <Link href="/medicine-reminder" className="reminder_buttons_sub">
           {""} Add New
-        </Link>
-        <Link href="/medicine-doses" className="reminder_buttons_sub">
-          {""} Medicines Today
         </Link>
       </div>
       <div className="reminder_body">
