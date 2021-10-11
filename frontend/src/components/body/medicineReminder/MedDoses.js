@@ -49,8 +49,8 @@ function MedDoses() {
   };
 
   return (
-    <div>
-       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}}>
+       <Container   >
     <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.medicineBackground)}</div>
     
     
