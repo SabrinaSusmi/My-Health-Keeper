@@ -41,7 +41,7 @@ export default function DietPlan() {
         backgroundImage: "url(/img/dietPlan.jpg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
+        minHeight: "90vh",
         height: "100%",
         opacity: " 0.8",
         backgroundPosition: "center",

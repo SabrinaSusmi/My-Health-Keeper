@@ -1,4 +1,6 @@
 .set_diet_goal_button {
+  margin: 2%;
+  margin-top: 4%;
   padding: 1%;
   text-align: center;
 }
@@ -7,37 +9,45 @@
   flex-grow: 1;
   padding: 1%;
 }
-.set_diet_goal_button > .set_diet_goal_button_sub {
-  color: #063742;
-  font-size: 18px;
-  /* font-weight: bold; */
-}
-.set_diet_goal_button > .set_diet_goal_button_sub:hover {
-  background-color: #063742;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-}
+
 
 .root > .goal_grid > .goal_grid_item {
   padding: 2%;
   padding-left: 2%;
   padding-right: 3%;
 }
-.root > .goal_grid > .goal_grid_item > .goal_font {
-  color: #063742;
+ .goal_font {
+  color: #373950;
   font-size: 20px;
+  /* margin-bottom: 10px; */
 }
 .root > .goal_grid > .goal_grid_item > .goal_font:hover {
   cursor: pointer;
   /* font-weight: bold; */
 }
 
-
+.goal_font{
+  margin-bottom: 12px;
+}
+.goal_font_dropdown{
+  margin-bottom: 16px;
+  margin-left: 10px;
+}
 .set_goal_div{
   background-color: #f8f5dd;
   padding: 20px;
   border-radius: 10px;
   margin: 5%;
+ 
+}
+.goal_font>.goal_setter_textfield{
+  margin-left: 10px;
+  min-width: 30px;
   
+  /* margin-right: 40px; */
+}
+.goal_setter_dropdown{
+  /* margin-left: 10px; */
+  min-width: 200px;
+  max-width: 400px;
 }
