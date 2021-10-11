@@ -16,7 +16,7 @@ import { Container, Row, Col } from "react-grid-system";
 import featureButton from '../../../static/Styling/featureButton.css'
 import { COLORS } from "../../themeColors";
 import MedDoses from "./MedDoses";
-//import InputMedReminder from "./InputMedReminder";
+import InputMedReminder from "./InputMedReminder";
 
 function DisplayMedReminders() {
   const token = useSelector((state) => state.token);
@@ -151,53 +151,16 @@ function DisplayMedReminders() {
               />
             </div>
           ))}
-
-          
         </div>
-      </div>
-      <div className="reminder_buttons">
-        <Link href="/medicine-reminder" className="reminder_buttons_sub">
-          {""} Add New
-        </Link>
+        <div className="add_med">
+        <div className="add_new_button" onClick={viewtargetInfo}>Add New Medicine</div>
+          {targetVisible ? (<div> 
+            <InputMedReminder isVisible={() => viewtargetInfo()} /></div>
+          ) : ("")}
+        </div>
       </div>
       <div className="reminder_body">
-        <div>
-          <h2> &nbsp;Ongoing Medicine</h2> <hr></hr>
-        </div>
-        {ongoingMedReminderList.map((medicines) => (
-          <div variant="outlined" className="reminder_card">
-            <h2>{medicines.medname}</h2>
-            <p>Description: {medicines.descriptionmed}</p>
-            <p>Starting Date: {medicines.startdate.substring(0, 10)}</p>
-            <p>Ending Date: {medicines.enddate.substring(0, 10)}</p>
-            <IconButton
-              className="btn"
-              data-toggle="tooltip"
-              title="View Your Missed Medicine"
-              onClick={() => {
-                openModal();
-                getmissedMed(medicines._id);
-              }}
-            >
-              <VisibilityIcon />
-            </IconButton>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            <IconButton
-              className="btn"
-              data-toggle="tooltip"
-              title="Delete the Medicine"
-              onClick={() => deleteReminder(medicines._id)}
-            >
-              <DeleteIcon />
-            </IconButton>
-            {console.log('missedList ',missedList)}
-            <MedModal
-              showModal={showModal}
-              setShowModal={setShowModal}
-              list={missedList}
-            />
-          </div>
-        ))}
+        
 
         <div>
           <h2> &nbsp;Done</h2> <hr></hr>

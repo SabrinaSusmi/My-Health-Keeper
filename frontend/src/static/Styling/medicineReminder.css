@@ -115,6 +115,27 @@
   align-content: flex-end !important;
 }
 
+.add_med {
+  width: 60%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
+  /* border: 2px solid #007cba; */
+  margin: 2.5em auto;
+}
+
+.add_new_button {
+  width: 200px;
+  background-color: #075AC9;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
 .reminder_buttons {
   width: 30%;
   margin-right: 0;
@@ -150,6 +171,8 @@
  .labels {
   margin-left: 20%;
   margin-bottom: 4px;
+  color: #075AC9;
+  font-weight: 550;
 }
 
  .textfield {
@@ -157,29 +180,12 @@
   margin-left: 20%;
   height: 70px;
 }
-/* .containerMed > .form_btns {
-  border-radius: 10px;
-  margin: 1%;
-  margin-left: 40%;
-  padding: 0.2rem;
-  margin-top: 12px;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  background-color: #fd8412;
-  height: 20%;
-} */
+
  .form_btns > .add_btn {
-  width: 33%;
-  margin-bottom: 3%;
-  margin-right: 15%;
-  margin-left: 35%;
-  margin-top: 13px;
+  width: 120px;
+  margin: 1em auto;
   display: grid;
-  font-weight: bolder;
-  font-size: large;
-  background-color: #fd8412;
+  background-color: #075AC9;
 }
 
 .reminder {
