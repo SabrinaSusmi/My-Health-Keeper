@@ -6,7 +6,7 @@ import {
   Paper,
   TextField,
   Button,
-  Container,
+  
   IconButton,
   Link,
 } from "@material-ui/core";
@@ -20,6 +20,15 @@ import {
 } from "../../utils/notification/Notification";
 import "../../../static/Styling/medicineReminder.css";
 import { Redirect, useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core";
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+import { mergeClasses } from "@material-ui/styles";
+
 const initialState = {
   username: "",
   medName: "",
@@ -34,7 +43,6 @@ const initialState = {
 function InputMedReminder() {
   const token = useSelector((state) => state.token);
   const history = useHistory();
-  const paperStyle = { padding: "30px 20px", width: 300, margin: "20px auto" };
   const headerStyle = { margin: 0 };
 
   const auth = useSelector((state) => state.auth);
@@ -110,128 +118,147 @@ function InputMedReminder() {
         err: "",
         success: "Medicine added Successfully!",
       });
-      history.push('/display-medicine-reminderList')
+      history.push("/display-medicine-reminderList");
     } catch (err) {
       err.response.data.msg &&
         setMedicine({ ...medicine, err: err.response.data.msg, success: "" });
     }
   };
 
+  const useStyles = makeStyles((theme) => ({
+    textfield_input:{
+      width:'60%',
+      marginLeft:'20%',
+      marginBottom:'2%',
+    },
+    notchedOutline: {
+      borderWidth: "1px",
+       borderColor: "#fd8412 !important ",
+       
+    }
+  }));
+ 
+  const classes = useStyles();
   return (
-    <Container className="container">
-            <div>
-        <Link href="/display-medicine-reminderList">
-          <Button type="button" color="primary" size="large">
-            <i class="fas fa-angle-double-left" >
-              {" "}
-              &nbsp; Return
-            </i>
-          </Button>
-        </Link>
-      </div>
-      <div className="paper">
-        <Grid align="center">
-          <h2>Add Medicine</h2>{" "}
-        </Grid>{" "}
-        {err && showErrMsg(err)}
-        {success && showSuccessMsg(success)}
-        <form onSubmit={handleSubmit} className="form_body">
-          <div className="form_inputs">
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="medname"
-              label="Medicine Name"
-              name="medname"
-              autoComplete="medname"
-              onChange={handleChangeInput}
-              value={medname}
-            />
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="descriptionmed"
-              label="Description"
-              name="descriptionmed"
-              autoComplete="descriptionmed"
-              onChange={handleChangeInput}
-              value={descriptionmed}
-            />
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="startdate"
-              label="Start Date"
-              name="startdate"
-              onChange={handleChangeInput}
-              value={startdate}
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="enddate"
-              label="End Date"
-              name="enddate"
-              onChange={handleChangeInput}
-              value={enddate}
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </div>
-          {inputFields.map((inputField, index) => (
-            <div key={index}>
-              <TextField
-                variant="outlined"
-                required
-                id="time"
-                label="Time"
-                name="time"
-                onChange={handleChangeInputTime}
-                type="time"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                //variant="filled"
-                value={inputField.time}
-                onChange={(event) => handleChangeInputTime(index, event)}
-              />
+  
+<div>
+<pre></pre>
+{err && showErrMsg(err)}
+{success && showSuccessMsg(success)}
 
-              <IconButton
-                disabled={inputFields.length === 1}
-                onClick={() => handleRemoveFields(index)}
-              >
-                <RemoveIcon />
-              </IconButton>
-              <IconButton onClick={handleAddFields}>
-                <AddIcon />
-              </IconButton>
-            </div>
-          ))}
-          <div className="form_btns">
-            <Button
-              className="add_btn"
-              type="submit"
-              variant="contained"
-              onClick={handleSubmit}
-              color="primary"
-            >
-              Add
-            </Button>
-           
-          </div>
-        </form>
-      </div>
-    </Container>
+<div className="labels"> Medicine Name</div>
+
+    <TextField
+     InputProps={{
+      classes: {
+        notchedOutline: classes.notchedOutline
+      }
+    }}
+
+    className={classes.textfield_input}
+      variant="outlined"
+      required
+      fullWidth
+      id="medname"
+      // label="Medicine Name"
+      name="medname"
+      autoComplete="medname"
+      onChange={handleChangeInput}
+      value={medname}
+    />
+                 <div className="labels"> Description</div>
+
+    <TextField
+      className={classes.textfield_input}
+      variant="outlined"
+      required
+      fullWidth
+      id="descriptionmed"
+      // label="Description"
+      name="descriptionmed"
+      autoComplete="descriptionmed"
+      onChange={handleChangeInput}
+      value={descriptionmed}
+    />
+                 <div className="labels"> Start Date</div>
+
+    <TextField
+      className={classes.textfield_input}
+      variant="outlined"
+      required
+      fullWidth
+      id="startdate"
+      // label="Start Date"
+      name="startdate"
+      onChange={handleChangeInput}
+      value={startdate}
+      type="date"
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
+    <div className="labels"> End Date</div>
+    <TextField
+      className={classes.textfield_input}
+      variant="outlined"
+      required
+      fullWidth
+      id="enddate"
+      // label="End Date"
+      name="enddate"
+      onChange={handleChangeInput}
+      value={enddate}
+      type="date"
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
+       <div className="labels"> Time</div>
+  
+  {inputFields.map((inputField, index) => (
+    <div  className="textfield" key={index}>
+      <TextField
+      
+       className="textfield"
+        variant="outlined"
+        required
+        
+        id="time"
+        // label="Time"
+        name="time"
+        onChange={handleChangeInputTime}
+        type="time"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        //variant="filled"
+        value={inputField.time}
+        onChange={(event) => handleChangeInputTime(index, event)}
+      />
+
+      <IconButton
+        disabled={inputFields.length === 1}
+        onClick={() => handleRemoveFields(index)}
+      >
+        <RemoveIcon />
+      </IconButton>
+      <IconButton onClick={handleAddFields}>
+        <AddIcon />
+      </IconButton>
+    </div>
+  ))}
+  <div  className="form_btns" >
+    <Button
+      className="add_btn"
+      type="submit"
+      variant="contained"
+      onClick={handleSubmit}
+      color="primary"
+    >
+      Add
+    </Button>
+  </div>
+  </div>
   );
 }
 

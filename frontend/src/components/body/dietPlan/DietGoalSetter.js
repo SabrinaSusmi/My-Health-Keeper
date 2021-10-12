@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button, Grid, TextField, MenuItem, Select } from "@material-ui/core";
+import { Button, Grid, TextField, MenuItem, Select,FormControl,InputLabel } from "@material-ui/core";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import "../../../static/Styling/dietPlanGoal.css";
 import { useSelector } from "react-redux";
@@ -76,74 +76,83 @@ export default function DietGoalSetter(props) {
   };
 
   return (
-    <div>
-      <div className="root">
+    <div className='goal_div'>
+      
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
-        <Grid className="goal_grid" spacing={3} container>
-          <Grid className="goal_grid_item" item xs={4}>
+        {/* <Grid className="goal_grid" spacing={3} container> */}
+          {/* <Grid className="goal_grid_item" item xs={4}> */}
             <div
               data-toggle="tooltip"
               title="Height in inches"
               className="goal_font"
             >
-              Height
-            </div>
+            
+            
             <TextField
-              fullWidth
+            //  type="text"
+            //  id="foodName"
+            //  name="quantity"
+             label="Height in inches"
+              className='goal_setter_textfield'
               type="number"
               id="height"
               name="height"
-              placeholder="Height in inches"
+              placeholder="inches"
               onChange={handleChangeInput}
               value={height}
             />
-          </Grid>
-          <Grid className="goal_grid_item" item xs={4}>
+            </div>
+          {/* </Grid>
+          <Grid className="goal_grid_item" item xs={4}> */}
             <div
               data-toggle="tooltip"
               title="Weight in kgs"
               className="goal_font"
             >
-              Weight
-            </div>
+              
+            
             <TextField
-              fullWidth
+               className='goal_setter_textfield'
               type="number"
               id="weight"
               name="weight"
-              placeholder="Weight in kgs"
+              placeholder="kgs"
+              label='Weight in kgs'
               onChange={handleChangeInput}
               value={weight}
             />
-          </Grid>
-          <Grid className="goal_grid_item" item xs={4}>
+            </div>
+          {/* </Grid> */}
+          {/* <Grid className="goal_grid_item" item xs={4}> */}
             <div
               data-toggle="tooltip"
               title="Age in years"
               className="goal_font"
             >
-              Age
-            </div>
+              
+            
             <TextField
-              fullWidth
+               className='goal_setter_textfield'
               type="number"
               id="age"
               name="age"
-              placeholder="Age in years"
+              label="Age in years"
               onChange={handleChangeInput}
               value={age}
             />
-          </Grid>
-          <Grid className="goal_grid_item" item xs={7.5}>
-            <div className="goal_font">
-              Level of Activity: &emsp;{" "}
+            </div>
+          {/* </Grid> */}
+          {/* <Grid className="goal_grid_item" item xs={7.5}> */}
+            <FormControl className="goal_font_dropdown">
+            <InputLabel > Level of Activity</InputLabel>
+              
               <Select
                 id="levelOfActivity"
                 name="levelOfActivity"
                 value={levelOfActivity}
                 onChange={handleChangeInput}
-                autoWidth
+                className='goal_setter_dropdown'
               >
                 <MenuItem value={"sedentary"}>
                   Sedentary (little or no exercise)
@@ -163,13 +172,14 @@ export default function DietGoalSetter(props) {
                   training)
                 </MenuItem>
               </Select>
-            </div>
-          </Grid>
-          <Grid className="goal_grid_item" item xs={4.5}>
-            <div className="goal_font">
-              Your Target: &emsp;{" "}
+            </FormControl>
+          {/* </Grid>
+          <Grid className="goal_grid_item" item xs={4.5}> */}
+            <FormControl className="goal_font_dropdown">
+            <InputLabel > Your Target</InputLabel>
               <Select
-                id="target"
+                       className='goal_setter_dropdown'
+                       id="target"
                 name="target"
                 value={target}
                 onChange={handleChangeInput}
@@ -179,22 +189,21 @@ export default function DietGoalSetter(props) {
                 <MenuItem value={"same"}>Maintain Current Weight</MenuItem>
                 <MenuItem value={"loss"}>Weight Loss</MenuItem>
               </Select>
-            </div>
-          </Grid>
-        </Grid>
+            </FormControl>
+          {/* </Grid>
+        </Grid> */}
         <div className="set_diet_goal_button">
-          <Button onClick={handleSubmit} className="set_diet_goal_button_sub">
-            SAVE
-          </Button>
-          &emsp;&emsp;
+         
           <Button
-            className="set_diet_goal_button_sub"
-            onClick={props.isVisible}
-          >
-            Cancel
-          </Button>
+          type="submit"
+          variant="contained"
+          onClick={handleSubmit}
+          color="white"
+        >
+          <font className="add_btn_diet_font"> set your goal</font>
+        </Button>
         </div>
       </div>
-    </div>
+    
   );
 }
