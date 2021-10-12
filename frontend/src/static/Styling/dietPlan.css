@@ -44,7 +44,28 @@
   vertical-align: middle;
 }
 
+.progress_history_section {
+  width: 80%;
+  margin: 6em auto;
+}
 
+.progress_history_button_div {
+  display: flex;
+  justify-content: center;
+}
+
+.progress_history_section_buttons {
+  display: inline-block;
+  width: 200px;
+  background-color: #6f9a37;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 1em 3em;
+  font-size: 1.2rem;
+}
 
 .foodTable_grid{
   background-color: #f4c805;

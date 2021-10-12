@@ -22,15 +22,22 @@ import "../../../static/Styling/dietFoodTable.css";
 import "../../../static/Styling/diet.foodItemTable.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import DietOverview from "./DietOverview";
+import DietProgress from "./DietProgress";
 
 export default function DietPlan() {
   const [showFoodModal, setShowFoodModal] = useState(false);
   const openFoodModal = () => setShowFoodModal(true);
   const token = useSelector((state) => state.token);
   const [targetVisible, setTargetVisible] = useState(false);
+  const [targetVisibleProgress, setTargetVisibleProgress] = useState(false);
   const viewtargetInfo = () => {
     setTargetVisible((prev) => !prev);
   };
+
+  const viewtargetInfoProgress = () => {
+    setTargetVisibleProgress((prev) => !prev);
+  };
+  
   const history = useHistory();
 
   const viewProgress = () => {
@@ -84,7 +91,16 @@ export default function DietPlan() {
                 <DietOverview />
               </div>
             </div>
-            
+            <div className="progress_history_section">
+              <div className="progress_history_button_div">
+                <div className="progress_history_section_buttons" onClick={viewtargetInfoProgress}>Progress</div>
+                <div className="progress_history_section_buttons" onClick={viewtargetInfo}>History</div>
+                <div className="progress_history_section_buttons" onClick={viewtargetInfo}>Set Your Goal</div>
+              </div>
+              {targetVisibleProgress ? (<div> 
+                  <DietProgress isVisible={() => viewtargetInfoProgress()} /></div>
+                ) : ("")}
+            </div>
             <div>
               <div className="diet_buttons">
                
