@@ -16,13 +16,13 @@ const predictDisease = async (req, res) => {
   const tryy = (predictedAns) => {
     try {
       let specialist = [];
-    
+
       const jsonString = fs.readFileSync(
         "../backend/controllers/diseasePrediction/specialistList.json"
       );
       const diseaseSpecialistJsonFile = JSON.parse(jsonString);
       const diseaseList = Object.values(diseaseSpecialistJsonFile);
-      for (let j = 0; j <3 ; j++) {
+      for (let j = 0; j < 3; j++) {
         let z = Object.keys(diseaseSpecialistJsonFile).toString().split(",");
         for (let i = 0; i < diseaseList.length; i++) {
           if (String(predictedAns[j].substring(0)) == z[i]) {
@@ -30,7 +30,6 @@ const predictDisease = async (req, res) => {
             specialist.push(diseaseList[i]);
           }
         }
-      
       }
       return specialist;
     } catch (err) {
@@ -40,17 +39,35 @@ const predictDisease = async (req, res) => {
   };
   pyProg.stdout.on("data", function (data) {
     const ans = data.toString().split("\r\n");
-    const aa = [];
-    aa.push(ans[0].toString());
-    aa.push(ans[1].toString());
-    aa.push(ans[2].toString());
-    //  const q = aa[2].split("  ");
+    let ans1 = ans[0].replace("[", "");
+    ans1 = ans1.replace("]", "");
+    ans1 = ans1.split(", ");
+    for (let i = 0; i < 3; i++) {
+      ans1[i] = ans1[i].replace("'", "");
+      ans1[i] = ans1[i].replace("'", "");
+    }
 
-    const specialist = tryy(aa);
-console.log('sss: ',specialist)
+    const aa = [];
+    aa.push(ans1[0].toString());
+    aa.push(ans1[1].toString());
+    aa.push(ans1[2].toString());
+    //  const q = aa[2].split("  ");
+    console.log("huhucr: ", aa);
+    const specialist = tryy(ans1);
+    console.log("sss: ", specialist);
+    const percentages = ans[1].split(", ");
+
+    for (let v = 0; v < 3; v++) {
+      percentages[v] = percentages[v].replace("[", "");
+      percentages[v] = percentages[v].replace("]", "");
+      percentages[v] = percentages[v].replace("'", "");
+      percentages[v] = percentages[v].replace("'", "");
+    }
+   
+
     res.send({
       diseaseName: aa,
-      diseasePercenatge: aa[1],
+      diseasePercenatge: percentages,
       diseaseSpecialist: specialist,
     });
   });

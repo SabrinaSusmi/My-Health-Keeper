@@ -11,9 +11,18 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import PdfView from "./pdfView";
 import Modal from "react-bootstrap/Modal";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from '../../../static/Styling/featureButton.css'
+import { COLORS } from "../../themeColors";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: "100mvh",
+    maxHeight:'100mvh',
   },
   media: {
     resizeMode: "contain",
@@ -86,19 +95,45 @@ export default function AddFiles() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div  className={classes.root}>
+      <div
+        class="bg_image"
+        style={{
+          backgroundImage: "url(/img/spHealth.jpg)",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          // minHeight:'5200',
+          height: "100%",
+          width: "100%",
+          opacity: "1",
+          backgroundPosition: "center",
+        }}
+      >
+       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.spHealthBackground)}</div>
+    
+    
+    <pre></pre>
+    <pre></pre> <pre></pre> <pre></pre> 
+    
+    <Row className='body_feature_row' >
+      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+        
+        {ShowFeatureButtons()}</Col>
+      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
       <div className="heading">
         <Link
           className="return_to_spHealth"
           component={NavLink}
           to="/specialized-health-information"
         >
-          <ArrowBackIcon /> Return
+          <ArrowBackIcon /><b> Return</b>
         </Link>
         <div className="spHealth_reminder_buttons">
           <div className="viewFiles_Btn">
             <Button className="viewFiles_addBtn" onClick={updateFiles} multiple>
-              Save
+         <h5><b>Save&nbsp;</b></h5>     
             </Button>
             <input
               type="file"
@@ -111,12 +146,12 @@ export default function AddFiles() {
         </div>
       </div>
 
-      <h3>&nbsp; {folderName}</h3>
+      <h3 >&nbsp; {folderName}</h3>
       <hr></hr>
       {fileLength == 0 ? (
-        <>NO Files Added 😢</>
+        <div style={{minHeight:'600px'}}><h3 align='center' style={{color:'red'}}><pre></pre>NO Files Added 😢</h3></div>
       ) : (
-        <div>
+        <div style={{minHeight:'600px'}}>
           <Grid container spacing={1} direction="row">
             {mediaFiles.map((element) => (
               <div>
@@ -187,6 +222,12 @@ export default function AddFiles() {
           </Grid>
         </div>
       )}
+
+      
+</Col>
+    </Row>
+  </Container>
+  </div>
     </div>
   );
 }

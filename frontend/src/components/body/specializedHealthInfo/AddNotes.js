@@ -40,8 +40,6 @@ export default function AddNotes(props) {
   };
   const [spHealthNotes, setSpHealthNotes] = useState([]);
 
-
-
   const mulitpleFileOptions = {
     onUploadProgress: (progressEvent) => {
       const { loaded, total } = progressEvent;
@@ -107,22 +105,26 @@ export default function AddNotes(props) {
       {success && showSuccessMsg(success)}
       <div className="form-group">
         <Grid className="info-save" container spacing={2} alignItems="center">
-          <Grid item xs={12}></Grid>
+          <Grid item xs={12}>
+            <h2>Save Your NOTES Here !!!</h2>
+          </Grid>
           <Grid item xs={5}>
+            <pre></pre>
             <h5>Folder Name</h5>
             <TextField
               fullWidth
               type="text"
               id="folder"
               name="folder"
-              placeholder="Folder Name"
+              // placeholder="Folder Name"
               onChange={handleChangeInput}
               value={folder}
             />
           </Grid>
-          <Grid item xs={1}></Grid>
+          <Grid item xs={5}></Grid>
           <Grid item xs={5}>
-            <h5>Note Date</h5>
+            <pre></pre>
+            <h5>Select Date</h5>
             <TextField
               fullWidth
               type="date"
@@ -136,17 +138,19 @@ export default function AddNotes(props) {
             />
           </Grid>
 
-          <Grid className='addNotes_textArea'
-          item xs={11}>
-            <h5>Description</h5>
+          <Grid className="addNotes_textArea" item xs={9}>
+            <pre></pre>
+
+            <h5>Your Notes</h5>
             <TextareaAutosize
               className="description"
               variant="outlined"
-             rows='3'
+             style={{ backgroundColor:'transparent'}}
+              rows="3"
               type="text"
               id="description"
               name="description"
-              placeholder="Description"
+              placeholder="Note down your problems..."
               onChange={handleChangeInput}
               value={description}
             />
@@ -154,7 +158,8 @@ export default function AddNotes(props) {
 
           <Grid item xs={6}>
             <div className="form-group">
-              <label>Select Files</label>
+              <pre></pre>
+              <h5>Upload your Reports</h5>
               <input
                 type="file"
                 onChange={(e) => MultipleFileChange(e)}
@@ -164,7 +169,7 @@ export default function AddNotes(props) {
             </div>
           </Grid>
           <Grid item xs={1}>
-            &nbsp;{" "}
+            &nbsp; <pre></pre>
             <div style={{ width: 50, height: 50 }}>
               <CircularProgressbar
                 value={multipleProgress}
@@ -174,18 +179,23 @@ export default function AddNotes(props) {
                   strokeLinecap: "butt",
                   textSize: "16px",
                   pathTransitionDuration: 0.5,
-                  pathColor: `rgba(6,55,66, ${multipleProgress / 100})`,
-                  textColor: "#063742",
-                  trailColor: "#cdecf9",
-                  backgroundColor: "#3e98c7",
+                  pathColor: `rgba(55,92,38, ${multipleProgress / 100})`,
+                  textColor: "#78b25f",
+                  trailColor: "#78b25f",
+                  backgroundColor: "#8fce00",
                 })}
               />
             </div>
           </Grid>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={2}>
+          {/* <Grid item xs={5}></Grid> */}
+             <Grid
+            item
+            xs={11}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+                      
+
             <div className="sp_reminder_buttons">
-              &nbsp;
               <Button type="button" onClick={UploadMultipleFiles}>
                 <font className="sidebar-options-color">save</font>
               </Button>
