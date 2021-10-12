@@ -199,7 +199,9 @@ export default function MenstrualDemo(){
   }}
   />
 </Grid>
-} {
+}
+<hr></hr>
+ {
 <Grid container alignItems="center">
   <TextField
   className="input_fields"
@@ -286,7 +288,6 @@ export default function MenstrualDemo(){
                               {
                                 <Grid align='center'>
                                     <h4>Input your data 💓 </h4>
-                                    <br></br>
                                 </Grid>
                                }
                                {
@@ -307,6 +308,7 @@ export default function MenstrualDemo(){
                                     />
                                 </Grid>
                                   }
+                                  <hr></hr>
                                   {
                                 <Grid container alignItems="center">
                                     <TextField
