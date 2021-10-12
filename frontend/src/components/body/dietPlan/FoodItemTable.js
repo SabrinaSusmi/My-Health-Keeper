@@ -35,14 +35,14 @@ export default function FoodItemTable() {
         setConsumed(res.data.consumedCalories);
         setRequired(res.data.requiredCalories);
         setRemaining(res.data.requiredCalories - res.data.consumedCalories);
-        const percentage = (parseFloat(res.data.consumedCalories / res.data.requiredCalories).toFixed(4))*100;
+        const percentage = (parseFloat(res.data.consumedCalories / res.data.requiredCalories)*100).toFixed(2);
 setMultipleProgress(percentage)
-        console.log(res.data);
+        console.log(percentage);
       });
   };
   useEffect(async () => {
     getFoodConsumed();
-    // getDietSummaryOfTheDay();
+    getDietSummaryOfTheDay();
   }, []);
 
   const deleteFood = async (id) => {
@@ -89,7 +89,7 @@ setMultipleProgress(percentage)
                   strokeLinecap: "butt",
                   textSize: "16px",
                   pathTransitionDuration: 0.5,
-                  pathColor: `rgba(55, 57, 80, ${multipleProgress / 100})`,
+                  pathColor: `rgba(68,68,68, ${multipleProgress / 100})`,
                   textColor: "#373950",
                   textSize:25,
                   trailColor: "white",

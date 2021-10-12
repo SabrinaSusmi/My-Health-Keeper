@@ -210,7 +210,7 @@ function GenHealthDashboard() {
     // bpDiasChart();
     pulseChart();
     sugarChart();
-  },[]);
+  }, []);
   return (
     <Container
       className="body_container"
@@ -253,12 +253,11 @@ function GenHealthDashboard() {
             </Link>
           </div>
 
-          <div className='container' >
+          <div class="container">
           <h4>
               Your Blood Pressure for last 7 days<h6>normal range 120/80</h6>{" "}
             </h4>
             <Line
-            style={{height:400}}
               data={bpChartData}
               options={{
                 responsive: true,
@@ -286,13 +285,11 @@ function GenHealthDashboard() {
                 },
               }}
             />
-            
             <h4>
               Your Pulse for last 7 days{" "}
               <h6>normal rate for an adult: 70-100</h6>{" "}
             </h4>
             <Line
-              style={{height:'400px'}}
               data={pulseChartData}
               options={{
                 responsive: true,
@@ -324,7 +321,6 @@ function GenHealthDashboard() {
             <h4>Your Sugar Level for last 7 days </h4>
 
             <Line
-              style={{height:'400px'}}
               data={sugarChartData}
               options={{
                 responsive: true,
@@ -357,7 +353,6 @@ function GenHealthDashboard() {
 
             <h4>Weight for Last 7 days</h4>
             <Line
-              style={{height:'400px'}}
               data={weightChartData}
               options={{
                 responsive: true,

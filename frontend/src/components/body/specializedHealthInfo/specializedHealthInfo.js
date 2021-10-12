@@ -26,10 +26,12 @@ export default function SpecializedHealthInfo() {
   let history = useHistory();
 
   const showSPHealthNotes = async () => {
-   
+    let spID = localStorage.getItem("userID");
+
+    console.log("sp id     ", spID);
     await axios
       .get("http://localhost:5000/api/get-specializedHealthInfo", {
-        headers: { Authorization: token },
+        headers: { Authorization: token, userid: userID },
       })
       .then((res) => {
         // console.log(res.data);

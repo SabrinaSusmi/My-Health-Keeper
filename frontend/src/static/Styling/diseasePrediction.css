@@ -5,7 +5,7 @@
 }
 
 .root>  .grid_symptoms{
-  color:#04272f ;
+  color:#522d58 ;
   font-weight: bold;
   font-size: 18px;
 }
@@ -44,17 +44,16 @@
   padding-right: 5%;
 }
 .footer{
-  font-size: 19px;
   text-align: center;
+  font-size: 18px;
   color: red;
-  font-weight: 500;
+  font-weight: 550;
 }
 
 .intro{
   text-align: center;
-  font-size: 33px;
-  color: #522d58;
-  font-weight: 550;
+  font-size: 29px;
+  
 } 
 
 .disease_main {

@@ -1,8 +1,9 @@
 .sp_reminder_buttons {
 height: 45px;
     width: 25%;
-    background-color: #06422bbb;
-        display: inline;
+    background-color: #38761d;
+    color: white;
+    display: inline;
     margin-left: 1em;
     padding: 6px;
     text-decoration: none;
@@ -11,11 +12,7 @@ height: 45px;
     font-weight: bold;
     text-align: center;
   }
-.sp_health_save_btn{
-  color: white;
-  font-weight: 550;
-  font-size: 15px;
-}
+
   .info-save {
     padding: 0.5%;
     padding-left: 3%;
