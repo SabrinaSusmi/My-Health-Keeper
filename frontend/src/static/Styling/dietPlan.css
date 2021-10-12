@@ -83,34 +83,7 @@
   margin-left: 0.5%;
   margin-right: 0.5%;
 }
-.strings {
-  /* margin-left: 2%; */
-  font-family: "Arial Narrow Bold", sans-serif;
-  color: rgb(55, 57, 80);
-  font-weight: 500;
-}
-.diet_body > .diet_date {
-  margin-top: 2%;
-  margin-left: 2%;
-  padding: 1rem;
-}
 
-.diet_buttons > .diet_buttons_sub {
-  width: 100px;
-  color: rgb(55, 57, 80);
-  background-color: #f4c805;
-  display: inline;
-  margin-left: 1.5em;
-  padding: 6px;
-  text-decoration: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.diet_buttons > .diet_buttons_sub:hover {
-  /* font-weight: bold; */
-  background-color: #fdee61;
-}
 
 .form_body {
   margin: 0.2%;

@@ -107,28 +107,7 @@ export default function DietPlan() {
                 ) : ("")}
               </div>
             </div>
-            <div>
-              <div className="diet_buttons">
-               
-                <Button className="diet_buttons_sub" onClick={viewProgress}>
-                  {" "}
-                  {""} Progress
-                </Button>
-                <Button className="diet_buttons_sub"> {""} History</Button>
-              </div>
-              <div className="strings">
-                <h3>
-                  <i>
-                    <b>Welcome to the route for <span style={{color:'#fcdf00', textShadow: '2px 2px #373950'}}> HEALTHY</span> life!</b>
-                  </i>
-                </h3>
-                <p>
-                  Start tracking your calories intake according to your
-                  targetted goal!
-                </p>
-              </div>
-              
-            </div>
+            
             <Grid container>
               <Grid item xs={4} >
                
@@ -147,18 +126,6 @@ export default function DietPlan() {
                     {""} Add Food Item
                   </Button>
                 </div> */}
-                </div>
-                <div className='add_food_div'> 
-                
-                {targetVisible ? (<div><h4>Set Your GOAL<IconButton className="diet_buttons_sub" onClick={viewtargetInfo}>
-                <i class="fas fa-arrow-down"></i>
-                </IconButton> </h4> 
-                <DietGoalSetter isVisible={() => viewtargetInfo()} /></div>
-              ) : (<div ><h4>Set Your GOAL
-                <IconButton className="diet_buttons_sub" onClick={viewtargetInfo}>
-                <i class="fas fa-arrow-up"></i>
-                </IconButton></h4> </div>
-              )}
                 </div>
               </Grid>{" "}
               <Grid item xs={7} 

@@ -1,5 +1,4 @@
-.diet_info_item {
-    /* border: #f7bb06 4px solid; */
+/* .diet_info_item {
         margin: 2em;
     border-radius: 50%;
     height: 100px;
@@ -8,7 +7,6 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    /* padding: 10px; */
     box-shadow: 2px 2px 2px 2px #373950;
     background-color: aliceblue;
     
@@ -24,4 +22,4 @@
 .foodTable_grid{
     background-color: #f4c805;
     border-radius: 10px;
-  }
+  } */
