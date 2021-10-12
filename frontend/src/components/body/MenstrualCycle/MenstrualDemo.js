@@ -88,7 +88,44 @@ export default function MenstrualDemo(){
       useEffect(() => {
         getInitialData();
       }, []);
-
+       
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const id = user._id;
+        let userEmail = user.email;
+    
+        try {
+          const res = await axios.post(
+            "http://localhost:5000/user/setup-initial-data",
+            {
+              startDate,
+              endDate,
+              duration,
+              cycleLength,
+              userEmail,
+            },
+            {
+              headers: { Authorization: token, userid: id },
+            }
+          );
+    
+          setInitialData({ ...initialData, err: "", success: res.data.msg });
+          console.log("nn ", res.data.msg);
+          localStorage.setItem("UserMenstrualInfo", id);
+          handle(id);
+          history.push("/menstrual-cycle");
+        } catch (err) {
+          err.response.data.msg &&
+            setInitialData({
+              ...initialData,
+              err: err.response.data.msg,
+              success: "",
+            });
+          // console.log("nn ",err.response.data.msg)
+        }
+      };
+      
       const handleUpdate = async (e) => {
         e.preventDefault();
     
@@ -137,6 +174,72 @@ export default function MenstrualDemo(){
     Demo(arg.dateStr);
     setisViewEnabled(false);
   };
+
+  const visibility = () => {
+    if (visible) {
+          //  showDurationAndCycleLength()
+  return (
+    <>
+      {
+  <Grid container alignItems="center">
+  <TextField
+  className="input_fields"
+  fullWidth
+  type="number"
+  required
+  label="Duration of each cycle"
+  id="duration"
+  name="duration"
+  placeholder="Duration"
+  onChange={handleChangeInput}
+  value={duration}
+  variant="outlined"
+  InputLabelProps={{
+      shrink: false,
+  }}
+  />
+</Grid>
+} {
+<Grid container alignItems="center">
+  <TextField
+  className="input_fields"
+  fullWidth
+  type="number"
+  required
+  label="Cycle Length"
+  id="cycleLength"
+  name="cycleLength"
+  placeholder="Cycle Length"
+  onChange={handleChangeInput}
+  value={cycleLength}
+  variant="outlined"
+  InputLabelProps={{
+      shrink: false,
+  }}
+  />
+</Grid>
+    }
+    <div></div>
+    {
+    <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Save Initial Information
+    </Button> 
+    }
+    </>
+  );
+
+}else{
+   //  showUpdateInitialButton()
+   return (
+      <>
+         <div>
+         {
+          <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Update Previous Information
+          </Button>
+         }</div>
+    </>
+  );
+}
+};
 
     return(
         <div>
@@ -252,8 +355,8 @@ export default function MenstrualDemo(){
                                     />
                                 </Grid>
                                 {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
-                                <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Submit</Button> */
-                                
+                                {/* <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Submit</Button>  */}
+                               
                             </div>
                         </div>
                         <div className="mens_cal">
