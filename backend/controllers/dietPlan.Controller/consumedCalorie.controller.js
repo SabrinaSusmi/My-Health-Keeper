@@ -174,13 +174,26 @@ const getDietSummaryOfTheDay = async (req, res) => {
   dates = new Date().toISOString().slice(0, 10);
   console.log(dates);
   // ,date:{'$reqex':dates}
-  dailyCalorie.find({ user: user }).then((data) => {
-    data.forEach((element) => {
-      if (element.date.toISOString().slice(0, 10) == dates)
-        console.log("dhbhynd ", element);
-      res.send(element);
+  dailyCalorie
+    .find({ user: user })
+    .then((data) => {
+      let dateElement = [];
+      data.forEach((element) => {
+        if (element.date.toISOString().slice(0, 10) == dates) {
+          dateElement.push(element);
+          console.log("dhbhynd ", element.date.toISOString().slice(0, 10));
+          // res.send(element);
+
+        }
+
+      });
+      console.log(dateElement[0]);
+      res.send(dateElement[0])
+
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 module.exports = {
