@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.med_today_header {
+.med_today_header, .med_done_header {
   width: 70%;
   margin: 0 auto;
   /* border: #063742 1px solid; */
@@ -12,7 +12,7 @@
   border-radius: 20px 20px 0px 0px;
 }
 
-.med_today_header h3{
+.med_today_header h3, .med_done_header h3{
   /* margin-top: 1em; */
   margin-bottom: 2em;
   font-weight: 700;
@@ -20,15 +20,20 @@
   font-size: 2.4rem;
 }
 
-.med_today_box, .ongoing_med_box {
+.med_today_box, .ongoing_med_box, .done_med_box {
+  display: flex;
   width: 60%;
   margin: 0 auto;
   /* border: #fd8412 1px solid; */
-  display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 4em;
   position: relative;
+  flex-wrap: wrap;
+}
+
+.ongoing_med_box, .done_med_box {
+  width: 80%;
 }
 
 .med_today_card {
@@ -63,7 +68,7 @@
 }
 
 .ongoing_med_body {
-  border: #007cba 1px solid;
+  /* border: #007cba 1px solid; */
   margin-top: 2rem;
   background-image: url("../images/med3.jpg");
   background-size: cover;
@@ -94,7 +99,7 @@
 
 .ongoing_med_card {
   display: inline-block;
-  width: 26%;
+  width: 20%;
   padding: 15px 35px 15px 35px;
   background-color: transparent;
   /* background-image: linear-gradient(180deg, #35C7DF 0%, #075AC9 100%); */
@@ -102,9 +107,10 @@
   background-color: #ffffff;
   border-radius: 3px 3px 3px 3px;
   border: 2px solid #007cba;
+  margin: 1em;
 }
 
-.ongoing_med_card h2 {
+.ongoing_med_card h2, .done_med_card h2 {
   text-align: center;
   margin: 20px;
 }
@@ -136,38 +142,19 @@
   margin: 0 auto;
 }
 
-.reminder_buttons {
-  width: 30%;
-  margin-right: 0;
-  margin-left: auto;
+.done_med_body {
+  margin-top: 4em;
 }
 
-.reminder_buttons > .reminder_buttons_sub {
+.done_med_card {
+  background-image: linear-gradient(180deg, #35C7DF 0%, #075AC9 100%);
   width: 20%;
-  background-color: #063742;
-  color: white;
-  display: inline;
-  margin-left: 1em;
-  padding: 10px;
-  text-decoration: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
+  margin: 1em;
+  padding: 15px 35px 15px 35px;
+  color: #ffffff;
 }
 
-.containerMed {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 40%;
-  width: 40%;
 
-  background: inherit;
-  margin-left: 30%;
-  margin-right: 20%;
-  border-radius: 5px;
-}
  .labels {
   margin-left: 20%;
   margin-bottom: 4px;
@@ -187,90 +174,3 @@
   display: grid;
   background-color: #075AC9;
 }
-
-.reminder {
-  min-width: 100%;
-  min-height: 100%;
-  background: inherit;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-}
-.reminder_header {
-  margin: 0.2rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 60%;
-  min-height: 5%;
-  border-radius: 8px;
-  border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 20px 20px 40px #bebebe, -20px -20px 60px #ffffff;
-  position: relative;
-}
-
-.reminder_header > .button {
-  font-size: 1rem;
-  width: 50%;
-  cursor: pointer;
-  margin: 2%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  color: black;
-  border-radius: 20px;
-  border: 2px solid #063742;
-  transition-duration: 0.4s;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.2), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
-}
-
-.reminder_header > .button:hover {
-  background-color: #0a5b6d;
-  color: white;
-}
-
-.reminder_card > .btn > DeleteIcon {
-  background-color: #063742;
-  color: #063742;
-  align-content: flex-end;
-}
-
-.reminder_body {
-  width: 100%;
-}
-
-.reminder_card {
-  display: flex;
-  flex-direction: column;
-  display: inline-block;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 16px;
-
-  margin: 2rem;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  max-width: 350px;
-  border-radius: 10px;
-  background: #cdecf9;
-  box-shadow: 8px 8px 16px #aec9d4, -8px -8px 16px #ecffff;
-}
-
-.reminder_card > h2 {
-  margin-bottom: 0.3rem;
-  color: #2a3544;
-  text-shadow: 2px 2px whitesmoke;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-weight: bold;
-}
-
-.reminder_card > p {
-  color: rgb(63, 43, 43);
-  font-weight: bold;
-  margin: 0.3rem;
-}
-

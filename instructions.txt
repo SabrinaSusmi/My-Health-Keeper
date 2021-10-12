@@ -25,3 +25,5 @@ npm i chai child_process cloudinary csvtojson date-and-time fast-csv jest mocha 
 https://www.kaggle.com/nih-chest-xrays/data
 
 https://developer.edamam.com/food-database-api
+
+https://www.kaggle.com/amyjang/tensorflow-pneumonia-classification-on-x-rays
