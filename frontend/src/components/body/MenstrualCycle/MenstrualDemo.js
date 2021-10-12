@@ -125,7 +125,7 @@ export default function MenstrualDemo(){
           // console.log("nn ",err.response.data.msg)
         }
       };
-      
+
       const handleUpdate = async (e) => {
         e.preventDefault();
     
@@ -221,7 +221,7 @@ export default function MenstrualDemo(){
     }
     <div></div>
     {
-    <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Save Initial Information
+    <Button className="mens_button" variant="contained" onClick={handleSubmit} type={onsubmit}>Save Initial Information
     </Button> 
     }
     </>
@@ -243,7 +243,8 @@ export default function MenstrualDemo(){
 
     return(
         <div>
-            
+             {err && showErrMsg(err)}
+             {success && showSuccessMsg(success)}
             <div
                 class="bg_image"
                 style={{
@@ -282,11 +283,14 @@ export default function MenstrualDemo(){
                             </div>
                             <hr></hr>
                             <div className="input_form">
+                              {
                                 <Grid align='center'>
                                     <h4>Input your data 💓 </h4>
                                     <br></br>
                                 </Grid>
-                                {/* <Grid container  alignItems="center" >
+                               }
+                               {
+                                 <Grid container  alignItems="center" >
                                     <TextField
                                     className="input_fields"
                                     fullWidth
@@ -302,6 +306,8 @@ export default function MenstrualDemo(){
                                     }}
                                     />
                                 </Grid>
+                                  }
+                                  {
                                 <Grid container alignItems="center">
                                     <TextField
                                     className="input_fields"
@@ -318,44 +324,10 @@ export default function MenstrualDemo(){
                                     }}
                                     />
                                 </Grid>
-                                <Grid container alignItems="center">
-                                    <TextField
-                                    className="input_fields"
-                                    fullWidth
-                                    type="number"
-                                    required
-                                    label="Duration of each cycle"
-                                    id="duration"
-                                    name="duration"
-                                    placeholder="Duration"
-                                    onChange={handleChangeInput}
-                                    value={duration}
-                                    variant="outlined"
-                                    InputLabelProps={{
-                                        shrink: false,
-                                    }}
-                                    />
-                                </Grid>
-                                <Grid container alignItems="center">
-                                    <TextField
-                                    className="input_fields"
-                                    fullWidth
-                                    type="number"
-                                    required
-                                    label="Cycle Length"
-                                    id="cycleLength"
-                                    name="cycleLength"
-                                    placeholder="Cycle Length"
-                                    onChange={handleChangeInput}
-                                    value={cycleLength}
-                                    variant="outlined"
-                                    InputLabelProps={{
-                                        shrink: false,
-                                    }}
-                                    />
-                                </Grid>
-                                {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
-                                {/* <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Submit</Button>  */}
+                                  }
+                                  {visibility()}
+                                
+                                
                                
                             </div>
                         </div>
