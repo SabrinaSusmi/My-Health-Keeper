@@ -177,9 +177,11 @@ export default function MenstrualDemo(){
                                     <p>Want to know about your period?</p>
                                 </div>
                             </div>
+                            <hr></hr>
                             <div className="input_form">
                                 <Grid align='center'>
                                     <h4>Input your data 💓 </h4>
+                                    <br></br>
                                 </Grid>
                                 {/* <TextField label='Start date' placeholder='Enter username' fullWidth required/>
                                 <TextField label='End date' placeholder='Enter password' type='password' fullWidth required/> */}
@@ -215,7 +217,42 @@ export default function MenstrualDemo(){
                                     }}
                                     />
                                 </Grid>
-                                
+                                <Grid container alignItems="center">
+                                    <TextField
+                                    className="input_fields"
+                                    fullWidth
+                                    type="number"
+                                    required
+                                    label="Duration of each cycle"
+                                    id="duration"
+                                    name="duration"
+                                    placeholder="Duration"
+                                    onChange={handleChangeInput}
+                                    value={duration}
+                                    variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: false,
+                                    }}
+                                    />
+                                </Grid>
+                                <Grid container alignItems="center">
+                                    <TextField
+                                    className="input_fields"
+                                    fullWidth
+                                    type="number"
+                                    required
+                                    label="Cycle Length"
+                                    id="cycleLength"
+                                    name="cycleLength"
+                                    placeholder="Cycle Length"
+                                    onChange={handleChangeInput}
+                                    value={cycleLength}
+                                    variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: false,
+                                    }}
+                                    />
+                                </Grid>
                                 {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
                                 <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Submit</Button>
                                 
