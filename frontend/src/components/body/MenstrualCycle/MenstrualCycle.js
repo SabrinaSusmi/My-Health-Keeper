@@ -116,7 +116,6 @@ export default function MenstrualCycle() {
 
   const viewNotes = async (e) => {
     e.preventDefault();
-
     const id = user._id;
     await axios
       .get("http://localhost:5000/user/cycleTracker-display-notes", {

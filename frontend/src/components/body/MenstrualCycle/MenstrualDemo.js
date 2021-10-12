@@ -183,9 +183,7 @@ export default function MenstrualDemo(){
                                     <h4>Input your data 💓 </h4>
                                     <br></br>
                                 </Grid>
-                                {/* <TextField label='Start date' placeholder='Enter username' fullWidth required/>
-                                <TextField label='End date' placeholder='Enter password' type='password' fullWidth required/> */}
-                                <Grid container  alignItems="center" >
+                                {/* <Grid container  alignItems="center" >
                                     <TextField
                                     className="input_fields"
                                     fullWidth
@@ -254,7 +252,7 @@ export default function MenstrualDemo(){
                                     />
                                 </Grid>
                                 {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
-                                <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Submit</Button>
+                                <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Submit</Button> */
                                 
                             </div>
                         </div>
