@@ -20,6 +20,7 @@
     flex-direction: column;
 }
 
+
 .info_section {
     display: flex;
     flex-direction: row;
@@ -82,9 +83,10 @@
 }
 
 .mens_button {
-    margin-top: 30px !important;
-    width: 100px;
-    height: 35px;
+    margin-top: 25px !important;
+    padding: 2rem;
+    width: auto;
+    height: 50%;
     background: rgb(202, 77, 98) !important;
     color: black;
     font-weight: bold;
