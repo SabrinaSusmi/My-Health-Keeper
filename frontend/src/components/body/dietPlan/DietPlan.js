@@ -18,6 +18,10 @@ import { useHistory } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 // import ArrowCircleDownIcon from '@material-ui/icons/ArrowCircleDown';
 import FoodItemTable from "./FoodItemTable";
+import "../../../static/Styling/dietFoodTable.css";
+import "../../../static/Styling/diet.foodItemTable.css";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import DietOverview from "./DietOverview";
 
 export default function DietPlan() {
   const [showFoodModal, setShowFoodModal] = useState(false);
@@ -38,13 +42,12 @@ export default function DietPlan() {
     <div
       class="bg_image"
       style={{
-        backgroundImage: "url(/img/dietPlan.jpg)",
+        backgroundImage: "url(/img/diet.jpg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        minHeight: "90vh",
-        height: "100%",
-        opacity: " 0.8",
+        height: "50vh",
         backgroundPosition: "center",
+        backgroundAttachment: "fixed"
       }}
     >
       <Container
@@ -63,21 +66,25 @@ export default function DietPlan() {
         <pre></pre>
         <pre></pre> <pre></pre> <pre></pre> <pre></pre>
         <Row className="body_feature_row">
-          <Col
-            className="body_feature_column"
-            style={{ position: "fixed" }}
-            sm={2}
-          >
-            <pre></pre>
-            {ShowFeatureButtons()}
-          </Col>
+          
           <Col
             style={{
-              marginLeft: 150,
               display: "flex",
               flexDirection: "column",
             }}
           >
+            <div className="food_header_content">
+              <p>Welcome to the route for HEALTHY life!</p>
+            </div>
+            <div className="food_overview">
+              <div className="food_overview_header">
+                <h3>Overview</h3>
+              </div>
+              <div className="food_overview_box">
+                <DietOverview />
+              </div>
+            </div>
+            
             <div>
               <div className="diet_buttons">
                
@@ -141,6 +148,14 @@ export default function DietPlan() {
                 
               </Grid>
             </Grid>
+          </Col>
+          <Col
+            className="body_feature_column"
+            style={{ position: "fixed" }}
+            sm={2}
+          >
+            <pre></pre>
+            {ShowFeatureButtons()}
           </Col>
         </Row>
       </Container>
