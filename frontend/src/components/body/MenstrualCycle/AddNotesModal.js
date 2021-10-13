@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "@material-ui/core";
+import { useCookies } from "react-cookie";
 
-import "../../../static/Styling/addNotesModal.css";
+const initialState = {
+  startdate: "",
+  enddate: "",
+  duration: "",
+  cycleLength: "",
+  err: "",
+  success: "",
+  eventDate: "",
+  mood: "",
+  symptoms: "",
+  flow: "",
+};
 
 
-const AddNotesModal = (props,setDemo,isViewEnabled) => {
-  const [menstrualNotesData, setmenstrualNotesData] = useState([]);
+const AddNotesModal = (props,demo,isViewEnabled) => {
+  const token = useSelector((state) => state.token);
+  const auth = useSelector((state) => state.auth);
+  const { user, isLogged } = auth;
+
   const [cookies, setCookie] = useCookies(["user"]);
+  const handleNotesShow = () => setisViewEnabled(false);
+  const [initialData, setInitialData] = useState(initialState);
+  const [menstrualNotesData, setmenstrualNotesData] = useState([]);
   const [visible, setVisible] = useState(true);
-  let history = useHistory();
+  const [isNotesAvailable, setisNotesAvailable] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
   const {
     startDate,
     endDate,
@@ -20,6 +47,8 @@ const AddNotesModal = (props,setDemo,isViewEnabled) => {
     symptoms,
     flow,
   } = initialData;
+  let history = useHistory();
+  
 
   if (!props.show) {
     return null;
@@ -37,6 +66,52 @@ const AddNotesModal = (props,setDemo,isViewEnabled) => {
     if (localStorage.getItem("UserMenstrualInfo")) {
       console.log("sxsx  ", cookies.UserMenstrualInfo);
       setVisible(false);
+    }
+  };
+  useEffect(() => {
+    getInitialData();
+  }, []);
+
+  const calendarVisibility = () => {
+    if (!visible) {
+      return (
+        <>
+          <div className="H2">
+            <h2>
+              {" "}
+              <i> Tracking Period At a glance with Notes 📝 </i>{" "}
+            </h2>
+          </div>
+          {isViewEnabled ? (
+            <div className="notes_body">
+              <h4>
+                Notes on <b>{demo}</b>
+              </h4>
+              {" "}
+              {isNotesAvailable ? (
+                <div className="notes_data">
+                  {menstrualNotesData.map((note) => (
+                      <div className="notes_card">
+                        <p>Flow: {note.flow}</p>
+                        <p>Mood: {note.mood}</p>
+                        <p>Symptoms: {note.symptoms}</p>
+                      
+                    </div>
+                  ))}
+                </div>
+              ) : (
+             <h5> No notes are added </h5>          )}
+
+              <Button className="notesButton" onClick={handleNotesShow}>
+                Hide Your Notes
+              </Button>
+            </div>
+          ) : (
+            " "
+          )}
+
+        </>
+      );
     }
   };
 
@@ -67,6 +142,38 @@ const AddNotesModal = (props,setDemo,isViewEnabled) => {
     } else setisViewEnabled(true);
   };
 
+  const saveNotes = async () => {
+    const id = user._id;
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/user/cycleTracker-notes",
+        {
+          eventDate: demo,
+          mood,
+          symptoms,
+          flow,
+        },
+        {
+          headers: { Authorization: token, userid: id },
+        }
+      );
+
+      setInitialData({ ...initialData, err: "", success: res.data.msg });
+      console.log("nn ", res.data.msg);
+      history.push("/menstrual-cycle");
+      handleClose(true);
+      // alert("Notes Added");
+    } catch (err) {
+      err.response.data.msg &&
+        setInitialData({
+          ...initialData,
+          err: err.response.data.msg,
+          success: "",
+        });
+    }
+  };
+
+
 
   return (
     <div className="modal" onClick={props.onClose}>
@@ -77,23 +184,43 @@ const AddNotesModal = (props,setDemo,isViewEnabled) => {
         <div className="modal-body">
           <form className="center">
             <div>
-              <label for="date">Date : </label>
-              <input type="date" name="date" />
+            <label for="date">Date : </label>
+              <input
+                type="date"
+                value={demo}
+                onChange={handleChangeInput}
+                name="eventDate"
+              />
             </div>
 
             <div>
-              <label for="mood">Mood : </label>
-              <input type="mood" name="mood" />
+            <label for="mood">Mood : </label>
+              <input
+                type="mood"
+                value={mood}
+                onChange={handleChangeInput}
+                name="mood"
+              />
             </div>
 
             <div>
-              <label for="symptoms">Symptoms : </label>
-              <input type="symptoms" name="symptoms" />
+            <label for="symptoms">Symptoms : </label>
+              <input
+                type="symptoms"
+                value={symptoms}
+                onChange={handleChangeInput}
+                name="symptoms"
+              />
             </div>
 
             <div>
-              <label for="flow">Flow : </label>
-              <input type="flow" name="flow" />
+            <label for="flow">Flow : </label>
+              <input
+                type="flow"
+                value={flow}
+                onChange={handleChangeInput}
+                name="flow"
+              />
             </div>
             <div >
             </div>
