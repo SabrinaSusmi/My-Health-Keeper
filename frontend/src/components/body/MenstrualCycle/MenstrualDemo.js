@@ -16,7 +16,7 @@ import { useCookies } from "react-cookie";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-
+import AddNotesModal from "./AddNotesModal";
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
@@ -64,11 +64,11 @@ export default function MenstrualDemo(){
         flow,
       } = initialData;
 
-      const [addModalShow, setNotesModal] = useState(false);
+    const [addModalShow, setNotesModal] = useState(false);
     const handleNotesClose = () => setNotesModal(false);
     const handleNotesShow = () => setisViewEnabled(false);
     const [isViewEnabled, setisViewEnabled] = useState(false);
-    const [isNotesAvailable, setisNotesAvailable] = useState(false);
+    
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
@@ -158,7 +158,7 @@ export default function MenstrualDemo(){
         }
       };
 
-      const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const [demo, setDemo] = useState("");
 
   const handleClose = () => setShow(false);
@@ -353,6 +353,12 @@ export default function MenstrualDemo(){
     </Row>
   </Container>
                 </div>
+                <AddNotesModal
+                    demo={setDemo}
+                    handleShow={true}
+                    setisViewEnabled={isViewEnabled}
+
+                  />
                  </div>
     )
 }
