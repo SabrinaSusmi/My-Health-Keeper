@@ -2,14 +2,42 @@ import React, { useState } from "react";
 
 import "../../../static/Styling/addNotesModal.css";
 
-const [menstrualNotesData, setmenstrualNotesData] = useState([]);
-const AddNotesModal = (props) => {
+
+const AddNotesModal = (props,setDemo,isViewEnabled) => {
+  const [menstrualNotesData, setmenstrualNotesData] = useState([]);
+  const [cookies, setCookie] = useCookies(["user"]);
+  const [visible, setVisible] = useState(true);
+  let history = useHistory();
+  const {
+    startDate,
+    endDate,
+    duration,
+    cycleLength,
+    err,
+    success,
+    eventDate,
+    mood,
+    symptoms,
+    flow,
+  } = initialData;
+
   if (!props.show) {
     return null;
   };
+
+  
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setInitialData({ ...initialData, [name]: value, err: "", success: "" });
+  };
+  const handle = (id) => {
+    setCookie("UserMenstrualInfo", id, { path: "/menstrual-cycle" });
+  };
+  const getInitialData = async () => {
+    if (localStorage.getItem("UserMenstrualInfo")) {
+      console.log("sxsx  ", cookies.UserMenstrualInfo);
+      setVisible(false);
+    }
   };
 
   const viewNotes = async (e) => {
