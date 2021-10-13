@@ -119,3 +119,7 @@
 .fc-scroller {
     overflow-y: hidden !important;
  }
+
+ .tips_style{
+     color: black;
+ }

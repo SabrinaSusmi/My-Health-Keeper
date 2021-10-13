@@ -93,7 +93,7 @@ export default function MenstrualDemo() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "100%",
-          opacity: " 0.8",
+          opacity: " 0.9",
           backgroundPosition: "center",
         }}
       >
@@ -111,7 +111,7 @@ export default function MenstrualDemo() {
           <div style={{ backgroundColor: "black", color: "black" }}>
             {ShowHeader(COLORS.spHealthBackground)}
           </div>
-          <pre></pre> <pre></pre> <pre></pre>
+         <pre></pre> 
           <pre></pre>
           <Row className="body_feature_row">
             <Col
@@ -121,6 +121,7 @@ export default function MenstrualDemo() {
             >
               <pre></pre>
               <pre></pre>
+              <pre></pre><pre></pre>
               {ShowFeatureButtons()}
             </Col>
             <Col

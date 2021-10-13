@@ -29,6 +29,7 @@ import DietPlan from "./components/body/dietPlan/DietPlan";
 import DietGoalSetter from "./components/body/dietPlan/DietGoalSetter";
 import DiseasePrediction from "./components/body/diseasePrediction/DiseasePrediction";
 import MenstrualDemo from "./components/body/MenstrualCycle/MenstrualDemo";
+import MenstrualTips from "./components/body/MenstrualCycle/MenstrualTips";
 import DietProgress from "./components/body/dietPlan/DietProgress";
 
 export const UserIDContext = React.createContext();
@@ -132,6 +133,11 @@ function App() {
                 exact
               />
 
+<Route
+                path="/display-menstrual_tips"
+                component={isLogged ? MenstrualTips : Login}
+                exact
+              />
               <Route
                 path="/specialized-health-information"
                 component={isLogged ? specializedHealthInfo : Login}

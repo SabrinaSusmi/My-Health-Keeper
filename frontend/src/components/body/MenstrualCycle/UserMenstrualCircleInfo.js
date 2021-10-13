@@ -5,8 +5,9 @@ import {
   showErrMsg,
   showSuccessMsg,
 } from "../../utils/notification/Notification";
-import { Grid, TextField, Button } from "@material-ui/core";
-
+import { Grid, TextField, Button, Link } from "@material-ui/core";
+import MenstrualTips from "./MenstrualTips";
+import { NavLink } from "react-router-dom";
 export default function UserMenstrualCircleInfo() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
@@ -14,6 +15,9 @@ export default function UserMenstrualCircleInfo() {
   const [numberOfDaysSinceLastCycle, setNumberOfDaysSinceLastCycle] =
     useState("");
   const [lastCycleLength, setCycleLength] = useState("");
+
+  const [showWeightModal, setShowWeightModal] = useState(false);
+  const openWeightModal = () => setShowWeightModal(true);
 
   const getNumberOfDaysSinceLastCycle = async () => {
     axios
@@ -34,7 +38,7 @@ export default function UserMenstrualCircleInfo() {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response.data.cycleLength)
+        console.log(response.data.cycleLength);
         setCycleLength(response.data.cycleLength);
       })
       .catch((err) => {
@@ -44,19 +48,34 @@ export default function UserMenstrualCircleInfo() {
 
   useEffect(() => {
     getNumberOfDaysSinceLastCycle();
-    getCycleLength()
+    getCycleLength();
   }, []);
   return (
     <div className="info_section">
       <div className="info_item">
-        <p>{numberOfDaysSinceLastCycle} days since last period.</p>
+        <p><b>{numberOfDaysSinceLastCycle}</b> days since last period.</p>
       </div>
       <div className="info_item">
-        <p>The last cycle was {lastCycleLength} days long.</p>
+        <p>The last cycle was <b> {lastCycleLength} </b>days long.</p>
       </div>
-      <div className="info_item">
-        <p>Want to know about your period?</p>
-      </div>
+      <Link
+        className="tips_style"
+        style={{color:'black'}}
+        to="/display-menstrual_tips"
+        component={NavLink}
+      >
+        <div
+          className="info_item"
+          style={{ cursor: "pointer" }}
+          onClick={openWeightModal}
+        >
+          <p>Want to know about your period?</p>
+        </div>
+      </Link>
+      {/* <TipsModal
+                    showWeightModal={showWeightModal}
+                    setShowWeightModal={setShowWeightModal}
+                  /> */}
     </div>
   );
 }
