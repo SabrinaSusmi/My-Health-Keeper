@@ -159,20 +159,22 @@ function DisplayMedReminders() {
           ) : ("")}
         </div>
       </div>
-      <div className="reminder_body">
-        
 
-        <div >
-          <h2> &nbsp;Done</h2> <hr></hr>
+      <div className="done_med_body">
+        <div className="med_done_header">
+          <h3>Done Medicines</h3>
         </div>
+        <div className="done_med_box">
         {doneMedReminderList.map((medicines) => (
-          <div className="reminder_card">
+          <div className="done_med_card">
             <h2>{medicines.medname}</h2>
             <p>Description: {medicines.descriptionmed}</p>
             <p>Starting Date: {medicines.startdate.substring(0, 10)}</p>
             <p>Ending Date: {medicines.enddate.substring(0, 10)}</p>
           </div>
         ))}
+        </div>
+        
       </div>
       </Col>
       <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
