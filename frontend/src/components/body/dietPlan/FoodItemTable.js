@@ -7,7 +7,6 @@ import "../../../static/Styling/diet.foodItemTable.css";
 // import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 
@@ -35,14 +34,14 @@ export default function FoodItemTable() {
         setConsumed(res.data.consumedCalories);
         setRequired(res.data.requiredCalories);
         setRemaining(res.data.requiredCalories - res.data.consumedCalories);
-        const percentage = (parseFloat(res.data.consumedCalories / res.data.requiredCalories)*100).toFixed(2);
+        const percentage = (parseFloat(res.data.consumedCalories / res.data.requiredCalories).toFixed(4))*100;
 setMultipleProgress(percentage)
-        console.log(percentage);
+        console.log(res.data);
       });
   };
   useEffect(async () => {
     getFoodConsumed();
-    getDietSummaryOfTheDay();
+    // getDietSummaryOfTheDay();
   }, []);
 
   const deleteFood = async (id) => {
@@ -61,44 +60,6 @@ setMultipleProgress(percentage)
   return (
     <div>
       <div className="food_table">
-        <div className="diet_info_section">
-          <div className="diet_info_item">
-            Required
-            <br></br>
-            {required} kcal
-          </div>
-          <div className="diet_info_item">
-            Consumed
-            <br></br>
-            {consumed} kcal
-          </div>
-          <div className="diet_info_item">
-            
-             <br></br>
-            <p style={remaining < 0 ? { color: "red" } : { color: "#373950" }}>
-            Remaining  {remaining} kcal
-            </p>
-          </div>
-          <div style={{backgroundColor:'white', width: 100, height: 100, borderRadius:'50%',boxShadow: '2px 2px 2px 2px #373950' }}>
-              <CircularProgressbar
-              
-                value={multipleProgress}
-                text={`${multipleProgress}%`}
-                styles={buildStyles({
-                  rotation: 0.25,
-                  strokeLinecap: "butt",
-                  textSize: "16px",
-                  pathTransitionDuration: 0.5,
-                  pathColor: `rgba(68,68,68, ${multipleProgress / 100})`,
-                  textColor: "#373950",
-                  textSize:25,
-                  trailColor: "white",
-                  backgroundColor: "#8fce00",
-                  
-                })}
-              />
-            </div>
-        </div>
         <div className="diet_info_item_progress"></div>
         <Table hover size="md">
           <thead>
