@@ -33,10 +33,6 @@ import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowBasicMensData from "./BasicMensDataDemo";
 const initialState = {
-  startdate: "",
-  enddate: "",
-  duration: "",
-  cycleLength: "",
   err: "",
   success: "",
   eventDate: "",
@@ -50,27 +46,13 @@ export default function MenstrualDemo() {
   const auth = useSelector((state) => state.auth);
   const { user, isLogged } = auth;
 
-  const [cookies, setCookie] = useCookies(["user"]);
-
   const [initialData, setInitialData] = useState(initialState);
-  const [visible, setVisible] = useState(true);
   const [menstrualNotesData, setmenstrualNotesData] = useState([]);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
 
   let history = useHistory();
 
-  const {
-    startDate,
-    endDate,
-    duration,
-    cycleLength,
-    err,
-    success,
-    eventDate,
-    mood,
-    symptoms,
-    flow,
-  } = initialData;
+  const { err, success, eventDate, mood, symptoms, flow } = initialData;
 
   const [addModalShow, setNotesModal] = useState(false);
   const handleNotesClose = () => setNotesModal(false);
@@ -82,88 +64,9 @@ export default function MenstrualDemo() {
     setInitialData({ ...initialData, [name]: value, err: "", success: "" });
   };
 
-  const handle = (id) => {
-    setCookie("UserMenstrualInfo", id, { path: "/menstrual-cycle" });
-  };
-  const getInitialData = async () => {
-    if (localStorage.getItem("UserMenstrualInfo")) {
-      console.log("sxsx  ", localStorage.getItem("UserMenstrualInfo"));
-      setVisible(false);
-    }
-  };
-
   useEffect(() => {
-    getInitialData();
+    // getInitialData();
   }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const id = user._id;
-    let userEmail = user.email;
-
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/user/setup-initial-data",
-        {
-          startDate,
-          endDate,
-          duration,
-          cycleLength,
-          userEmail,
-        },
-        {
-          headers: { Authorization: token, userid: id },
-        }
-      );
-
-      setInitialData({ ...initialData, err: "", success: res.data.msg });
-      console.log("nn ", res.data.msg);
-      localStorage.setItem("UserMenstrualInfo", id);
-      handle(id);
-      history.push("/menstrual-cycle");
-    } catch (err) {
-      err.response.data.msg &&
-        setInitialData({
-          ...initialData,
-          err: err.response.data.msg,
-          success: "",
-        });
-      // console.log("nn ",err.response.data.msg)
-    }
-  };
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-
-    const id = user._id;
-    let userEmail = user.email;
-
-    try {
-      const res = await axios.patch(
-        "http://localhost:5000/user/update-menstrual-data",
-        {
-          startDate,
-          endDate,
-        },
-        {
-          headers: { Authorization: token, userid: id },
-        }
-      );
-
-      setInitialData({ ...initialData, err: "", success: res.data.msg });
-      console.log("nn ", res.data.msg);
-      history.push("/menstrual-cycle");
-    } catch (err) {
-      err.response.data.msg &&
-        setInitialData({
-          ...initialData,
-          err: err.response.data.msg,
-          success: "",
-        });
-      // console.log("nn ",err.response.data.msg)
-    }
-  };
 
   const [show, setShow] = useState(false);
   const [demo, setDemo] = useState("");
@@ -182,89 +85,8 @@ export default function MenstrualDemo() {
     setisViewEnabled(false);
   };
 
-  const visibility = () => {
-    if (visible) {
-      //  showDurationAndCycleLength()
-      return (
-        <>
-          {
-            <Grid container alignItems="center">
-              <TextField
-                className="input_fields"
-                fullWidth
-                type="number"
-                required
-                label="Duration of each cycle"
-                id="duration"
-                name="duration"
-                placeholder="Duration"
-                onChange={handleChangeInput}
-                value={duration}
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: false,
-                }}
-              />
-            </Grid>
-          }
-          <hr></hr>
-          {
-            <Grid container alignItems="center">
-              <TextField
-                className="input_fields"
-                fullWidth
-                type="number"
-                required
-                label="Cycle Length"
-                id="cycleLength"
-                name="cycleLength"
-                placeholder="Cycle Length"
-                onChange={handleChangeInput}
-                value={cycleLength}
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: false,
-                }}
-              />
-            </Grid>
-          }
-          <div></div>
-          {
-            <Button
-              className="mens_button"
-              variant="contained"
-              onClick={handleSubmit}
-              type={onsubmit}
-            >
-              Save Initial Information
-            </Button>
-          }
-        </>
-      );
-    } else {
-      //  showUpdateInitialButton()
-      return (
-        <>
-          <div>
-            {
-              <Button
-                className="mens_button"
-                variant="contained"
-                onClick={handleUpdate}
-                type={onsubmit}
-              >
-                Update Previous Information
-              </Button>
-            }
-          </div>
-        </>
-      );
-    }
-  };
-
   return (
     <div>
-     
       <div
         class="bg_image"
         style={{
@@ -308,8 +130,10 @@ export default function MenstrualDemo() {
                 display: "flex",
                 flexDirection: "column",
               }}
-            > {err && showErrMsg(err)}
-            {success && showSuccessMsg(success)}
+            >
+              {" "}
+              {err && showErrMsg(err)}
+              {success && showSuccessMsg(success)}
               <div className="mens">
                 <div className="mens_body">
                   <div className="mens_info">
@@ -325,16 +149,7 @@ export default function MenstrualDemo() {
                       </div>
                     </div>
                     <hr></hr>
-                    <div className="input_form">
-                      {
-                        <Grid align="center">
-                          <h4>Input your data 💓 </h4>
-                        </Grid>
-                      }
-                      {ShowBasicMensData()}
-                      
-                      {/* {ShowBasicMensData()} */}
-                    </div>
+                    {ShowBasicMensData()}
                   </div>
                   <div className="mens_cal">
                     <div className="cal_body">
