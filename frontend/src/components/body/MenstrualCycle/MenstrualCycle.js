@@ -131,8 +131,6 @@ export default function MenstrualCycle() {
         } else setisNotesAvailable(false)
      
        
-        
-       
       })
       .catch((err) => {
        

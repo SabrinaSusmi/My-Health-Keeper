@@ -48,6 +48,7 @@ export default function MenstrualDemo(){
     const [initialData, setInitialData] = useState(initialState);
     const [visible, setVisible] = useState(true);
     const [menstrualNotesData, setmenstrualNotesData] = useState([]);
+    const [isNotesAvailable, setisNotesAvailable] = useState(false);
     
     let history = useHistory();
 
@@ -354,7 +355,7 @@ export default function MenstrualDemo(){
   </Container>
                 </div>
                 <AddNotesModal
-                    demo={setDemo}
+                    demo={demo}
                     handleShow={true}
                     setisViewEnabled={isViewEnabled}
 
