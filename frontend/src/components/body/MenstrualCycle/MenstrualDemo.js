@@ -20,7 +20,6 @@ import {
 
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useCookies } from "react-cookie";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -50,8 +49,6 @@ export default function MenstrualDemo() {
   const [menstrualNotesData, setmenstrualNotesData] = useState([]);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
 
-  let history = useHistory();
-
   const { err, success, eventDate, mood, symptoms, flow } = initialData;
 
   const [addModalShow, setNotesModal] = useState(false);
@@ -79,7 +76,6 @@ export default function MenstrualDemo() {
   };
 
   const handleDateClick = (arg) => {
-    // e.preventDefault();
     handleShow(true);
     Demo(arg.dateStr);
     setisViewEnabled(false);
