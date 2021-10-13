@@ -148,7 +148,7 @@ export default function MenstrualDemo() {
                         <p>Want to know about your period?</p>
                       </div>
                     </div>
-                    <hr></hr>
+                    
                     {ShowBasicMensData()}
                   </div>
                   <div className="mens_cal">

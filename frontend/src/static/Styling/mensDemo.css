@@ -67,8 +67,10 @@
 .input_form {
     background-color: rgb(247, 188, 193);
     padding: 15px;
-    width: 300px;
-    height: 300px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 350px;
+    /* height: 300px; */
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -83,8 +85,8 @@
 
 .mens_button {
     margin-top: 30px !important;
-    width: 100px;
-    height: 35px;
+    width: auto;
+    height: auto;
     background: rgb(202, 77, 98) !important;
     color: black;
     font-weight: bold;
