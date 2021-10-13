@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import {
-  showErrMsg,
-  showSuccessMsg,
-} from "../../utils/notification/Notification";
-import { Grid, TextField, Button, Link } from "@material-ui/core";
-import MenstrualTips from "./MenstrualTips";
 import { NavLink } from "react-router-dom";
+import { Link } from "@material-ui/core";
 export default function UserMenstrualCircleInfo() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
@@ -15,9 +10,6 @@ export default function UserMenstrualCircleInfo() {
   const [numberOfDaysSinceLastCycle, setNumberOfDaysSinceLastCycle] =
     useState("");
   const [lastCycleLength, setCycleLength] = useState("");
-
-  const [showWeightModal, setShowWeightModal] = useState(false);
-  const openWeightModal = () => setShowWeightModal(true);
 
   const getNumberOfDaysSinceLastCycle = async () => {
     axios
@@ -67,15 +59,11 @@ export default function UserMenstrualCircleInfo() {
         <div
           className="info_item"
           style={{ cursor: "pointer" }}
-          onClick={openWeightModal}
         >
           <p>Want to know about your period?</p>
         </div>
       </Link>
-      {/* <TipsModal
-                    showWeightModal={showWeightModal}
-                    setShowWeightModal={setShowWeightModal}
-                  /> */}
+     
     </div>
   );
 }
