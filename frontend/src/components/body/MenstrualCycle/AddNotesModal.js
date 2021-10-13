@@ -2,10 +2,43 @@ import React, { useState } from "react";
 
 import "../../../static/Styling/addNotesModal.css";
 
+const [menstrualNotesData, setmenstrualNotesData] = useState([]);
 const AddNotesModal = (props) => {
   if (!props.show) {
     return null;
-  }
+  };
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setInitialData({ ...initialData, [name]: value, err: "", success: "" });
+  };
+
+  const viewNotes = async (e) => {
+    e.preventDefault();
+    const id = user._id;
+    await axios
+      .get("http://localhost:5000/user/cycleTracker-display-notes", {
+        headers: { Authorization: token, userid: id, dates: demo },
+      })
+      .then((response) => {
+        setmenstrualNotesData(response.data);
+        console.log(typeof(response.data))
+        if (!(response.data).length==0) {
+          setisNotesAvailable(true);    
+        } else setisNotesAvailable(false)
+     
+       
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log(demo);
+    handleClose();
+    if (isViewEnabled) {
+      setisViewEnabled(false);
+    } else setisViewEnabled(true);
+  };
+
 
   return (
     <div className="modal" onClick={props.onClose}>
