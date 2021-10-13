@@ -49,7 +49,7 @@ setInterval(() => {
 const cycleTrackerControllers = {
    updateInitialData: async (req, res) => {
     try {
-      let user = req.headers["userid"];
+      let user = req.user.id;
 
       const { startDate, endDate } = req.body;
       await Cycle.findOneAndUpdate(
@@ -69,13 +69,14 @@ const cycleTrackerControllers = {
   },
   isInitialDataAvailable: async (req, res) => {
     try {
-      let user = req.headers["userid"];
+      let user = req.user.id;
 
       const check = await Cycle.findOne({
         user,
       });
 
       if (check) {
+        console.log('cddbaqhgd ')
         console.log(check.startDate);
         return res.json(check);
       }
@@ -85,7 +86,7 @@ const cycleTrackerControllers = {
   },
 
   setupInitialData: async (req, res) => {
-    let user = req.headers["userid"];
+    let user = req.user.id;
     const { startDate, endDate, duration, cycleLength, userEmail } = req.body;
     if (!startDate || !endDate || !duration || !cycleLength)
       return res.json({ msg: "Please fill in all fields." });
