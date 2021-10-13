@@ -11,13 +11,12 @@ import {
 } from "../../utils/notification/Notification";
 
 import { useHistory } from "react-router-dom";
-import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useCookies } from "react-cookie";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-
+import AddNotesModal from "./AddNotesModal";
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
@@ -49,6 +48,7 @@ export default function MenstrualDemo(){
     const [initialData, setInitialData] = useState(initialState);
     const [visible, setVisible] = useState(true);
     const [menstrualNotesData, setmenstrualNotesData] = useState([]);
+    const [isNotesAvailable, setisNotesAvailable] = useState(false);
     
     let history = useHistory();
 
@@ -65,11 +65,11 @@ export default function MenstrualDemo(){
         flow,
       } = initialData;
 
-      const [addModalShow, setNotesModal] = useState(false);
+    const [addModalShow, setNotesModal] = useState(false);
     const handleNotesClose = () => setNotesModal(false);
     const handleNotesShow = () => setisViewEnabled(false);
     const [isViewEnabled, setisViewEnabled] = useState(false);
-    const [isNotesAvailable, setisNotesAvailable] = useState(false);
+    
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
@@ -89,6 +89,43 @@ export default function MenstrualDemo(){
       useEffect(() => {
         getInitialData();
       }, []);
+       
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const id = user._id;
+        let userEmail = user.email;
+    
+        try {
+          const res = await axios.post(
+            "http://localhost:5000/user/setup-initial-data",
+            {
+              startDate,
+              endDate,
+              duration,
+              cycleLength,
+              userEmail,
+            },
+            {
+              headers: { Authorization: token, userid: id },
+            }
+          );
+    
+          setInitialData({ ...initialData, err: "", success: res.data.msg });
+          console.log("nn ", res.data.msg);
+          localStorage.setItem("UserMenstrualInfo", id);
+          handle(id);
+          history.push("/menstrual-cycle");
+        } catch (err) {
+          err.response.data.msg &&
+            setInitialData({
+              ...initialData,
+              err: err.response.data.msg,
+              success: "",
+            });
+          // console.log("nn ",err.response.data.msg)
+        }
+      };
 
       const handleUpdate = async (e) => {
         e.preventDefault();
@@ -122,7 +159,7 @@ export default function MenstrualDemo(){
         }
       };
 
-      const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const [demo, setDemo] = useState("");
 
   const handleClose = () => setShow(false);
@@ -139,16 +176,85 @@ export default function MenstrualDemo(){
     setisViewEnabled(false);
   };
 
+  const visibility = () => {
+    if (visible) {
+          //  showDurationAndCycleLength()
+  return (
+    <>
+      {
+  <Grid container alignItems="center">
+  <TextField
+  className="input_fields"
+  fullWidth
+  type="number"
+  required
+  label="Duration of each cycle"
+  id="duration"
+  name="duration"
+  placeholder="Duration"
+  onChange={handleChangeInput}
+  value={duration}
+  variant="outlined"
+  InputLabelProps={{
+      shrink: false,
+  }}
+  />
+</Grid>
+}
+<hr></hr>
+ {
+<Grid container alignItems="center">
+  <TextField
+  className="input_fields"
+  fullWidth
+  type="number"
+  required
+  label="Cycle Length"
+  id="cycleLength"
+  name="cycleLength"
+  placeholder="Cycle Length"
+  onChange={handleChangeInput}
+  value={cycleLength}
+  variant="outlined"
+  InputLabelProps={{
+      shrink: false,
+  }}
+  />
+</Grid>
+    }
+    <div></div>
+    {
+    <Button className="mens_button" variant="contained" onClick={handleSubmit} type={onsubmit}>Save Initial Information
+    </Button> 
+    }
+    </>
+  );
+
+}else{
+   //  showUpdateInitialButton()
+   return (
+      <>
+         <div>
+         {
+          <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Update Previous Information
+          </Button>
+         }</div>
+    </>
+  );
+}
+};
+
     return(
         <div>
-            
+             {err && showErrMsg(err)}
+             {success && showSuccessMsg(success)}
             <div
                 class="bg_image"
                 style={{
                     backgroundImage: "url(/img/mens_pink.jpg)",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    height: "100vh",
+                    height: "100%",
                     opacity: " 0.8",
                     backgroundPosition: "center",
                 }}
@@ -178,13 +284,15 @@ export default function MenstrualDemo(){
                                     <p>Want to know about your period?</p>
                                 </div>
                             </div>
+                            <hr></hr>
                             <div className="input_form">
+                              {
                                 <Grid align='center'>
                                     <h4>Input your data 💓 </h4>
                                 </Grid>
-                                {/* <TextField label='Start date' placeholder='Enter username' fullWidth required/>
-                                <TextField label='End date' placeholder='Enter password' type='password' fullWidth required/> */}
-                                <Grid container  alignItems="center" >
+                               }
+                               {
+                                 <Grid container  alignItems="center" >
                                     <TextField
                                     className="input_fields"
                                     fullWidth
@@ -200,6 +308,9 @@ export default function MenstrualDemo(){
                                     }}
                                     />
                                 </Grid>
+                                  }
+                                  <hr></hr>
+                                  {
                                 <Grid container alignItems="center">
                                     <TextField
                                     className="input_fields"
@@ -216,10 +327,11 @@ export default function MenstrualDemo(){
                                     }}
                                     />
                                 </Grid>
+                                  }
+                                  {visibility()}
                                 
-                                {/* <Button className="mens_button" type='submit' color='primary' variant="contained">Submit</Button> */}
-                                <Button className="mens_button" variant="contained" onClick={handleUpdate} type={onsubmit}>Submit</Button>
                                 
+                               
                             </div>
                         </div>
                         <div className="mens_cal">
@@ -242,6 +354,12 @@ export default function MenstrualDemo(){
     </Row>
   </Container>
                 </div>
+                <AddNotesModal
+                    demo={demo}
+                    handleShow={true}
+                    setisViewEnabled={isViewEnabled}
+
+                  />
                  </div>
     )
 }
