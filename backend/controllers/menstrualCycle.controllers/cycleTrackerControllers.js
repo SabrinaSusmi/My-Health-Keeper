@@ -59,9 +59,10 @@ const cycleTrackerControllers = {
         console.log(currentDate.getTime(), "         ", lastEndDate.getTime());
 
         // console.log(typeof(date2),'   ',typeof(currentDate))
-        let diff = Math.floor(currentDate - lastEndDate);
+        let diff = Math.abs(currentDate - lastEndDate);
         let cycleLength = diff / (1000 * 60 * 60 * 24);
-        res.send(cycleLength);
+        // console.log(Math.floor(cycleLength))
+        res.send({CycleLength:Math.floor(cycleLength)});
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +78,7 @@ const cycleTrackerControllers = {
       .then((ans) => {
         const cycleLength = ans[0]["cycleLength"];
         console.log('cycleLength ',cycleLength)
-        res.send(cycleLength);
+        res.send({cycleLength:cycleLength});
       })
       .catch((err) => {
         console.log(err);

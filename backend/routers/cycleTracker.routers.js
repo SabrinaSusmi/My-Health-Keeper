@@ -9,5 +9,7 @@ router.post("/cycleTracker-notes", auth, notesCycleTrackerControllers.createNote
 router.get("/cycleTracker-display-notes", auth, notesCycleTrackerControllers.displayNotes);
 router.patch("/update-menstrual-data",auth,cycleTrackerCtrl.updateInitialData)
 router.get("/is-initial-data-available",auth,cycleTrackerCtrl.isInitialDataAvailable)
+router.get('/get_last_period_days_number',auth,cycleTrackerCtrl.getTotalDaysSincePeriod)
+router.get('/last_cycle_length',auth,cycleTrackerCtrl.getCycleLength)
 
 module.exports = router;

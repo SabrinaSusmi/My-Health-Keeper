@@ -31,6 +31,9 @@ import { Container, Row, Col } from "react-grid-system";
 import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowBasicMensData from "./BasicMensDataDemo";
+import UserMenstrualCircleInfo from './UserMenstrualCircleInfo'
+
+
 const initialState = {
   err: "",
   success: "",
@@ -133,17 +136,7 @@ export default function MenstrualDemo() {
               <div className="mens">
                 <div className="mens_body">
                   <div className="mens_info">
-                    <div className="info_section">
-                      <div className="info_item">
-                        <p>17 days since last period.</p>
-                      </div>
-                      <div className="info_item">
-                        <p>The last cycle was 28 days long.</p>
-                      </div>
-                      <div className="info_item">
-                        <p>Want to know about your period?</p>
-                      </div>
-                    </div>
+                  {UserMenstrualCircleInfo()}
                     
                     {ShowBasicMensData()}
                   </div>
