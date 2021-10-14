@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "@material-ui/core";
+import { Button, TextareaAutosize, TextField } from "@material-ui/core";
 import { useCookies } from "react-cookie";
 import ViewNotesSection from "./ViewNotesSection";
 import { Container } from "react-grid-system";
 import { COLORS } from "../../themeColors";
 import { ShowHeader } from "../../header/Header";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 const initialState = {
   startdate: "",
   enddate: "",
@@ -24,11 +25,13 @@ const initialState = {
   flow: "",
 };
 
-
-
-
-const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,isViewEnabled}) => {
-  
+const AddNotesModal = ({
+  demo,
+  showNotesModal,
+  setShowNotesModal,
+  setisViewEnabled,
+  isViewEnabled,
+}) => {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
   const { user } = auth;
@@ -39,14 +42,8 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
   const handleClose = () => setShowNotesModal(false);
   const [show, setShow] = useState();
-  const {
-    mood,
-    symptoms,
-    flow,
-  } = initialData;
+  const { mood, symptoms, flow } = initialData;
   let history = useHistory();
-  
-
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -61,9 +58,6 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
   useEffect(() => {
     getInitialData();
   }, []);
-
-
-  
 
   const saveNotes = async () => {
     const id = user._id;
@@ -90,9 +84,9 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
       alert("Notes Added");
     } catch (err) {
       err.response.data.msg &&
-      setTimeout(function () {
-        setInitialData(initialData);
-      }, 10);
+        setTimeout(function () {
+          setInitialData(initialData);
+        }, 10);
     }
   };
 
@@ -105,13 +99,12 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
       })
       .then((response) => {
         setmenstrualNotesData(response.data);
-        console.log(typeof(response.data))
-        if (!(response.data).length==0) {
-          setisNotesAvailable(true);    
+        console.log(typeof response.data);
+        if (!response.data.length == 0) {
+          setisNotesAvailable(true);
         } else {
-          setisNotesAvailable(false)
+          setisNotesAvailable(false);
         }
- 
       })
       .catch((err) => {
         console.log(err);
@@ -124,11 +117,8 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
     } else setisViewEnabled(true);
   };
 
-
   return (
-    
-    
-      <div>
+    <div>
       <Modal
         size="xxl"
         aria-labelledby="contained-modal-title-vcenter"
@@ -137,94 +127,117 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
         onHide={handleClose}
       >
         <Modal.Header>
-          <Modal.Title>📝 Add Notes </Modal.Title>
+          <Modal.Title>📝 Your Period Journal </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="center">
-            <div>
-              <label for="date">Date : </label>
-              <input
-                type="date"
-                value={demo}
-                onChange={handleChangeInput}
-                name="eventDate"
-              />
-            </div>
-            <div>
-              <label for="mood">Mood : </label>
-              <input
-                type="mood"
-                value={mood}
-                onChange={handleChangeInput}
-                name="mood"
-              />
-            </div>
-            <div>
-              <label for="symptoms">Symptoms : </label>
-              <input
-                type="symptoms"
-                value={symptoms}
-                onChange={handleChangeInput}
-                name="symptoms"
-              />
-            </div>
-            <div>
-              <label for="flow">Flow : </label>
-              <input
-                type="flow"
-                value={flow}
-                onChange={handleChangeInput}
-                name="flow"
-              />
-            </div>
-          </form>
+          <div style={{ marginBottom: 18 }}>
+           
+            <TextField
+            style={{marginLeft:'56%'}}
+              
+              required
+              type="date"
+              // id="startDate"
+              name="eventDate"
+              value={demo}
+              onChange={handleChangeInput}
+              variant="standard"
+              InputLabelProps={{
+                shrink: false,
+              }}
+            />
+          </div>
+          <h6 className="add_notes_style">How's your mood?</h6>
+          <div className="add_notes_style">
+            <TextareaAutosize
+              style={{ width: 400 }}
+              type="mood"
+              value={mood}
+              onChange={handleChangeInput}
+              name="mood"
+            />
+          </div>
+          <pre></pre>
+          <h6 className="add_notes_style">Do you feel any Discomfort?</h6>
+          <div className="add_notes_style">
+            <TextareaAutosize
+              style={{ width: 400 }}
+              rows="2"
+              type="mood"
+              value={mood}
+              onChange={handleChangeInput}
+              name="mood"
+            />
+          </div>
+
+          <pre></pre>
+          <h6 className="add_notes_style">What about flow?</h6>
+          <div className="add_notes_style">
+            <TextareaAutosize
+              style={{ width: 400 }}
+              type="mood"
+              value={mood}
+              onChange={handleChangeInput}
+              name="mood"
+            />
+          </div>
+          
         </Modal.Body>
         <Modal.Footer>
-          
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+         
           <Button variant="primary" type="submit" onClick={saveNotes}>
             Save
           </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
-     
 
-      <div className="reminder"
-    style={{
-      backgroundImage: "url(/img/mensNote3.jpg)",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      height: "80vh",
-      backgroundPosition: "center",
-      backgroundAttachment: "fixed"
-  }}>
-       
-      <div  style={{ 
-      display:"flex",
-      flexDirection:"row",
-      width:"30%",
-      alignItems:"center",
-      justifyContent:"center",
-      backgroundPosition: "center",
-      backgroundColor:"#FB8DA0" ,
-      marginLeft:"35%", marginRight:"50%"
-      }}>
-     <Button style={{display:"flex",
-      flexDirection:"column", alignItems:"center",
-      justifyContent:"center"}}
-     onClick={viewNotes}>View Your Notes on the date Clicked? 🗃 </Button>
-     </div>
-      <ViewNotesSection
-        demo={demo}
-        setisViewEnabled={setisViewEnabled}
-        isViewEnabled={isViewEnabled}
-        isNotesAvailable={isNotesAvailable}
-        menstrualNotesData={menstrualNotesData}
-        setmenstrualNotesData={setmenstrualNotesData}
-      />
-     
+      <div
+        className="reminder"
+        style={{
+          backgroundImage: "url(/img/mensNote3.jpg)",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "80vh",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "30%",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundPosition: "center",
+            backgroundColor: "#FB8DA0",
+            marginLeft: "35%",
+            marginRight: "50%",
+          }}
+        >
+          <Button
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={viewNotes}
+          >
+            View Your Notes on the date Clicked? 🗃{" "}
+          </Button>
+        </div>
+        <ViewNotesSection
+          demo={demo}
+          setisViewEnabled={setisViewEnabled}
+          isViewEnabled={isViewEnabled}
+          isNotesAvailable={isNotesAvailable}
+          menstrualNotesData={menstrualNotesData}
+          setmenstrualNotesData={setmenstrualNotesData}
+        />
       </div>
     </div>
   );
