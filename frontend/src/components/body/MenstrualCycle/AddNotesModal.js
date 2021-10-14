@@ -203,12 +203,19 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
        
       <div  style={{ 
       display:"flex",
-      flexDirection:"column",
+      flexDirection:"row",
+      width:"30%",
+      alignItems:"center",
+      justifyContent:"center",
       backgroundPosition: "center",
       backgroundAttachment: "fixed",
-      backgroundColor:"#FB8DA0" 
+      backgroundColor:"#FB8DA0" ,
+      marginLeft:"35%", marginRight:"50%"
       }}>
-     <Button onClick={viewNotes}>View Your Notes on the date Clicked? 🗃 </Button>
+     <Button style={{display:"flex",
+      flexDirection:"column", alignItems:"center",
+      justifyContent:"center",}}
+     onClick={viewNotes}>View Your Notes on the date Clicked? 🗃 </Button>
      </div>
       <ViewNotesSection
         demo={demo}
