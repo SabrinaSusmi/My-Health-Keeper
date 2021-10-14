@@ -50,7 +50,7 @@ import { useCookies } from "react-cookie";
 
     return(
         <>
-         
+         <div>
          {isViewEnabled ? (
             <div className="notes_body">
               <h4>
@@ -78,7 +78,7 @@ import { useCookies } from "react-cookie";
           ) : (
             " "
           )}
-
+           </div>
         </>
 
     )
