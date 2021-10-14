@@ -88,7 +88,7 @@ export default function DietPlan() {
             </div>
 
             <div className="food_table_div">
-              <div className="overlay"></div>
+              <div className="diet_overlay"></div>
               <div className="food_table_body">
                 <div className="food_table_header">
                   <h3>Add Your Foods Here</h3>

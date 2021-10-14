@@ -76,8 +76,8 @@ export default function DietProgress() {
               label: 'Required Calories',
               fill: false,
               lineTension: 0.5,
-              backgroundColor: '#e06666',
-              borderColor: '#e06666',
+              backgroundColor: '#6aa84f',
+              borderColor: '#6aa84f',
               borderWidth: 2,
               pointRadius:5,
             },
@@ -110,8 +110,8 @@ export default function DietProgress() {
           label: 'Required Calories',
               fill: false,
               lineTension: 0.5,
-              backgroundColor: '#e06666',
-              borderColor: '#e06666',
+              backgroundColor: '#6aa84f',
+              borderColor: '#6aa84f',
           borderWidth: 2,
         },
       
@@ -203,7 +203,7 @@ export default function DietProgress() {
                     <div className="avg_consumed_cal_progress_div">
                       <span>
                         {" "}
-                        Last month avg. <br></br>
+                        Per day  avg. <br></br>
                         <h2>
                           {" "}
                           <b>{totalCal} </b>
