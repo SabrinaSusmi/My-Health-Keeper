@@ -4,16 +4,13 @@ import "../../../static/Styling/dietProgress.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
-// import DateFnsUtils from "@date-io/date-fns";
-// import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
-import DatePicker from "react-datepicker";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
-// import { makeStyles } from "@material-ui/core/styles";
+
 import { Container, Row, Col } from "react-grid-system";
-import featureButton from "../../../static/Styling/featureButton.css";
+
 import { COLORS } from "../../themeColors";
 
 const initialState = {
