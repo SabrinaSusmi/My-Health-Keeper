@@ -4,52 +4,112 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import { useCookies } from "react-cookie";
+import { makeStyles } from "@material-ui/core";
 
 import "../../../static/Styling/mensDemo.css";
 
+export default function ViewNotesSection () {
+  const token = useSelector((state) => state.token);
+  const auth = useSelector((state) => state.auth);
+  const { user, isLogged } = auth;
 
- const ViewNotesSection = ({demo,setisViewEnabled,isViewEnabled,isNotesAvailable,menstrualNotesData}) => {
+ 
+  const useStyles = makeStyles((theme) => ({
+    textfield_input: {
+      width: "40%",
+      marginLeft: "30%",
+      marginTop:'5px',
+      marginBottom: "2%",
+    },
+    notchedOutline: {
+      borderWidth: "1px",
+      borderColor:"#CA4D62 !important ",
+    },
+  }));
+  const classes = useStyles();
+  const [eventDate, setEvetDate] = useState('');
+  const [isNotesAvailable, setisNotesAvailable] = useState(false);
+  const [menstrualNotesData, setmenstrualNotesData] = useState([]);
 
-    
-    const auth = useSelector((state) => state.auth);
-    const [cookies, setCookie] = useCookies(["user"]);
-    const { user } = auth;
-    
+  const viewNotes = async (e) => {
+    const selectedEventdate=e.target.value
+    setEvetDate(e.target.value)
+    e.preventDefault();
+    console.log("view notes ", selectedEventdate)
+    await axios
+      .get("http://localhost:5000/user/cycleTracker-display-notes", {
+        headers: { Authorization: token, dates: selectedEventdate },
+      })
+      .then((response) => {
+        setmenstrualNotesData(response.data);
+        console.log( response.data);
+        if (!response.data.length == 0) {
+          setisNotesAvailable(true);
+        } else {
+          setisNotesAvailable(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-   
+    // console.log(demo);
+    // handleClose();
+    // if (isViewEnabled) {
+    //   setisViewEnabled(false);
+    // } else setisViewEnabled(true);
+  };
 
-    return(
-      <>
+  return (
+    <>
       <div>
-      {isViewEnabled ? (
-         <div className="notes_body">
-           <h4 style={{marginLeft:"41%",marginTop:"5%"}}>
-             Notes on <b>{demo}</b>
-           </h4>
-           {" "}
-           {isNotesAvailable ? (
-             <div className="notes_data">
-               {menstrualNotesData.map((note) => (
-                   <div className="notes_card">
-                     <p>Flow: {note.flow}</p>
-                     <p>Mood: {note.mood}</p>
-                     <p>Symptoms: {note.symptoms}</p>
-                   
-                 </div>
-               ))}
-             </div>
-           ) : (
-          <h5 style={{marginLeft:"41%",marginTop:"3%"}}> No notes are added </h5> )}
-         </div>
-       ) : (
-         <h5 style={{marginLeft:"39%",marginTop:"5%"}}>No notes are Viewed Right Now 😊</h5>
-       )}
-        </div>
-     </>
+        <div style={{color:'#CA4D62',marginLeft:'30%',  marginTop:'3%',fontSize:22,fontWeight:'bold'}}> Select Date</div>
 
-    )
-}
+        <TextField
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
+          className={classes.textfield_input}
+          variant="outlined"
+          required
+          // fullWidth
+          id="startdate"
+          // label="Start Date"
+          name="startdate"
+          onChange={viewNotes}
+          value={eventDate}
+          type="date"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        {
+          <div className="notes_body">
+           
+            {isNotesAvailable ? (
+              <div className="notes_data">
+                {menstrualNotesData.map((note) => (
+                  <div className="notes_card">
+                    <p>Flow: {note.flow}</p>
+                    <p>Mood: {note.mood}</p>
+                    <p>Symptoms: {note.symptoms}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <h5 style={{color:'#CA4D62',fontSize:25, marginLeft: "36%", marginTop: "3%",marginBottom:'4%' }}>
+                {" "}
+                Select a date to view your <i>THOUGHTS</i>{" "}
+              </h5>
+            )}
+          </div>
+       }
+      </div>
+    </>
+  );
+};
 
-export default  ViewNotesSection;
