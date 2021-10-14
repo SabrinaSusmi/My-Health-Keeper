@@ -23,6 +23,7 @@ import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowBasicMensData from "./BasicMensDataDemo";
 import UserMenstrualCircleInfo from "./UserMenstrualCircleInfo";
+import ViewNotesSection from "./ViewNotesSection";
 
 export default function MenstrualDemo() {
   const auth = useSelector((state) => state.auth);
@@ -54,7 +55,7 @@ export default function MenstrualDemo() {
       <div
         className="reminder"
         style={{
-          backgroundImage: "url(/img/mens_pink.jpg)",
+          backgroundImage: "url(/img/mens12.png)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "50vh",
@@ -81,7 +82,8 @@ export default function MenstrualDemo() {
               {" "}
               &nbsp;
               <div className="mens_header_content">
-                <p>menstrual</p>
+                <pre></pre>
+                <span style={{color:'white',fontSize:43,fontWeight:550}}><i>TRACK YOUR PERIODS LIKE A PRO</i></span>
               </div>
               <div className="mens_calendar_body">
                 <div className="mens_overlay"></div>
@@ -116,8 +118,12 @@ export default function MenstrualDemo() {
               <div className="mens_journal_body">
                 <div className="mens_overlay"></div>
                 <div className="med_ongoing_header">
-                  <h2 style={{ color: "#ba457f" }}>Your Journal at a Glance</h2>
+                  <h2 style={{ color: "#CA4D62" }}>Your Journal at a Glance</h2>
                 </div>
+              </div>
+              <div className="mens_calendar_body">
+                <div className="mens_overlay"></div>
+                  {ViewNotesSection()}
               </div>
             </Col>
             <Col
@@ -136,12 +142,7 @@ export default function MenstrualDemo() {
             setisViewEnabled={setisViewEnabled}
             isViewEnabled={isViewEnabled}
           />
-          <div className="mens_calendar_body">
-            <div className="mens_overlay"></div>
-            <div className="med_ongoing_header">
-              <h3>Your Journal at a Glance</h3>
-            </div>
-          </div>
+          
         </Container>
       </div>
     </div>
