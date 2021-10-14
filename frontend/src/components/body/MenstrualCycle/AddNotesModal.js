@@ -77,11 +77,13 @@ const AddNotesModal = ({
 
       setTimeout(function () {
         setInitialData(initialData);
-      }, 10);
+      }, 1);
       console.log("nn ", res.data.msg);
       history.push("/menstrual-cycle_demo");
+      setInitialData(initialState)
+
       handleClose(true);
-      alert("Notes Added");
+      // alert("Notes Added");
     } catch (err) {
       err.response.data.msg &&
         setTimeout(function () {
@@ -90,32 +92,7 @@ const AddNotesModal = ({
     }
   };
 
-  const viewNotes = async (e) => {
-    e.preventDefault();
-    // const id = user._id;
-    await axios
-      .get("http://localhost:5000/user/cycleTracker-display-notes", {
-        headers: { Authorization: token,  dates: demo },
-      })
-      .then((response) => {
-        setmenstrualNotesData(response.data);
-        console.log(typeof response.data);
-        if (!response.data.length == 0) {
-          setisNotesAvailable(true);
-        } else {
-          setisNotesAvailable(false);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    console.log(demo);
-    handleClose();
-    if (isViewEnabled) {
-      setisViewEnabled(false);
-    } else setisViewEnabled(true);
-  };
+ 
 
   return (
     <div>
@@ -131,10 +108,8 @@ const AddNotesModal = ({
         </Modal.Header>
         <Modal.Body>
           <div style={{ marginBottom: 18 }}>
-           
             <TextField
-            style={{marginLeft:'56%'}}
-              
+              style={{ marginLeft: "56%" }}
               required
               type="date"
               // id="startDate"
@@ -181,10 +156,8 @@ const AddNotesModal = ({
               name="flow"
             />
           </div>
-          
         </Modal.Body>
         <Modal.Footer>
-         
           <Button variant="primary" type="submit" onClick={saveNotes}>
             Save
           </Button>
@@ -194,51 +167,7 @@ const AddNotesModal = ({
         </Modal.Footer>
       </Modal>
 
-      <div
-        className="reminder"
-        style={{
-          backgroundImage: "url(/img/mensNote3.jpg)",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          height: "80vh",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "30%",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundPosition: "center",
-            backgroundColor: "#FB8DA0",
-            marginLeft: "35%",
-            marginRight: "50%",
-          }}
-        >
-          <Button
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            onClick={viewNotes}
-          >
-            View Your Notes on the date Clicked? 🗃{" "}
-          </Button>
-        </div>
-        <ViewNotesSection
-          demo={demo}
-          setisViewEnabled={setisViewEnabled}
-          isViewEnabled={isViewEnabled}
-          isNotesAvailable={isNotesAvailable}
-          menstrualNotesData={menstrualNotesData}
-          setmenstrualNotesData={setmenstrualNotesData}
-        />
-      </div>
+      
     </div>
   );
 };
