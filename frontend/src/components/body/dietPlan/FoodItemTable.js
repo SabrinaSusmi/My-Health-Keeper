@@ -63,7 +63,7 @@ setMultipleProgress(percentage)
         <div className="diet_info_item_progress"></div>
         <Table hover size="md">
           <thead>
-            <tr style={{ background: "#eae6e6da" }}>
+            <tr style={{ background: "transparent" }}>
               <th>Meal Description</th>
               <th>Item Name</th>
               <th>Quantity (servings)</th>
@@ -79,8 +79,8 @@ setMultipleProgress(percentage)
               <tr
                 style={
                   index % 2
-                    ? { background: "#f8db57" }
-                    : { background: "#f4c805" }
+                    ? { color: "#0777c2" }
+                    : { color: "#f7900a" }
                 }
               >
                 <td>{food.meal}</td>

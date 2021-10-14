@@ -84,21 +84,63 @@
   position: absolute;
 }
 
+.food_table_body {
+  width: 80%;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 6em;
+}
+
 .food_table_header {
   text-align: center;
   position: relative;
+  margin: 1em auto;
 }
 
 .food_table_header h3{
   margin-top: 1em;
   margin-bottom: 2em;
+  margin: 1em auto;
   font-weight: 700;
   color: rgb(255, 255, 255);
   font-size: 2.4rem;
 }
 
+.food_table_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.add_food {
+  width: 30%;
+  margin: 1em;
+  background-color: #ffffff;
+  border: 1px solid #6f9a37;
+  padding: 20px 20px 20px 20px;
+  margin-right: 4em;
+  border-radius: 15px;
+}
+
+.food_table_item {
+  width: 60%;
+  border: 1px solid #ffffff;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.exercise_section {
+  padding-top: 3em;
+  padding-bottom: 6em;
+  text-align: center;
+}
+
 .foodTable_grid{
-  background-color: #f4c805;
+  background-color: #0777c2;
   border-radius: 10px;
 }
 

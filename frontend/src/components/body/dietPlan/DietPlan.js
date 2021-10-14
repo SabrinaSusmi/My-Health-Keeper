@@ -116,33 +116,27 @@ export default function DietPlan() {
                 </div>
                 <div className="food_table_box">
                   <div className="add_food">
-
-                  </div>
-                  <div className="food_table">
-
+                    <h4>Add Food Items </h4>
+                    <AddFoodModal/>
+                    </div>
+                  <div className="food_table_item">
+                    <FoodItemTable />
                   </div>
                 </div>
               </div>
             </div>
+
+            <div className="exercise_section">
+              <h3>Burnt some calories today?</h3>
+            </div>
             
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs={4} >
                
                 <div className='add_food_div'>
                 <h4>Add Food Items </h4>
                   <AddFoodModal/>
-                {/* <AddFoodModal
-                  showFoodModal={showFoodModal}
-                  setShowFoodModal={setShowFoodModal}
-                />{" "} */}
-                {/* <div className="add_food">
-                  <Button className="add_food_btn" onClick={openFoodModal}>
-                    <IconButton aria-label="add">
-                      <AddCircleOutlineRoundedIcon />
-                    </IconButton>
-                    {""} Add Food Item
-                  </Button>
-                </div> */}
+                
                 </div>
               </Grid>{" "}
               <Grid item xs={7} 
@@ -153,7 +147,7 @@ export default function DietPlan() {
                 <FoodItemTable />
                 
               </Grid>
-            </Grid>
+            </Grid> */}
           </Col>
           <Col
             className="body_feature_column"
