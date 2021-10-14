@@ -211,7 +211,7 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
       }}>
      <Button style={{display:"flex",
       flexDirection:"column", alignItems:"center",
-      justifyContent:"center",}}
+      justifyContent:"center"}}
      onClick={viewNotes}>View Your Notes on the date Clicked? 🗃 </Button>
      </div>
       <ViewNotesSection
