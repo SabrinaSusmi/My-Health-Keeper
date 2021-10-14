@@ -177,13 +177,20 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
   return (
     <div className="modal">
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h4 className="modal-title"> Add Your Notes 📝 </h4>
-        </div>
-        <div className="modal-body">
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={show}
+        onHide={handleClose}
+      >
+        <Modal.Header>
+          <Modal.Title>📝 Add Notes </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <form className="center">
             <div>
-            <label for="date">Date : </label>
+              <label for="date">Date : </label>
               <input
                 type="date"
                 value={demo}
@@ -191,9 +198,8 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
                 name="eventDate"
               />
             </div>
-
             <div>
-            <label for="mood">Mood : </label>
+              <label for="mood">Mood : </label>
               <input
                 type="mood"
                 value={mood}
@@ -201,9 +207,8 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
                 name="mood"
               />
             </div>
-
             <div>
-            <label for="symptoms">Symptoms : </label>
+              <label for="symptoms">Symptoms : </label>
               <input
                 type="symptoms"
                 value={symptoms}
@@ -211,9 +216,8 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
                 name="symptoms"
               />
             </div>
-
             <div>
-            <label for="flow">Flow : </label>
+              <label for="flow">Flow : </label>
               <input
                 type="flow"
                 value={flow}
@@ -221,22 +225,18 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
                 name="flow"
               />
             </div>
-            <div >
-            </div>
           </form>
-        </div>
-        <div className="modal-footer">
-        <button type="submit" onClick={saveNotes} style={{
-          backgroundColor:'#4CAF50', 
-          fontSize: '16px',}}
-          >Save</button>
-          <button className="button" onClick={handleClose} style={{
-            backgroundColor:'#555555',
-            fontSize: '16px',
-        }} >
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={viewNotes}> View Notes</Button>
+          <Button variant="secondary" onClick={handleClose}>
             Close
-          </button>
-        </div>
+          </Button>
+          <Button variant="primary" type="submit" onClick={saveNotes}>
+            Save
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </div>
     </div>
   );

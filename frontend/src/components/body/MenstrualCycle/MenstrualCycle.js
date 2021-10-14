@@ -39,7 +39,7 @@ export default function MenstrualCycle() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
   const { user } = auth;
-
+  const [isViewEnabled, setisViewEnabled] = useState(false);
   const [cookies, setCookie] = useCookies(["user"]);
 
   const [initialData, setInitialData] = useState(initialState);
@@ -59,7 +59,6 @@ export default function MenstrualCycle() {
   let history = useHistory();
   const [addModalShow, setNotesModal] = useState(false);
   const handleNotesShow = () => setisViewEnabled(false);
-  const [isViewEnabled, setisViewEnabled] = useState(false);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
