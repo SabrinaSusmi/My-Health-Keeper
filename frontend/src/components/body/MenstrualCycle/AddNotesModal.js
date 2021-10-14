@@ -7,7 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
 import { useCookies } from "react-cookie";
-
+import ViewNotes from "./ViewNotes";
 const initialState = {
   startdate: "",
   enddate: "",
@@ -187,7 +187,12 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
         </Modal.Footer>
       </Modal>
      
-   
+      <ViewNotes
+        demo={demo}
+        setisViewEnabled={setisViewEnabled}
+        isViewEnabled={isViewEnabled}
+        setShowNotesModal={setShowNotesModal}
+      />
     </>
   );
 };
