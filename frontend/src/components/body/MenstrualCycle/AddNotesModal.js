@@ -27,8 +27,7 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
   
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
-  const { user, isLogged } = auth;
-
+  const { user } = auth;
   const [cookies, setCookie] = useCookies(["user"]);
   const handleNotesShow = () => setisViewEnabled(false);
   const [initialData, setInitialData] = useState(initialState);
@@ -36,16 +35,8 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
   const [visible, setVisible] = useState(true);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const [show, setShow] = useState(false);
   const {
-    startDate,
-    endDate,
-    duration,
-    cycleLength,
-    err,
-    success,
-    eventDate,
     mood,
     symptoms,
     flow,
@@ -58,9 +49,6 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
     const { name, value } = e.target;
     setInitialData({ ...initialData, [name]: value, err: "", success: "" });
   };
-  const handle = (id) => {
-    setCookie("UserMenstrualInfo", id, { path: "/menstrual-cycle" });
-  };
   const getInitialData = async () => {
     if (localStorage.getItem("UserMenstrualInfo")) {
       console.log("sxsx  ", cookies.UserMenstrualInfo);
@@ -71,48 +59,6 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
     getInitialData();
   }, []);
 
-  const calendarVisibility = () => {
-    if (!visible) {
-      return (
-        <>
-          <div className="H2">
-            <h2>
-              {" "}
-              <i> Tracking Period At a glance with Notes 📝 </i>{" "}
-            </h2>
-          </div>
-          {isViewEnabled ? (
-            <div className="notes_body">
-              <h4>
-                Notes on <b>{demo}</b>
-              </h4>
-              {" "}
-              {isNotesAvailable ? (
-                <div className="notes_data">
-                  {menstrualNotesData.map((note) => (
-                      <div className="notes_card">
-                        <p>Flow: {note.flow}</p>
-                        <p>Mood: {note.mood}</p>
-                        <p>Symptoms: {note.symptoms}</p>
-                      
-                    </div>
-                  ))}
-                </div>
-              ) : (
-             <h5> No notes are added </h5>          )}
-
-              <Button className="notesButton" onClick={handleNotesShow}>
-                Hide Your Notes
-              </Button>
-            </div>
-          ) : (
-            " "
-          )}
-
-        </>
-      );
-    }
-  };
 
   const viewNotes = async (e) => {
     e.preventDefault();
