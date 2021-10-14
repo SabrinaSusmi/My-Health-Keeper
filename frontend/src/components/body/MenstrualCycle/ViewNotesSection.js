@@ -44,7 +44,7 @@ import "../../../static/Styling/mensDemo.css";
           <h5> No notes are added </h5> )}
          </div>
        ) : (
-         <h6>No notes are Viewed Right Now 😊</h6>
+         <h5 style={{marginLeft:"39%",marginTop:"5%"}}>No notes are Viewed Right Now 😊</h5>
        )}
         </div>
      </>
