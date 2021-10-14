@@ -38,7 +38,7 @@ const initialState = {
 export default function MenstrualCycle() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
-  const { user, isLogged } = auth;
+  const { user } = auth;
 
   const [cookies, setCookie] = useCookies(["user"]);
 
@@ -52,14 +52,12 @@ export default function MenstrualCycle() {
     cycleLength,
     err,
     success,
-    eventDate,
     mood,
     symptoms,
     flow,
   } = initialData;
   let history = useHistory();
   const [addModalShow, setNotesModal] = useState(false);
-  const handleNotesClose = () => setNotesModal(false);
   const handleNotesShow = () => setisViewEnabled(false);
   const [isViewEnabled, setisViewEnabled] = useState(false);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
@@ -85,7 +83,6 @@ export default function MenstrualCycle() {
     e.preventDefault();
 
     const id = user._id;
-    let userEmail = user.email;
 
     try {
       const res = await axios.patch(
