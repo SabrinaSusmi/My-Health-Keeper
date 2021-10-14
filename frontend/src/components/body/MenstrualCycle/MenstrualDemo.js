@@ -24,24 +24,12 @@ import { COLORS } from "../../themeColors";
 import ShowBasicMensData from "./BasicMensDataDemo";
 import UserMenstrualCircleInfo from "./UserMenstrualCircleInfo";
 
-const initialState = {
-  err: "",
-  success: "",
-  eventDate: "",
-  mood: "",
-  symptoms: "",
-  flow: "",
-};
-
 export default function MenstrualDemo() {
   const auth = useSelector((state) => state.auth);
   const { user, isLogged } = auth;
 
-  const [initialData, setInitialData] = useState(initialState);
-
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
 
-  const { err, success } = initialData;
   const [isViewEnabled, setisViewEnabled] = useState(false);
 
   useEffect(() => {
@@ -96,8 +84,7 @@ export default function MenstrualDemo() {
                 <p>menstrual</p>
               </div>
               <div className="mens_calendar_body">
-                <div className="mens_overlay"></div> {err && showErrMsg(err)}
-                {success && showSuccessMsg(success)}
+                <div className="mens_overlay"></div>
                 <div className="mens">
                   <div className="mens_body">
                     <div className="mens_info">
@@ -126,6 +113,12 @@ export default function MenstrualDemo() {
                   </div>
                 </div>
               </div>
+              <div className="mens_journal_body">
+                <div className="mens_overlay"></div>
+                <div className="med_ongoing_header">
+                  <h2 style={{ color: "#ba457f" }}>Your Journal at a Glance</h2>
+                </div>
+              </div>
             </Col>
             <Col
               className="body_feature_column"
@@ -135,6 +128,7 @@ export default function MenstrualDemo() {
               {ShowFeatureButtons()}
             </Col>
           </Row>
+
           <AddNotesModal
             demo={demo}
             showNotesModal={showNotesModal}
@@ -142,6 +136,12 @@ export default function MenstrualDemo() {
             setisViewEnabled={setisViewEnabled}
             isViewEnabled={isViewEnabled}
           />
+          <div className="mens_calendar_body">
+            <div className="mens_overlay"></div>
+            <div className="med_ongoing_header">
+              <h3>Your Journal at a Glance</h3>
+            </div>
+          </div>
         </Container>
       </div>
     </div>
