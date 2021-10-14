@@ -24,7 +24,7 @@ const initialState = {
 
 
 
-const AddNotesModal = ({demo}) => {
+const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
   
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
@@ -37,7 +37,7 @@ const AddNotesModal = ({demo}) => {
   const [visible, setVisible] = useState(true);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
   const handleClose = () => setShow(false);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState();
   const {
     mood,
     symptoms,
@@ -125,12 +125,12 @@ const AddNotesModal = ({demo}) => {
   return (
     <>
     
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      
       <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        show={show}
+        show={showNotesModal}
         onHide={handleClose}
       >
         <Modal.Header>
@@ -186,7 +186,7 @@ const AddNotesModal = ({demo}) => {
           </Button>
         </Modal.Footer>
       </Modal>
-      </div>
+     
    
     </>
   );
