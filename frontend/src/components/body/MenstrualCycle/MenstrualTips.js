@@ -236,7 +236,7 @@ const MenstrualTips = () => {
             <Row>
               <Col
                 item
-                xs={7}
+                xs={8}
                 style={{
                   marginTop: 70,
                   height: "90%",

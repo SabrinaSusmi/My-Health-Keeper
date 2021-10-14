@@ -99,7 +99,7 @@ export default function SymptomSelection() {
             display: "flex",
             flexDirection: "column",
             margin: 0,
-            maxWidth: 1900,
+            maxWidth: '100%',
             padding: 0,
             marginRight: 0,
           }}
