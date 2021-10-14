@@ -25,7 +25,7 @@ import "../../../static/Styling/mensDemo.css";
       <div>
       {isViewEnabled ? (
          <div className="notes_body">
-           <h4>
+           <h4 style={{marginLeft:"41%",marginTop:"5%"}}>
              Notes on <b>{demo}</b>
            </h4>
            {" "}
@@ -41,7 +41,7 @@ import "../../../static/Styling/mensDemo.css";
                ))}
              </div>
            ) : (
-          <h5> No notes are added </h5> )}
+          <h5 style={{marginLeft:"41%",marginTop:"3%"}}> No notes are added </h5> )}
          </div>
        ) : (
          <h5 style={{marginLeft:"39%",marginTop:"5%"}}>No notes are Viewed Right Now 😊</h5>
