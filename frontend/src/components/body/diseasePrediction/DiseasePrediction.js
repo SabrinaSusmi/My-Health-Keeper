@@ -42,6 +42,8 @@ export default function SymptomSelection() {
     setSymptom({ ...symptom, [name]: value });
   };
 
+  const [result,setResult]=useState(false)
+
   const symptomList = () => {
     let a = [];
     for (let i = 0; i < arr.length; i++) {
@@ -72,6 +74,7 @@ export default function SymptomSelection() {
         setDisease(res.data.diseaseName);
         setDoctor(res.data.diseaseSpecialist);
         setPercentage(res.data.diseasePercenatge);
+        setResult(true)
         console.log("disease", res.data.diseaseSpecialist);
       });
   };
@@ -101,7 +104,7 @@ export default function SymptomSelection() {
           }}
         >
           <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader(COLORS.medicineBackground)}
+            {ShowHeader(COLORS.diseasePrediction)}
           </div>
           <pre></pre>
           <pre></pre> <pre></pre> <pre></pre> <pre></pre>
@@ -206,11 +209,12 @@ export default function SymptomSelection() {
                 </div>
               </div>
               <div className="prediction_body">
-                <Prediction
+                {result?( <Prediction
                   getPrediction={disease}
                   percent={percentage}
                   specialist={doctor}
-                />
+                />):(' ')}
+               
               </div>
             </Col>
             <Col
