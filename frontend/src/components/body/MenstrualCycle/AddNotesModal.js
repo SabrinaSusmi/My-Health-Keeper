@@ -226,11 +226,11 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
           </form>
         </div>
         <div className="modal-footer">
-        <button type="submit" style={{
+        <button type="submit" onClick={saveNotes} style={{
           backgroundColor:'#4CAF50', 
           fontSize: '16px',}}
           >Save</button>
-          <button className="button" style={{
+          <button className="button" onClick={handleClose} style={{
             backgroundColor:'#555555',
             fontSize: '16px',
         }} >
