@@ -123,3 +123,23 @@
  .tips_style{
      color: black;
  }
+ .notes_body{
+     margin: 2em;
+ }
+ .notes_data{
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     grid-auto-rows: minmax(100px, auto);
+     margin: 1em;
+     padding: 2em;
+    
+ }
+ 
+ .notes_card{
+    background-image: linear-gradient(180deg, #e79797 0%, #e75656 100%);
+    display: grid;
+    grid-template-columns: 4fr;
+    margin:1em;
+    padding: 2em;
+    color: #ffffff;
+ }

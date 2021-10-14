@@ -44,44 +44,37 @@ const initialState = {
 };
 
 export default function MenstrualDemo() {
-  const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
   const { user, isLogged } = auth;
 
   const [initialData, setInitialData] = useState(initialState);
-  const [menstrualNotesData, setmenstrualNotesData] = useState([]);
+  
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
 
-  const { err, success, eventDate, mood, symptoms, flow } = initialData;
+  const { err, success } = initialData;
+  const [isViewEnabled,setisViewEnabled]= useState(false)
+  
 
-  const [addModalShow, setNotesModal] = useState(false);
-  const handleNotesClose = () => setNotesModal(false);
-  const handleNotesShow = () => setisViewEnabled(false);
-  const [isViewEnabled, setisViewEnabled] = useState(false);
-
-  const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    setInitialData({ ...initialData, [name]: value, err: "", success: "" });
-  };
 
   useEffect(() => {
     // getInitialData();
   }, []);
 
-  const [show, setShow] = useState(false);
+  
   const [demo, setDemo] = useState("");
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+ const[showNotesModal,setShowNotesModal] = useState(false);
+  
+  
 
   const Demo = (ar) => {
     setDemo(ar);
   };
 
   const handleDateClick = (arg) => {
-    handleShow(true);
+    setShowNotesModal(true);
     Demo(arg.dateStr);
-    setisViewEnabled(false);
+    setisViewEnabled(true);
+    
   };
 
   return (
@@ -167,8 +160,10 @@ export default function MenstrualDemo() {
       </div>
       <AddNotesModal
         demo={demo}
-        handleShow={true}
-        setisViewEnabled={isViewEnabled}
+        showNotesModal={showNotesModal}
+        setShowNotesModal={setShowNotesModal}
+        setisViewEnabled = {setisViewEnabled}
+        isViewEnabled = {isViewEnabled}
       />
     </div>
   );
