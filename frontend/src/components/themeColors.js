@@ -6,5 +6,6 @@ spHealthBackground:'#e9f2d3',
 medicineBackground:'#c1eafa',
 diseasePrediction:'#c1eafa',
 menstrualBackground:'#c1eafa',
+menstrualnotesBackground:'#FB8DA0',
 profileBackground:'rgb(224 241 241)',
 }
