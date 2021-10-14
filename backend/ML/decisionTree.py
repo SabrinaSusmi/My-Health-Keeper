@@ -86,20 +86,31 @@ tr.drop('Unnamed: 133', axis=1, inplace=True)
 x_test = tr.iloc[:,:-1]
 y_test = tr.iloc[:,132]
 
+from numpy.core.numeric import cross
+from sklearn.ensemble import VotingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import svm
+from sklearn.naive_bayes import MultinomialNB
 
-
-def svm():
-    from sklearn import svm
-    sv = svm.SVC(kernel='linear') # Linear Kernel
-    sv=svm.SVC(probability=True)
-    sv.fit(x_train, y_train)
-    y_pred = sv.predict(x_test)
+def decisionTree():
+    from sklearn.tree import DecisionTreeClassifier
+    dt=DecisionTreeClassifier(random_state=42,max_depth=36) 
+    dt.fit(x_train, y_train)
+    y_pred = dt.predict(x_test)
     from sklearn import metrics
+    # Y_pred.unique()
+    # Y_test.size
+    # Model Accuracy: how often is the classifier correct?
     print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
+
+
     
 
     test_sample = x_test[0:0]
 
+    # symptoms = ["nausea","loss_of_appetite","abdominal_pain","yellowing_of_eyes"]
     symptoms = ['silver_like_dusting', 'acidity',  'malaise','vomiting', 'obesity']
 
     input_test = []
@@ -112,11 +123,17 @@ def svm():
 
     test_sample.loc[0] = np.array(input_test)
 
-    prediction = sv.predict(test_sample)
-    prediction_probability = sv.predict_proba(test_sample)
+    # prediction = knn.predict(test_sample)
+    prediction = dt.predict(test_sample)
+    # prediction_probability = knn.predict_proba(test_sample)
+    prediction_probability = dt.predict_proba(test_sample)
 
+    # print(prediction, prediction_probability)
+
+    # print(prediction_probability)
     disease_list = disease
     prediction_probability_array = prediction_probability[0]
+    # print(prediction_probability_array)
     ind = -1
     top_probability_prediction = []
     top_disease_prediction = []
@@ -142,6 +159,6 @@ def svm():
     print(top_probability_prediction)
 
       
-svm()
+decisionTree()
 
 
