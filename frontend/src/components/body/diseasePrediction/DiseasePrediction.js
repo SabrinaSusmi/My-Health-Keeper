@@ -11,7 +11,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 import { Container, Row, Col } from "react-grid-system";
 import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
-
+import ShowHospitalList from './HospitalList'
 const initialState = {
   s1: "",
   s2: "",
@@ -43,6 +43,7 @@ export default function SymptomSelection() {
   };
 
   const [result,setResult]=useState(false)
+  const [hotline,setHotline]=useState(false)
 
   const symptomList = () => {
     let a = [];
@@ -123,9 +124,7 @@ export default function SymptomSelection() {
               </div>
               <div className="symptom_list_body">
                 <div className="disease_overlay"></div>
-                {/* <div className="med_ongoing_header">
-          <h3>Ongoing Medicines</h3>
-        </div> */}
+                
                 <div className="disease_main">
                   <div className="symptoms_body">
            <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
@@ -216,6 +215,19 @@ export default function SymptomSelection() {
                 />):(' ')}
                
               </div>
+              <div className="symptom_list_body">
+                <div className="disease_overlay"></div>
+                
+                <div style={{minHeight:200}} className="disease_main" >
+                <Button variant='text' className="hotline_number" onClick={()=>{setHotline(true)}} >Show Hotline Numbers</Button>
+    <br></br>         
+                </div>
+                {hotline?(<div>{ShowHospitalList()}</div>):("")}
+              </div>
+              <pre></pre>
+              <pre></pre>
+              <pre></pre>
+              <pre></pre>
             </Col>
             <Col
               className="body_feature_column"

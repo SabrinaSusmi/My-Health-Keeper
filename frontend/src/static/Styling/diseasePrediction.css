@@ -27,6 +27,26 @@ margin-right: 0;
    font-size: 15px;
 }
 
+
+.disease_main>.hotline_number{
+  justify-content: center;
+  color: white;
+  background-color: #522d58;
+  padding: .9%;
+padding-left: 4%;
+padding-right: 4%;
+ border-radius: 15px;
+ font-size: 22px;
+ 
+}
+.disease_main>.hotline_number:hover{
+  justify-content: center;
+  color: white;
+  background-color: #522d58;
+font-weight: bold;
+ 
+}
+
 .prediction_label{
  margin-top: 2%;
  margin-left: 2.5%;
@@ -110,3 +130,5 @@ justify-content: center;
   height: 100%;
   position: absolute;
 }
+
+
