@@ -25,7 +25,7 @@ const MenstrualTips = () => {
           }}
         >
           <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader(COLORS.spHealthBackground)}
+            {ShowHeader(COLORS.menstrualBackground)}
           </div>
           
           <Row className="body_feature_row">
