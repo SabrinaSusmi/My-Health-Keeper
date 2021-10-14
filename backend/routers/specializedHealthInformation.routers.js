@@ -1,6 +1,7 @@
 const express = require("express");
 const { upload } = require("../utilities/filehelper");
 const router = express.Router();
+const auth=require("../middleware/auth");
 const {
   saveSpecializedHealthInfo,
   getallSpecializedHealthInfo,
@@ -15,7 +16,7 @@ router.post(
   upload.array("files"),
   saveSpecializedHealthInfo
 );
-router.get("/get-specializedHealthInfo", getallSpecializedHealthInfo);
+router.get("/get-specializedHealthInfo",auth, getallSpecializedHealthInfo);
 router.get("/getallMediaFiles", getallMediaFiles);
 router.patch("/updateSpecializedHealthInfo/:folderId", updateSpecializedHealthInfo);
 router.get("/getFolderItems", getFolderItems);

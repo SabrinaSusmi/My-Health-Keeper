@@ -47,35 +47,92 @@ setInterval(() => {
 }, 6000);
 
 const cycleTrackerControllers = {
-   updateInitialData: async (req, res) => {
-    try {
-      let user = req.headers["userid"];
+  getTotalDaysSincePeriod: async (req, res) => {
+    let user = req.user.id;
 
-      const { startDate, endDate } = req.body;
-      await Cycle.findOneAndUpdate(
-        { user: user },
-        {
-          startDate: startDate,
-          endDate: endDate,
-          isReminded: false,
-        }
-      ).then(() => {
-        console.log("updateInitialData ", startDate);
-        return res.json({ msg: "Update Success!" });
+    const { startDate, endDate } = req.body;
+
+    await Cycle.find({ user: user })
+      .then((ans) => {
+        const currentDate = new Date();
+        const lastEndDate = ans[0]["endDate"];
+        console.log(currentDate.getTime(), "         ", lastEndDate.getTime());
+
+        // console.log(typeof(date2),'   ',typeof(currentDate))
+        let diff = Math.abs(currentDate - lastEndDate);
+        let cycleLength = diff / (1000 * 60 * 60 * 24);
+        // console.log(Math.floor(cycleLength))
+        res.send({CycleLength:Math.floor(cycleLength)});
+      })
+      .catch((err) => {
+        console.log(err);
       });
+  },
+
+
+  getCycleLength: async (req, res) => {
+    let user = req.user.id;
+
+
+    await Cycle.find({ user: user })
+      .then((ans) => {
+        const cycleLength = ans[0]["cycleLength"];
+        console.log('cycleLength ',cycleLength)
+        res.send({cycleLength:cycleLength});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+
+  updateInitialData: async (req, res) => {
+    try {
+      let user = req.user.id;
+// this.getCycleLength()
+      const { startDate, endDate } = req.body;
+
+      await Cycle.find({ user: user })
+        .then((ans) => {
+          const ss = endDate + "T00:00:00.000Z";
+          const currentEndDate = new Date(ss);
+          const lastEndDate = ans[0]["endDate"];
+          console.log(currentEndDate, "         ", lastEndDate);
+
+          // console.log(typeof(date2),'   ',typeof(currentDate))
+          let diff = Math.abs(currentEndDate - lastEndDate);
+          let cycleLength = diff / (1000 * 60 * 60 * 24);
+          console.log("mens  ", cycleLength);
+          Cycle.findOneAndUpdate(
+            { user: user },
+            {
+              startDate: startDate,
+              endDate: endDate,
+              isReminded: false,
+              cycleLength: cycleLength,
+            }
+          ).then(() => {
+            console.log("updateInitialData ", startDate);
+            return res.json({ msg: "Update Success!" });
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (err) {
       return res.status(500).json({ setupData: err.message });
     }
   },
   isInitialDataAvailable: async (req, res) => {
     try {
-      let user = req.headers["userid"];
+      let user = req.user.id;
 
       const check = await Cycle.findOne({
         user,
       });
 
       if (check) {
+        console.log("cddbaqhgd ");
         console.log(check.startDate);
         return res.json(check);
       }
@@ -85,7 +142,7 @@ const cycleTrackerControllers = {
   },
 
   setupInitialData: async (req, res) => {
-    let user = req.headers["userid"];
+    let user = req.user.id;
     const { startDate, endDate, duration, cycleLength, userEmail } = req.body;
     if (!startDate || !endDate || !duration || !cycleLength)
       return res.json({ msg: "Please fill in all fields." });

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Grid, TextField, MenuItem, Select,FormControl,InputLabel } from "@material-ui/core";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
 import "../../../static/Styling/dietPlanGoal.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -101,6 +100,7 @@ export default function DietGoalSetter(props) {
               placeholder="inches"
               onChange={handleChangeInput}
               value={height}
+              fullWidth
             />
             </div>
           {/* </Grid>
@@ -121,6 +121,7 @@ export default function DietGoalSetter(props) {
               label='Weight in kgs'
               onChange={handleChangeInput}
               value={weight}
+              fullWidth
             />
             </div>
           {/* </Grid> */}
@@ -140,6 +141,7 @@ export default function DietGoalSetter(props) {
               label="Age in years"
               onChange={handleChangeInput}
               value={age}
+              fullWidth
             />
             </div>
           {/* </Grid> */}
@@ -192,16 +194,16 @@ export default function DietGoalSetter(props) {
             </FormControl>
           {/* </Grid>
         </Grid> */}
-        <div className="set_diet_goal_button">
-         
+
+        <div  className="set_diet_goal_button" >
           <Button
-          type="submit"
-          variant="contained"
-          onClick={handleSubmit}
-          color="white"
-        >
-          <font className="add_btn_diet_font"> set your goal</font>
-        </Button>
+            className="add_btn"
+            type="submit"
+            variant="contained"
+            onClick={handleSubmit}
+          >
+            Set your goal
+          </Button>
         </div>
       </div>
     

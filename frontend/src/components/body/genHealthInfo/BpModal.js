@@ -12,7 +12,7 @@ const BpModal = ({ showBPModal,   setShowBPModal }) => {
   const [chartData, setChartData] = useState({});
 
   const chart = () => {
-    let bp_array = [];
+    let sugar_array = [];
     let date_array = [];
     axios
       .get("http://localhost:5000/getChart/Bp", {
@@ -21,7 +21,7 @@ const BpModal = ({ showBPModal,   setShowBPModal }) => {
       .then((res) => {
 
         res.data.infoData.forEach(element => {
-          bp_array.push(element);
+            sugar_array.push(element);
         });
         res.data.dates.forEach(element=> {
             date_array.push(element);
@@ -32,7 +32,7 @@ const BpModal = ({ showBPModal,   setShowBPModal }) => {
           labels: date_array,
           datasets: [
             {
-              data: bp_array,
+              data: sugar_array,
               label: "Blood Pressure (Last 7 days)",
               fill: false,
               lineTension: 0.5,

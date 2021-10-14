@@ -29,6 +29,7 @@ import DietPlan from "./components/body/dietPlan/DietPlan";
 import DietGoalSetter from "./components/body/dietPlan/DietGoalSetter";
 import DiseasePrediction from "./components/body/diseasePrediction/DiseasePrediction";
 import MenstrualDemo from "./components/body/MenstrualCycle/MenstrualDemo";
+import MenstrualTips from "./components/body/MenstrualCycle/MenstrualTips";
 import DietProgress from "./components/body/dietPlan/DietProgress";
 
 export const UserIDContext = React.createContext();
@@ -64,35 +65,7 @@ function App() {
   const { isLogged } = auth;
 
   localStorage.setItem("userID", auth.user._id);
-  const showSPHealthNotes = () => {
-    // console.log("id     ",  auth.user._id);
-    axios
-      .get("http://localhost:5000/api/get-specializedHealthInfo", {
-        headers: { Authorization: token, userid: auth.user._id },
-      })
-      .then((res) => {
-        // console.log("apppp             ",res.data);
-        // setSpHealthNotes(res.data);
-        // localStorage.setItem("spUser",res.data[0].user)
-      });
-  };
-  showSPHealthNotes();
-
-  const getMenstrualInfo = async () => {
-    const id = auth.user._id;
-    axios
-      .get(`http://localhost:5000/user/is-initial-data-available`, {
-        headers: { Authorization: token, userid: id },
-      })
-      .then((response) => {
-        const data1 = response.data.user;
-        localStorage.setItem("UserMenstrualInfo", data1);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  getMenstrualInfo();
+  
 
   return (
     <>
@@ -139,11 +112,11 @@ function App() {
                 exact
               />
 
-<Route
-          path="/menstrual-cycle_demo"
-          component={isLogged ? MenstrualDemo : Login}
-          exact
-        />
+              <Route
+                path="/menstrual-cycle_demo"
+                component={isLogged ? MenstrualDemo : Login}
+                exact
+              />
               <Route
                 path="/general-health-dashboard"
                 component={isLogged ? GenHealthDashboard : Login}
@@ -160,6 +133,11 @@ function App() {
                 exact
               />
 
+<Route
+                path="/display-menstrual_tips"
+                component={isLogged ? MenstrualTips : Login}
+                exact
+              />
               <Route
                 path="/specialized-health-information"
                 component={isLogged ? specializedHealthInfo : Login}
@@ -188,7 +166,7 @@ function App() {
                 exact
               />
 
-<Route
+              <Route
                 path="/diet-plans/progress"
                 component={isLogged ? DietProgress : Login}
                 exact

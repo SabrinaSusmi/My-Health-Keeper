@@ -5,7 +5,7 @@
 }
 
 .root>  .grid_symptoms{
-  color:#04272f ;
+  color:#522d58 ;
   font-weight: bold;
   font-size: 18px;
 }
@@ -31,7 +31,7 @@
  margin-right: 2.5%;
  margin-bottom: 0%;
   height: 220px;
- border-color:#04272f;
+ border-color:#522d58;
  border-style: double;
  border-width: 5px;
  border-radius: 10px;
@@ -46,7 +46,8 @@
 .footer{
   text-align: center;
   color: red;
-  font-weight: bold;
+  font-weight: 550;
+  font-size: 19px;
 }
 
 .intro{

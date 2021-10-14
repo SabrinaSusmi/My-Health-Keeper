@@ -10,7 +10,7 @@ const postHealthInfo = async (req, res) => {
     let bp_split = info.split("/");
     genHealthSchema
       .findOne({
-        user : user,
+        user:user,
         infoTitle: infoTitle,
         inputDate: new Date().toISOString().slice(0, 10),
       })
@@ -19,7 +19,7 @@ const postHealthInfo = async (req, res) => {
           genHealthSchema
             .findOneAndUpdate(
               {
-                user : user,
+                user:user,
                 infoTitle: infoTitle,
                 inputDate: new Date().toISOString().slice(0, 10),
                 bpType: "systolic",
@@ -31,7 +31,7 @@ const postHealthInfo = async (req, res) => {
           genHealthSchema
             .findOneAndUpdate(
               {
-                user : user,
+                user:user,
                 infoTitle: infoTitle,
                 inputDate: new Date().toISOString().slice(0, 10),
                 bpType: "diastolic",
@@ -73,7 +73,7 @@ const postHealthInfo = async (req, res) => {
   } else {
     genHealthSchema
       .findOne({
-        user : user,
+        user:user,
         infoTitle: infoTitle,
         inputDate: new Date().toISOString().slice(0, 10),
       })
@@ -82,7 +82,7 @@ const postHealthInfo = async (req, res) => {
           genHealthSchema
             .findOneAndUpdate(
               {
-                user : user,
+                user:user,
                 infoTitle: infoTitle,
                 inputDate: new Date().toISOString().slice(0, 10),
               },

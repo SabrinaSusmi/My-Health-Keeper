@@ -2,18 +2,19 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../../../static/Styling/medicineReminder.css";
 import "../../../static/Styling/healthInfo.css";
-import { Link } from "@material-ui/core";
+import { Button, IconButton, Link, Grid } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
 import { Container, Row, Col } from "react-grid-system";
+import featureButton from "../../../static/Styling/featureButton.css";
 
 import { COLORS } from "../../themeColors";
-import { orange } from "@material-ui/core/colors";
 
 function GenHealthDashboard() {
   const token = useSelector((state) => state.token);
@@ -46,7 +47,7 @@ function GenHealthDashboard() {
               data: weight_array,
               label: "Weight (Last 7 days)",
               fill: false,
-              lineTension: 0.3,
+              lineTension: 0.5,
               backgroundColor: "rgba(75,192,192,1)",
               borderColor: "rgba(0,0,0,1)",
               borderWidth: 2,
@@ -99,7 +100,7 @@ function GenHealthDashboard() {
                   data: bp_dias_array,
                   label: "Diastolic Blood Pressure (Last 7 days)",
                   fill: false,
-                  lineTension: 0.3,
+                  lineTension: 0.5,
                   backgroundColor: "rgba(75,192,192,1)",
                   borderColor: "rgba(0,0,0,1)",
                   borderWidth: 2,
@@ -109,7 +110,7 @@ function GenHealthDashboard() {
                   data: bp_sys_array,
                   label: "Systolic Blood Pressure (Last 7 days)",
                   fill: false,
-                  lineTension: 0.3,
+                  lineTension: 0.5,
                   backgroundColor: "#134f5c",
                   borderColor: "rgba(0,0,0,1)",
                   borderWidth: 2,
@@ -152,7 +153,7 @@ function GenHealthDashboard() {
               data: pulse_array,
               label: "Pulse (Last 7 days)",
               fill: false,
-              lineTension: 0.3,
+              lineTension: 0.5,
               backgroundColor: "rgba(75,192,192,1)",
               borderColor: "rgba(0,0,0,1)",
               borderWidth: 2,
@@ -189,7 +190,7 @@ function GenHealthDashboard() {
               label: "Sugar (Last 7 days)",
 
               fill: false,
-              lineTension: 0.3,
+              lineTension: 0.5,
               backgroundColor: "rgba(75,192,192,1)",
               borderColor: "rgba(0,0,0,1)",
 

@@ -2,15 +2,23 @@ import React, { useState, useEffect } from "react";
 import "../../../static/Styling/dietPlan.css";
 import "../../../static/Styling/healthInfo.css";
 import "react-responsive-modal/styles.css";
+import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Button,
   TextField,
+  IconButton,
   InputLabel,
   FormControl,
 } from "@material-ui/core";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
-import { Select } from "@material-ui/core";
+import { Select, MenuItem, makeStyles } from "@material-ui/core";
+import {
+  showErrMsg,
+  showSuccessMsg,
+} from "../../utils/notification/Notification";
 import axios from "axios";
 //import {getRice, riceList} from "./FoodList"
 import Autocomplete from "@material-ui/lab/Autocomplete";
