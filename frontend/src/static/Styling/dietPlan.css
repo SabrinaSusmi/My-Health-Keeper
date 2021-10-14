@@ -67,6 +67,36 @@
   font-size: 1.2rem;
 }
 
+.food_table_div {
+  background-image: url('../images/diet2.jpg');
+  margin-top: 2rem;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+
+}
+
+.overlay {
+  content: "";
+  background-color: rgba(111, 154, 55, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.food_table_header {
+  text-align: center;
+  position: relative;
+}
+
+.food_table_header h3{
+  margin-top: 1em;
+  margin-bottom: 2em;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  font-size: 2.4rem;
+}
+
 .foodTable_grid{
   background-color: #f4c805;
   border-radius: 10px;

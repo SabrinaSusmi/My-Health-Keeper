@@ -93,9 +93,9 @@ export default function DietPlan() {
             </div>
             <div className="progress_history_section">
               <div className="progress_history_button_div">
+                <div className="progress_history_section_buttons" onClick={viewtargetInfo}>Set Your Goal</div>
                 <div className="progress_history_section_buttons" onClick={viewtargetInfoProgress}>Progress</div>
                 <div className="progress_history_section_buttons" onClick={viewtargetInfo}>History</div>
-                <div className="progress_history_section_buttons" onClick={viewtargetInfo}>Set Your Goal</div>
               </div>
               <div className="progress_history_info_div">
                 {targetVisibleProgress ? (<div> 
@@ -105,6 +105,23 @@ export default function DietPlan() {
                 {targetVisible ? (<div>
                   <DietGoalSetter isVisible={() => viewtargetInfo()} /></div>
                 ) : ("")}
+              </div>
+            </div>
+
+            <div className="food_table_div">
+              <div className="overlay"></div>
+              <div className="food_table_body">
+                <div className="food_table_header">
+                  <h3>Add Your Foods Here</h3>
+                </div>
+                <div className="food_table_box">
+                  <div className="add_food">
+
+                  </div>
+                  <div className="food_table">
+
+                  </div>
+                </div>
               </div>
             </div>
             
