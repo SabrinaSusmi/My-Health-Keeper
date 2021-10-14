@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { IconButton, Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import "../../../static/Styling/dietFoodTable.css";
-import "../../../static/Styling/diet.foodItemTable.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import "react-circular-progressbar/dist/styles.css";

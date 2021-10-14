@@ -140,6 +140,7 @@ export default function AddFoodModal({ showFoodModal, setShowFoodModal }) {
       <div className="add_btn_diet">
         <Button
           type="submit"
+          className="add_btn"
           variant="contained"
           onClick={handleSubmit}
           color="white"
