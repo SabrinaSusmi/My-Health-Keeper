@@ -12,6 +12,30 @@
   margin-bottom: 3.5em;
 }
 
+.sp_add_body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+}
+
+.sp_add_body_image {
+  width: 50%;
+  background-image: url("../images/sp9.jpg");
+}
+
+.sp_add_box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border-bottom: solid 1px rgb(253, 230, 166);
+  border-top: solid 1px rgb(253, 230, 166);
+  font-size: 1em;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 .sp_reminder_card {

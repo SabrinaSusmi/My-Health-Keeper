@@ -101,6 +101,13 @@ export default function SpecializedHealthInfo() {
                   <p>No more forgetting <br></br> about bringing medical reports to doctors! <br></br> Now you can store all your MEDICAL reports and <br></br>prescriptions in <b>ONE PLACE</b>!! <br></br>Also keep track of your day to day life <br></br> health problems.</p>
                 </div>
               </div>
+              <div className="sp_add_body">
+                <div className="sp_add_body_image"></div>
+                <div className="sp_add_box">
+                  <AddNotes getNote={() => showSPHealthNotes()} />
+                </div>
+              </div>
+
               
 
 

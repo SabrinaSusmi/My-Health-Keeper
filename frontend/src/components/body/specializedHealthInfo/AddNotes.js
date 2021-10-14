@@ -105,12 +105,12 @@ export default function AddNotes(props) {
       {success && showSuccessMsg(success)}
       <div className="form-group">
         <Grid className="info-save" container spacing={2} alignItems="center">
-          <Grid item xs={12}>
-            <h2>Save Your NOTES Here !!!</h2>
+          <Grid className="info_header" item xs={12}>
+            <h2>Save Your Information Here !!!</h2>
           </Grid>
           <Grid item xs={5}>
             <pre></pre>
-            <h5>Folder Name</h5>
+            <h6>Folder Name</h6>
             <TextField
               fullWidth
               type="text"
@@ -124,7 +124,7 @@ export default function AddNotes(props) {
           <Grid item xs={5}></Grid>
           <Grid item xs={5}>
             <pre></pre>
-            <h5>Select Date</h5>
+            <h6>Select Date</h6>
             <TextField
               fullWidth
               type="date"
@@ -141,7 +141,7 @@ export default function AddNotes(props) {
           <Grid className="addNotes_textArea" item xs={9}>
             <pre></pre>
 
-            <h5>Your Notes</h5>
+            <h6>Your Notes</h6>
             <TextareaAutosize
               className="description"
               variant="outlined"
@@ -159,7 +159,7 @@ export default function AddNotes(props) {
           <Grid item xs={6}>
             <div className="form-group">
               <pre></pre>
-              <h5>Upload your Reports</h5>
+              <h6>Upload your Reports</h6>
               <input
                 type="file"
                 onChange={(e) => MultipleFileChange(e)}
@@ -179,9 +179,9 @@ export default function AddNotes(props) {
                   strokeLinecap: "butt",
                   textSize: "16px",
                   pathTransitionDuration: 0.5,
-                  pathColor: `rgba(55,92,38, ${multipleProgress / 100})`,
-                  textColor: "#78b25f",
-                  trailColor: "#78b25f",
+                  pathColor: `rgba(233, 175, 15, ${multipleProgress / 100})`,
+                  textColor: "#000000",
+                  trailColor: "rgb(233, 175, 15)",
                   backgroundColor: "#8fce00",
                 })}
               />
