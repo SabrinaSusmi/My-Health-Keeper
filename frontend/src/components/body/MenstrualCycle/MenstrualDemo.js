@@ -81,7 +81,7 @@ export default function MenstrualDemo() {
   const handleDateClick = (arg) => {
     handleShow(true);
     Demo(arg.dateStr);
-    setisViewEnabled(false);
+    setisViewEnabled(true);
   };
 
   return (
