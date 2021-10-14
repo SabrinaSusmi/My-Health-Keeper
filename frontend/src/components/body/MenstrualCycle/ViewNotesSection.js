@@ -8,17 +8,12 @@ import { Button } from "@material-ui/core";
 import { useCookies } from "react-cookie";
 
 
- const ViewNotesSection = ({demo,setisViewEnabled,setShowNotesModal,isViewEnabled,viewNotes}) => {
+ const ViewNotesSection = ({demo,setisViewEnabled,isViewEnabled,isNotesAvailable,menstrualNotesData}) => {
 
     
-    const token = useSelector((state) => state.token);
     const auth = useSelector((state) => state.auth);
     const [cookies, setCookie] = useCookies(["user"]);
     const { user } = auth;
-    const [isNotesAvailable, setisNotesAvailable] = useState(false);
-    const [menstrualNotesData, setmenstrualNotesData] = useState([]);
-    const handleClose = () => setShowNotesModal(false);
-    const handleNotesShow = () => setisViewEnabled(false);
     
 
    
@@ -44,11 +39,7 @@ import { useCookies } from "react-cookie";
                   ))}
                 </div>
               ) : (
-             <h5> No notes are added </h5>          )}
-
-              <Button className="notesButton" onClick={handleNotesShow}>
-                Hide Your Notes
-              </Button>
+             <h5> No notes are added </h5> )}
             </div>
           ) : (
             " "
