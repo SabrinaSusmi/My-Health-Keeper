@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     margin: theme.spacing(2),
     minWidth: 320,
-    color: "#04272f",
+    color: "#522d58",
+    fontSize:17,
+    fontWeight:550,
   },
 }));
 
@@ -82,7 +84,7 @@ export default function SymptomSelection() {
             backgroundImage: "url(/img/disease2.jpg)",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            height: "100vh",
+            height: "100%",
             opacity: " 0.9",
             backgroundPosition: "absolute",
         }}
@@ -98,7 +100,7 @@ export default function SymptomSelection() {
           }}
         >
           <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader(COLORS.genHealthBackground)}
+            {ShowHeader(COLORS.diseasePrediction)}
           </div>
           <pre></pre>
           <pre></pre> <pre></pre> <pre></pre> <pre></pre>
@@ -205,91 +207,7 @@ export default function SymptomSelection() {
                 </div>
 
               </div>
-              {/* <Grid className="root" container>
-                <Grid className="grid_symptoms" item xs={5}>
-                  Symptoms 1 :{" "}
-                  <Select
-                    id="s1"
-                    name="s1"
-                    value={s1}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 2 :{" "}
-                  <Select
-                    id="s2"
-                    name="s2"
-                    value={s2}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 3 :{" "}
-                  <Select
-                    id="s3"
-                    name="s3"
-                    value={s3}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 4 :{" "}
-                  <Select
-                    id="s4"
-                    name="s4"
-                    value={s4}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid item xs={4}>
-                  {" "}
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 5 :{" "}
-                  <Select
-                    id="s5"
-                    name="s5"
-                    value={s5}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid item xs={3}></Grid>
-              </Grid> */}
-              {/* <div className="predict_button">
-                <Button onClick={handleSubmit} className="predict">
-                  Predict
-                </Button>
-              </div> */}
-              {/* <Prediction
-                getPrediction={disease}
-                percent={percentage}
-                specialist={doctor}
-              /> */}
+              
             </Col>
           </Row>
         </Container>
