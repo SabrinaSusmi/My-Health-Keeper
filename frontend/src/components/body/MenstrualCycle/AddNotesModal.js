@@ -36,7 +36,7 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
   const [menstrualNotesData, setmenstrualNotesData] = useState([]);
   const [visible, setVisible] = useState(true);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => setShowNotesModal(false);
   const [show, setShow] = useState();
   const {
     mood,
