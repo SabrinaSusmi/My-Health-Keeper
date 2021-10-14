@@ -128,36 +128,6 @@ export default function SpecializedHealthInfo() {
                   )}
                 </div>
               </div>
-
-
-              <Grid container>
-                <Grid item xs={6}>
-                  <AddNotes getNote={() => showSPHealthNotes()} />
-                </Grid>
-                <Grid item xs={6}>
-                  <div className="sp_health_desc">
-                    <p>No more forgetting about bringing medical reports to doctors. <br></br>Now you can store all your MEDICAL reports and prescriptions in <b>ONE PLACE</b>!!
-                      <br></br>Also keep track of your day to day life health problems</p>
-                  </div>
-                </Grid>
-              </Grid>
-
-              <h2>&nbsp;&nbsp;&nbsp;Health Journal</h2>
-              
-
-              {spHealthNotes.length != 0 ? (
-                <div className="sp_notes_card">
-                  {spHealthNotes.map((note) => (
-                    <ViewFolderProps
-                      note={note}
-                      deleteFolder={() => deleteFolder(note._id)}
-                      showSPHealthNotes={() => showSPHealthNotes()}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <h2>No folder is created</h2>
-              )}
             </Col>
             <Col
               className="body_feature_column"
