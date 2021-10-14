@@ -221,8 +221,9 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
         demo={demo}
         setisViewEnabled={setisViewEnabled}
         isViewEnabled={isViewEnabled}
-        setShowNotesModal={setShowNotesModal}
-        viewNotes={viewNotes}
+        isNotesAvailable={isNotesAvailable}
+        menstrualNotesData={menstrualNotesData}
+        setmenstrualNotesData={setmenstrualNotesData}
       />
      
       </div>
