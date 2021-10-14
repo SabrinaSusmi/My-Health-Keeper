@@ -108,7 +108,9 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
         console.log(typeof(response.data))
         if (!(response.data).length==0) {
           setisNotesAvailable(true);    
-        } else setisNotesAvailable(false)
+        } else {
+          setisNotesAvailable(false)
+        }
  
       })
       .catch((err) => {
