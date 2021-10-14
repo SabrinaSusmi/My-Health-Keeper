@@ -100,7 +100,7 @@ export default function MenstrualDemo() {
           }}
         >
           <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader(COLORS.spHealthBackground)}
+            {ShowHeader(COLORS.menstrualBackground)}
           </div>
          <pre></pre> 
           <pre></pre>
