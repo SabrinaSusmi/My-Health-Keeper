@@ -116,6 +116,7 @@ export default function MenstrualCycle() {
 
   const viewNotes = async (e) => {
     e.preventDefault();
+
     const id = user._id;
     await axios
       .get("http://localhost:5000/user/cycleTracker-display-notes", {
@@ -130,6 +131,8 @@ export default function MenstrualCycle() {
          
         } else setisNotesAvailable(false)
      
+       
+        
        
       })
       .catch((err) => {
@@ -200,6 +203,7 @@ export default function MenstrualCycle() {
               {isNotesAvailable ? (
                 <div className="notes_data">
                   {menstrualNotesData.map((note) => (
+                   
                       <div className="notes_card">
                         <p>Flow: {note.flow}</p>
                         <p>Mood: {note.mood}</p>
