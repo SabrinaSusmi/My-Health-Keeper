@@ -95,6 +95,12 @@ export default function SpecializedHealthInfo() {
               <div className="sp_header_content">
                 <p>Welcome to the route for HEALTHY life!</p>
               </div>
+              <div className="description_section">
+                <div>
+                  {/* <img src="../../../static/images/quote.png"/> */}
+                  <p>No more forgetting <br></br> about bringing medical reports to doctors! <br></br> Now you can store all your MEDICAL reports and <br></br>prescriptions in <b>ONE PLACE</b>!! <br></br>Also keep track of your day to day life <br></br> health problems.</p>
+                </div>
+              </div>
               
 
 

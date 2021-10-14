@@ -4,6 +4,14 @@
   text-align: center;
 }
 
+.description_section {
+  width: 60%;
+  margin: 0 auto;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3.5em;
+}
+
 
 
 .sp_reminder_card {
