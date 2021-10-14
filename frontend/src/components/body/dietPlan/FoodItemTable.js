@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { IconButton, Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import "../../../static/Styling/dietFoodTable.css";
-import "../../../static/Styling/diet.foodItemTable.css";
-// import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import { useSelector } from "react-redux";
 import axios from "axios";
 import "react-circular-progressbar/dist/styles.css";
@@ -12,11 +9,8 @@ import "react-circular-progressbar/dist/styles.css";
 
 export default function FoodItemTable() {
   const token = useSelector((state) => state.token);
-  const [multipleProgress, setMultipleProgress] = useState(0.0);
   const [foodList, setFoodList] = useState([]);
-  const [consumed, setConsumed] = useState("");
-  const [required, setRequired] = useState("");
-  const [remaining, setRemaining] = useState("");
+
   const getFoodConsumed = async () => {
     await axios
       .get("http://localhost:5000/diet-plan/getFoodList", {
@@ -24,24 +18,9 @@ export default function FoodItemTable() {
       })
       .then((res) => {setFoodList(res.data)});
   };
-  const getDietSummaryOfTheDay = async () => {
-    await axios
-      .get("http://localhost:5000/diet-plan/getDietSummaryOfTheDay", {
-        headers: { Authorization: token },
-      })
-      .then((res) => {
 
-        setConsumed(res.data.consumedCalories);
-        setRequired(res.data.requiredCalories);
-        setRemaining(res.data.requiredCalories - res.data.consumedCalories);
-        const percentage = (parseFloat(res.data.consumedCalories / res.data.requiredCalories).toFixed(4))*100;
-setMultipleProgress(percentage)
-        console.log(res.data);
-      });
-  };
   useEffect(async () => {
     getFoodConsumed();
-    // getDietSummaryOfTheDay();
   }, []);
 
   const deleteFood = async (id) => {
@@ -63,7 +42,7 @@ setMultipleProgress(percentage)
         <div className="diet_info_item_progress"></div>
         <Table hover size="md">
           <thead>
-            <tr style={{ background: "#eae6e6da" }}>
+            <tr style={{ background: "transparent" }}>
               <th>Meal Description</th>
               <th>Item Name</th>
               <th>Quantity (servings)</th>
@@ -79,8 +58,8 @@ setMultipleProgress(percentage)
               <tr
                 style={
                   index % 2
-                    ? { background: "#f8db57" }
-                    : { background: "#f4c805" }
+                    ? { color: "#0777c2" }
+                    : { color: "#f7900a" }
                 }
               >
                 <td>{food.meal}</td>

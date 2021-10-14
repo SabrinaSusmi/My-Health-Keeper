@@ -11,8 +11,6 @@ import {
   InputLabel,
   FormControl,
 } from "@material-ui/core";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { Select, MenuItem, makeStyles } from "@material-ui/core";
 import {
@@ -142,6 +140,7 @@ export default function AddFoodModal({ showFoodModal, setShowFoodModal }) {
       <div className="add_btn_diet">
         <Button
           type="submit"
+          className="add_btn"
           variant="contained"
           onClick={handleSubmit}
           color="white"
