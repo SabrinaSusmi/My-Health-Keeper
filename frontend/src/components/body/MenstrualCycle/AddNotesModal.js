@@ -7,7 +7,10 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
 import { useCookies } from "react-cookie";
-import ViewNotes from "./ViewNotes";
+import ViewNotesSection from "./ViewNotesSection";
+import { Container } from "react-grid-system";
+import { COLORS } from "../../themeColors";
+import { ShowHeader } from "../../header/Header";
 const initialState = {
   startdate: "",
   enddate: "",
@@ -62,32 +65,7 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
   }, []);
 
 
-  const viewNotes = async (e) => {
-    e.preventDefault();
-    const id = user._id;
-    await axios
-      .get("http://localhost:5000/user/cycleTracker-display-notes", {
-        headers: { Authorization: token, userid: id, dates: demo },
-      })
-      .then((response) => {
-        setmenstrualNotesData(response.data);
-        console.log(typeof(response.data))
-        if (!(response.data).length==0) {
-          setisNotesAvailable(true);    
-        } else setisNotesAvailable(false)
-     
-       
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    console.log(demo);
-    handleClose();
-    if (isViewEnabled) {
-      setisViewEnabled(false);
-    } else setisViewEnabled(true);
-  };
+  
 
   const saveNotes = async () => {
     const id = user._id;
@@ -105,27 +83,27 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
         }
       );
 
-      setInitialData({ ...initialData, err: "", success: res.data.msg });
+      setTimeout(function () {
+        setInitialData(initialData);
+      }, 10);
       console.log("nn ", res.data.msg);
       history.push("/menstrual-cycle_demo");
       handleClose(true);
-      // alert("Notes Added");
+      alert("Notes Added");
     } catch (err) {
       err.response.data.msg &&
-        setInitialData({
-          ...initialData,
-          err: err.response.data.msg,
-          success: "",
-        });
+      setTimeout(function () {
+        setInitialData(initialData);
+      }, 10);
     }
   };
 
 
 
   return (
-    <>
     
-      
+    
+      <div>
       <Modal
         size="xxl"
         aria-labelledby="contained-modal-title-vcenter"
@@ -177,7 +155,7 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={viewNotes}> View Notes</Button>
+          
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
@@ -187,13 +165,32 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
         </Modal.Footer>
       </Modal>
      
-      <ViewNotes
+
+      <div className="reminder"
+    style={{
+      backgroundImage: "url(/img/mensNote.jpg)",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "50vh",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed"
+  }}>
+       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+       <div style={{ backgroundColor: "black", color: "black" }}>
+            {ShowHeader(COLORS.menstrualnotesBackground)}
+          </div>
+         <pre></pre> 
+          <pre></pre>
+
+      <ViewNotesSection
         demo={demo}
         setisViewEnabled={setisViewEnabled}
         isViewEnabled={isViewEnabled}
         setShowNotesModal={setShowNotesModal}
       />
-    </>
+      </Container>
+      </div>
+    </div>
   );
 };
 export default AddNotesModal;
