@@ -1,3 +1,4 @@
+import "../../../static/Styling/addNotesModal.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -21,13 +22,14 @@ const initialState = {
 };
 
 
-import "../../../static/Styling/addNotesModal.css";
 
-const AddNotesModal = ({demo,isViewEnabled}) => {
+
+const AddNotesModal = ({demo}) => {
   
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
   const { user } = auth;
+  const [isViewEnabled, setisViewEnabled] = useState(true);
   const [cookies, setCookie] = useCookies(["user"]);
   const handleNotesShow = () => setisViewEnabled(false);
   const [initialData, setInitialData] = useState(initialState);
@@ -121,7 +123,8 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
 
 
   return (
-    <div className="modal">
+    <>
+    
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
       <Modal
         size="lg"
@@ -184,7 +187,8 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
         </Modal.Footer>
       </Modal>
       </div>
-    </div>
+   
+    </>
   );
 };
 export default AddNotesModal;

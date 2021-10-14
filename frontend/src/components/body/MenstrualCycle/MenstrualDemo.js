@@ -168,7 +168,7 @@ export default function MenstrualDemo() {
       <AddNotesModal
         demo={demo}
         handleShow={true}
-        setisViewEnabled={isViewEnabled}
+        //setisViewEnabled={isViewEnabled}
       />
     </div>
   );
