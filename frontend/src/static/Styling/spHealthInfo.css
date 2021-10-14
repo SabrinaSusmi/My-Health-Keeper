@@ -1,3 +1,11 @@
+.sp_header_content {
+  color: #063742;
+  height: 50vh;
+  text-align: center;
+}
+
+
+
 .sp_reminder_card {
   flex-direction: column;
   display: inline-block;

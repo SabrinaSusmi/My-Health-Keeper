@@ -61,14 +61,11 @@ export default function SpecializedHealthInfo() {
       <div
         class="bg_image"
         style={{
-          backgroundImage: "url(/img/spHealth4.jpg)",
+          backgroundImage: "url(/img/sp4.jpg)",
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "100%",
-          width: "100%",
-          opacity: "0.9",
-          backgroundPosition: "center",
+          height: "50vh",
         }}
       >
         <Container
@@ -88,20 +85,19 @@ export default function SpecializedHealthInfo() {
           <pre></pre> <pre></pre> <pre></pre> <pre></pre>
           <pre></pre>
           <Row className="body_feature_row">
-            <Col
-              className="body_feature_column"
-              style={{ position: "fixed" }}
-              sm={2}
-            >
-              {ShowFeatureButtons()}
-            </Col>
+    
             <Col
               style={{
-                marginLeft: 150,
                 display: "flex",
                 flexDirection: "column",
               }}
             >
+              <div className="sp_header_content">
+                <p>Welcome to the route for HEALTHY life!</p>
+              </div>
+              
+
+
               <Grid container>
                 <Grid item xs={6}>
                   <AddNotes getNote={() => showSPHealthNotes()} />
@@ -118,7 +114,7 @@ export default function SpecializedHealthInfo() {
               
 
               {spHealthNotes.length != 0 ? (
-                <div>
+                <div className="sp_notes_card">
                   {spHealthNotes.map((note) => (
                     <ViewFolderProps
                       note={note}
@@ -130,6 +126,13 @@ export default function SpecializedHealthInfo() {
               ) : (
                 <h2>No folder is created</h2>
               )}
+            </Col>
+            <Col
+              className="body_feature_column"
+              style={{ position: "fixed" }}
+              sm={2}
+            >
+              {ShowFeatureButtons()}
             </Col>
           </Row>
         </Container>
