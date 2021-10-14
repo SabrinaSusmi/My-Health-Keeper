@@ -19,33 +19,33 @@ import { useCookies } from "react-cookie";
    
 
     return(
-        <>
-         <div>
-         {isViewEnabled ? (
-            <div className="notes_body">
-              <h4>
-                Notes on <b>{demo}</b>
-              </h4>
-              {" "}
-              {isNotesAvailable ? (
-                <div className="notes_data">
-                  {menstrualNotesData.map((note) => (
-                      <div className="notes_card">
-                        <p>Flow: {note.flow}</p>
-                        <p>Mood: {note.mood}</p>
-                        <p>Symptoms: {note.symptoms}</p>
-                      
-                    </div>
-                  ))}
-                </div>
-              ) : (
-             <h5> No notes are added </h5> )}
-            </div>
-          ) : (
-            <h6>No notes are Viewed Right Now 😊</h6>
-          )}
-           </div>
-        </>
+      <>
+      <div>
+      {isViewEnabled ? (
+         <div className="notes_body">
+           <h4>
+             Notes on <b>{demo}</b>
+           </h4>
+           {" "}
+           {isNotesAvailable ? (
+             <div className="notes_data">
+               {menstrualNotesData.map((note) => (
+                   <div className="notes_card">
+                     <p>Flow: {note.flow}</p>
+                     <p>Mood: {note.mood}</p>
+                     <p>Symptoms: {note.symptoms}</p>
+                   
+                 </div>
+               ))}
+             </div>
+           ) : (
+          <h5> No notes are added </h5> )}
+         </div>
+       ) : (
+         <h6>No notes are Viewed Right Now 😊</h6>
+       )}
+        </div>
+     </>
 
     )
 }

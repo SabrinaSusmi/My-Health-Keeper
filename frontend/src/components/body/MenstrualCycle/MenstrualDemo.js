@@ -52,6 +52,7 @@ export default function MenstrualDemo() {
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
 
   const { err, success } = initialData;
+  const [isViewEnabled,setisViewEnabled]= useState(false)
   
 
 
@@ -72,6 +73,7 @@ export default function MenstrualDemo() {
   const handleDateClick = (arg) => {
     setShowNotesModal(true);
     Demo(arg.dateStr);
+    setisViewEnabled(true);
     
   };
 
@@ -160,6 +162,8 @@ export default function MenstrualDemo() {
         demo={demo}
         showNotesModal={showNotesModal}
         setShowNotesModal={setShowNotesModal}
+        setisViewEnabled = {setisViewEnabled}
+        isViewEnabled = {isViewEnabled}
       />
     </div>
   );

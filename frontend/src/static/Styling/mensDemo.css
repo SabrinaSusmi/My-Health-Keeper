@@ -123,3 +123,14 @@
  .tips_style{
      color: black;
  }
+ .note_box{
+     margin: 2em;
+ }
+ .notes_body{
+    background-image: linear-gradient(180deg, #e79797 0%, #e75656 100%);
+    width: 20%;
+    margin: 1em;
+    padding: 15px 35px 15px 35px;
+    color: #ffffff;
+    margin-right: 40%;
+ }
