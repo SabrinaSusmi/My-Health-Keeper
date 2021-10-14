@@ -194,7 +194,7 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,i
       backgroundImage: "url(/img/mensNote3.jpg)",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      height: "50vh",
+      height: "80vh",
       backgroundPosition: "center",
       backgroundAttachment: "fixed"
   }}>
