@@ -98,6 +98,31 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
     }
   };
 
+  const viewNotes = async (e) => {
+    e.preventDefault();
+    const id = user._id;
+    await axios
+      .get("http://localhost:5000/user/cycleTracker-display-notes", {
+        headers: { Authorization: token, userid: id, dates: demo },
+      })
+      .then((response) => {
+        setmenstrualNotesData(response.data);
+        console.log(typeof(response.data))
+        if (!(response.data).length==0) {
+          setisNotesAvailable(true);    
+        } else setisNotesAvailable(false)
+ 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log(demo);
+    handleClose();
+    if (isViewEnabled) {
+      setisViewEnabled(false);
+    } else setisViewEnabled(true);
+  };
 
 
   return (
@@ -168,27 +193,31 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
 
       <div className="reminder"
     style={{
-      backgroundImage: "url(/img/mensNote.jpg)",
+      backgroundImage: "url(/img/mensNote3.jpg)",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       height: "50vh",
       backgroundPosition: "center",
       backgroundAttachment: "fixed"
   }}>
-       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
-       <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader(COLORS.menstrualnotesBackground)}
-          </div>
-         <pre></pre> 
-          <pre></pre>
-
+       
+      <div  style={{ 
+      display:"flex",
+      flexDirection:"column",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed",
+      backgroundColor:"#FB8DA0" 
+      }}>
+     <Button onClick={viewNotes}>View Your Notes on the date Clicked? 🗃 </Button>
+     </div>
       <ViewNotesSection
         demo={demo}
         setisViewEnabled={setisViewEnabled}
         isViewEnabled={isViewEnabled}
         setShowNotesModal={setShowNotesModal}
+        viewNotes={viewNotes}
       />
-      </Container>
+     
       </div>
     </div>
   );

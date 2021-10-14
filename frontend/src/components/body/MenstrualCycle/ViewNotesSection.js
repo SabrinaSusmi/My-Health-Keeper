@@ -4,12 +4,11 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../../static/Styling/menstrualCycle.css";
 import { Button } from "@material-ui/core";
 import { useCookies } from "react-cookie";
 
 
- const ViewNotesSection = ({demo,setisViewEnabled,setShowNotesModal,isViewEnabled}) => {
+ const ViewNotesSection = ({demo,setisViewEnabled,setShowNotesModal,isViewEnabled,viewNotes}) => {
 
     
     const token = useSelector((state) => state.token);
@@ -20,33 +19,9 @@ import { useCookies } from "react-cookie";
     const [menstrualNotesData, setmenstrualNotesData] = useState([]);
     const handleClose = () => setShowNotesModal(false);
     const handleNotesShow = () => setisViewEnabled(false);
-
-    const viewNotes = async (e) => {
-        e.preventDefault();
-        const id = user._id;
-        await axios
-          .get("http://localhost:5000/user/cycleTracker-display-notes", {
-            headers: { Authorization: token, userid: id, dates: demo },
-          })
-          .then((response) => {
-            setmenstrualNotesData(response.data);
-            console.log(typeof(response.data))
-            if (!(response.data).length==0) {
-              setisNotesAvailable(true);    
-            } else setisNotesAvailable(false)
-     
-          })
-          .catch((err) => {
-            console.log(err);
-          });
     
-        console.log(demo);
-        handleClose();
-        if (isViewEnabled) {
-          setisViewEnabled(false);
-        } else setisViewEnabled(true);
-      };
 
+   
 
     return(
         <>
