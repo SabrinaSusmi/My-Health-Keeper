@@ -36,7 +36,35 @@
   align-items: center;
 }
 
+.sp_notes_header {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
 
+.sp_notes_header h3 {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-weight: 700;
+  color: rgb(233, 175, 15);
+  font-size: 2.4rem;
+}
+
+.sp_notes_box {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  /* border: #fd8412 1px solid; */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4em;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.sp_notes_card {
+  width: 35%;
+}
 
 .sp_reminder_card {
   flex-direction: column;
@@ -46,16 +74,17 @@
   margin: 1rem;
   margin-top: 1rem;
   padding: 0.5rem;
+  text-align: center;
   /* padding-top: 0.5rem; */
   /* min-width: 100px; */
   max-width: 270px;
-  border-radius: 10px;
-  background: #b3d3a6af;
+  border-radius: 35px;
+  background: transparent;
+  border: rgb(233, 175, 15) 2px solid;
   /* box-shadow: 8px 8px 16px #aec9d4; */
 }
 .sp_reminder_card:hover {
   font-weight: bold;
-  box-shadow: 4px 4px 8px #063742;
 }
 
 .folderName {
@@ -110,6 +139,7 @@
 .clrDiv {
   font-weight: bold;
   color: #063742;
+  cursor: pointer;
 }
 
 

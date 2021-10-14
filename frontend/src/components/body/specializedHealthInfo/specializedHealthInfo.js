@@ -108,7 +108,26 @@ export default function SpecializedHealthInfo() {
                 </div>
               </div>
 
-              
+              <div className="sp_notes_body">
+                <div className="sp_notes_header">
+                  <h3>Health Journal</h3>
+                </div>
+                <div className="sp_notes_box">
+                  {spHealthNotes.length != 0 ? (
+                    <div >
+                      {spHealthNotes.map((note) => (
+                        <ViewFolderProps
+                          note={note}
+                          deleteFolder={() => deleteFolder(note._id)}
+                          showSPHealthNotes={() => showSPHealthNotes()}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <h2>No folder is created</h2>
+                  )}
+                </div>
+              </div>
 
 
               <Grid container>
