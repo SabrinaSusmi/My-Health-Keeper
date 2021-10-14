@@ -107,7 +107,7 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
 
       setInitialData({ ...initialData, err: "", success: res.data.msg });
       console.log("nn ", res.data.msg);
-      history.push("/menstrual-cycle");
+      history.push("/menstrual-cycle_demo");
       handleClose(true);
       // alert("Notes Added");
     } catch (err) {
@@ -127,7 +127,7 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
     
       
       <Modal
-        size="lg"
+        size="xxl"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showNotesModal}

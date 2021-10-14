@@ -13,22 +13,20 @@
 .form {
   align-items: center;
   justify-content: center;
+  width: fit-content;
 }
 .modal-body > .center {
-  padding: 2px;
+  padding: 1%;
+  width: fit-content;
   text-align: center;
   justify-content: center;
 }
 
 .modal-body > .center > div {
-  padding: 5px;
+  width: fit-content;
+  padding: 1%;
 }
 
-.modal-content {
-  width: 500px;
-  background-color: #fff;
-  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 1);
-}
 
 .modal-header,
 .modal-footer {
@@ -41,7 +39,7 @@
 }
 
 .modal-body {
-  padding: 10px;
+  padding: 1px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
