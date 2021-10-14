@@ -27,14 +27,12 @@ const initialState = {
 
 
 
-const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
+const AddNotesModal = ({demo,showNotesModal,setShowNotesModal,setisViewEnabled,isViewEnabled}) => {
   
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
   const { user } = auth;
-  const [isViewEnabled, setisViewEnabled] = useState(true);
   const [cookies, setCookie] = useCookies(["user"]);
-  const handleNotesShow = () => setisViewEnabled(false);
   const [initialData, setInitialData] = useState(initialState);
   const [menstrualNotesData, setmenstrualNotesData] = useState([]);
   const [visible, setVisible] = useState(true);
@@ -208,7 +206,6 @@ const AddNotesModal = ({demo,showNotesModal,setShowNotesModal}) => {
       alignItems:"center",
       justifyContent:"center",
       backgroundPosition: "center",
-      backgroundAttachment: "fixed",
       backgroundColor:"#FB8DA0" ,
       marginLeft:"35%", marginRight:"50%"
       }}>
