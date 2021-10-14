@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
 import { useCookies } from "react-cookie";
 
+import "../../../static/Styling/mensDemo.css";
+
 
  const ViewNotesSection = ({demo,setisViewEnabled,isViewEnabled,isNotesAvailable,menstrualNotesData}) => {
 
