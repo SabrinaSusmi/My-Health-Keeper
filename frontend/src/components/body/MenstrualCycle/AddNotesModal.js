@@ -175,7 +175,7 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
 
 
   return (
-    <div className="modal" onClick={props.onClose}>
+    <div className="modal">
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h4 className="modal-title"> Add Your Notes 📝 </h4>
@@ -233,7 +233,7 @@ const AddNotesModal = ({demo,isViewEnabled}) => {
           <button className="button" style={{
             backgroundColor:'#555555',
             fontSize: '16px',
-        }} onClick={props.onClose}>
+        }} >
             Close
           </button>
         </div>
