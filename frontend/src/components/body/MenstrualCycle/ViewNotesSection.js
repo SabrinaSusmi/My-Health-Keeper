@@ -42,7 +42,7 @@ import { useCookies } from "react-cookie";
              <h5> No notes are added </h5> )}
             </div>
           ) : (
-            " "
+            <h6>No notes are Viewed Right Now 😊</h6>
           )}
            </div>
         </>
