@@ -199,12 +199,10 @@ export default function MenstrualCycle() {
               {isNotesAvailable ? (
                 <div className="notes_data">
                   {menstrualNotesData.map((note) => (
-                   
                       <div className="notes_card">
                         <p>Flow: {note.flow}</p>
                         <p>Mood: {note.mood}</p>
-                        <p>Symptoms: {note.symptoms}</p>
-                      
+                        <p>Symptoms: {note.symptoms}</p>  
                     </div>
                   ))}
                 </div>
