@@ -10,7 +10,7 @@
 }
 
 .input_fields {
-    margin: 10px;
+    margin-top: 10px;
 }
 
 .mens_info {
@@ -19,7 +19,6 @@
     display: flex;
     flex-direction: column;
 }
-
 
 .info_section {
     display: flex;
@@ -67,9 +66,11 @@
 
 .input_form {
     background-color: rgb(247, 188, 193);
-    padding: 10px;
-    width: 300px;
-    height: 300px;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 350px;
+    /* height: 300px; */
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -83,10 +84,9 @@
 }
 
 .mens_button {
-    margin-top: 25px !important;
-    padding: 2rem;
+    margin-top: 30px !important;
     width: auto;
-    height: 50%;
+    height: auto;
     background: rgb(202, 77, 98) !important;
     color: black;
     font-weight: bold;
@@ -118,4 +118,8 @@
 
 .fc-scroller {
     overflow-y: hidden !important;
+ }
+
+ .tips_style{
+     color: black;
  }
