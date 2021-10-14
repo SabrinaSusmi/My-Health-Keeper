@@ -92,10 +92,10 @@ const AddNotesModal = ({
 
   const viewNotes = async (e) => {
     e.preventDefault();
-    const id = user._id;
+    // const id = user._id;
     await axios
       .get("http://localhost:5000/user/cycleTracker-display-notes", {
-        headers: { Authorization: token, userid: id, dates: demo },
+        headers: { Authorization: token,  dates: demo },
       })
       .then((response) => {
         setmenstrualNotesData(response.data);
@@ -163,10 +163,10 @@ const AddNotesModal = ({
             <TextareaAutosize
               style={{ width: 400 }}
               rows="2"
-              type="mood"
-              value={mood}
+              type="symptoms"
+              value={symptoms}
               onChange={handleChangeInput}
-              name="mood"
+              name="symptoms"
             />
           </div>
 
@@ -175,10 +175,10 @@ const AddNotesModal = ({
           <div className="add_notes_style">
             <TextareaAutosize
               style={{ width: 400 }}
-              type="mood"
-              value={mood}
+              type="flow"
+              value={flow}
               onChange={handleChangeInput}
-              name="mood"
+              name="flow"
             />
           </div>
           
