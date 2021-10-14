@@ -111,6 +111,7 @@ function DisplayMedReminders() {
       </div>
       <MedDoses />
 
+
       <div className="ongoing_med_body">
         <div className="overlay"></div>
         <div className="med_ongoing_header">
