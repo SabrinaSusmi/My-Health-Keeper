@@ -85,7 +85,7 @@ export default function SymptomSelection() {
       <div
         className="reminder"
         style={{
-          backgroundImage: "url(/img/dp.jpg)",
+          backgroundImage: "url(/img/disease1.jpg)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "50vh",
@@ -116,14 +116,15 @@ export default function SymptomSelection() {
               &nbsp;
               <div className="disease_header_content">
                 <pre></pre> <pre></pre> <pre></pre>
-                <h1>
+                {/* <h1>
                   {" "}
                   Identify possible conditions and treatments<br></br> based on
                   your symptoms
-                </h1>
+                </h1> */}
               </div>
+              
               <div className="symptom_list_body">
-                <div className="disease_overlay"></div>
+                {/* <div className="disease_overlay"></div> */}
                 
                 <div className="disease_main">
                   <div className="symptoms_body">
@@ -215,12 +216,13 @@ export default function SymptomSelection() {
                 />):(' ')}
                
               </div>
+              
               <div className="symptom_list_body">
                 <div className="disease_overlay"></div>
                 
                 <div style={{minHeight:200}} className="disease_main" >
-                <Button variant='text' className="hotline_number" onClick={()=>{setHotline(true)}} >Show Hotline Numbers</Button>
-    <br></br>         
+                  <Button variant='text' className="hotline_number" onClick={()=>{setHotline(true)}} >Show Hotline Numbers</Button>
+                  <br></br>         
                 </div>
                 {hotline?(<div>{ShowHospitalList()}</div>):("")}
               </div>
