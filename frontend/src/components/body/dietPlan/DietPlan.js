@@ -11,18 +11,24 @@ import "react-datepicker/dist/react-datepicker.css";
 import FoodItemTable from "./FoodItemTable";
 import DietOverview from "./DietOverview";
 import DietProgress from "./DietProgress";
+import FoodHistory from "./FoodHistory"
 
 export default function DietPlan() {
   const token = useSelector((state) => state.token);
   const [targetVisible, setTargetVisible] = useState(false);
   const [targetVisibleProgress, setTargetVisibleProgress] = useState(false);
+  const [foodHistory,setFoodHistory] = useState(false)
   const viewtargetInfo = () => {
     setTargetVisible((prev) => !prev);
   };
-
+ 
   const viewtargetInfoProgress = () => {
     setTargetVisibleProgress((prev) => !prev);
   };
+  const viewFoodHistory=()=>{
+    
+    setFoodHistory((prev) => !prev);
+  }
 
   return (
     <div
@@ -74,16 +80,21 @@ export default function DietPlan() {
               <div className="progress_history_button_div">
                 <div className="progress_history_section_buttons" onClick={viewtargetInfo}>Set Your Goal</div>
                 <div className="progress_history_section_buttons" onClick={viewtargetInfoProgress}>Progress</div>
-                <div className="progress_history_section_buttons" onClick={viewtargetInfo}>History</div>
+                <div className="progress_history_section_buttons" onClick={viewFoodHistory}>History</div>
               </div>
               <div className="progress_history_info_div">
+              {foodHistory ? (<div>
+                  <FoodHistory isVisible={() => viewFoodHistory()} /></div>
+                ) : ("")}
+                
                 {targetVisibleProgress ? (<div> 
                     <DietProgress isVisible={() => viewtargetInfoProgress()} /></div>
-                  ) : ("")}
+                   ) : ("")}
 
                 {targetVisible ? (<div>
                   <DietGoalSetter isVisible={() => viewtargetInfo()} /></div>
-                ) : ("")}
+                  ) : ("")}
+
               </div>
             </div>
 
