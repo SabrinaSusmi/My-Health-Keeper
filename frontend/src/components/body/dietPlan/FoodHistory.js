@@ -13,15 +13,16 @@ export default function FoodItemTable() {
   const [foodList, setFoodList] = useState([]);
 
   const getFoodDetailsTable = async (e) => {
-
     e.preventDefault();
+    const historyDate = e.target.value;
+    console.log(typeof historyDate);
+
     await axios
       .get("http://localhost:5000/diet-plan/getFoodHistory", {
-        headers: { Authorization: token, historyDate:e.target.value },
+        headers: { Authorization: token, dates: historyDate },
       })
       .then((res) => {
         setFoodList(res.data);
-      
       });
   };
   // useEffect(async () => {
@@ -30,24 +31,22 @@ export default function FoodItemTable() {
 
   return (
     <div>
-      
-     
+      {/* lmlm */}
       <TextField
-        
-          variant="outlined"
-          required
-          // fullWidth
-          id="startdate"
-          // label="Start Date"
-          name="startdate"
-          onChange={getFoodDetailsTable}
-          // value={eventDate}
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      {console.log('hbhb', foodList)}
+        variant="outlined"
+        required
+        // fullWidth
+        id="startdate"
+        // label="Start Date"
+        name="startdate"
+        onChange={getFoodDetailsTable}
+        // value={eventDate}
+        type="date"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      {console.log("hbhb", foodList)}
       <div className="food_table">
         <div className="diet_info_item_progress"></div>
         <Table hover size="md">
