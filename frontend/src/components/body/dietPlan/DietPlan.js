@@ -19,14 +19,19 @@ export default function DietPlan() {
   const [targetVisibleProgress, setTargetVisibleProgress] = useState(false);
   const [foodHistory,setFoodHistory] = useState(false)
   const viewtargetInfo = () => {
+    setFoodHistory(false)
+    setTargetVisibleProgress(false)
     setTargetVisible((prev) => !prev);
   };
  
   const viewtargetInfoProgress = () => {
+    setTargetVisible(false)
+    setFoodHistory(false)
     setTargetVisibleProgress((prev) => !prev);
   };
   const viewFoodHistory=()=>{
-    
+    setTargetVisible(false)
+    setTargetVisibleProgress(false)
     setFoodHistory((prev) => !prev);
   }
 
@@ -84,7 +89,9 @@ export default function DietPlan() {
               </div>
               <div className="progress_history_info_div">
               {foodHistory ? (<div>
-                  <FoodHistory isVisible={() => viewFoodHistory()} /></div>
+                
+                  <FoodHistory isVisible={() => viewFoodHistory()} />
+                  </div>
                 ) : ("")}
                 
                 {targetVisibleProgress ? (<div> 
