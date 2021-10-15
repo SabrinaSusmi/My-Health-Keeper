@@ -191,13 +191,13 @@ export default function DietProgress() {
                           <option value={"Nov"}>November</option>
                           <option value={"Dec"}>December</option>
                         </Select>
-                      
+                      <br></br>
                         <Select
                           // className={classes.formControl}
                           type="text"
                           id="selectedMonth"
                           name="selectedMonth"
-                          className="month_progress_select"
+                          className="year_progress_select"
                           // defaultValue={currentMonth}
                           value={year}
                           onChange={(e) => setYear(e.target.value)}
