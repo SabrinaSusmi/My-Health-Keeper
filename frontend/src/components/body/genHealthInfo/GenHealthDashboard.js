@@ -255,7 +255,7 @@ function GenHealthDashboard() {
             </Button>
             <Button  style={{ marginLeft: "43%", marginTop:"2%",marginBottom:"2%",  backgroundColor:"#ADD8E6"}} variant="outlined">
             <Link
-              href="/general-health-information"
+              href="/general-health-history"
               className="reminder_buttons_sub"
             >
                View History

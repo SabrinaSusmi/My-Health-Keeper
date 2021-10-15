@@ -15,10 +15,10 @@ export default function GenHealthHistoryTable() {
   const getHealthDetailsTable = async (e) => {
     e.preventDefault();
     const historyDate = e.target.value;
-    console.log(typeof historyDate);
+   
 
     await axios
-      .get("http://localhost:5000/diet-plan/getFoodHistory", {
+      .get("http://localhost:5000/genHealthHistory", {
         headers: { Authorization: token, dates: historyDate },
       })
       .then((res) => {
