@@ -53,6 +53,7 @@ function GenHealthHistoryTable() {
           <thead>
             <tr style={{ background: "transparent" }}>
               <th>Title</th>
+              <th>Information Type </th>
               <th>Information / Data</th>
               <th></th>
             </tr>
@@ -64,6 +65,7 @@ function GenHealthHistoryTable() {
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
                 <td>{data.infoTitle}</td>
+                <td>{data.bpType}</td>
                 <td>{data.info}</td>
               </tr>
             ))}

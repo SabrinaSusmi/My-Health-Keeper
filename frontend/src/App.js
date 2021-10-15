@@ -16,7 +16,7 @@ import ResetPassword from "./components/body/auth/ResetPassword";
 import ActivationEmail from "./components/body/auth/ActivationEmail";
 import Profile from "./components/body/profile/Profile";
 import Home from "./components/body/home/Home";
-
+import GenHealthHistory from "./components/body/genHealthInfo/GenHealthHistory";
 import MedicineInput from "./components/body/medicineReminder/InputMedReminder";
 import DisplayMedicineReminders from "./components/body/medicineReminder/DisplayMedReminders";
 import MenstrualCycle from "./components/body/MenstrualCycle/MenstrualCycle";
@@ -132,6 +132,11 @@ function App() {
                 component={isLogged ? MedicineDose : Login}
                 exact
               />
+               <Route
+        path="/general-health-history"
+        component={isLogged ? GenHealthHistory : Login}
+        exact
+        />
 
 <Route
                 path="/display-menstrual_tips"
