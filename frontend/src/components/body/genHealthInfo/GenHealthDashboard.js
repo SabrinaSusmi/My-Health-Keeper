@@ -253,7 +253,7 @@ function GenHealthDashboard() {
                Add Today's Information
             </Link>
             </Button>
-            <Button  style={{ marginLeft: "45%", marginTop:"2%",marginBottom:"2%",  backgroundColor:"#ADD8E6"}} variant="outlined">
+            <Button  style={{ marginLeft: "43%", marginTop:"2%",marginBottom:"2%",  backgroundColor:"#ADD8E6"}} variant="outlined">
             <Link
               href="/general-health-history"
               className="reminder_buttons_sub"
