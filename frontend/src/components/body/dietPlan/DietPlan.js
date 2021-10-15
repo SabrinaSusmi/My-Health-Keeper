@@ -82,17 +82,17 @@ export default function DietPlan() {
                 <div className="progress_history_section_buttons" onClick={viewFoodHistory}>History</div>
               </div>
               <div className="progress_history_info_div">
+              {foodHistory ? (<div>
+                  <FoodHistory isVisible={() => viewFoodHistory()} /></div>
+                ) : ("")}
+                
                 {targetVisibleProgress ? (<div> 
                     <DietProgress isVisible={() => viewtargetInfoProgress()} /></div>
-                  ) : ("")}
+                   ) : ("")}
 
                 {targetVisible ? (<div>
                   <DietGoalSetter isVisible={() => viewtargetInfo()} /></div>
-                ) : ("")}
-                 
-                 {foodHistory ? (<div>
-                  <FoodHistory isVisible={() => viewFoodHistory()} /></div>
-                ) : ("")}
+                  ) : ("")}
 
               </div>
             </div>
