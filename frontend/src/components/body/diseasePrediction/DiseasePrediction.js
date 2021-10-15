@@ -154,11 +154,10 @@ export default function SymptomSelection() {
                 
                 <div className="disease_main">
                   <div className="symptoms_body">
-           <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
-           <br></br>
+                    <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
+                    <br></br>
                     <div className="symptom">
-                      Symptom 1 {" "}
-                      <br></br>
+                      Symptom 1 : {" "}
                       <Select
                         id="s1"
                         name="s1"
@@ -171,8 +170,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 2 {" "}
-                      <br></br>
+                      Symptom 2 : {" "}
+                      
                       <Select
                         id="s2"
                         name="s2"
@@ -185,8 +184,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 3 {" "}
-                      <br></br>
+                      Symptom 3 : {" "}
+                      
                       <Select
                         id="s3"
                         name="s3"
@@ -199,8 +198,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 4 {" "}
-                      <br></br>
+                      Symptom 4 : {" "}
+                      
                       <Select
                         id="s4"
                         name="s4"
@@ -213,8 +212,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 5 {" "}
-                      <br></br>
+                      Symptom 5 : {" "}
+                      
                       <Select
                         id="s5"
                         name="s5"
