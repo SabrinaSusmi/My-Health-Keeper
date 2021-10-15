@@ -171,22 +171,26 @@ const getFoodMenu = async (req, res) => {
 
 const getFoodHistory = async (req, res) => {
   let user = req.user.id;
-  const dates= req.headers["dates"]; 
-
-  console.log("qwdvhgbhb ", dates)
-  consumedCalories.find(
-    { user },
-    (err, foodList) => {
-      if (err) {
-        //console.log(user);
-        console.log("Diet food get :" + err);
-      }
-      if (foodList) {
-        //console.log(foodList);
-        res.send(foodList);
-      }
+  const dates = req.headers["dates"];
+  const foodslist = [];
+  consumedCalories.find({ user }, (err, foodList) => {
+    if (err) {
+      //console.log(user);
+      console.log("Diet food get :" + err);
     }
-  );
+    if (foodList) {
+      console.log(dates);
+      foodList.forEach((foods) => {
+        const dbDate = foods.date.toISOString().slice(0, 10);
+        if (dates == dbDate) {
+          foodslist.push(foods);
+        }
+        // console.log(foods.date.toISOString().slice(0,10))
+      });
+      console.log(foodslist[0]);
+      res.send(foodslist);
+    }
+  });
 };
 const getDietSummaryOfTheDay = async (req, res) => {
   user = req.user.id;
