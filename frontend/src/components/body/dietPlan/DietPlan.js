@@ -24,6 +24,10 @@ export default function DietPlan() {
     setTargetVisibleProgress((prev) => !prev);
   };
 
+  useEffect(async () => {
+
+  }, []);
+
   return (
     <div
       class="bg_image"
