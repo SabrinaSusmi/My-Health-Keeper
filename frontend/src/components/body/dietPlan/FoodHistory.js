@@ -26,6 +26,7 @@ import axios from "axios";
 
       return (
         <div>
+           <hr> </hr>
           <div className="food_table">
             <div className="diet_info_item_progress"></div>
             <Table hover size="md">
