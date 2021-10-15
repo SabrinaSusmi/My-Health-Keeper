@@ -5,7 +5,7 @@ export default function ShowHospitalList() {
     <>
       <Container>
         <Row style={{ marginLeft: "10%" }}>
-          <Col sm={3.5} className="hospital_list" className="symptoms_body">
+          <Col sm={3.5}  className="hotline_body">
             <b>Evercare Hospital,Dhaka</b>
             <br></br>
             Address: Plot 81, Dhaka 1229<br></br>
@@ -73,7 +73,7 @@ export default function ShowHospitalList() {
             Address: Laksam Road, Comilla.<br></br>
             Phone: 081-77563 01711-145365 01744-232288 <br></br>
           </Col>
-          <Col sm={3.5} className="hospital_list" className="symptoms_body">
+          <Col sm={3.5} className="hospital_list" className="hotline_body">
             <b>Dhaka Medical College Hospital</b>
             <br></br>
             Address: Secretariat Rd, Dhaka 1000<br></br>
@@ -144,7 +144,7 @@ export default function ShowHospitalList() {
             <br></br>
             <br></br>
           </Col>
-          <Col sm={3.5} className="hospital_list" className="symptoms_body">
+          <Col sm={3.5} className="hospital_list" className="hotline_body">
             <b>United Hospital Limited</b>
             <br></br>
             Address: Plot # 15 Rd No 71, Dhaka 1212<br></br>

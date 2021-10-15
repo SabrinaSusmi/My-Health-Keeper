@@ -129,11 +129,16 @@ justify-content: center;
   /* border: #007cba 1px solid; */
   margin-top: 1rem;
   /* background-image: url("../images/disease2.jpg"); */
-  background-image: linear-gradient(180deg, #72e6f8 0%, #075AC9 100%);
+  background-image: linear-gradient(180deg, #35C7DF 0%, #075AC9 100%);
   background-size: cover;
   background-attachment: fixed;
   position: relative;
   
+}
+
+.hotline_body {
+  margin: 0 auto;
+  border: 1px sloid #000000;
 }
 
 .disease_overlay {

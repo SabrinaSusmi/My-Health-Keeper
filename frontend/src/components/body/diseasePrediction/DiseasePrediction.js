@@ -219,10 +219,7 @@ export default function SymptomSelection() {
                 />):(' ')}
                
               </div>
-              
-              <div className="symptom_list_body">
-                <div className="disease_overlay"></div>
-                
+              <div className="hotline_section">
                 <div style={{minHeight:200}} className="disease_main" >
                   <Button variant='text' className="hotline_number" onClick={()=>{setHotline(true)}} >Show Hotline Numbers</Button>
                   <br></br>         
