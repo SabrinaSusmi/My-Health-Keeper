@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Button, Select, MenuItem, makeStyles } from "@material-ui/core";
+import { Grid, Button, Select, MenuItem, makeStyles, IconButton } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import "../../../static/Styling/diseasePrediction.css";
 import "../../../static/Styling/dp.css"
@@ -136,16 +136,16 @@ export default function SymptomSelection() {
               <div className="steps_section">
                 <div className="steps_section_body">
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <DeleteIcon /> </div>
-                    <div className="steps_item_info">Add Your symptoms from the list</div>
+                    <div className="steps_item_icon"> <IconButton> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
+                    <div className="steps_item_info">Add Your symptoms<br></br> from the list</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <DeleteIcon /></div>
+                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
                     <div className="steps_item_info"> Click The button</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <DeleteIcon /></div>
-                    <div className="steps_item_info">View The probable diseases</div>
+                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
+                    <div className="steps_item_info">View The probable <br></br> diseases</div>
                   </div>
                 </div>
               </div>
