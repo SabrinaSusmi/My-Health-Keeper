@@ -88,7 +88,7 @@ export default function AddFoodModal({ showFoodModal, setShowFoodModal }) {
 
     setTimeout(function () {
       setItem(InitialState);
-    }, 3000);
+    }, 100);
   };
 
   return (
