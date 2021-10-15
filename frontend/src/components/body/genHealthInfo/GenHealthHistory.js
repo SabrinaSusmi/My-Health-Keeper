@@ -47,12 +47,14 @@ function GenHealthHistoryTable() {
       <pre></pre>
       <pre></pre>
       <pre></pre>
-      <div className="food_table">
+      <hr></hr>
+      <div className="food_table" style={{marginLeft:"10%",marginRight:"10%"}}>
         <div className="diet_info_item_progress"></div>
         <Table hover size="sm">
           <thead>
             <tr style={{ background: "transparent" }}>
               <th>Title</th>
+              <th>Information Type </th>
               <th>Information / Data</th>
               <th></th>
             </tr>
@@ -64,6 +66,7 @@ function GenHealthHistoryTable() {
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
                 <td>{data.infoTitle}</td>
+                <td>{data.bpType}</td>
                 <td>{data.info}</td>
               </tr>
             ))}
