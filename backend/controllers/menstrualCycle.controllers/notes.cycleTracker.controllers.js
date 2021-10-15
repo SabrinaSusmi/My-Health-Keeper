@@ -2,7 +2,7 @@ const Cycle = require("../../models/periodTracker.model");
 
 const notesCycleTrackerControllers = {
     displayNotes: async (req, res) => {
-      let user = req.headers["userid"];
+      let user = req.user.id;
   
       const date = req.headers["dates"];
       const eventDate = new Date(date);

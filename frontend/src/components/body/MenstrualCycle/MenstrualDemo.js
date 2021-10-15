@@ -1,15 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../../static/Styling/menstrualCycle.css";
 import "../../../static/Styling/mensDemo.css";
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  Button,
-  Typography,
-  Link,
-} from "@material-ui/core";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import DatePicker from "react-datepicker";
@@ -31,40 +22,23 @@ import { Container, Row, Col } from "react-grid-system";
 import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowBasicMensData from "./BasicMensDataDemo";
-import UserMenstrualCircleInfo from './UserMenstrualCircleInfo'
-
-
-const initialState = {
-  err: "",
-  success: "",
-  eventDate: "",
-  mood: "",
-  symptoms: "",
-  flow: "",
-};
+import UserMenstrualCircleInfo from "./UserMenstrualCircleInfo";
+import ViewNotesSection from "./ViewNotesSection";
 
 export default function MenstrualDemo() {
   const auth = useSelector((state) => state.auth);
   const { user, isLogged } = auth;
 
-  const [initialData, setInitialData] = useState(initialState);
-  
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
 
-  const { err, success } = initialData;
-  const [isViewEnabled,setisViewEnabled]= useState(false)
-  
-
+  const [isViewEnabled, setisViewEnabled] = useState(false);
 
   useEffect(() => {
     // getInitialData();
   }, []);
 
-  
   const [demo, setDemo] = useState("");
- const[showNotesModal,setShowNotesModal] = useState(false);
-  
-  
+  const [showNotesModal, setShowNotesModal] = useState(false);
 
   const Demo = (ar) => {
     setDemo(ar);
@@ -74,23 +48,21 @@ export default function MenstrualDemo() {
     setShowNotesModal(true);
     Demo(arg.dateStr);
     setisViewEnabled(true);
-    
   };
 
   return (
     <div>
       <div
-        class="bg_image"
+        className="reminder"
         style={{
-          backgroundImage: "url(/img/mens_pink.jpg)",
+          backgroundImage: "url(/img/mens12.png)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "100%",
-          opacity: " 0.9",
+          height: "50vh",
           backgroundPosition: "center",
+          backgroundAttachment: "fixed",
         }}
       >
-        {" "}
         <Container
           style={{
             display: "flex",
@@ -104,67 +76,75 @@ export default function MenstrualDemo() {
           <div style={{ backgroundColor: "black", color: "black" }}>
             {ShowHeader(COLORS.menstrualBackground)}
           </div>
-         <pre></pre> 
-          <pre></pre>
+
           <Row className="body_feature_row">
-            <Col
-              className="body_feature_column"
-              style={{ position: "fixed" }}
-              sm={2}
-            >
-              <pre></pre>
-              <pre></pre>
-              <pre></pre><pre></pre>
-              {ShowFeatureButtons()}
-            </Col>
-            <Col
-              style={{
-                marginLeft: 120,
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
+            <Col style={{ display: "flex", flexDirection: "column" }}>
               {" "}
-              {err && showErrMsg(err)}
-              {success && showSuccessMsg(success)}
-              <div className="mens">
-                <div className="mens_body">
-                  <div className="mens_info">
-                  {UserMenstrualCircleInfo()}
-                    
-                    {ShowBasicMensData()}
-                  </div>
-                  <div className="mens_cal">
-                    <div className="cal_body">
-                      <FullCalendar
-                        plugins={[dayGridPlugin, interactionPlugin]}
-                        initialView="dayGridMonth"
-                        editable={false}
-                        dateClick={handleDateClick}
-                        contentHeight="auto"
-                        events={[
-                          {
-                            date: "2021-10-05",
-                            backgroundColor: "red",
-                            display: "background",
-                          },
-                        ]}
-                      />
+              &nbsp;
+              <div className="mens_header_content">
+                <pre></pre>
+                <span style={{color:'white',fontSize:43,fontWeight:550}}><i>TRACK YOUR PERIODS LIKE A PRO</i></span>
+              </div>
+              <div className="mens_calendar_body">
+                <div className="mens_overlay"></div>
+                <div className="mens">
+                  <div className="mens_body">
+                    <div className="mens_info">
+                      {UserMenstrualCircleInfo()}
+
+                      {ShowBasicMensData()}
+                    </div>
+                    <div className="mens_cal">
+                      <div className="cal_body">
+                        <FullCalendar
+                          plugins={[dayGridPlugin, interactionPlugin]}
+                          initialView="dayGridMonth"
+                          editable={false}
+                          dateClick={handleDateClick}
+                          contentHeight="auto"
+                          events={[
+                            {
+                              date: "2021-10-05",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                          ]}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="mens_journal_body">
+                <div className="mens_overlay"></div>
+                <div className="med_ongoing_header">
+                  <h2 style={{ color: "#CA4D62" }}>Your Journal at a Glance</h2>
+                </div>
+              </div>
+              <div className="mens_calendar_body">
+                <div className="mens_overlay"></div>
+                  {ViewNotesSection()}
+              </div>
+            </Col>
+            <Col
+              className="body_feature_column"
+              style={{ position: "fixed", marginTop: 100 }}
+              sm={2}
+            >
+              {ShowFeatureButtons()}
             </Col>
           </Row>
+
+          <AddNotesModal
+            demo={demo}
+            showNotesModal={showNotesModal}
+            setShowNotesModal={setShowNotesModal}
+            setisViewEnabled={setisViewEnabled}
+            isViewEnabled={isViewEnabled}
+          />
+          
         </Container>
       </div>
-      <AddNotesModal
-        demo={demo}
-        showNotesModal={showNotesModal}
-        setShowNotesModal={setShowNotesModal}
-        setisViewEnabled = {setisViewEnabled}
-        isViewEnabled = {isViewEnabled}
-      />
     </div>
   );
 }

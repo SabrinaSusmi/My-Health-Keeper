@@ -38,8 +38,8 @@ const initialState = {
 export default function MenstrualCycle() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
-  const { user } = auth;
-  const [isViewEnabled, setisViewEnabled] = useState(false);
+  const { user, isLogged } = auth;
+
   const [cookies, setCookie] = useCookies(["user"]);
 
   const [initialData, setInitialData] = useState(initialState);
@@ -52,13 +52,16 @@ export default function MenstrualCycle() {
     cycleLength,
     err,
     success,
+    eventDate,
     mood,
     symptoms,
     flow,
   } = initialData;
   let history = useHistory();
   const [addModalShow, setNotesModal] = useState(false);
+  const handleNotesClose = () => setNotesModal(false);
   const handleNotesShow = () => setisViewEnabled(false);
+  const [isViewEnabled, setisViewEnabled] = useState(false);
   const [isNotesAvailable, setisNotesAvailable] = useState(false);
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -82,6 +85,7 @@ export default function MenstrualCycle() {
     e.preventDefault();
 
     const id = user._id;
+    let userEmail = user.email;
 
     try {
       const res = await axios.patch(
@@ -199,10 +203,12 @@ export default function MenstrualCycle() {
               {isNotesAvailable ? (
                 <div className="notes_data">
                   {menstrualNotesData.map((note) => (
+                   
                       <div className="notes_card">
                         <p>Flow: {note.flow}</p>
                         <p>Mood: {note.mood}</p>
-                        <p>Symptoms: {note.symptoms}</p>  
+                        <p>Symptoms: {note.symptoms}</p>
+                      
                     </div>
                   ))}
                 </div>

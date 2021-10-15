@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import { Link } from "@material-ui/core";
+import { Button, Link } from "@material-ui/core";
 export default function UserMenstrualCircleInfo() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
@@ -45,25 +45,33 @@ export default function UserMenstrualCircleInfo() {
   return (
     <div className="info_section">
       <div className="info_item">
-        <p><b>{numberOfDaysSinceLastCycle}</b> days since last period.</p>
+        <p>
+          <b>{numberOfDaysSinceLastCycle}</b> days since last period.
+        </p>
       </div>
       <div className="info_item">
-        <p>The last cycle was <b> {lastCycleLength} </b>days long.</p>
+        <p>
+          The last cycle was <b> {lastCycleLength} </b>days long.
+        </p>
       </div>
-      <Link
-        className="tips_style"
-        style={{color:'black'}}
-        to="/display-menstrual_tips"
-        component={NavLink}
-      >
-        <div
+      <div>
+        <Button
+          to="/display-menstrual_tips"
+          component={NavLink}
           className="info_item"
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            color: "black",
+            borderRadius: "50%",
+            fontSize: "10px",
+            border: "rgb(250, 131, 131) 2px solid",
+          }}
         >
-          <p>Want to know about your period?</p>
-        </div>
-      </Link>
-     
+          <p style={{ fontSize: "12px", fontStyle: "none" }}>
+            <pre></pre>Want to know about your period?
+          </p>
+        </Button>
+      </div>
     </div>
   );
 }
