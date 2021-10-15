@@ -8,19 +8,19 @@ const DailyCalorie = require("../../models/dailyCalorie");
 const getMonthlyDietData = async (req, res) => {
   let user = req.user.id;
   let selectedMonth = req.headers["months"];
-
+let selectedyear=req.headers['year']
   let consumed_cal_data = [];
   let req_cal_data = [];
   let cal_date=[]
   let totalCal=0
-  console.log("getMonthlyDietData ", selectedMonth);
+  console.log("getMonthlyDietData ", selectedyear);
 
   DailyCalorie.find({ user }, (err, data) => {
     if (data) {
       for(let i=0;i<data.length;i++){
         let split_date = String(data[i]["date"]).split(" ")
-        // console.log(split_date[1])
-        if(split_date[1]==selectedMonth){
+        console.log(split_date)
+        if(split_date[1]==selectedMonth && split_date[3]==selectedyear){
          totalCal=totalCal+data[i]['consumedCalories']
           consumed_cal_data.push(data[i]['consumedCalories'])
           req_cal_data.push(data[i]['requiredCalories'])
