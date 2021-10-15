@@ -115,6 +115,22 @@ const getFood = async (req, res) => {
   );
 };
 
+const getFoodHistory = async (req, res) => {
+  let user = req.user.id;
+  consumedCalories.find(
+    { user },
+    (err, foodList) => {
+      if (err) {
+        //console.log(user);
+        console.log("Diet food get :" + err);
+      }
+      if (foodList) {
+        //console.log(foodList);
+        res.send(foodList);
+      }
+    }
+  );
+};
 const deleteFood = async (req, res) => {
   let user = req.user.id;
   consumedCalories.findById(req.params.id).then((data) => {
@@ -202,4 +218,5 @@ module.exports = {
   deleteFood,
   getFoodMenu,
   getDietSummaryOfTheDay,
+  getFoodHistory,
 };
