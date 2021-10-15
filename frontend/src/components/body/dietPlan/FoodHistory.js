@@ -4,6 +4,7 @@ import "../../../static/Styling/healthInfo.css";
 import "react-responsive-modal/styles.css";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Table from "react-bootstrap/Table";
 import {
   Button,
   TextField,
