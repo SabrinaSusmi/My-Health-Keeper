@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Grid, Button, Select, MenuItem, makeStyles } from "@material-ui/core";
+import { Grid, Button, Select, MenuItem, makeStyles, IconButton } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import "../../../static/Styling/diseasePrediction.css";
+import "../../../static/Styling/dp.css"
 import { getSymptomsList } from "./SymptomsList";
 import axios from "axios";
 import Prediction from "./Prediction";
@@ -12,6 +13,12 @@ import { Container, Row, Col } from "react-grid-system";
 import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowHospitalList from './HospitalList'
+import DeleteIcon from "@material-ui/icons/Delete";
+
+// import AddTaskIcon from '@mui/icons-material/AddTask';
+// import BeenhereIcon from '@mui/icons-material/Beenhere';
+// import ListAltIcon from '@mui/icons-material/ListAlt';
+
 const initialState = {
   s1: "",
   s2: "",
@@ -85,7 +92,7 @@ export default function SymptomSelection() {
       <div
         className="reminder"
         style={{
-          backgroundImage: "url(/img/dp.jpg)",
+          backgroundImage: "url(/img/disease1.jpg)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "50vh",
@@ -116,22 +123,41 @@ export default function SymptomSelection() {
               &nbsp;
               <div className="disease_header_content">
                 <pre></pre> <pre></pre> <pre></pre>
-                <h1>
+                {/* <h1>
                   {" "}
                   Identify possible conditions and treatments<br></br> based on
                   your symptoms
-                </h1>
+                </h1> */}
+              </div>
+              <div className="description_section_dp">
+                <p>Identify possible conditions and treatments<br></br> based on
+                  your symptoms</p>
+              </div>
+              <div className="steps_section">
+                <div className="steps_section_body">
+                  <div className="steps_section_item">
+                    <div className="steps_item_icon"> <IconButton> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
+                    <div className="steps_item_info">Add Your symptoms<br></br> from the list</div>
+                  </div>
+                  <div className="steps_section_item">
+                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
+                    <div className="steps_item_info"> Click The button</div>
+                  </div>
+                  <div className="steps_section_item">
+                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
+                    <div className="steps_item_info">View The probable <br></br> diseases</div>
+                  </div>
+                </div>
               </div>
               <div className="symptom_list_body">
-                <div className="disease_overlay"></div>
+                {/* <div className="disease_overlay"></div> */}
                 
                 <div className="disease_main">
                   <div className="symptoms_body">
-           <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
-           <br></br>
+                    <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
+                    <br></br>
                     <div className="symptom">
-                      Symptom 1 {" "}
-                      <br></br>
+                      Symptom 1 : {" "}
                       <Select
                         id="s1"
                         name="s1"
@@ -144,8 +170,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 2 {" "}
-                      <br></br>
+                      Symptom 2 : {" "}
+                      
                       <Select
                         id="s2"
                         name="s2"
@@ -158,8 +184,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 3 {" "}
-                      <br></br>
+                      Symptom 3 : {" "}
+                      
                       <Select
                         id="s3"
                         name="s3"
@@ -172,8 +198,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 4 {" "}
-                      <br></br>
+                      Symptom 4 : {" "}
+                      
                       <Select
                         id="s4"
                         name="s4"
@@ -186,8 +212,8 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 5 {" "}
-                      <br></br>
+                      Symptom 5 : {" "}
+                      
                       <Select
                         id="s5"
                         name="s5"
@@ -215,12 +241,10 @@ export default function SymptomSelection() {
                 />):(' ')}
                
               </div>
-              <div className="symptom_list_body">
-                <div className="disease_overlay"></div>
-                
+              <div className="hotline_section">
                 <div style={{minHeight:200}} className="disease_main" >
-                <Button variant='text' className="hotline_number" onClick={()=>{setHotline(true)}} >Show Hotline Numbers</Button>
-    <br></br>         
+                  <Button variant='text' className="hotline_number" onClick={()=>{setHotline(true)}} >Show Hotline Numbers</Button>
+                  <br></br>         
                 </div>
                 {hotline?(<div>{ShowHospitalList()}</div>):("")}
               </div>
