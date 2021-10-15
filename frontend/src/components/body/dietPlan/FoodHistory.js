@@ -52,7 +52,7 @@ export default function FoodItemTable() {
         <Table hover size="md">
           <thead>
             <tr style={{ background: "transparent" }}>
-              <th>Date</th>
+              {/* <th>Date</th> */}
               <th>Meal Description</th>
               <th>Item Name</th>
               <th>Quantity (servings)</th>
@@ -66,7 +66,7 @@ export default function FoodItemTable() {
               <tr
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
-                <td>{food.date}</td>
+                {/* <td>{food.date}</td> */}
                 <td>{food.meal}</td>
                 <td>{food.food}</td>
                 <td>{food.quantity}</td>
