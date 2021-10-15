@@ -294,12 +294,12 @@ const getHistory = async (req, res) => {
   let user = req.user.id;
   const dates = req.headers["dates"];
   const infolist = [];
-  genHealthSchema.find({ user }, (err, inforList) => {
+  genHealthSchema.find({ user }, (err, dataList) => {
     if (err) {
       console.log("Health info get :" + err);
     }
-    if (inforList) {
-      inforList.forEach((data) => {
+    if (dataList) {
+      dataList.forEach((data) => {
         const dbDate = data.inputDate.toISOString().slice(0, 10);
         if (dates == dbDate) {
           infolist.push(data);
@@ -319,5 +319,5 @@ module.exports = {
   getBpSysData,
   getBpDiasData,
   getPulseData,
-  getHistory
+  getHistory,
 };
