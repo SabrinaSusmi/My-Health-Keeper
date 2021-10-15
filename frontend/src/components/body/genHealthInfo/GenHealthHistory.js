@@ -8,7 +8,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
 
-export default function GenHealthHistoryTable() {
+function GenHealthHistoryTable() {
+    
   const token = useSelector((state) => state.token);
   const [healthInfo, setHealthInfo] = useState([]);
 
@@ -71,4 +72,5 @@ export default function GenHealthHistoryTable() {
       </div>
     </div>
   );
-}
+};
+export default GenHealthHistoryTable;

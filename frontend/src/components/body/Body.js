@@ -59,10 +59,11 @@ export default function Body() {
           exact
         />
         <Route
-        path= "/general-health-history"
+        path="/general-health-history"
         component={isLogged ? GenHealthHistory : Login}
         exact
         />
+        
         <Route
           path="/medicine-doses"
           component={isLogged ? MedicineDose : Login}
