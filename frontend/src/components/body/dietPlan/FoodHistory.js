@@ -15,7 +15,7 @@ import axios from "axios";
   
     const getFoodDetailsTable = async () => {
       await axios
-        .get("http://localhost:5000/diet-plan/getFoodList", {
+        .get("http://localhost:5000/diet-plan/getFoodHistory", {
           headers: { Authorization: token },
         })
         .then((res) => {setFoodList(res.data)});
@@ -49,6 +49,7 @@ import axios from "axios";
                         : { color: "#f7900a" }
                     }
                   >
+                    <td>{food.date}</td>
                     <td>{food.meal}</td>
                     <td>{food.food}</td>
                     <td>{food.quantity}</td>
