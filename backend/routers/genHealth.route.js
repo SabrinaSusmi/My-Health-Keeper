@@ -9,6 +9,7 @@ const {
   getBpSysData,
   getBpDiasData,
   getPulseData,
+  getHistory,
 } = require("../controllers/genHealthController");
 
 router.post("/addGenHealth", auth, postHealthInfo);
@@ -18,5 +19,6 @@ router.get("/getChart/Weight", auth, getWeightData);
 router.get("/getChart/Bp_sys", auth, getBpSysData);
 router.get("/getChart/Bp_dias", auth, getBpDiasData);
 router.get("/getChart/Pulse", auth, getPulseData);
+router.get("/genHealthHistory",auth, getHistory);
 
 module.exports = router;
