@@ -171,7 +171,7 @@ const getFoodMenu = async (req, res) => {
 
 const getFoodHistory = async (req, res) => {
   let user = req.user.id;
-  let dates=req.headers['historyDate']
+  const dates= req.headers["dates"]; 
 
   console.log("qwdvhgbhb ", dates)
   consumedCalories.find(
