@@ -242,15 +242,25 @@ function GenHealthDashboard() {
           {ShowFeatureButtons()}
         </Col>
         <Col
-          style={{ marginLeft: 150, display: "flex", flexDirection: "column" }}
+          style={{ marginLeft: 130, display: "flex", flexDirection: "column" }}
         >
           <div className="reminder_buttons">
+            <Button  style={{ marginLeft: "40%", marginTop:"1%", backgroundColor:"#ADD8E6"}} variant="outlined">
             <Link
               href="/general-health-information"
               className="reminder_buttons_sub"
             >
-              {""} Add Today's Information
+               Add Today's Information
             </Link>
+            </Button>
+            <Button  style={{ marginLeft: "43%", marginTop:"2%",marginBottom:"2%",  backgroundColor:"#ADD8E6"}} variant="outlined">
+            <Link
+              href="/general-health-history"
+              className="reminder_buttons_sub"
+            >
+               View History
+            </Link>
+            </Button>
           </div>
 
           <div class="container">
