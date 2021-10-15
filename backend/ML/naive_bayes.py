@@ -36,7 +36,7 @@ l1 = ['itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing', 'sh
 
 disease = ['Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis', 'Drug Reaction',
            'Peptic ulcer diseae', 'AIDS', 'Diabetes', 'Gastroenteritis', 'Bronchial Asthma', 'Hypertension',
-           ' Migraine', 'Cervical spondylosis',
+           'Migraine', 'Cervical spondylosis',
            'Paralysis (brain hemorrhage)', 'Jaundice', 'Malaria', 'Chicken pox', 'Dengue', 'Typhoid', 'hepatitis A',
            'Hepatitis B', 'Hepatitis C', 'Hepatitis D', 'Hepatitis E', 'Alcoholic hepatitis', 'Tuberculosis',
            'Common Cold', 'Pneumonia', 'Dimorphic hemmorhoids(piles)',
@@ -48,10 +48,9 @@ l2 = []
 for x in range(0, len(l1)):
     l2.append(0)
 
-# TRAINING DATA
-df = pd.read_csv("./Training.csv")
-
-df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3, 'Drug Reaction': 4,
+# Training DATA
+trg = pd.read_csv('./Training.csv')
+trg.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3, 'Drug Reaction': 4,
                           'Peptic ulcer diseae': 5, 'AIDS': 6, 'Diabetes ': 7, 'Gastroenteritis': 8, 'Bronchial Asthma': 9, 'Hypertension ': 10,
                           'Migraine': 11, 'Cervical spondylosis': 12,
                           'Paralysis (brain hemorrhage)': 13, 'Jaundice': 14, 'Malaria': 15, 'Chicken pox': 16, 'Dengue': 17, 'Typhoid': 18, 'hepatitis A': 19,
@@ -59,16 +58,17 @@ df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chron
                           'Common Cold': 26, 'Pneumonia': 27, 'Dimorphic hemmorhoids(piles)': 28, 'Heart attack': 29, 'Varicose veins': 30, 'Hypothyroidism': 31,
                           'Hyperthyroidism': 32, 'Hypoglycemia': 33, 'Osteoarthristis': 34, 'Arthritis': 35,
                           '(vertigo) Paroymsal  Positional Vertigo': 36, 'Acne': 37, 'Urinary tract infection': 38, 'Psoriasis': 39,
-                          'Impetigo': 40}}, inplace=True)
-df.drop('Unnamed: 133', axis=1, inplace=True)
+                          'Impetigo': 40,'Diabetes':7, 'Hypertension':10}}, inplace=True)
+trg.drop('Unnamed: 133', axis=1, inplace=True)
+# print(df[0:5])
+# print(tr[0:5])
 
-X_train = df[l1]
 
-y_train = df[["prognosis"]]
-np.ravel(y_train)
+x_train = trg.iloc[:,:-1]
+y_train = trg.iloc[:,132]
 
 # TESTING DATA
-tr = pd.read_csv("./Testing.csv")
+tr = pd.read_csv('./Testing.csv')
 tr.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3, 'Drug Reaction': 4,
                           'Peptic ulcer diseae': 5, 'AIDS': 6, 'Diabetes ': 7, 'Gastroenteritis': 8, 'Bronchial Asthma': 9, 'Hypertension ': 10,
                           'Migraine': 11, 'Cervical spondylosis': 12,
@@ -77,62 +77,76 @@ tr.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chron
                           'Common Cold': 26, 'Pneumonia': 27, 'Dimorphic hemmorhoids(piles)': 28, 'Heart attack': 29, 'Varicose veins': 30, 'Hypothyroidism': 31,
                           'Hyperthyroidism': 32, 'Hypoglycemia': 33, 'Osteoarthristis': 34, 'Arthritis': 35,
                           '(vertigo) Paroymsal  Positional Vertigo': 36, 'Acne': 37, 'Urinary tract infection': 38, 'Psoriasis': 39,
-                          'Impetigo': 40}}, inplace=True)
+                          'Impetigo': 40,'Diabetes':7, 'Hypertension':10}}, inplace=True)
+tr.drop('Unnamed: 133', axis=1, inplace=True)
 # print(df[0:5])
 # print(tr[0:5])
-X_test = tr[l1]
-y_test = tr[["prognosis"]]
-np.ravel(y_test)
-# print((y_test))
-result=[]
 
-def NaiveBayes():
-    from sklearn.naive_bayes import MultinomialNB
+
+x_test = tr.iloc[:,:-1]
+y_test = tr.iloc[:,132]
+
+
+from sklearn.naive_bayes import MultinomialNB
+
+def naive_bayes():
+   
     gnb = MultinomialNB()
-    gnb = gnb.fit(X_train, np.ravel(y_train))
+    gnb = gnb.fit(x_train, np.ravel(y_train))
     from sklearn.metrics import accuracy_score
-    y_pred = gnb.predict(X_test)
+    y_pred = gnb.predict(x_test)
     print(accuracy_score(y_test, y_pred))
     print(accuracy_score(y_test, y_pred, normalize=False))
 
-    psymptoms = ['stomach_pain', 'acidity',  'chest_pain','vomiting', 'cough']
 
-    for k in range(0, len(l1)):
-        for z in psymptoms:
-            if(z == l1[k]):
-                l2[k] = 1
-
-    inputtest = [l2]
-    # print(np.ravel(y))
-    predict = gnb.predict(inputtest)
-    predict_prob = gnb.predict_proba(inputtest)
-    print(predict_prob)
-    prob1 = disease
-    try1 = predict_prob[0]
-    # print(try1)
-    ind = -1
-    flist = []
-    flist2 = []
     
+
+    test_sample = x_test[0:0]
+
+    # symptoms = ["nausea","loss_of_appetite","abdominal_pain","yellowing_of_eyes"]
+    symptoms = ['silver_like_dusting', 'acidity',  'malaise','vomiting', 'obesity']
+
+    input_test = []
+
+    for i in range(len(l1)):
+      if(l1[i] in symptoms):
+        input_test.append(1)
+      else:
+        input_test.append(0)
+
+    test_sample.loc[0] = np.array(input_test)
+
+    prediction = gnb.predict(test_sample)
+    prediction_probability = gnb.predict_proba(test_sample)
+
+    disease_list = disease
+    prediction_probability_array = prediction_probability[0]
+    # print(prediction_probability_array)
+    ind = -1
+    top_probability_prediction = []
+    top_disease_prediction = []
+
     # print(1e-100)
     for u in range(0, 3):
         max1 = 1e-100
-        for q in range(len(try1)):
-            if(try1[q] > max1):
-                float("{:.2f}".format(try1[q]))
-                max1 = try1[q]
+        for q in range(len(prediction_probability_array)):
+            if(prediction_probability_array[q] > max1):
+                float("{:.2f}".format(prediction_probability_array[q]))
+                max1 = prediction_probability_array[q]
                 ind = q
         # print(ind)
-        flist2.append(prob1[ind])
-        # flist2.append(max1)
-        try1 = np.delete(try1, ind)
+        top_disease_prediction.append(disease_list[ind])
+        # top_disease_prediction.append(max1)
+        prediction_probability_array = np.delete(prediction_probability_array, ind)
         # print(try1)
-        prob1 = np.delete(prob1, ind)
-        flist.append(("{:.2f}".format(max1*100)))
-
-    
-    print(flist2)
-    print(flist)
+        disease_list = np.delete(disease_list, ind)
+        top_probability_prediction.append(("{:.2f}".format(max1*100)))
 
 
-NaiveBayes()
+    print(top_disease_prediction)
+    print(top_probability_prediction)
+
+      
+naive_bayes()
+
+
