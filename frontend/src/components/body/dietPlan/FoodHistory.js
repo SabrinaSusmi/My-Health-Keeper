@@ -2,28 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../../../static/Styling/dietPlan.css";
 import "../../../static/Styling/healthInfo.css";
 import "react-responsive-modal/styles.css";
-import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
-import {
-  Button,
-  TextField,
-  IconButton,
-  InputLabel,
-  FormControl,
-} from "@material-ui/core";
 import { useSelector } from "react-redux";
 import axios from "axios";
-//import {getRice, riceList} from "./FoodList"
-import Autocomplete from "@material-ui/lab/Autocomplete";
 
-const InitialState = {
-    meal: "",
-    food: "",
-    quantity: "",
-    err: "",
-    success: "",
-  };
+
 
   export default function FoodItemTable() {
     const token = useSelector((state) => state.token);
