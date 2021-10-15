@@ -169,6 +169,25 @@ const getFoodMenu = async (req, res) => {
     });
 };
 
+const getFoodHistory = async (req, res) => {
+  let user = req.user.id;
+  let dates=req.headers['historyDate']
+
+  console.log("qwdvhgbhb ", dates)
+  consumedCalories.find(
+    { user },
+    (err, foodList) => {
+      if (err) {
+        //console.log(user);
+        console.log("Diet food get :" + err);
+      }
+      if (foodList) {
+        //console.log(foodList);
+        res.send(foodList);
+      }
+    }
+  );
+};
 const getDietSummaryOfTheDay = async (req, res) => {
   user = req.user.id;
   dates = new Date().toISOString().slice(0, 10);
@@ -202,4 +221,5 @@ module.exports = {
   deleteFood,
   getFoodMenu,
   getDietSummaryOfTheDay,
+  getFoodHistory
 };
