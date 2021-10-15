@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../../static/Styling/dietPlan.css";
 import "../../../static/Styling/healthInfo.css";
 import "react-responsive-modal/styles.css";
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
 
-export default function FoodItemTable() {
+export default function FoodHistoryTable() {
   const token = useSelector((state) => state.token);
   const [foodList, setFoodList] = useState([]);
 
@@ -31,28 +31,29 @@ export default function FoodItemTable() {
 
   return (
     <div>
-      {/* lmlm */}
+    <pre></pre>
+      <pre></pre>
+      <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 Select Date for Viewing Your Food History Details </div>
       <TextField
+        style={{color:'#155844',marginLeft:'30%',  marginTop:'3%'}}
         variant="outlined"
         required
-        // fullWidth
         id="startdate"
-        // label="Start Date"
         name="startdate"
         onChange={getFoodDetailsTable}
-        // value={eventDate}
         type="date"
         InputLabelProps={{
           shrink: true,
         }}
       />
-      {console.log("hbhb", foodList)}
+      <pre></pre>
+      <pre></pre>
+      <pre></pre>
       <div className="food_table">
         <div className="diet_info_item_progress"></div>
-        <Table hover size="md">
+        <Table hover size="sm">
           <thead>
             <tr style={{ background: "transparent" }}>
-              {/* <th>Date</th> */}
               <th>Meal Description</th>
               <th>Item Name</th>
               <th>Quantity (servings)</th>
@@ -66,7 +67,6 @@ export default function FoodItemTable() {
               <tr
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
-                {/* <td>{food.date}</td> */}
                 <td>{food.meal}</td>
                 <td>{food.food}</td>
                 <td>{food.quantity}</td>
