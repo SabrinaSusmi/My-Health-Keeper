@@ -26,8 +26,8 @@ export default function DietPlan() {
     setTargetVisibleProgress((prev) => !prev);
   };
   const viewFoodHistory=()=>{
-    setFoodHistory((prev) => !prev);
-  }
+    setFoodHistory(true);
+  };
 
   return (
     <div
@@ -82,6 +82,7 @@ export default function DietPlan() {
                 <div className="progress_history_section_buttons" onClick={viewFoodHistory}>History</div>
               </div>
               <div className="progress_history_info_div">
+
               {foodHistory ? (<div>
                   <FoodHistory isVisible={() => viewFoodHistory()} /></div>
                 ) : ("")}
