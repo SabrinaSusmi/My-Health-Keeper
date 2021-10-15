@@ -171,22 +171,26 @@ const getFoodMenu = async (req, res) => {
 
 const getFoodHistory = async (req, res) => {
   let user = req.user.id;
-  const dates= req.headers["dates"]; 
-
-  console.log("qwdvhgbhb ", dates)
-  consumedCalories.find(
-    { user },
-    (err, foodList) => {
-      if (err) {
-        //console.log(user);
-        console.log("Diet food get :" + err);
-      }
-      if (foodList) {
-        //console.log(foodList);
-        res.send(foodList);
-      }
+  const dates = req.headers["dates"];
+  const foodslist = [];
+  consumedCalories.find({ user }, (err, foodList) => {
+    if (err) {
+      //console.log(user);
+      console.log("Diet food get :" + err);
     }
-  );
+    if (foodList) {
+      console.log(dates);
+      foodList.forEach((foods) => {
+        const dbDate = foods.date.toISOString().slice(0, 10);
+        if (dates == dbDate) {
+          foodslist.push(foods);
+        }
+        // console.log(foods.date.toISOString().slice(0,10))
+      });
+      console.log(foodslist[0]);
+      res.send(foodslist);
+    }
+  });
 };
 const getDietSummaryOfTheDay = async (req, res) => {
   user = req.user.id;
@@ -202,13 +206,10 @@ const getDietSummaryOfTheDay = async (req, res) => {
           dateElement.push(element);
           console.log("dhbhynd ", element.date.toISOString().slice(0, 10));
           // res.send(element);
-        
         }
-        
       });
       console.log(dateElement[0]);
-      res.send(dateElement[0])
-
+      res.send(dateElement[0]);
     })
     .catch((err) => {
       console.log(err);
@@ -221,5 +222,5 @@ module.exports = {
   deleteFood,
   getFoodMenu,
   getDietSummaryOfTheDay,
-  getFoodHistory
+  getFoodHistory,
 };
