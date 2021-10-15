@@ -1,3 +1,40 @@
+
+.description_section_dp {
+  width: 60%;
+  margin: 0 auto;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3.5em;
+  color: rgb(0, 0, 204);
+  font-weight: 520;
+  /* border: black 1px solid; */
+}
+
+.steps_section {
+  border: black 1px solid;
+}
+
+.steps_section_body {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 4em;
+  border: 1px sloid #000000;
+}
+
+.steps_section_item {
+  display: flex;
+  flex-direction: column;
+  border: 1px sloid #000000;
+  width: 30%;
+  text-align: center;
+}
+
+.steps_item_icon {
+  font-size: 4rem;
+}
+
+
+
 .root {
   flex-grow: 1;
   padding: 1%;
@@ -111,16 +148,23 @@ justify-content: center;
 .disease_header_content{
   color: #522d58;
   text-align: center;
+  height: 50vh;
 }
 
 .symptom_list_body {
   /* border: #007cba 1px solid; */
-  margin-top: 4rem;
-  background-image: url("../images/disease2.jpg");
+  margin-top: 1rem;
+  /* background-image: url("../images/disease2.jpg"); */
+  background-image: linear-gradient(180deg, #35C7DF 0%, #075AC9 100%);
   background-size: cover;
   background-attachment: fixed;
   position: relative;
   
+}
+
+.hotline_body {
+  margin: 0 auto;
+  border: 1px sloid #000000;
 }
 
 .disease_overlay {
