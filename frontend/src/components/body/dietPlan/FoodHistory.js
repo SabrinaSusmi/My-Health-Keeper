@@ -7,6 +7,7 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 export default function FoodItemTable() {
   const token = useSelector((state) => state.token);
@@ -31,22 +32,24 @@ export default function FoodItemTable() {
 
   return (
     <div>
-      {/* lmlm */}
+    <pre></pre>
+      <pre></pre>
+      <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 Select Date for Viewing Your Food History Details </div>
       <TextField
+        style={{color:'#155844',marginLeft:'30%',  marginTop:'3%'}}
         variant="outlined"
         required
-        // fullWidth
         id="startdate"
-        // label="Start Date"
         name="startdate"
         onChange={getFoodDetailsTable}
-        // value={eventDate}
         type="date"
         InputLabelProps={{
           shrink: true,
         }}
       />
-      {console.log("hbhb", foodList)}
+      <pre></pre>
+      <pre></pre>
+      <pre></pre>
       <div className="food_table">
         <div className="diet_info_item_progress"></div>
         <Table hover size="sm">
