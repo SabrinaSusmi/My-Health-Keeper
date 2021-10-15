@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import FoodItemTable from "./FoodItemTable";
 import DietOverview from "./DietOverview";
 import DietProgress from "./DietProgress";
-import FoodHistory from "./FoodHistory"
+import FoodHistory from "./FoodHistory";
 
 export default function DietPlan() {
   const token = useSelector((state) => state.token);

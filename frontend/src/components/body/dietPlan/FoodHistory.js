@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../../static/Styling/dietPlan.css";
 import "../../../static/Styling/healthInfo.css";
 import "react-responsive-modal/styles.css";
@@ -7,9 +7,8 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core";
 
-export default function FoodItemTable() {
+export default function FoodHistoryTable() {
   const token = useSelector((state) => state.token);
   const [foodList, setFoodList] = useState([]);
 
