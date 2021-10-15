@@ -122,7 +122,10 @@ export default function SymptomSelection() {
                   your symptoms
                 </h1> */}
               </div>
-              
+              <div className="description_section_dp">
+                <p>Identify possible conditions and treatments<br></br> based on
+                  your symptoms</p>
+              </div>
               <div className="symptom_list_body">
                 {/* <div className="disease_overlay"></div> */}
                 

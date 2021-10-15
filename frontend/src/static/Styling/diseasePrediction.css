@@ -1,5 +1,13 @@
 
-
+.description_section_dp {
+  width: 60%;
+  margin: 0 auto;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3.5em;
+  color: rgb(0, 0, 204);
+  font-weight: 520;
+}
 
 .root {
   flex-grow: 1;
