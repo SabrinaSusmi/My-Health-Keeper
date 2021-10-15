@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Button, Select, MenuItem, makeStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import "../../../static/Styling/diseasePrediction.css";
+import "../../../static/Styling/dp.css"
 import { getSymptomsList } from "./SymptomsList";
 import axios from "axios";
 import Prediction from "./Prediction";
@@ -12,6 +13,12 @@ import { Container, Row, Col } from "react-grid-system";
 import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowHospitalList from './HospitalList'
+import DeleteIcon from "@material-ui/icons/Delete";
+
+// import AddTaskIcon from '@mui/icons-material/AddTask';
+// import BeenhereIcon from '@mui/icons-material/Beenhere';
+// import ListAltIcon from '@mui/icons-material/ListAlt';
+
 const initialState = {
   s1: "",
   s2: "",
@@ -125,6 +132,22 @@ export default function SymptomSelection() {
               <div className="description_section_dp">
                 <p>Identify possible conditions and treatments<br></br> based on
                   your symptoms</p>
+              </div>
+              <div className="steps_section">
+                <div className="steps_section_body">
+                  <div className="steps_section_item">
+                    <div className="steps_item_icon"> <DeleteIcon /> </div>
+                    <div className="steps_item_info">Add Your symptoms from the list</div>
+                  </div>
+                  <div className="steps_section_item">
+                    <div className="steps_item_icon"> <DeleteIcon /></div>
+                    <div className="steps_item_info"> Click The button</div>
+                  </div>
+                  <div className="steps_section_item">
+                    <div className="steps_item_icon"> <DeleteIcon /></div>
+                    <div className="steps_item_info">View The probable diseases</div>
+                  </div>
+                </div>
               </div>
               <div className="symptom_list_body">
                 {/* <div className="disease_overlay"></div> */}

@@ -7,7 +7,33 @@
   margin-bottom: 3.5em;
   color: rgb(0, 0, 204);
   font-weight: 520;
+  /* border: black 1px solid; */
 }
+
+.steps_section {
+  border: black 1px solid;
+}
+
+.steps_section_body {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 4em;
+  border: 1px sloid #000000;
+}
+
+.steps_section_item {
+  display: flex;
+  flex-direction: column;
+  border: 1px sloid #000000;
+  width: 30%;
+  text-align: center;
+}
+
+.steps_item_icon {
+  font-size: 4rem;
+}
+
+
 
 .root {
   flex-grow: 1;
