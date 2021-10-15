@@ -67,51 +67,102 @@
   font-size: 1.2rem;
 }
 
-.foodTable_grid{
-  background-color: #f4c805;
-  border-radius: 10px;
+.food_table_div {
+  background-image: url('../images/diet2.jpg');
+  margin-top: 2rem;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+
 }
 
-.diet_buttons {
-  /* margin-top: 1%; */
-  width: 25%;
-  margin-right: 0px;
-  margin-left: auto;
-}
-.diet_body {
-  margin-top: 2%;
-  margin-left: 0.5%;
-  margin-right: 0.5%;
+.diet_overlay {
+  content: "";
+  background-color: rgba(111, 154, 55, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
-
-.form_body {
-  margin: 0.2%;
+.food_table_body {
+  width: 80%;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 6em;
 }
-.form_body > .form_btn {
-  margin: 1%;
+
+.food_table_header {
+  text-align: center;
+  position: relative;
+  margin: 1em auto;
 }
 
-.add_food_div {
-  background-color: #f4c805;
+.food_table_header h3{
+  margin-top: 1em;
+  margin-bottom: 2em;
+  margin: 1em auto;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  font-size: 2.4rem;
+}
+
+.food_table_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.add_food {
+  width: 30%;
+  margin: 1em;
+  background-color: #ffffff;
+  border: 1px solid #6f9a37;
+  padding: 20px 20px 20px 20px;
+  margin-right: 4em;
+  border-radius: 15px;
+}
+
+.food_table_item {
+  width: 60%;
+  border: 1px solid #ffffff;
+  align-items: center;
+  background-color: #ffffff;
   padding: 20px;
-  border-radius: 10px;
-  margin: 5%;
+  border-radius: 20px;
+  font-weight: bold;
 }
+
+.exercise_section {
+  padding-top: 3em;
+  padding-bottom: 6em;
+  text-align: center;
+}
+
 .add_btn_diet {
-  margin-top: 3%;
-  margin-left: 36%;
-  /* margin-right: 0; */
+  margin: 2em auto;
+  width: 150px;
 }
-.add_btn_diet_font {
-  color: rgb(78, 80, 55);
-  font-size: 15px;
-  font-weight: 550;
+
+.add_btn_diet > .add_btn{
+  background-color: transparent;
+  border: 2px solid #6f9a37;
+  color: #6f9a37;
+  font-weight: bold;
+  padding: 10px;
+  width: 150px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.add_btn_diet > .add_btn:hover {
+  background-color: #6f9a37;
+  color: #ffffff;
+  box-shadow: none;
 }
 
 .meal_type_select {
-  /* margin-left: 17px; */
-
   min-width: 180px;
 }
 .food_name_select {

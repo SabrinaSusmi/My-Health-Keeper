@@ -29,7 +29,7 @@ const getMonthlyDietData = async (req, res) => {
         }
       }
       console.log("cons ",consumed_cal_data,'      req ',req_cal_data,'         date',cal_date,"       vv",totalCal)
-      res.send({ consume_cal: consumed_cal_data, req_cal: req_cal_data , cal_date:cal_date, totalCal:totalCal});
+      res.send({ consume_cal: consumed_cal_data, req_cal: req_cal_data , cal_date:cal_date, totalCal:totalCal/30});
        }
   });
 

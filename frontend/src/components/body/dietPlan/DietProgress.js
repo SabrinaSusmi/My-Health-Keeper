@@ -4,16 +4,13 @@ import "../../../static/Styling/dietProgress.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
-// import DateFnsUtils from "@date-io/date-fns";
-// import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
-import DatePicker from "react-datepicker";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
-// import { makeStyles } from "@material-ui/core/styles";
+
 import { Container, Row, Col } from "react-grid-system";
-import featureButton from "../../../static/Styling/featureButton.css";
+
 import { COLORS } from "../../themeColors";
 
 const initialState = {
@@ -79,8 +76,8 @@ export default function DietProgress() {
               label: 'Required Calories',
               fill: false,
               lineTension: 0.5,
-              backgroundColor: '#e06666',
-              borderColor: '#e06666',
+              backgroundColor: '#6aa84f',
+              borderColor: '#6aa84f',
               borderWidth: 2,
               pointRadius:5,
             },
@@ -113,8 +110,8 @@ export default function DietProgress() {
           label: 'Required Calories',
               fill: false,
               lineTension: 0.5,
-              backgroundColor: '#e06666',
-              borderColor: '#e06666',
+              backgroundColor: '#6aa84f',
+              borderColor: '#6aa84f',
           borderWidth: 2,
         },
       
@@ -206,7 +203,7 @@ export default function DietProgress() {
                     <div className="avg_consumed_cal_progress_div">
                       <span>
                         {" "}
-                        Last month avg. <br></br>
+                        Per day  avg. <br></br>
                         <h2>
                           {" "}
                           <b>{totalCal} </b>

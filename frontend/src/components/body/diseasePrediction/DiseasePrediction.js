@@ -11,7 +11,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 import { Container, Row, Col } from "react-grid-system";
 import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
-
+import ShowHospitalList from './HospitalList'
 const initialState = {
   s1: "",
   s2: "",
@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     margin: theme.spacing(2),
     minWidth: 320,
-    color: "#04272f",
+    color: "#522d58",
+    fontSize: 17,
+    fontWeight: 550,
   },
 }));
 
@@ -39,6 +41,9 @@ export default function SymptomSelection() {
     const { name, value } = e.target;
     setSymptom({ ...symptom, [name]: value });
   };
+
+  const [result,setResult]=useState(false)
+  const [hotline,setHotline]=useState(false)
 
   const symptomList = () => {
     let a = [];
@@ -70,21 +75,23 @@ export default function SymptomSelection() {
         setDisease(res.data.diseaseName);
         setDoctor(res.data.diseaseSpecialist);
         setPercentage(res.data.diseasePercenatge);
+        setResult(true)
         console.log("disease", res.data.diseaseSpecialist);
       });
   };
 
   return (
-    <div>
+    <>
       <div
-        class="bg_image"
+        className="reminder"
         style={{
-            backgroundImage: "url(/img/disease2.jpg)",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            height: "100vh",
-            opacity: " 0.9",
-            backgroundPosition: "absolute",
+          backgroundImage: "url(/img/dp.jpg)",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "50vh",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+         
         }}
       >
         <Container
@@ -92,18 +99,136 @@ export default function SymptomSelection() {
             display: "flex",
             flexDirection: "column",
             margin: 0,
-            maxWidth: 1900,
+            maxWidth: '100%',
             padding: 0,
             marginRight: 0,
           }}
         >
           <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader(COLORS.genHealthBackground)}
+            {ShowHeader(COLORS.diseasePrediction)}
           </div>
           <pre></pre>
           <pre></pre> <pre></pre> <pre></pre> <pre></pre>
           <pre></pre>
           <Row className="body_feature_row">
+            <Col style={{ display: "flex", flexDirection: "column" }}>
+              {" "}
+              &nbsp;
+              <div className="disease_header_content">
+                <pre></pre> <pre></pre> <pre></pre>
+                <h1>
+                  {" "}
+                  Identify possible conditions and treatments<br></br> based on
+                  your symptoms
+                </h1>
+              </div>
+              <div className="symptom_list_body">
+                <div className="disease_overlay"></div>
+                
+                <div className="disease_main">
+                  <div className="symptoms_body">
+           <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
+           <br></br>
+                    <div className="symptom">
+                      Symptom 1 {" "}
+                      <br></br>
+                      <Select
+                        id="s1"
+                        name="s1"
+                        value={s1}
+                        onChange={handleChangeInput}
+                        // displayEmpty
+                        className={classes.selectEmpty}
+                      >
+                        {symptomList()}
+                      </Select>
+                    </div>
+                    <div className="symptom">
+                      Symptom 2 {" "}
+                      <br></br>
+                      <Select
+                        id="s2"
+                        name="s2"
+                        value={s2}
+                        onChange={handleChangeInput}
+                        // displayEmpty
+                        className={classes.selectEmpty}
+                      >
+                        {symptomList()}
+                      </Select>
+                    </div>
+                    <div className="symptom">
+                      Symptom 3 {" "}
+                      <br></br>
+                      <Select
+                        id="s3"
+                        name="s3"
+                        value={s3}
+                        onChange={handleChangeInput}
+                        // displayEmpty
+                        className={classes.selectEmpty}
+                      >
+                        {symptomList()}
+                      </Select>
+                    </div>
+                    <div className="symptom">
+                      Symptom 4 {" "}
+                      <br></br>
+                      <Select
+                        id="s4"
+                        name="s4"
+                        value={s4}
+                        onChange={handleChangeInput}
+                        // displayEmpty
+                        className={classes.selectEmpty}
+                      >
+                        {symptomList()}
+                      </Select>
+                    </div>
+                    <div className="symptom">
+                      Symptom 5 {" "}
+                      <br></br>
+                      <Select
+                        id="s5"
+                        name="s5"
+                        value={s5}
+                        onChange={handleChangeInput}
+                        // displayEmpty
+                        className={classes.selectEmpty}
+                      >
+                        {symptomList()}
+                      </Select>
+                    </div>
+                    <div className="predict_button">
+                      <Button onClick={handleSubmit} className="predict">
+                        Predict
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="prediction_body">
+                {result?( <Prediction
+                  getPrediction={disease}
+                  percent={percentage}
+                  specialist={doctor}
+                />):(' ')}
+               
+              </div>
+              <div className="symptom_list_body">
+                <div className="disease_overlay"></div>
+                
+                <div style={{minHeight:200}} className="disease_main" >
+                <Button variant='text' className="hotline_number" onClick={()=>{setHotline(true)}} >Show Hotline Numbers</Button>
+    <br></br>         
+                </div>
+                {hotline?(<div>{ShowHospitalList()}</div>):("")}
+              </div>
+              <pre></pre>
+              <pre></pre>
+              <pre></pre>
+              <pre></pre>
+            </Col>
             <Col
               className="body_feature_column"
               style={{ position: "fixed" }}
@@ -111,189 +236,9 @@ export default function SymptomSelection() {
             >
               {ShowFeatureButtons()}
             </Col>
-            <Col
-              style={{
-                marginLeft: 150,
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <div className="intro">
-                Identify possible conditions and treatments related to your
-                symptoms{" "}
-              </div>
-              <div className="disease_main">
-                <div className="symptoms_body">
-                  <div className="symptom">
-                    Symptom 1 :{" "}
-                    <Select
-                      id="s1"
-                      name="s1"
-                      value={s1}
-                      onChange={handleChangeInput}
-                      // displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      {symptomList()}
-                    </Select>
-                  </div>
-                  <div className="symptom">
-                    Symptom 2 :{" "}
-                    <Select
-                      id="s2"
-                      name="s2"
-                      value={s2}
-                      onChange={handleChangeInput}
-                      // displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      {symptomList()}
-                    </Select>
-                  </div>
-                  <div className="symptom">
-                    Symptom 3 :{" "}
-                    <Select
-                      id="s3"
-                      name="s3"
-                      value={s3}
-                      onChange={handleChangeInput}
-                      // displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      {symptomList()}
-                    </Select>
-                  </div>
-                  <div className="symptom">
-                    Symptom 4 :{" "}
-                    <Select
-                      id="s4"
-                      name="s4"
-                      value={s4}
-                      onChange={handleChangeInput}
-                      // displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      {symptomList()}
-                    </Select>
-                  </div>
-                  <div className="symptom">
-                    Symptom 5 :{" "}
-                    <Select
-                      id="s5"
-                      name="s5"
-                      value={s5}
-                      onChange={handleChangeInput}
-                      // displayEmpty
-                      className={classes.selectEmpty}
-                    >
-                      {symptomList()}
-                    </Select>
-                  </div>
-                  <div className="predict_button">
-                    <Button onClick={handleSubmit} className="predict">
-                      Predict
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="prediction_body">
-                  <Prediction
-                  getPrediction={disease}
-                  percent={percentage}
-                  specialist={doctor}
-                />
-                </div>
-
-              </div>
-              {/* <Grid className="root" container>
-                <Grid className="grid_symptoms" item xs={5}>
-                  Symptoms 1 :{" "}
-                  <Select
-                    id="s1"
-                    name="s1"
-                    value={s1}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 2 :{" "}
-                  <Select
-                    id="s2"
-                    name="s2"
-                    value={s2}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 3 :{" "}
-                  <Select
-                    id="s3"
-                    name="s3"
-                    value={s3}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 4 :{" "}
-                  <Select
-                    id="s4"
-                    name="s4"
-                    value={s4}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid item xs={4}>
-                  {" "}
-                </Grid>
-                <Grid className="grid_symptoms" item xs={5}>
-                  {" "}
-                  Symptoms 5 :{" "}
-                  <Select
-                    id="s5"
-                    name="s5"
-                    value={s5}
-                    onChange={handleChangeInput}
-                    // displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    {symptomList()}
-                  </Select>
-                </Grid>
-                <Grid item xs={3}></Grid>
-              </Grid> */}
-              {/* <div className="predict_button">
-                <Button onClick={handleSubmit} className="predict">
-                  Predict
-                </Button>
-              </div> */}
-              {/* <Prediction
-                getPrediction={disease}
-                percent={percentage}
-                specialist={doctor}
-              /> */}
-            </Col>
           </Row>
         </Container>
       </div>
-    </div>
+    </>
   );
 }

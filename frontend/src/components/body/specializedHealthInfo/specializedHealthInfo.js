@@ -61,14 +61,11 @@ export default function SpecializedHealthInfo() {
       <div
         class="bg_image"
         style={{
-          backgroundImage: "url(/img/spHealth4.jpg)",
+          backgroundImage: "url(/img/sp4.jpg)",
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "100%",
-          width: "100%",
-          opacity: "0.9",
-          backgroundPosition: "center",
+          height: "50vh",
         }}
       >
         <Container
@@ -88,48 +85,56 @@ export default function SpecializedHealthInfo() {
           <pre></pre> <pre></pre> <pre></pre> <pre></pre>
           <pre></pre>
           <Row className="body_feature_row">
+    
+            <Col
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div className="sp_header_content">
+               
+              </div>
+              <div className="description_section">
+                <div>
+                  {/* <img src="../../../static/images/quote.png"/> */}
+                  <p>No more forgetting <br></br> about bringing medical reports to doctors! <br></br> Now you can store all your MEDICAL reports and <br></br>prescriptions in <b>ONE PLACE</b>!! <br></br>Also keep track of your day to day life <br></br> health problems.</p>
+                </div>
+              </div>
+              <div className="sp_add_body">
+                <div className="sp_add_body_image"></div>
+                <div className="sp_add_box">
+                  <AddNotes getNote={() => showSPHealthNotes()} />
+                </div>
+              </div>
+
+              <div className="sp_notes_body">
+                <div className="sp_notes_header">
+                  <h3>Health Journal</h3>
+                </div>
+                <div className="sp_notes_box">
+                  {spHealthNotes.length != 0 ? (
+                    <div >
+                      {spHealthNotes.map((note) => (
+                        <ViewFolderProps
+                          note={note}
+                          deleteFolder={() => deleteFolder(note._id)}
+                          showSPHealthNotes={() => showSPHealthNotes()}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <h2>No folder is created</h2>
+                  )}
+                </div>
+              </div>
+            </Col>
             <Col
               className="body_feature_column"
               style={{ position: "fixed" }}
               sm={2}
             >
               {ShowFeatureButtons()}
-            </Col>
-            <Col
-              style={{
-                marginLeft: 150,
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <AddNotes getNote={() => showSPHealthNotes()} />
-                </Grid>
-                <Grid item xs={6}>
-                  <div className="sp_health_desc">
-                    <p>No more forgetting about bringing medical reports to doctors. <br></br>Now you can store all your MEDICAL reports and prescriptions in <b>ONE PLACE</b>!!
-                      <br></br>Also keep track of your day to day life health problems</p>
-                  </div>
-                </Grid>
-              </Grid>
-
-              <h2>&nbsp;&nbsp;&nbsp;Health Journal</h2>
-              
-
-              {spHealthNotes.length != 0 ? (
-                <div>
-                  {spHealthNotes.map((note) => (
-                    <ViewFolderProps
-                      note={note}
-                      deleteFolder={() => deleteFolder(note._id)}
-                      showSPHealthNotes={() => showSPHealthNotes()}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <h2>No folder is created</h2>
-              )}
             </Col>
           </Row>
         </Container>
