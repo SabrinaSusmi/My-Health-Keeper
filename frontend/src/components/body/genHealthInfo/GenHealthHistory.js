@@ -47,7 +47,8 @@ function GenHealthHistoryTable() {
       <pre></pre>
       <pre></pre>
       <pre></pre>
-      <div className="food_table">
+      <hr></hr>
+      <div className="food_table" style={{marginLeft:"10%",marginRight:"10%"}}>
         <div className="diet_info_item_progress"></div>
         <Table hover size="sm">
           <thead>
