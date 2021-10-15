@@ -10,7 +10,7 @@ const postHealthInfo = async (req, res) => {
     let bp_split = info.split("/");
     genHealthSchema
       .findOne({
-        user : user,
+        user:user,
         infoTitle: infoTitle,
         inputDate: new Date().toISOString().slice(0, 10),
       })
@@ -19,7 +19,7 @@ const postHealthInfo = async (req, res) => {
           genHealthSchema
             .findOneAndUpdate(
               {
-                user : user,
+                user:user,
                 infoTitle: infoTitle,
                 inputDate: new Date().toISOString().slice(0, 10),
                 bpType: "systolic",
@@ -31,7 +31,7 @@ const postHealthInfo = async (req, res) => {
           genHealthSchema
             .findOneAndUpdate(
               {
-                user : user,
+                user:user,
                 infoTitle: infoTitle,
                 inputDate: new Date().toISOString().slice(0, 10),
                 bpType: "diastolic",
@@ -73,7 +73,7 @@ const postHealthInfo = async (req, res) => {
   } else {
     genHealthSchema
       .findOne({
-        user : user,
+        user:user,
         infoTitle: infoTitle,
         inputDate: new Date().toISOString().slice(0, 10),
       })
@@ -82,7 +82,7 @@ const postHealthInfo = async (req, res) => {
           genHealthSchema
             .findOneAndUpdate(
               {
-                user : user,
+                user:user,
                 infoTitle: infoTitle,
                 inputDate: new Date().toISOString().slice(0, 10),
               },
@@ -290,6 +290,27 @@ const getPulseData = async (req, res) => {
     }
   );
 };
+const getHistory = async (req, res) => {
+  let user = req.user.id;
+  const dates = req.headers["dates"];
+  const infolist = [];
+  genHealthSchema.find({ user }, (err, dataList) => {
+    if (err) {
+      console.log("Health info get :" + err);
+    }
+    if (dataList) {
+      dataList.forEach((data) => {
+        const dbDate = data.inputDate.toISOString().slice(0, 10);
+        if (dates == dbDate) {
+          infolist.push(data);
+        }
+        
+      });
+      console.log(infolist[0]);
+      res.send(infolist);
+    }
+  });
+}
 
 module.exports = {
   postHealthInfo,
@@ -298,4 +319,5 @@ module.exports = {
   getBpSysData,
   getBpDiasData,
   getPulseData,
+  getHistory,
 };

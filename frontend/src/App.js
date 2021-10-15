@@ -22,6 +22,7 @@ import DisplayMedicineReminders from "./components/body/medicineReminder/Display
 import MenstrualCycle from "./components/body/MenstrualCycle/MenstrualCycle";
 import HealthInfo from "./components/body/genHealthInfo/HealthInfo";
 import GenHealthDashboard from "./components/body/genHealthInfo/GenHealthDashboard";
+import GenHealthHistoryTable from "./components/body/genHealthInfo/GenHealthHistory";
 import MedicineDose from "./components/body/medicineReminder/MedDoses";
 import specializedHealthInfo from "./components/body/specializedHealthInfo/specializedHealthInfo";
 import ViewFiles from "./components/body/specializedHealthInfo/ViewFiles";
@@ -152,6 +153,11 @@ function App() {
               <Route
                 path="/general-health-information"
                 component={isLogged ? HealthInfo : Login}
+                exact
+              />
+              <Route
+                path="/general-health-history"
+                component={isLogged ? GenHealthHistoryTable : Login}
                 exact
               />
               <Route
