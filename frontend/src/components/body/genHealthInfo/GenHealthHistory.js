@@ -36,7 +36,7 @@ function GenHealthHistoryTable() {
     e.preventDefault();
     const historyYear = year;
     const historyMonth = selectedDate;
-console.log(historyMonth,'   ',historyYear)
+//console.log(historyMonth,'   ',historyYear)
     await axios
       .get("http://localhost:5000/genHealthMonthlyHistory", {
         headers: { Authorization: token, year: year, months : selectedDate },
@@ -163,10 +163,11 @@ console.log(historyMonth,'   ',historyYear)
         <Table hover size="sm">
           <thead>
             <tr style={{ background: "transparent" }}>
-              <th>Title</th>
-              <th>Information Type </th>
-              <th>Information / Data</th>
-              <th></th>
+              <th>Date</th>
+              <th>Blood Pressure</th>
+              <th>Weight</th>
+              <th>Sugar level</th>
+              <th>Pulse Rate</th>
             </tr>
           </thead>
 
