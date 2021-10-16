@@ -316,27 +316,42 @@ const getMonthlyHistory = async (req, res) => {
   let user = req.user.id;
   const year = req.headers["year"];
   const months = req.headers["months"];
-  const infolist = [];
-  genHealthSchema.find({ user }, (err, dataList) => {
-    if (err) {
-      console.log("Health info get :" + err);
-    }
-    if (dataList) {
-      dataList.forEach((data) => {
-        const dbYear = data.inputDate.getFullYear().slice(0, 10);
-        console.log(dbYear)
-        const dbMonth = data.inputDate.getMonth().slice(0, 10);
-        console.log(dbMonth)
-        if (year == dbYear && months ==dbMonth ) {
-          infolist.push(data);
+  console.log(year, "   ", months);
+
+  const weightList = [];
+  const bpList = [];
+  const sugarList = [];
+  const pulseList = [];
+
+  await genHealthSchema
+    .find({ user })
+    .then((ans) => {
+      ans.forEach((hist) => {
+        const histDate=hist['inputDate'].toISOString().slice(0,10)
+        const datess=histDate.split('-')
+
+        if(year==datess[0] && months==datess[1]){
+          if(hist['infoType']=='Pulse'){
+            pulseList.push(hist['info'])
+          }
+          else if(hist['infoType']=='Weight'){
+            weightList.push(hist['info'])
+          }
+          else if(hist['infoType']=='Bp'){
+            bpList.push(hist['info'])
+          }
+          else (hist['infoType']=='Sugar'){
+            sugarList.push(hist['info'])
+          }
+
         }
-        
       });
-      console.log(infolist[0]);
-      res.send(infolist);
-    }
-  });
-}
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
 
 
 module.exports = {
