@@ -312,6 +312,31 @@ const getHistory = async (req, res) => {
   });
 }
 
+const getMonthlyHistory = async (req, res) => {
+  let user = req.user.id;
+  const year = req.headers["year"];
+  const months = req.headers["months"];
+  const infolist = [];
+  genHealthSchema.find({ user }, (err, dataList) => {
+    if (err) {
+      console.log("Health info get :" + err);
+    }
+    if (dataList) {
+      dataList.forEach((data) => {
+        const dbYear = data.inputDate.toISOString().slice(0, 10).getYear();
+        const dbMonth = data.inputDate.toISOString().slice(0, 10).getMonth();
+        if (year == dbDate && months ==dbMonth ) {
+          infolist.push(data);
+        }
+        
+      });
+      console.log(infolist[0]);
+      res.send(infolist);
+    }
+  });
+}
+
+
 module.exports = {
   postHealthInfo,
   getSugarData,
@@ -320,4 +345,5 @@ module.exports = {
   getBpDiasData,
   getPulseData,
   getHistory,
+  getMonthlyHistory,
 };
