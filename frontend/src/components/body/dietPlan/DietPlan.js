@@ -11,29 +11,32 @@ import "react-datepicker/dist/react-datepicker.css";
 import FoodItemTable from "./FoodItemTable";
 import DietOverview from "./DietOverview";
 import DietProgress from "./DietProgress";
-import FoodHistory from "./FoodHistory"
+import FoodHistory from "./FoodHistory";
+import { TextField,Button } from "@material-ui/core";
+import BurnedCalories from "./BurnedCalorie";
+// import { Button } from "bootstrap";
 
 export default function DietPlan() {
   const token = useSelector((state) => state.token);
   const [targetVisible, setTargetVisible] = useState(false);
   const [targetVisibleProgress, setTargetVisibleProgress] = useState(false);
-  const [foodHistory,setFoodHistory] = useState(false)
+  const [foodHistory, setFoodHistory] = useState(false);
   const viewtargetInfo = () => {
-    setFoodHistory(false)
-    setTargetVisibleProgress(false)
+    setFoodHistory(false);
+    setTargetVisibleProgress(false);
     setTargetVisible((prev) => !prev);
   };
- 
+
   const viewtargetInfoProgress = () => {
-    setTargetVisible(false)
-    setFoodHistory(false)
+    setTargetVisible(false);
+    setFoodHistory(false);
     setTargetVisibleProgress((prev) => !prev);
   };
-  const viewFoodHistory=()=>{
-    setTargetVisible(false)
-    setTargetVisibleProgress(false)
+  const viewFoodHistory = () => {
+    setTargetVisible(false);
+    setTargetVisibleProgress(false);
     setFoodHistory((prev) => !prev);
-  }
+  };
 
   return (
     <div
@@ -44,7 +47,7 @@ export default function DietPlan() {
         backgroundRepeat: "no-repeat",
         height: "50vh",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed"
+        backgroundAttachment: "fixed",
       }}
     >
       <Container
@@ -63,7 +66,6 @@ export default function DietPlan() {
         <pre></pre>
         <pre></pre> <pre></pre> <pre></pre> <pre></pre>
         <Row className="body_feature_row">
-          
           <Col
             style={{
               display: "flex",
@@ -83,25 +85,49 @@ export default function DietPlan() {
             </div>
             <div className="progress_history_section">
               <div className="progress_history_button_div">
-                <div className="progress_history_section_buttons" onClick={viewtargetInfo}>Set Your Goal</div>
-                <div className="progress_history_section_buttons" onClick={viewtargetInfoProgress}>Progress</div>
-                <div className="progress_history_section_buttons" onClick={viewFoodHistory}>History</div>
+                <div
+                  className="progress_history_section_buttons"
+                  onClick={viewtargetInfo}
+                >
+                  Set Your Goal
+                </div>
+                <div
+                  className="progress_history_section_buttons"
+                  onClick={viewtargetInfoProgress}
+                >
+                  Progress
+                </div>
+                <div
+                  className="progress_history_section_buttons"
+                  onClick={viewFoodHistory}
+                >
+                  History
+                </div>
               </div>
               <div className="progress_history_info_div">
-              {foodHistory ? (<div>
-                
-                  <FoodHistory isVisible={() => viewFoodHistory()} />
+                {foodHistory ? (
+                  <div>
+                    <FoodHistory isVisible={() => viewFoodHistory()} />
                   </div>
-                ) : ("")}
-                
-                {targetVisibleProgress ? (<div> 
-                    <DietProgress isVisible={() => viewtargetInfoProgress()} /></div>
-                   ) : ("")}
+                ) : (
+                  ""
+                )}
 
-                {targetVisible ? (<div>
-                  <DietGoalSetter isVisible={() => viewtargetInfo()} /></div>
-                  ) : ("")}
+                {targetVisibleProgress ? (
+                  <div>
+                    <DietProgress isVisible={() => viewtargetInfoProgress()} />
+                  </div>
+                ) : (
+                  ""
+                )}
 
+                {targetVisible ? (
+                  <div>
+                    <DietGoalSetter isVisible={() => viewtargetInfo()} />
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
 
@@ -114,8 +140,8 @@ export default function DietPlan() {
                 <div className="food_table_box">
                   <div className="add_food">
                     <h4>Add Food Items </h4>
-                    <AddFoodModal/>
-                    </div>
+                    <AddFoodModal />
+                  </div>
                   <div className="food_table_item">
                     <FoodItemTable />
                   </div>
@@ -124,7 +150,7 @@ export default function DietPlan() {
             </div>
 
             <div className="exercise_section">
-              <h3>Burnt some calories today?</h3>
+           <BurnedCalories/>
             </div>
           </Col>
           <Col
