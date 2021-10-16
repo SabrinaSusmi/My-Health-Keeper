@@ -349,6 +349,7 @@ const getMonthlyHistory = async (req, res) => {
             }
             if (hist["bpType"] == "diastolic") {
               diasList.push(hist["info"]);
+              
             }
           }
         }

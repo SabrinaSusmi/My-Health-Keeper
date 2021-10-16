@@ -39,29 +39,32 @@ function GenHealthHistoryTable() {
     let pulseList = [];
     let sysList=[]
     let diasList=[]
-    e.preventDefault();
     await axios
       .get("http://localhost:5000/genHealthMonthlyHistory", {
-        headers: { Authorization: token, year: year, months : selectedDate },
+        headers: { Authorization: token, months : selectedDate,year: year },
       })
       .then((res) => {
-       res.sugar.forEach((element)=>{
+       res.data.sugar.forEach((element)=>{
         sugarList.push(element);
        })
-       res.weight.forEach((element)=>{
+       res.data.weight.forEach((element)=>{
         weightList.push(element);
+        console.log(weightList)
        })
-       res.pulse.forEach((element)=>{
+       res.data.pulse.forEach((element)=>{
         pulseList.push(element);
        })
-       res.sys.forEach((element)=>{
+       res.data.sys.forEach((element)=>{
         sysList.push(element);
        })
-       res.dias.forEach((element)=>{
+       res.data.dias.forEach((element)=>{
         diasList.push(element);
        })
 
-      });
+      })
+      .catch((err) => {
+        console.log(err, "Geeeeeen")
+         });
   };
 
 
