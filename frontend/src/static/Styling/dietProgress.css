@@ -13,6 +13,13 @@
   box-shadow: 2px 2px 2px 2px #ffe599;
 }
 .month_progress_select {
+  min-width: 110px;
+  font-size: 55px;
+  /* padding: 10px; */
+  font-weight: bold;
+}
+
+.year_progress_select {
   min-width: 80px;
   font-size: 55px;
   /* padding: 10px; */
