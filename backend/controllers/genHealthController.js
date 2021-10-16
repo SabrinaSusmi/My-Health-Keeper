@@ -317,7 +317,7 @@ const getMonthlyHistory = async (req, res) => {
   const year = req.headers["year"];
   const months = req.headers["months"];
   console.log(year, "   ", months);
-
+  const date_arr = [];
   const weightList = [];
   const bpList = [];
   const sugarList = [];
@@ -343,6 +343,7 @@ const getMonthlyHistory = async (req, res) => {
           else (hist['infoType']=='Sugar'){
             sugarList.push(hist['info'])
           }
+          date_arr.push(inputDate)
 
         }
       });
