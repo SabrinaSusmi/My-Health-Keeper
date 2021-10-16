@@ -12,30 +12,21 @@ import { TextField } from "@material-ui/core";
 
 function GenHealthHistoryTable() {
   let sugarList = [];
-    let weightList = [];
-    let pulseList = [];
-    let sysList=[]
-    let diasList=[]
+  let weightList = [];
+  let pulseList = [];
+  let sysList=[]
+  let diasList=[]
     
   const token = useSelector((state) => state.token);
-  const [healthInfo, setHealthInfo] = useState([]);
+  const [sugar, setSugar] = useState([]);
+  const [pulse, setPulse] = useState([]);
+  const [weight, setWeight] = useState([]);
+  const [bp, setBp] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
   const [info, setInfo] = useState([]);
 
-  const getHealthDetailsTable = async (e) => {
-    e.preventDefault();
-    const historyDate = e.target.value;
-   
 
-    await axios
-      .get("http://localhost:5000/genHealthHistory", {
-        headers: { Authorization: token, dates: historyDate },
-      })
-      .then((res) => {
-        setHealthInfo(res.data);
-      });
-  };
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
@@ -51,7 +42,6 @@ function GenHealthHistoryTable() {
       .then((res) => {
        
        res.data.sugar.forEach((element)=>{
-        
         sugarList.push(element);
        })
        res.data.weight.forEach((element)=>{
@@ -78,52 +68,8 @@ function GenHealthHistoryTable() {
   return (
 
     <div>
-    <pre></pre>
-      <pre></pre>
-      <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 Select Date for Viewing Your General Health Information Details For any specific Date</div>
-      <TextField
-        style={{color:'#155844',marginLeft:'30%',  marginTop:'3%'}}
-        variant="outlined"
-        required
-        id="startdate"
-        name="startdate"
-        onChange={getHealthDetailsTable}
-        type="date"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <pre></pre>
-      <pre></pre>
-      <pre></pre>
-      <hr></hr>
-      <div className="food_table" style={{marginLeft:"10%",marginRight:"10%"}}>
-        <div className="diet_info_item_progress"></div>
-        <Table hover size="sm">
-          <thead>
-            <tr style={{ background: "transparent" }}>
-              <th>Title</th>
-              <th>Information Type </th>
-              <th>Information / Data</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {healthInfo.map((data, index) => (
-              <tr
-                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
-              >
-                <td>{data.infoTitle}</td>
-                <td>{data.bpType}</td>
-                <td>{data.info}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
-      <pre></pre>
-      <pre></pre>
+   
+      
       <div style={{backgroundColor:'#e8fbe8', height:"auto"}}>
       <pre></pre>
       
