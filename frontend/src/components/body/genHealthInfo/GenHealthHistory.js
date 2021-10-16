@@ -185,10 +185,11 @@ function GenHealthHistoryTable() {
           <thead>
             <tr style={{ background: "transparent" }}>
               <th>Date</th>
-              <th>Blood Pressure</th>
               <th>Weight</th>
               <th>Sugar level</th>
               <th>Pulse Rate</th>
+              <th>Systolic Blood Pressure</th>
+              <th>Diastolic Blood Pressure</th>
             </tr>
           </thead>
 
@@ -197,9 +198,11 @@ function GenHealthHistoryTable() {
               <tr
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
-                <td>{value.infoTitle}</td>
-                <td>{value.bpType}</td>
-                <td>{value.info}</td>
+                <td>{value.weightList}</td>
+                <td>{value.sugarList}</td>
+                <td>{value.pulseList}</td>
+                <td>{value.sysList}</td>
+                <td>{value.diasList}</td>
               </tr>
             ))}
           </tbody>
