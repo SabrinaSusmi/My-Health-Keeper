@@ -16,7 +16,7 @@ function GenHealthHistoryTable() {
   const [healthInfo, setHealthInfo] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
-  const [info, setInfo] = useState("");
+  const [info, setInfo] = useState([]);
 
   const getHealthDetailsTable = async (e) => {
     e.preventDefault();
@@ -29,6 +29,20 @@ function GenHealthHistoryTable() {
       })
       .then((res) => {
         setHealthInfo(res.data);
+      });
+  };
+
+  const getMonthlyGenInfo = async (e) => {
+    e.preventDefault();
+    const historyYear = e.target.value;
+    const historyMonth = e.target.value;
+
+    await axios
+      .get("http://localhost:5000/genHealthMonthlyHistory", {
+        headers: { Authorization: token, year: historyYear, months : historyMonth },
+      })
+      .then((res) => {
+        setInfo(res.data);
       });
   };
 
@@ -82,9 +96,9 @@ function GenHealthHistoryTable() {
       </div>
       <pre></pre>
       <pre></pre>
-      <hr></hr>
+      <div style={{backgroundColor:'#e8fbe8'}}>
       <pre></pre>
-
+      
       <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 View Your Monthly General Health Information Details</div>
       <div  style={{color:'#155844',marginLeft:'30%',  marginTop:'3%'}}>
                         <Select
@@ -124,7 +138,7 @@ function GenHealthHistoryTable() {
                           // padding="10px"
                           label="selectedMonth"
                         >
-                          <option value="0">& Year</option>
+                          <option value="0">Select Year</option>
                           <option value={"2021"}>2021</option>
                           <option value={"2020"}>2020</option>
                           <option value={"2019"}>2019</option>
@@ -139,13 +153,39 @@ function GenHealthHistoryTable() {
                         </Select>
 
                         <IconButton
-                          //onClick={(e) => handleSubmit(e)}
+                          onClick={(e) => getMonthlyGenInfo(e)}
                           style={{ padding: 0 }}
                         >
                           <VisibilityIcon />
                         </IconButton>
                       </div>
-    </div>
+          <div className="diet_info_item_progress"></div>
+        <Table hover size="sm">
+          <thead>
+            <tr style={{ background: "transparent" }}>
+              <th>Title</th>
+              <th>Information Type </th>
+              <th>Information / Data</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {info.map((value, index) => (
+              <tr
+                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
+              >
+                <td>{value.infoTitle}</td>
+                <td>{value.bpType}</td>
+                <td>{value.info}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+      </div>
+                      
+   
   );
 };
 export default GenHealthHistoryTable;
