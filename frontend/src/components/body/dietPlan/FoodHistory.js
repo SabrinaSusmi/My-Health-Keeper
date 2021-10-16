@@ -57,8 +57,8 @@ export default function FoodHistoryTable() {
               <th>Meal Description</th>
               <th>Item Name</th>
               <th>Quantity (servings)</th>
+              <th> Required Calories (kcal)</th>
               <th>Calories Consumed (kcal)</th>
-              <th></th>
             </tr>
           </thead>
 
@@ -70,6 +70,7 @@ export default function FoodHistoryTable() {
                 <td>{food.meal}</td>
                 <td>{food.food}</td>
                 <td>{food.quantity}</td>
+                <td>{food.requiredCalories}</td>
                 <td>{food.consumedCalories}</td>
               </tr>
             ))}
