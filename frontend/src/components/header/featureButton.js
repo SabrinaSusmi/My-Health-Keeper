@@ -98,7 +98,7 @@ export const ShowFeatureButtons = () => {
       </Grid>
 
       <Grid item className="item">
-        <Link className="sidebar-icon-link" to="/" component={NavLink}>
+        <Link className="sidebar-icon-link" to="/report-analysis" component={NavLink}>
           <Button
             className="reportButton"
             data-toggle="tooltip"
