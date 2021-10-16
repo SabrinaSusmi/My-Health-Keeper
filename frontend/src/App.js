@@ -31,6 +31,7 @@ import DietGoalSetter from "./components/body/dietPlan/DietGoalSetter";
 import DiseasePrediction from "./components/body/diseasePrediction/DiseasePrediction";
 import MenstrualDemo from "./components/body/MenstrualCycle/MenstrualDemo";
 import DietProgress from "./components/body/dietPlan/DietProgress";
+import ReportsMain from "./components/body/reports/reportsMain";
 
 export const UserIDContext = React.createContext();
 function App() {
@@ -137,6 +138,11 @@ function App() {
               <Route
                 path="/menstrual-cycle"
                 component={isLogged ? MenstrualCycle : Login}
+                exact
+              />
+              <Route
+                path="/report-analysis"
+                component={isLogged ? ReportsMain : Login}
                 exact
               />
 
