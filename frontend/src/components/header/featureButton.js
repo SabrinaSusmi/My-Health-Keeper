@@ -44,7 +44,7 @@ export const ShowFeatureButtons = () => {
               onMouseLeave={() => setIsMensShown(false)}
             >
               {isMensShown ? (
-                <h6 className="featureText_design">Menstruation Tracker</h6>
+                <h7 className="featureText_design">Menstruation Tracker</h7>
               ) : (
                 <BubbleChartIcon />
               )}
@@ -73,7 +73,7 @@ export const ShowFeatureButtons = () => {
             onMouseLeave={() => setIsGenShown(false)}
           >
             {isGenShown ? (
-              <h6 className="featureText_design">Basic Health Tracker</h6>
+              <h7 className="featureText_design">Basic Health Tracker</h7>
             ) : (
               <FitnessCenterIcon />
             )}
@@ -97,7 +97,7 @@ export const ShowFeatureButtons = () => {
             onMouseLeave={() => setIsDietShown(false)}
           >
             {isDietShown ? (
-              <h6 className="featureText_design">Diet Plan</h6>
+              <h7 className="featureText_design">Diet Plan</h7>
             ) : (
               <FastfoodIcon />
             )}
@@ -121,7 +121,7 @@ export const ShowFeatureButtons = () => {
             onMouseLeave={() => setIsSPShown(false)}
           >
             {isSPShown ? (
-              <h6 className="featureText_design">Health Journal</h6>
+              <h7 className="featureText_design">Health Journal</h7>
             ) : (
               <LocalHospitalIcon />
             )}
@@ -144,7 +144,7 @@ export const ShowFeatureButtons = () => {
             onMouseLeave={() => setIsRepShown(false)}
           >
             {isRepShown ? (
-              <h6 className="featureText_design">Analyze Report</h6>
+              <h7 className="featureText_design">Analyze Report</h7>
             ) : (
               <AssessmentIcon />
             )}
@@ -168,7 +168,7 @@ export const ShowFeatureButtons = () => {
             onMouseLeave={() => setIsDPShown(false)}
           >
             {isDPShown ? (
-              <h6 className="featureText_design">Disease Prediction</h6>
+              <h7 className="featureText_design">Disease Prediction</h7>
             ) : (
               <HealingIcon />
             )}
@@ -191,7 +191,7 @@ export const ShowFeatureButtons = () => {
             onMouseLeave={() => setIsMedShown(false)}
           >
             {isMedShown ? (
-              <h6 className="featureText_design">Medicine Reminder</h6>
+              <h7 className="featureText_design">Medicine Reminder</h7>
             ) : (
               <AddAlertIcon />
             )}
