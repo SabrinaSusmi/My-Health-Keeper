@@ -323,8 +323,11 @@ const getMonthlyHistory = async (req, res) => {
     }
     if (dataList) {
       dataList.forEach((data) => {
-        const dbYear = data.inputDate.toISOString().slice(0, 10).getYear();
-        const dbMonth = data.inputDate.toISOString().slice(0, 10).getMonth();
+        const dbYear = data.inputDate.getFullYear().toString().slice(0, 10);
+        console.log(dbYear)
+        const dbMonth = data.inputDate.getMonth().toString().slice(0, 10);
+        console.log(dbMonth)
+        
         if (year == dbYear && months ==dbMonth ) {
           infolist.push(data);
         }
