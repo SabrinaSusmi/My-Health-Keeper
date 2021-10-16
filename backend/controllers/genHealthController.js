@@ -317,9 +317,10 @@ const getMonthlyHistory = async (req, res) => {
   const year = req.headers["year"];
   const months = req.headers["months"];
   console.log(year, "   ", months);
-  const date_arr = [];
+
   const weightList = [];
-  const bpList = [];
+  const sysList = [];
+  const diasList = [];
   const sugarList = [];
   const pulseList = [];
 
@@ -327,26 +328,38 @@ const getMonthlyHistory = async (req, res) => {
     .find({ user })
     .then((ans) => {
       ans.forEach((hist) => {
-        const histDate=hist['inputDate'].toISOString().slice(0,10)
-        const datess=histDate.split('-')
+        const histDate = hist["inputDate"].toISOString().slice(0, 10);
+        const datess = histDate.split("-");
+        // console.log(datess)
+        if (year == datess[0] && months == datess[1]) {
+          // console.log(hist)
 
-        if(year==datess[0] && months==datess[1]){
-          if(hist['infoType']=='Pulse'){
-            pulseList.push(hist['info'])
+          if (hist["infoTitle"] == "Pulse") {
+            // console.log(hist["info"]);
+            pulseList.push(hist["info"]);
           }
-          else if(hist['infoType']=='Weight'){
-            weightList.push(hist['info'])
+          if (hist["infoTitle"] == "Weight") {
+            // console.log(hist["info"]);
+            weightList.push(hist["info"]);
           }
-          else if(hist['infoType']=='Bp'){
-            bpList.push(hist['info'])
+          if (hist["infoTitle"] == "Sugar") {
+            // console.log(hist["info"]);
+            sugarList.push(hist["info"]);
           }
-          else (hist['infoType']=='Sugar'){
-            sugarList.push(hist['info'])
+          if (hist["infoTitle"] == "Bp") {
+            if (hist["bpType"] == "systolic") {
+              sysList.push(hist["info"]);
+            }
+            if (hist["bpType"] == "diastolic") {
+              diasList.push(hist["info"]);
+            }
           }
-          date_arr.push(histDate)
-
         }
+        // console.log(histDate)
       });
+      console.log(sugarList,'   ',weightList,'    ',pulseList,'  ',sysList)
+      res.send({sugar:sugarList,weight:weightList,pulse:pulseList,sys:sysList,dias:diasList})
+      // console.log(ans);
     })
     .catch((err) => {
       console.log(err);
