@@ -11,7 +11,7 @@ import { TextField } from "@material-ui/core";
 export default function FoodHistoryTable() {
   const token = useSelector((state) => state.token);
   const [foodList, setFoodList] = useState([]);
-
+  const [burntCal, setBurntCal] = useState([])
   const getFoodDetailsTable = async (e) => {
     e.preventDefault();
     const historyDate = e.target.value;
@@ -25,9 +25,19 @@ export default function FoodHistoryTable() {
         setFoodList(res.data);
       });
   };
-  // useEffect(async () => {
-  //   getFoodDetailsTable();
-  // }, []);
+
+  const getCalorieBurnt = async (e) => {
+    e.preventDefault();
+    const historyDate = e.target.value;
+    await axios
+      .get("http://localhost:5000/diet-plan/getCalorieBurnt", {
+        headers: { Authorization: token, dates: historyDate },
+      })
+      .then((res) => {
+        setBurntCal(res.data);
+      });
+  };
+  
 
   return (
     <div>
@@ -54,11 +64,12 @@ export default function FoodHistoryTable() {
         <Table hover size="sm" style={{width:'67%',marginLeft:'16.5%'}}>
           <thead>
             <tr style={{ background: "transparent" }}>
-              <th>Meal Description</th>
-              <th>Item Name</th>
-              <th>Quantity (servings)</th>
-              <th> Required Calories (kcal)</th>
-              <th>Calories Consumed (kcal)</th>
+              <th> Meal Description </th>
+              <th> Item Name </th>
+              <th> Quantity (servings) </th>
+              <th> Required Calories (kcal) </th>
+              <th> Calories Consumed (kcal) </th>
+              <th> Calories Burnt (kcal) </th>
             </tr>
           </thead>
 
@@ -72,6 +83,9 @@ export default function FoodHistoryTable() {
                 <td>{food.quantity}</td>
                 <td>{food.requiredCalories}</td>
                 <td>{food.consumedCalories}</td>
+                {burntCal.map((cal,index)=>{
+                  <td>{cal.burnedCalories}</td>
+                })}
               </tr>
             ))}
           </tbody>

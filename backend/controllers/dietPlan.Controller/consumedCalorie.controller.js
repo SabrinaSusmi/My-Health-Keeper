@@ -256,5 +256,5 @@ module.exports = {
   getDietSummaryOfTheDay,
   getFoodHistory,
   burnCalorie,
-  getCaloriesBurnt
+  getCaloriesBurnt,
 };
