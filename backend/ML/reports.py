@@ -11,9 +11,7 @@ import sys
 
 # load model
 model = load_model('../backend/ML/xray_model.h5')
-
-
-load_image = cv2.imread('../backend/ML/NORMAL2-IM-0086-0001.jpeg')
+load_image = cv2.imread(str(sys.argv[1]))
 img_new = cv2.resize(load_image, (180,180))
 
 new = img_new.reshape(1,img_new.shape[0], img_new.shape[1],3)
