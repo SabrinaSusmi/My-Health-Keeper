@@ -11,92 +11,77 @@ import axios from "axios";
 import { TextField } from "@material-ui/core";
 
 function GenHealthHistoryTable() {
-    
+  // let sugarList = [];
+  //   let weightList = [];
+  //   let pulseList = [];
+  //   let sysList=[]
+  //   let diasList=[]
+   const [sugarList,setsugarList]=useState() 
+   const [weightList,setweightList]=useState([]) 
+   const [diasList,setdiasList]=useState([]) 
+   const [pulseList,setpulseList]=useState([]) 
+   const [sysList,setsysList]=useState([]) 
+
   const token = useSelector((state) => state.token);
   const [healthInfo, setHealthInfo] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
   const [info, setInfo] = useState([]);
 
-  const getHealthDetailsTable = async (e) => {
-    e.preventDefault();
-    const historyDate = e.target.value;
-   
+ const populateTable=()=>{
 
-    await axios
-      .get("http://localhost:5000/genHealthHistory", {
-        headers: { Authorization: token, dates: historyDate },
-      })
-      .then((res) => {
-        setHealthInfo(res.data);
-      });
-  };
+ }
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
-    const historyYear = year;
-    const historyMonth = selectedDate;
-console.log(historyMonth,'   ',historyYear)
+let sugarLists = [];
+    let weightLists = [];
+    let pulseLists = [];
+    let sysLists=[]
+    let diasLists=[]
     await axios
       .get("http://localhost:5000/genHealthMonthlyHistory", {
-        headers: { Authorization: token, year: year, months : selectedDate },
+        headers: { Authorization: token, months : selectedDate,year: year },
       })
       .then((res) => {
-        setInfo(res.data);
-      });
+       
+       res.data.sugar.forEach((element)=>{
+        //  let sugar=element
+        //  console.log(sugar)
+        // sugarLists.push(element);
+        setsugarList(element)
+
+       })
+       res.data.weight.forEach((element)=>{
+       setweightList(element)
+       })
+       res.data.pulse.forEach((element)=>{
+       setpulseList(element);
+       })
+       res.data.sys.forEach((element)=>{
+        setsysList(element);
+       })
+       res.data.dias.forEach((element)=>{
+        setdiasList(element);
+       })
+
+      })
+      .catch((err) => {
+        console.log(err, "Geeeeeen")
+         });
+
+         setsugarList(sugarLists)
   };
-
-
+console.log(sugarList)
   
   return (
+
     <div>
     <pre></pre>
       <pre></pre>
-      <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 Select Date for Viewing Your General Health Information Details For any specific Date</div>
-      <TextField
-        style={{color:'#155844',marginLeft:'30%',  marginTop:'3%'}}
-        variant="outlined"
-        required
-        id="startdate"
-        name="startdate"
-        onChange={getHealthDetailsTable}
-        type="date"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <pre></pre>
-      <pre></pre>
-      <pre></pre>
-      <hr></hr>
-      <div className="food_table" style={{marginLeft:"10%",marginRight:"10%"}}>
-        <div className="diet_info_item_progress"></div>
-        <Table hover size="sm">
-          <thead>
-            <tr style={{ background: "transparent" }}>
-              <th>Title</th>
-              <th>Information Type </th>
-              <th>Information / Data</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {healthInfo.map((data, index) => (
-              <tr
-                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
-              >
-                <td>{data.infoTitle}</td>
-                <td>{data.bpType}</td>
-                <td>{data.info}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
-      <pre></pre>
-      <pre></pre>
-      <div style={{backgroundColor:'#e8fbe8'}}>
+     {console.log(sugarList)
+}
+      <div style={{backgroundColor:'#e8fbe8', height:"auto"}}>
       <pre></pre>
       
       <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 View Your Monthly General Health Information Details</div>
@@ -125,6 +110,7 @@ console.log(historyMonth,'   ',historyYear)
                           <option value={"12"}>December</option>
                         </Select>
 
+                        <br></br>
                         <br></br>
                         <Select
                           // className={classes.formControl}
@@ -160,24 +146,31 @@ console.log(historyMonth,'   ',historyYear)
                         </IconButton>
                       </div>
           <div className="diet_info_item_progress"></div>
+          <pre></pre>
+          <pre></pre>
         <Table hover size="sm">
           <thead>
             <tr style={{ background: "transparent" }}>
-              <th>Title</th>
-              <th>Information Type </th>
-              <th>Information / Data</th>
-              <th></th>
+              <th>Date</th>
+              <th>Weight</th>
+              <th>Sugar level</th>
+              <th>Pulse Rate</th>
+              <th>Systolic Blood Pressure</th>
+              <th>Diastolic Blood Pressure</th>
             </tr>
           </thead>
 
           <tbody>
+            {populateTable()}
             {info.map((value, index) => (
               <tr
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
-                <td>{value.infoTitle}</td>
-                <td>{value.bpType}</td>
-                <td>{value.info}</td>
+                <td>{value.weightList}</td>
+                <td>{value.sugarList}</td>
+                <td>{value.pulseList}</td>
+                <td>{value.sysList}</td>
+                <td>{value.diasList}</td>
               </tr>
             ))}
           </tbody>
