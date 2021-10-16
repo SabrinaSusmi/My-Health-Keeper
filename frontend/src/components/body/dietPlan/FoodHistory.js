@@ -89,7 +89,7 @@ export default function FoodHistoryTable() {
       <pre></pre>
       <pre></pre>
       <pre></pre>
-      <Table hover size="sm" style={{width:'20%',marginLeft:'40%'}}>
+      <Table hover size="sm" style={{width:'20%',marginLeft:'39%',alignItems:'center',justifyContent:'center'}}>
           <thead>
             <tr style={{ background: "transparent" }}>
               <th> Calories Burnt for the day(kcal) </th>
