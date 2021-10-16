@@ -79,17 +79,12 @@
   font-weight: bold;
 }
 
-.folderName {
-  color: #063742
-}
+
 
 .folderName:hover {
   font-weight: bold;
 }
 
-.noteDates{
-  color: #063742;
-}
 
 .folder_name {
   height: 70px;
@@ -105,7 +100,7 @@
 
 .clrCardAction > .viewBtn {
   align-items: flex-end;
-  color: #063742;
+  color: rgb(55, 57, 80);
   padding-top: 0%;
 }
 
@@ -115,12 +110,13 @@
 }
 
 .fileButton {
-  color: #063742;
+  color: #d1b66c;
   align-content: flex-end;
 }
 .clrDiv {
   font-weight: bold;
-  color: #063742;
+  color: rgb(46, 47, 65);
+  text-shadow: 2px 2px #d1b66c;
   cursor: pointer;
   margin-top: 1em;
 }

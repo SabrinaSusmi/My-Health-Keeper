@@ -45,7 +45,7 @@ height: 45px;
 .sp_health_desc p {
   font-size: 39px;
   font-weight: 600;
-  color: #06422b;
+  /* color: #06422b; */
   font-style:italic;
   
 }
