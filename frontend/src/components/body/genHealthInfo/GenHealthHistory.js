@@ -34,15 +34,33 @@ function GenHealthHistoryTable() {
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
-    const historyYear = year;
-    const historyMonth = selectedDate;
-//console.log(historyMonth,'   ',historyYear)
+    let sugarList = [];
+    let weightList = [];
+    let pulseList = [];
+    let sysList=[]
+    let diasList=[]
+    e.preventDefault();
     await axios
       .get("http://localhost:5000/genHealthMonthlyHistory", {
         headers: { Authorization: token, year: year, months : selectedDate },
       })
       .then((res) => {
-        setInfo(res.data);
+       res.sugar.forEach((element)=>{
+        sugarList.push(element);
+       })
+       res.weight.forEach((element)=>{
+        weightList.push(element);
+       })
+       res.pulse.forEach((element)=>{
+        pulseList.push(element);
+       })
+       res.sys.forEach((element)=>{
+        sysList.push(element);
+       })
+       res.dias.forEach((element)=>{
+        diasList.push(element);
+       })
+
       });
   };
 
