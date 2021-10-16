@@ -11,6 +11,11 @@ import axios from "axios";
 import { TextField } from "@material-ui/core";
 
 function GenHealthHistoryTable() {
+  let sugarList = [];
+    let weightList = [];
+    let pulseList = [];
+    let sysList=[]
+    let diasList=[]
     
   const token = useSelector((state) => state.token);
   const [healthInfo, setHealthInfo] = useState([]);
@@ -44,12 +49,13 @@ function GenHealthHistoryTable() {
         headers: { Authorization: token, months : selectedDate,year: year },
       })
       .then((res) => {
+       
        res.data.sugar.forEach((element)=>{
+        
         sugarList.push(element);
        })
        res.data.weight.forEach((element)=>{
         weightList.push(element);
-        console.log(weightList)
        })
        res.data.pulse.forEach((element)=>{
         pulseList.push(element);
@@ -70,6 +76,7 @@ function GenHealthHistoryTable() {
 
   
   return (
+
     <div>
     <pre></pre>
       <pre></pre>
