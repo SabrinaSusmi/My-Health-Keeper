@@ -16,13 +16,13 @@ import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
 // import { makeStyles } from "@material-ui/core/styles";
 import { Container, Row, Col } from "react-grid-system";
-import featureButton from '../../../static/Styling/featureButton.css'
+import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: "100mvh",
-    maxHeight:'100mvh',
+    maxHeight: "100mvh",
   },
   media: {
     resizeMode: "contain",
@@ -95,139 +95,160 @@ export default function AddFiles() {
   const classes = useStyles();
 
   return (
-    <div  className={classes.root}>
-      <div
-        class="bg_image"
-        style={{
-          backgroundImage: "url(/img/spHealth.jpg)",
-          backgroundAttachment: "fixed",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          // minHeight:'5200',
-          height: "100%",
-          width: "100%",
-          opacity: "1",
-          backgroundPosition: "center",
-        }}
-      >
-       <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
-    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.spHealthBackground)}</div>
-    
-    
-    <pre></pre>
-    <pre></pre> <pre></pre> <pre></pre> 
-    
-    <Row className='body_feature_row' >
-      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
-        
-        {ShowFeatureButtons()}</Col>
-      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
-      <div className="heading">
-        <Link
-          className="return_to_spHealth"
-          component={NavLink}
-          to="/specialized-health-information"
+    <div className={classes.root}>
+      <div class="bg_image">
+        <Container
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            margin: 0,
+            maxWidth: 1900,
+            padding: 0,
+            marginRight: 0,
+          }}
         >
-          <ArrowBackIcon /><b> Return</b>
-        </Link>
-        <div className="spHealth_reminder_buttons">
-          <div className="viewFiles_Btn">
-            <Button className="viewFiles_addBtn" onClick={updateFiles} multiple>
-         <h5><b>Save&nbsp;</b></h5>     
-            </Button>
-            <input
-              type="file"
-              onChange={(e) => {
-                MultipleFileChange(e);
-              }}
-              multiple
-            ></input>
+          <div style={{ backgroundColor: "black", color: "black" }}>
+            {ShowHeader(COLORS.spHealthBackground)}
           </div>
-        </div>
-      </div>
-
-      <h3 >&nbsp; {folderName}</h3>
-      <hr></hr>
-      {fileLength == 0 ? (
-        <div style={{minHeight:'600px'}}><h3 align='center' style={{color:'red'}}><pre></pre>NO Files Added 😢</h3></div>
-      ) : (
-        <div style={{minHeight:'600px'}}>
-          <Grid container spacing={1} direction="row">
-            {mediaFiles.map((element) => (
-              <div>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={3}
-                  key={mediaFiles.indexOf(element)}
-                >
-                  <div className="media_card">
-                    {element.fileType != "application/pdf" ? (
-                      <LazyLoad className="lazyload" key={element.fileName}>
-                        <ModalImage
-                          className={classes.media}
-                          small={`http://localhost:5000/${element.filePath}`}
-                          large={`http://localhost:5000/${element.filePath}`}
-                          alt={element.fileName}
-                          hideDownload={false}
-                          hideZoom={false}
-                        />
-                        <h7>
-                          <b>Name:</b> {element.fileName}
-                        </h7>
-                        <div className="media_file_delete">
-                          <Button
-                            className="media_file_delete_sub"
-                            onClick={() => {
-                              deleteFile(element.filePath);
-                            }}
-                          >
-                            <DeleteIcon />
-                          </Button>
-                        </div>
-                      </LazyLoad>
-                    ) : (
-                      <div className='pdf'
-                        onClick={(e) => {
-                          window.open(
-                            `http://localhost:5000/${element.filePath}`,
-                            "_blank"
-                          );
-                        }}
-                      >
-                        <LazyLoad className="lazyload" key={element.fileName}>
-                          <PdfView getFilePath={element.filePath} />
-                         <pre></pre>
-                          <h7>
-                            <b>Name:</b> {element.fileName}
-                          </h7>
-                          <div className="media_file_delete">
-                            <Button
-                              className="media_file_delete_sub"
-                              onClick={() => {
-                                deleteFile(element.filePath);
-                              }}
-                            >
-                              <DeleteIcon />
-                            </Button>
-                          </div>
-                        </LazyLoad>
-                      </div>
-                    )}
+          <pre></pre>
+          <pre></pre> <pre></pre> <pre></pre>
+          <Row className="body_feature_row">
+            <Col
+              className="body_feature_column"
+              style={{ position: "fixed" }}
+              sm={2}
+            >
+              {ShowFeatureButtons()}
+            </Col>
+            <Col
+              style={{
+                marginLeft: 150,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div className="heading">
+                <div className="spHealth_reminder_buttons">
+                  <div className="viewFiles_Btn">
+                    <Button
+                      className="viewFiles_addBtn"
+                      onClick={updateFiles}
+                      multiple
+                    >
+                      <h5>
+                        <b>Save&nbsp;</b>
+                      </h5>
+                    </Button>
+                    <input
+                      type="file"
+                      onChange={(e) => {
+                        MultipleFileChange(e);
+                      }}
+                      multiple
+                    ></input>
                   </div>
-                </Grid>
+                </div>
               </div>
-            ))}
-          </Grid>
-        </div>
-      )}
 
-      
-</Col>
-    </Row>
-  </Container>
-  </div>
+              <h2
+                align="center"
+                style={{
+                  color: "rgb(46, 47, 65)",
+                  textShadow: "2px 2px #d1b66c",
+                }}
+              >
+                &nbsp; {folderName}
+              </h2>
+              <pre></pre>
+              {fileLength == 0 ? (
+                <div style={{ minHeight: "600px" }}>
+                  <h3 align="center" style={{ color: "red" }}>
+                    <pre></pre>NO Files Added 😢
+                  </h3>
+                </div>
+              ) : (
+                <div style={{ minHeight: "600px" }}>
+                  <Grid container spacing={1} direction="row">
+                    {mediaFiles.map((element) => (
+                      <div>
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          md={3}
+                          key={mediaFiles.indexOf(element)}
+                        >
+                          <div className="media_card">
+                            {element.fileType != "application/pdf" ? (
+                              <LazyLoad
+                                className="lazyload"
+                                key={element.fileName}
+                              >
+                                <ModalImage
+                                  className={classes.media}
+                                  small={`http://localhost:5000/${element.filePath}`}
+                                  large={`http://localhost:5000/${element.filePath}`}
+                                  alt={element.fileName}
+                                  hideDownload={false}
+                                  hideZoom={false}
+                                />
+                                <h7>
+                                  <b>Name:</b> {element.fileName}
+                                </h7>
+                                <div className="media_file_delete">
+                                  <Button
+                                    className="media_file_delete_sub"
+                                    onClick={() => {
+                                      deleteFile(element.filePath);
+                                    }}
+                                  >
+                                    <DeleteIcon />
+                                  </Button>
+                                </div>
+                              </LazyLoad>
+                            ) : (
+                              <div
+                                className="pdf"
+                                onClick={(e) => {
+                                  window.open(
+                                    `http://localhost:5000/${element.filePath}`,
+                                    "_blank"
+                                  );
+                                }}
+                              >
+                                <LazyLoad
+                                  className="lazyload"
+                                  key={element.fileName}
+                                >
+                                  <PdfView getFilePath={element.filePath} />
+                                  <pre></pre>
+                                  <h7>
+                                    <b>Name:</b> {element.fileName}
+                                  </h7>
+                                  <div className="media_file_delete">
+                                    <Button
+                                      className="media_file_delete_sub"
+                                      onClick={() => {
+                                        deleteFile(element.filePath);
+                                      }}
+                                    >
+                                      <DeleteIcon />
+                                    </Button>
+                                  </div>
+                                </LazyLoad>
+                              </div>
+                            )}
+                          </div>
+                        </Grid>
+                      </div>
+                    ))}
+                  </Grid>
+                </div>
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 }

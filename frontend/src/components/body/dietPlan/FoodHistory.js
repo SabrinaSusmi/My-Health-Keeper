@@ -35,8 +35,8 @@ export default function FoodHistoryTable() {
       <pre></pre>
       <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 Select Date for Viewing Your Food History Details </div>
       <TextField
-        style={{color:'#155844',marginLeft:'30%',  marginTop:'3%'}}
-        variant="outlined"
+        style={{color:'#155844',marginLeft:'40%',  marginTop:'3%',width:'20%'}}
+        variant="standard"
         required
         id="startdate"
         name="startdate"
@@ -51,7 +51,7 @@ export default function FoodHistoryTable() {
       <pre></pre>
       <div className="food_table">
         <div className="diet_info_item_progress"></div>
-        <Table hover size="sm">
+        <Table hover size="sm" style={{width:'67%',marginLeft:'16.5%'}}>
           <thead>
             <tr style={{ background: "transparent" }}>
               <th>Meal Description</th>
