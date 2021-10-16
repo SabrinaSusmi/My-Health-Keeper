@@ -24,11 +24,10 @@ export default function FoodHistoryTable() {
       .then((res) => {
         setFoodList(res.data);
       });
+      getCalorieBurnt(historyDate);
   };
 
-  const getCalorieBurnt = async (e) => {
-    e.preventDefault();
-    const historyDate = e.target.value;
+  const getCalorieBurnt = async (historyDate) => {
     await axios
       .get("http://localhost:5000/diet-plan/getCalorieBurnt", {
         headers: { Authorization: token, dates: historyDate },
@@ -69,7 +68,6 @@ export default function FoodHistoryTable() {
               <th> Quantity (servings) </th>
               <th> Required Calories (kcal) </th>
               <th> Calories Consumed (kcal) </th>
-              <th> Calories Burnt (kcal) </th>
             </tr>
           </thead>
 
@@ -83,14 +81,30 @@ export default function FoodHistoryTable() {
                 <td>{food.quantity}</td>
                 <td>{food.requiredCalories}</td>
                 <td>{food.consumedCalories}</td>
-                {burntCal.map((cal,index)=>{
-                  <td>{cal.burnedCalories}</td>
-                })}
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
+      <pre></pre>
+      <pre></pre>
+      <pre></pre>
+      <Table hover size="sm" style={{width:'20%',marginLeft:'40%'}}>
+          <thead>
+            <tr style={{ background: "transparent" }}>
+              <th> Calories Burnt for the day(kcal) </th>
+            </tr>
+          </thead>
+          <tbody>
+            {burntCal.map((cal, index) => (
+              <tr
+                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
+              >
+                <td>{cal.burnedCalories}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
     </div>
   );
 }
