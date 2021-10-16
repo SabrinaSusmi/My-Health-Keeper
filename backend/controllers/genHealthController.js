@@ -325,7 +325,7 @@ const getMonthlyHistory = async (req, res) => {
       dataList.forEach((data) => {
         const dbYear = data.inputDate.toISOString().slice(0, 10).getYear();
         const dbMonth = data.inputDate.toISOString().slice(0, 10).getMonth();
-        if (year == dbDate && months ==dbMonth ) {
+        if (year == dbYear && months ==dbMonth ) {
           infolist.push(data);
         }
         
