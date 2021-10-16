@@ -8,9 +8,6 @@ const postFood = async (req, res) => {
   let user = req.user.id;
 
   const { meal, food, quantity } = req.body;
-  //const calorie = calculateCalorie(food, quantity);
-  //console.log("main"+calorie);
-
   calorie_charts.find(
     {
       name: food,
@@ -150,13 +147,7 @@ const deleteFood = async (req, res) => {
   });
 };
 
-const updateFood = async (req, res) => {
-  let user = req.user.id;
-  const { food, meal, gender } = req.body;
-  // await User.findOneAndUpdate({_id: req.user.id}, {
-  //     name,phone,gender
-  // })
-};
+
 
 const getFoodMenu = async (req, res) => {
   calorie_charts
@@ -221,14 +212,15 @@ const burnCalorie = async (req, res) => {
   let { burnedCalories } = req.body;
   const date = new Date().toISOString().slice(0, 10);
   const today = new Date(date + "T00:00:00.000Z");
- 
-  await dailyCalorie.findOneAndUpdate(
-    { user: user, date: today },
-    {burnedCalories: burnedCalories }
-  ).then((ss) => {
-    console.log(ss);
-  })
-  
+
+  await dailyCalorie
+    .findOneAndUpdate(
+      { user: user, date: today },
+      { burnedCalories: burnedCalories }
+    )
+    .then((ss) => {
+      console.log(ss);
+    });
 };
 module.exports = {
   postFood,
