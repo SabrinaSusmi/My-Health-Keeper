@@ -34,12 +34,11 @@ function GenHealthHistoryTable() {
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
-    const historyYear = e.target.value;
-    const historyMonth = e.target.value;
-
+    const year = e.target.value;
+    const selectedDate= e.target.value;
     await axios
       .get("http://localhost:5000/genHealthMonthlyHistory", {
-        headers: { Authorization: token, year: historyYear, months : historyMonth },
+        headers: { Authorization: token, year: year, months : selectedDate },
       })
       .then((res) => {
         setInfo(res.data);
