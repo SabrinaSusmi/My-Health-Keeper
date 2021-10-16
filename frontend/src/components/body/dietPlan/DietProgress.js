@@ -12,6 +12,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 import { Container, Row, Col } from "react-grid-system";
 
 import { COLORS } from "../../themeColors";
+import { element } from "prop-types";
 
 const initialState = {
   selectedMonth: "",
@@ -30,6 +31,7 @@ export default function DietProgress() {
     let consumed_cal_data = [];
     let req_cal_data = [];
     let cal_date = [];
+    let burn_data=[]
     e.preventDefault();
     console.log(year);
     await axios
@@ -51,6 +53,9 @@ export default function DietProgress() {
         res.data.cal_date.forEach((element) => {
           cal_date.push(element);
         });
+        res.data.burn_data.forEach((element)=>{
+          burn_data.push(element)
+        });
         setToalCal(res.data.totalCal);
         console.log(consumed_cal_data);
 
@@ -58,6 +63,15 @@ export default function DietProgress() {
           labels: cal_date,
           datasets: [
             {
+              data: req_cal_data,
+              label: "Required Calories",
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: "#6aa84f",
+              borderColor: "#6aa84f",
+              borderWidth: 2,
+              pointRadius: 5,
+            }, {
               data: consumed_cal_data,
               label: "Consumed Calories",
               fill: false,
@@ -68,13 +82,14 @@ export default function DietProgress() {
               pointRadius: 5,
             },
 
+           
             {
-              data: req_cal_data,
-              label: "Required Calories",
+              data: burn_data,
+              label: "Burned Calories",
               fill: false,
               lineTension: 0.5,
-              backgroundColor: "#6aa84f",
-              borderColor: "#6aa84f",
+              backgroundColor: "#1a81dd",
+              borderColor: "#1a81dd",
               borderWidth: 2,
               pointRadius: 5,
             },
@@ -95,6 +110,15 @@ export default function DietProgress() {
       datasets: [
         {
           data: weight_array,
+          label: "Required Calories",
+          fill: false,
+          lineTension: 0.5,
+          backgroundColor: "#6aa84f",
+          borderColor: "#6aa84f",
+          borderWidth: 2,
+        },
+        {
+          data: weight_array,
           label: "Consumed Calories",
           fill: false,
           lineTension: 0.5,
@@ -102,14 +126,16 @@ export default function DietProgress() {
           borderColor: "#f4bf20",
           borderWidth: 2,
         },
+      
         {
           data: weight_array,
-          label: "Required Calories",
+          label: "Burned Calories",
           fill: false,
           lineTension: 0.5,
-          backgroundColor: "#6aa84f",
-          borderColor: "#6aa84f",
+          backgroundColor: "#1a81dd",
+          borderColor: "#1a81dd",
           borderWidth: 2,
+          pointRadius: 5,
         },
       ],
     });
