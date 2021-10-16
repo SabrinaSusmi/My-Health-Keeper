@@ -30,6 +30,9 @@ app.use("/user", authRoutes);
 app.use(diseasePrediction)
 app.use("/payment", paymentRoutes);
 app.use(genHealth)
+app.get('/',(req,res)=> {
+    res.send(`App running`)
+})
 
 
 const saveCalorieToDB=require('./utilities/calorieChart')
