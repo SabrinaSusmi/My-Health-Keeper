@@ -1,8 +1,8 @@
 export const COLORS={
  genHealthBackground:'#c1eafa'   ,
- dietBackground:'#c1eafa',
+ dietBackground:'#abd477',
 reportsBackground:"#c1eafa",
-spHealthBackground:'#e9f2d3',
+spHealthBackground:'#f5e3b0',
 medicineBackground:'#c1eafa',
 diseasePrediction:'white',
 menstrualBackground:'#fae4ed',
