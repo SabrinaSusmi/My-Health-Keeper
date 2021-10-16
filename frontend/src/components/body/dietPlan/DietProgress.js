@@ -21,8 +21,8 @@ export default function DietProgress() {
   // const history = useHistory();
   const token = useSelector((state) => state.token);
   const currentMonth = new Date().getMonth();
-  const [selectedDate, setSelectedDate] = useState("");
-  const [year, setYear] = useState("");
+  const [selectedDate, setSelectedDate] = useState("0");
+  const [year, setYear] = useState("0");
   const [consumedCaloriesData, setconsumedCaloriesData] = useState({});
   const [totalCal, setToalCal] = useState("");
 
@@ -30,8 +30,6 @@ export default function DietProgress() {
     let consumed_cal_data = [];
     let req_cal_data = [];
     let cal_date = [];
-    // let totalCal=0
-    // setSelectedDate(e.target.value)
     e.preventDefault();
     console.log(year);
     await axios
@@ -44,8 +42,6 @@ export default function DietProgress() {
       )
       .then((res) => {
         console.log(selectedDate);
-        // setItem({ ...item,  err: "", success: "Food added successfully!" });
-
         res.data.consume_cal.forEach((element) => {
           consumed_cal_data.push(element);
         });
@@ -165,19 +161,16 @@ export default function DietProgress() {
                   >
                     <div className="month_progress_div">
                       <div>
-                        {" "}
                         <Select
                           // className={classes.formControl}
                           type="text"
                           id="selectedMonth"
                           name="selectedMonth"
                           className="month_progress_select"
-                          defaultValue={currentMonth}
                           value={selectedDate}
                           onChange={(e) => setSelectedDate(e.target.value)}
-                          // padding="10px"
-                          label="selectedMonth"
                         >
+                          <option value="0">Select Month</option>
                           <option value={"Jan"}>January</option>
                           <option value={"Feb"}>February</option>
                           <option value={"Mar"}>March</option>
@@ -191,7 +184,8 @@ export default function DietProgress() {
                           <option value={"Nov"}>November</option>
                           <option value={"Dec"}>December</option>
                         </Select>
-                      <br></br>
+
+                        <br></br>
                         <Select
                           // className={classes.formControl}
                           type="text"
@@ -204,6 +198,7 @@ export default function DietProgress() {
                           // padding="10px"
                           label="selectedMonth"
                         >
+                          <option value="0">& Year</option>
                           <option value={"2021"}>2021</option>
                           <option value={"2020"}>2020</option>
                           <option value={"2019"}>2019</option>
@@ -214,7 +209,7 @@ export default function DietProgress() {
                           <option value={"2014"}>2014</option>
                           <option value={"2013"}>2013</option>
                           <option value={"2012"}>2012</option>
-     <option value={"2011"}>2011</option>
+                          <option value={"2011"}>2011</option>
                         </Select>
 
                         <IconButton
