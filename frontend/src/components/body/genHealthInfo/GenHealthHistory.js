@@ -34,8 +34,9 @@ function GenHealthHistoryTable() {
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
-    const year = e.target.value;
-    const selectedDate= e.target.value;
+    const historyYear = year;
+    const historyMonth = selectedDate;
+console.log(historyMonth,'   ',historyYear)
     await axios
       .get("http://localhost:5000/genHealthMonthlyHistory", {
         headers: { Authorization: token, year: year, months : selectedDate },
@@ -110,18 +111,18 @@ function GenHealthHistoryTable() {
                           onChange={(e) => setSelectedDate(e.target.value)}
                         >
                           <option value="0">Select Month</option>
-                          <option value={"Jan"}>January</option>
-                          <option value={"Feb"}>February</option>
-                          <option value={"Mar"}>March</option>
-                          <option value={"Apr"}>April</option>
-                          <option value={"May"}>May</option>
-                          <option value={"Jun"}>June</option>
-                          <option value={"Jul"}>July</option>
-                          <option value={"Aug"}>August</option>
-                          <option value={"Sep"}>September</option>
-                          <option value={"Oct"}>October</option>
-                          <option value={"Nov"}>November</option>
-                          <option value={"Dec"}>December</option>
+                          <option value={"1"}>January</option>
+                          <option value={"2"}>February</option>
+                          <option value={"3"}>March</option>
+                          <option value={"4"}>April</option>
+                          <option value={"5"}>May</option>
+                          <option value={"6"}>June</option>
+                          <option value={"7"}>July</option>
+                          <option value={"8"}>August</option>
+                          <option value={"9"}>September</option>
+                          <option value={"10"}>October</option>
+                          <option value={"11"}>November</option>
+                          <option value={"12"}>December</option>
                         </Select>
 
                         <br></br>
