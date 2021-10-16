@@ -216,6 +216,20 @@ const getDietSummaryOfTheDay = async (req, res) => {
     });
 };
 
+const burnCalorie = async (req, res) => {
+  user = req.user.id;
+  let { burnedCalories } = req.body;
+  const date = new Date().toISOString().slice(0, 10);
+  const today = new Date(date + "T00:00:00.000Z");
+ 
+  await dailyCalorie.findOneAndUpdate(
+    { user: user, date: today },
+    {burnedCalories: burnedCalories }
+  ).then((ss) => {
+    console.log(ss);
+  })
+  
+};
 module.exports = {
   postFood,
   getFood,
@@ -223,4 +237,5 @@ module.exports = {
   getFoodMenu,
   getDietSummaryOfTheDay,
   getFoodHistory,
+  burnCalorie,
 };
