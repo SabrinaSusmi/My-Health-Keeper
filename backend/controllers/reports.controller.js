@@ -14,7 +14,7 @@ const reports = async (req, res) => {
   reportsave
     .save()
     .then(() => {
-      console.log("wd");
+     await ReportModel.find({filePath: req.file.path}).then((ans)=>{res.send({image:ans})}).catch((e)=>{console.log(e)})
     })
     .catch((er) => {
       console.log(er);
