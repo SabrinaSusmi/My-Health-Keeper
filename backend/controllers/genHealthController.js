@@ -343,7 +343,7 @@ const getMonthlyHistory = async (req, res) => {
           else (hist['infoType']=='Sugar'){
             sugarList.push(hist['info'])
           }
-          date_arr.push(inputDate)
+          date_arr.push(histDate)
 
         }
       });
