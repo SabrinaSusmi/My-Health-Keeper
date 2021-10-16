@@ -96,7 +96,7 @@ function GenHealthHistoryTable() {
       </div>
       <pre></pre>
       <pre></pre>
-      <div style={{backgroundColor:'#e8fbe8'}}>
+      <div style={{backgroundColor:'#e8fbe8', height:"auto"}}>
       <pre></pre>
       
       <div style={{color:'#155844',marginLeft:'30%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}> 📅 View Your Monthly General Health Information Details</div>
@@ -125,6 +125,7 @@ function GenHealthHistoryTable() {
                           <option value={"12"}>December</option>
                         </Select>
 
+                        <br></br>
                         <br></br>
                         <Select
                           // className={classes.formControl}
@@ -160,6 +161,8 @@ function GenHealthHistoryTable() {
                         </IconButton>
                       </div>
           <div className="diet_info_item_progress"></div>
+          <pre></pre>
+          <pre></pre>
         <Table hover size="sm">
           <thead>
             <tr style={{ background: "transparent" }}>
