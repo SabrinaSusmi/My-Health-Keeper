@@ -1,0 +1,6 @@
+h5py
+opencv-python
+numpy
+matplotlib
+keras
+tensorflow-gpu
