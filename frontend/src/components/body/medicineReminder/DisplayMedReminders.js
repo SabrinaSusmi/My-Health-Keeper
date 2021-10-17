@@ -107,7 +107,7 @@ function DisplayMedReminders() {
       {" "}
       &nbsp;
       <div className="med_header_content">
-        <p>All your medicine scheduled in one place!</p>
+        {/* <p>All your medicine scheduled in one place!</p> */}
       </div>
       <MedDoses />
 
@@ -172,6 +172,17 @@ function DisplayMedReminders() {
             <p>Description: {medicines.descriptionmed}</p>
             <p>Starting Date: {medicines.startdate.substring(0, 10)}</p>
             <p>Ending Date: {medicines.enddate.substring(0, 10)}</p>
+            {/* <IconButton
+                className="btn"
+                data-toggle="tooltip"
+                title="View Your Missed Medicine"
+                onClick={() => {
+                  openModal();
+                  getmissedMed(medicines._id);
+                }}
+              >
+                <VisibilityIcon />
+              </IconButton> */}
           </div>
         ))}
         </div>

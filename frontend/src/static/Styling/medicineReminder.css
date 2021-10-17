@@ -76,7 +76,7 @@
   position: relative;
 }
 
-.overlay {
+.overlay_med {
   content: "";
   background-color: rgba(8, 64, 184, 0.4);
   width: 100%;

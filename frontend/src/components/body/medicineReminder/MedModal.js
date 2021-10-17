@@ -62,6 +62,7 @@ const MedModal = ({ showModal, setShowModal, list }) => {
   const { user } = auth;
   // const [disable, setDisable] = React.useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  // const [idDose, setIdDose] = useState();
   const [doseId, setDoseId] = useState(null);
   const modalRef = useRef();
 
@@ -120,6 +121,7 @@ const MedModal = ({ showModal, setShowModal, list }) => {
                       <td>{doses.meddate.substring(0, 10)}</td>
                       <td>{doses.medtime}</td>
                       <td>Missed</td>
+
                       {/* <td><Button onClick={()=> {missedConfirm(doses._id)}}>Confirm</Button></td> */}
                       <td>
                         <Button
@@ -131,34 +133,7 @@ const MedModal = ({ showModal, setShowModal, list }) => {
                         >
                           Confirm
                         </Button>
-                        <Modal
-                          open={showAlert}
-                          onClose={() => setShowAlert(false)}
-                          center
-                          classNames={{
-                            overlay: "customOverlay",
-                            modal: "customModal",
-                          }}
-                        >
-                          <div>
-                            <p>
-                              Are you sure want to confirm this missed medicine?
-                            </p>
-                            <Button
-                              onClick={() => {
-                                console.log("modal2 enter"+doses._id);
-                                missedConfirm(doseId);
-                                console.log("modal2 exit"+doses._id);
-                                setShowAlert(false);
-                              }}
-                            >
-                              Yes
-                            </Button>
-                            <Button onClick={() => setShowAlert(false)}>
-                              No
-                            </Button>
-                          </div>
-                        </Modal>
+                        
                       </td>
                     </tr>
                     
@@ -173,6 +148,37 @@ const MedModal = ({ showModal, setShowModal, list }) => {
           </ModalWrapper>
         </Background>
       ) : null}
+
+<Modal
+                          open={showAlert}
+                          onClose={() => setShowAlert(false)}
+                          center
+
+                          classNames={{
+                            overlay: "customOverlay",
+                            modal: "customModal",
+                          }}
+                          style={{zIndex : 1040, position : "none"}}
+                        >
+                          <div>
+                            <p>
+                              Are you sure want to confirm this missed medicine?
+                            </p>
+                            <Button
+                              onClick={() => {
+                                // console.log("modal2 enter"+doses._id);
+                                missedConfirm(doseId);
+                                // console.log("modal2 exit"+doses._id);
+                                setShowAlert(false);
+                              }}
+                            >
+                              Yes
+                            </Button>
+                            <Button onClick={() => setShowAlert(false)}>
+                              No
+                            </Button>
+                          </div>
+                        </Modal>
     </>
   );
 };
