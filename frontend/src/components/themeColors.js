@@ -1,10 +1,10 @@
 export const COLORS={
- genHealthBackground:'#c1eafa'   ,
- dietBackground:'#abd477',
-reportsBackground:"#c1eafa",
-spHealthBackground:'#f5e3b0',
-medicineBackground:'#c1eafa',
+ genHealthBackground:'white'   ,
+ dietBackground:'white',
+reportsBackground:"white",
+spHealthBackground:'white',
+medicineBackground:'white',
 diseasePrediction:'white',
-menstrualBackground:'#fae4ed',
+menstrualBackground:'white',
 profileBackground:'white',
 }
