@@ -30,19 +30,19 @@ function ReportsMain() {
     const { user } = auth;
     const [loading, setLoading] = useState(false);
     const { err, success } = data;
-    const showAvatar = async (state) => {
-      await axios
-        .get("http://localhost:5000/user/get_profile_image", {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          setAvatar(res.data);
-        });
-    };
+    // const showAvatar = async (state) => {
+    //   await axios
+    //     .get("http://localhost:5000/user/get_profile_image", {
+    //       headers: { Authorization: token },
+    //     })
+    //     .then((res) => {
+    //       setAvatar(res.data);
+    //     });
+    // };
 
-    useEffect(async () => {
-      showAvatar(state);
-    }, []);
+    // useEffect(async () => {
+    //   showAvatar(state);
+    // }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,13 +55,14 @@ function ReportsMain() {
         setLoading(true);
         console.log("sxsxdasxds ", formData);
         await axios.post(
-          "http://localhost:5000/user/set_profile_image",
+          "http://localhost:5000/reports",
           formData,
           {
             headers: { Authorization: token },
           }
         ).then((res) => {
             console.log("reports ", res);
+            setAvatar(res.data)
           })
           .catch((err) => {
             console.log("err reports : ", err)
