@@ -5,20 +5,21 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "../../../static/Styling/dietPlan.css";
 
-
 export default function DietOverview() {
   const token = useSelector((state) => state.token);
   const [multipleProgress, setMultipleProgress] = useState(0.0);
   const [foodList, setFoodList] = useState([]);
   const [consumed, setConsumed] = useState("");
   const [required, setRequired] = useState("");
-  const [remaining, setRemaining] = useState("");
+  const [remaining, setRemaining] = useState(0);
   const getFoodConsumed = async () => {
     await axios
       .get("http://localhost:5000/diet-plan/getFoodList", {
         headers: { Authorization: token },
       })
-      .then((res) => {setFoodList(res.data)});
+      .then((res) => {
+        setFoodList(res.data);
+      });
   };
   const getDietSummaryOfTheDay = async () => {
     await axios
@@ -26,17 +27,24 @@ export default function DietOverview() {
         headers: { Authorization: token },
       })
       .then((res) => {
-
         setConsumed(res.data.consumedCalories);
         setRequired(res.data.requiredCalories);
         setRemaining(res.data.requiredCalories - res.data.consumedCalories);
-        const percentage = (parseFloat(res.data.consumedCalories / res.data.requiredCalories).toFixed(4))*100;
-setMultipleProgress(percentage)
+        const percentage =
+          parseFloat(
+            res.data.consumedCalories / res.data.requiredCalories
+          ).toFixed(4) * 100;
+        setMultipleProgress(percentage);
         console.log(res.data);
       });
   };
   useEffect(async () => {
     getFoodConsumed();
+    // if (remaining == NaN) {
+    //   setRemaining(0);
+      
+    // }
+
     getDietSummaryOfTheDay();
   }, []);
 
@@ -56,31 +64,37 @@ setMultipleProgress(percentage)
             {consumed} kcal
           </div>
           <div className="diet_info_item">
-            
-             <br></br>
+            <br></br>
             <p style={remaining < 0 ? { color: "red" } : { color: "#373950" }}>
-            Remaining <br></br> {remaining} kcal
+              Remaining <br></br> {remaining} kcal
             </p>
           </div>
-          <div style={{backgroundColor:'white', width: 200, height: 200, borderRadius:'50%', border: '2px solid #6f9a37', marginTop:0 }}>
-              <CircularProgressbar
-              
-                value={multipleProgress}
-                text={`${multipleProgress}%`}
-                styles={buildStyles({
-                  rotation: 0.25,
-                  strokeLinecap: "butt",
-                  textSize: "16px",
-                  pathTransitionDuration: 0.5,
-                  pathColor: `rgba(56, 153, 56, ${multipleProgress / 100})`,
-                  textColor: "#373950",
-                  textSize:25,
-                  trailColor: "white",
-                  backgroundColor: "#6f9a37",
-                  
-                })}
-              />
-            </div>
+          <div
+            style={{
+              backgroundColor: "white",
+              width: 200,
+              height: 200,
+              borderRadius: "50%",
+              border: "2px solid #6f9a37",
+              marginTop: 0,
+            }}
+          >
+            <CircularProgressbar
+              value={multipleProgress}
+              text={`${multipleProgress}%`}
+              styles={buildStyles({
+                rotation: 0.25,
+                strokeLinecap: "butt",
+                textSize: "16px",
+                pathTransitionDuration: 0.5,
+                pathColor: `rgba(56, 153, 56, ${multipleProgress / 100})`,
+                textColor: "#373950",
+                textSize: 25,
+                trailColor: "white",
+                backgroundColor: "#6f9a37",
+              })}
+            />
+          </div>
         </div>
         <div className="diet_info_item_progress"></div>
       </div>

@@ -12,6 +12,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 import { Container, Row, Col } from "react-grid-system";
 
 import { COLORS } from "../../themeColors";
+import { element } from "prop-types";
 
 const initialState = {
   selectedMonth: "",
@@ -21,7 +22,8 @@ export default function DietProgress() {
   // const history = useHistory();
   const token = useSelector((state) => state.token);
   const currentMonth = new Date().getMonth();
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState("0");
+  const [year, setYear] = useState("0");
   const [consumedCaloriesData, setconsumedCaloriesData] = useState({});
   const [totalCal, setToalCal] = useState("");
 
@@ -29,22 +31,19 @@ export default function DietProgress() {
     let consumed_cal_data = [];
     let req_cal_data = [];
     let cal_date = [];
-    // let totalCal=0
-    // setSelectedDate(e.target.value)
+    let burn_data=[]
     e.preventDefault();
-    console.log(selectedDate);
+    console.log(year);
     await axios
       .get(
         "http://localhost:5000/diet-plan/get_monthly_diet_data",
 
         {
-          headers: { Authorization: token, months: selectedDate },
+          headers: { Authorization: token, months: selectedDate, year: year },
         }
       )
       .then((res) => {
         console.log(selectedDate);
-        // setItem({ ...item,  err: "", success: "Food added successfully!" });
-
         res.data.consume_cal.forEach((element) => {
           consumed_cal_data.push(element);
         });
@@ -54,6 +53,9 @@ export default function DietProgress() {
         res.data.cal_date.forEach((element) => {
           cal_date.push(element);
         });
+        res.data.burn_data.forEach((element)=>{
+          burn_data.push(element)
+        });
         setToalCal(res.data.totalCal);
         console.log(consumed_cal_data);
 
@@ -61,6 +63,15 @@ export default function DietProgress() {
           labels: cal_date,
           datasets: [
             {
+              data: req_cal_data,
+              label: "Required Calories",
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: "#6aa84f",
+              borderColor: "#6aa84f",
+              borderWidth: 2,
+              pointRadius: 5,
+            }, {
               data: consumed_cal_data,
               label: "Consumed Calories",
               fill: false,
@@ -68,18 +79,19 @@ export default function DietProgress() {
               backgroundColor: "#f4bf20",
               borderColor: "#f4bf20",
               borderWidth: 2,
-              pointRadius:5,
+              pointRadius: 5,
             },
 
+           
             {
-              data: req_cal_data,
-              label: 'Required Calories',
+              data: burn_data,
+              label: "Burned Calories",
               fill: false,
               lineTension: 0.5,
-              backgroundColor: '#e06666',
-              borderColor: '#e06666',
+              backgroundColor: "#1a81dd",
+              borderColor: "#1a81dd",
               borderWidth: 2,
-              pointRadius:5,
+              pointRadius: 5,
             },
           ],
         });
@@ -98,26 +110,35 @@ export default function DietProgress() {
       datasets: [
         {
           data: weight_array,
-          label: 'Consumed Calories',
-              fill: false,
-              lineTension: 0.5,
-              backgroundColor: "#f4bf20",
-              borderColor: "#f4bf20",
+          label: "Required Calories",
+          fill: false,
+          lineTension: 0.5,
+          backgroundColor: "#6aa84f",
+          borderColor: "#6aa84f",
           borderWidth: 2,
         },
         {
           data: weight_array,
-          label: 'Required Calories',
-              fill: false,
-              lineTension: 0.5,
-              backgroundColor: '#e06666',
-              borderColor: '#e06666',
+          label: "Consumed Calories",
+          fill: false,
+          lineTension: 0.5,
+          backgroundColor: "#f4bf20",
+          borderColor: "#f4bf20",
           borderWidth: 2,
         },
       
+        {
+          data: weight_array,
+          label: "Burned Calories",
+          fill: false,
+          lineTension: 0.5,
+          backgroundColor: "#1a81dd",
+          borderColor: "#1a81dd",
+          borderWidth: 2,
+          pointRadius: 5,
+        },
       ],
     });
-    
   };
 
   useEffect(() => {
@@ -165,45 +186,72 @@ export default function DietProgress() {
                     sm={4}
                   >
                     <div className="month_progress_div">
-                      <Select
-                        // className={classes.formControl}
-                        type="text"
-                        id="selectedMonth"
-                        name="selectedMonth"
-                        className="month_progress_select"
-                        defaultValue={currentMonth}
-                        value={selectedDate}
-                        onChange={(e) => setSelectedDate(e.target.value)}
-                        // padding="10px"
-                        label="selectedMonth"
-                      >
-                        <option value={"Jan"}>January</option>
-                        <option value={"Feb"}>February</option>
-                        <option value={"Mar"}>March</option>
-                        <option value={"Apr"}>April</option>
-                        <option value={"May"}>May</option>
-                        <option value={"Jun"}>June</option>
-                        <option value={"Jul"}>July</option>
-                        <option value={"Aug"}>August</option>
-                        <option value={"Sep"}>September</option>
-                        <option value={"Oct"}>October</option>
-                        <option value={"Nov"}>November</option>
-                        <option value={"Dec"}>December</option>
-                      </Select>
+                      <div>
+                        <Select
+                          // className={classes.formControl}
+                          type="text"
+                          id="selectedMonth"
+                          name="selectedMonth"
+                          className="month_progress_select"
+                          value={selectedDate}
+                          onChange={(e) => setSelectedDate(e.target.value)}
+                        >
+                          <option value="0">Select Month</option>
+                          <option value={"Jan"}>January</option>
+                          <option value={"Feb"}>February</option>
+                          <option value={"Mar"}>March</option>
+                          <option value={"Apr"}>April</option>
+                          <option value={"May"}>May</option>
+                          <option value={"Jun"}>June</option>
+                          <option value={"Jul"}>July</option>
+                          <option value={"Aug"}>August</option>
+                          <option value={"Sep"}>September</option>
+                          <option value={"Oct"}>October</option>
+                          <option value={"Nov"}>November</option>
+                          <option value={"Dec"}>December</option>
+                        </Select>
 
-                      <IconButton
-                        onClick={(e) => handleSubmit(e)}
-                        style={{ padding: 0 }}
-                      >
-                        <VisibilityIcon />
-                      </IconButton>
+                        <br></br>
+                        <Select
+                          // className={classes.formControl}
+                          type="text"
+                          id="selectedMonth"
+                          name="selectedMonth"
+                          className="year_progress_select"
+                          // defaultValue={currentMonth}
+                          value={year}
+                          onChange={(e) => setYear(e.target.value)}
+                          // padding="10px"
+                          label="selectedMonth"
+                        >
+                          <option value="0">& Year</option>
+                          <option value={"2021"}>2021</option>
+                          <option value={"2020"}>2020</option>
+                          <option value={"2019"}>2019</option>
+                          <option value={"2018"}>2018</option>
+                          <option value={"2017"}>2017</option>
+                          <option value={"2016"}>2016</option>
+                          <option value={"2015"}>2015</option>
+                          <option value={"2014"}>2014</option>
+                          <option value={"2013"}>2013</option>
+                          <option value={"2012"}>2012</option>
+                          <option value={"2011"}>2011</option>
+                        </Select>
 
+                        <IconButton
+                          onClick={(e) => handleSubmit(e)}
+                          style={{ padding: 0 }}
+                        >
+                          <VisibilityIcon />
+                        </IconButton>
+                      </div>
                       {console.log(selectedDate)}
                     </div>
+
                     <div className="avg_consumed_cal_progress_div">
                       <span>
                         {" "}
-                        Last month avg. <br></br>
+                        Per day avg. <br></br>
                         <h2>
                           {" "}
                           <b>{totalCal} </b>
@@ -225,7 +273,7 @@ export default function DietProgress() {
                     className="diet_progress_graph"
                     style={{ width: "65%", padding: "10px" }}
                   >
-                    <h4 align='center'>Your Diet Progress</h4>
+                    <h4 align="center">Your Diet Progress</h4>
                     <pre></pre> <pre></pre> <pre></pre> <pre></pre>
                     <Line
                       data={consumedCaloriesData}
