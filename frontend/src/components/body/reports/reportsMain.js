@@ -49,9 +49,9 @@ function ReportsMain() {
         const output = res.data.ans;
         // console.log(parseFloat(res.data.ans));
         if (res.data.ans == 0.0) {
-          setAns("NOT Pneumonia");
+          setAns("You do not have Pneumonia!");
         } else {
-          setAns("Pneumonia");
+          setAns("You have Pneumonia.");
         }
       });
   };
@@ -103,7 +103,7 @@ function ReportsMain() {
       <div
         className="reminder"
         style={{
-          backgroundImage: "url(/img/disease1.jpg)",
+          backgroundImage: "url(/img/reports1.jpg)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "50vh",
@@ -159,7 +159,7 @@ function ReportsMain() {
                   ) : (
                     ""
                   )}
-                  <h6 align="center"> Upload an xray image Profile Image</h6>
+                  <h6 align="center"> Upload a chest x-ray Image</h6>
                   <input
                     type="file"
                     className="form-control"
@@ -168,7 +168,7 @@ function ReportsMain() {
                     onChange={handleSubmit}
                   />
 
-                  <div className="add_btn_diet">
+                  <div className="reports_predict_btn">
                     <Button
                       type="submit"
                       className="add_btn"
@@ -185,7 +185,7 @@ function ReportsMain() {
                 
               </div>
               <div className="prediction_body">
-                {ans?( <div className="add_btn">hello :{ans}</div>):(' ')}
+                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. Please consult with a doctor to become sure.</div>):(' ')}
                
               </div>
               <pre></pre>
