@@ -53,7 +53,7 @@ const profileControllers = {
   },
   setProfilePicture: async (req, res) => {
     try {
-      // console.log("cdc ",req.file)
+      console.log("cdc ",req.file.path)
       ProfileImageModel.findOne({ user: req.user.id })
         .then((ans) => {
           console.log(ans);
