@@ -16,19 +16,18 @@ function GenHealthHistoryTable() {
   const [diasList, setdiasList] = useState([]);
   const [pulseList, setpulseList] = useState([]);
   const [sysList, setsysList] = useState([]);
-  const [dateList, setdateList] = useState([]);
+  const [dateList, setdateList] = useState([[]]);
 
   const token = useSelector((state) => state.token);
   const [healthInfo, setHealthInfo] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
   const [info, setInfo] = useState([]);
+  console.log("susy ", dateList);
 
- 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
     let sugarLists = [];
-    let weightLists = [];
     let pulseLists = [];
     let sysLists = [];
     let diasLists = [];
@@ -38,42 +37,87 @@ function GenHealthHistoryTable() {
         headers: { Authorization: token, months: selectedDate, year: year },
       })
       .then((res) => {
-        res.data.sugar.forEach((element) => {
-          sugarLists.push(element);
-          // setsugarList(element);
-        });
-        res.data.weight.forEach((element) => {
-          weightLists.push(element);
-          // setweightList(element);
-        });
-        res.data.pulse.forEach((element) => {
-          pulseLists.push(element);
-          // setpulseList(element);
-        });
-        res.data.sys.forEach((element) => {
-          sysLists.push(element);
-          // setsysList(element);
-        });
-        res.data.dias.forEach((element) => {
-          diasLists.push(element);
-          // setdiasList(element);
-        });
-        res.data.date.forEach((element) => {
-          datelists.push(element);
-          // setdiasList(element);
-        });
+        console.log(res.data);
+        // let suga=[]
+        for (let i = 0; i < res.data.date.length; i++) {
+let          suga=[]
+   
+          suga['sugar']=(res.data.sugar[i]);
+          suga['weight']=(res.data.weight[i]);
+          sugarLists.push(res.data.sugar[i]);
+          sugarLists.push(res.data.weight[i]);
+          sugarLists.push(res.data.pulse[i]);
+          sugarLists.push(res.data.sys[i]);
+          sugarLists.push(res.data.dias[i]);
+          sugarLists.push(res.data.date[i]);
+          console.log(suga)
+          setdateList(suga)
+        }
+        // let weightLists = [];
+
+        // for (let i = 0; i < sugarLists.length; i += 6) {
+        //   console.log('weightLists.length ',weightLists.length, i)
+        //   // while(weightLists.length>0){
+        //   //   weightLists.pop()
+        //   // }
+          
+        //  for(let j=i;j<i+6;j++){
+         
+        //   console.log('j ',weightLists)
+        //   weightLists.push(sugarLists[j]);
+        //   weightLists.push(sugarLists[j+1]);
+        //   weightLists.push(sugarLists[j+2]);
+        //   weightLists.push(sugarLists[j+3]);
+        //   weightLists.push(sugarLists[j+4]);
+        //   weightLists.push(sugarLists[j+5]);
+        //  }
+        //  const eachDate = [...new Set(weightLists)];
+
+        //   setweightList(...new Set(weightLists))
+         
+          //  }
+
+
+
+
+
+          // console.log("sus ", weightList);
+
+        // res.data.sugar.forEach((element) => {
+        //   sugarLists.push(element);
+        //   // setsugarList(element);
+        // });
+        // res.data.weight.forEach((element) => {
+        //   weightLists.push(element);
+        //   // setweightList(element);
+        // });
+        // res.data.pulse.forEach((element) => {
+        //   pulseLists.push(element);
+        //   // setpulseList(element);
+        // });
+        // res.data.sys.forEach((element) => {
+        //   sysLists.push(element);
+        //   // setsysList(element);
+        // });
+        // res.data.dias.forEach((element) => {
+        //   diasLists.push(element);
+        //   // setdiasList(element);
+        // });
+        // res.data.date.forEach((element) => {
+        //   datelists.push(element);
+        //   // setdiasList(element);
+        // });
       })
       .catch((err) => {
         console.log(err, "Geeeeeen");
       });
-
+console.log(weightList)
     setsugarList(sugarLists);
     setpulseList(pulseLists);
-    setweightList(weightLists);
+    // setweightList(weightLists);
     setsysList(sysLists);
     setdiasList(diasLists);
     setdateList(datelists);
-
   };
 
   return (
@@ -171,7 +215,6 @@ function GenHealthHistoryTable() {
           </thead>
 
           <tbody>
-           
             <div>
               {/* {
     runCallback(() => {

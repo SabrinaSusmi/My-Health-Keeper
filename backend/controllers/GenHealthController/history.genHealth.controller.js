@@ -11,7 +11,7 @@ const getMonthlyHistory = async (req, res) => {
     const diasList = [];
     const sugarList = [];
     const pulseList = [];
-    const eachDate = [];
+    const yy=[]
     await genHealthSchema
       .find({ user })
       .then((ans) => {
@@ -21,8 +21,7 @@ const getMonthlyHistory = async (req, res) => {
           // console.log(datess)
           if (year == datess[0] && months == datess[1]) {
             // console.log(hist)
-            info.push[hist]
-            eachDate.push(hist["inputDate"].toISOString().slice(0, 10));
+            yy.push(hist["inputDate"].toISOString().slice(0, 10));
             if (hist["infoTitle"] == "Pulse") {
               // console.log(hist["info"]);
               pulseList.push(hist["info"]);
@@ -46,15 +45,11 @@ const getMonthlyHistory = async (req, res) => {
           }
           // console.log(histDate)
         });
+        const eachDate = [...new Set(yy)];
+
         console.log(
-          sugarList,
-          "   ",
-          weightList,
-          "    ",
-          pulseList,
-          "  ",
-          sysList
-        );
+          eachDate,
+                );
         res.send({
           date: eachDate,
           sugar: sugarList,
@@ -64,6 +59,7 @@ const getMonthlyHistory = async (req, res) => {
           dias: diasList,
           info:info
         });
+        
       })
       .catch((err) => {
         console.log(err);
