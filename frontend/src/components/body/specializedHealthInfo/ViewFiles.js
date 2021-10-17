@@ -213,7 +213,7 @@ export default function AddFiles() {
                         onChange={handleDesc}
                         type="text"
                         placeholder={
-                          "Type to change your notes. Remember your previous notes will be replaced. "
+                          "Type to change your notes. Remember your previous notes will be replaced with existing notes. "
                         }
                         // rows='4'
                         name="description"
@@ -277,8 +277,8 @@ export default function AddFiles() {
               <pre></pre>
               {fileLength == 0 ? (
                 <div style={{ minHeight: "600px" }}>
-                  <h3 align="center" style={{ color: "red" }}>
-                    <pre></pre>NO Files Added 😢
+                  <h3 align="center" >
+                    <pre></pre>Save your files for future reference
                   </h3>
                 </div>
               ) : (
