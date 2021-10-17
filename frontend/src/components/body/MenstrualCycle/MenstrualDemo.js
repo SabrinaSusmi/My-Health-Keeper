@@ -52,10 +52,10 @@ export default function MenstrualDemo() {
       <div
         className="reminder"
         style={{
-          backgroundImage: "url(/img/CycleTrack.jpg)",
+          backgroundImage: "url(/img/mens1.jpg)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "50vh",
+          height: "60vh",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
         }}
