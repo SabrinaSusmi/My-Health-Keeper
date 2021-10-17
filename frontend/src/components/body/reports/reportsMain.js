@@ -1,7 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import "../../../static/Styling/diseasePrediction.css";
+import "../../../static/Styling/dp.css"
+import axios from "axios";
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from "../../../static/Styling/featureButton.css";
+import { COLORS } from "../../themeColors";
+import DeleteIcon from "@material-ui/icons/Delete";
 import {
   showSuccessMsg,
   showErrMsg,
@@ -92,50 +100,112 @@ function ReportsMain() {
   //       });
 
   return (
-    <div
-      className="report_image_div"
-      onMouseOver={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div>
-        {err && showErrMsg(err)}
-        {success && showSuccessMsg(success)}
-        {loading && <h3>Loading.....</h3>}
-      </div>
-      {avatar ? (
-        <img
-          style={{ maxWidth: 1000 }}
-          className="report_image"
-          src={`http://localhost:5000/${avatar["image"]["filePath"]}`}
-          alt="img"
-        />
-      ) : (
-        ""
-      )}
-      <h6 align="center"> Change Profile Image</h6>
-      <input
-        type="file"
-        className="form-control"
-        name="file"
-        id="file_up"
-        onChange={handleSubmit}
-      />
-
-      <div className="add_btn_diet">
-        <Button
-          type="submit"
-          className="add_btn"
-          variant="contained"
-          onClick={() => {
-            handlePrediction(avatar["image"]["filePath"]);
+    <>
+      <div
+        className="reminder"
+        style={{
+          backgroundImage: "url(/img/disease1.jpg)",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "50vh",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+         
+        }}
+      >
+        <Container
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            margin: 0,
+            maxWidth: '100%',
+            padding: 0,
+            marginRight: 0,
           }}
-          color="white"
         >
-          <font className="add_btn_diet_font"> predict</font>
-        </Button>
+          <div style={{ backgroundColor: "black", color: "black" }}>
+            {ShowHeader(COLORS.diseasePrediction)}
+          </div>
+          <pre></pre>
+          <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+          <pre></pre>
+          <Row className="body_feature_row">
+            <Col style={{ display: "flex", flexDirection: "column" }}>
+              {" "}
+              &nbsp;
+              <div className="disease_header_content">
+                <pre></pre> <pre></pre> <pre></pre>
+              </div>
+              <div className="description_section_dp">
+                <p>Upload an X-ray image and find out if you have pneumonia.</p>
+              </div>
+              <div className="symptom_list_body">
+              <div
+                  className="report_image_div"
+                  onMouseOver={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <div>
+                    {err && showErrMsg(err)}
+                    {success && showSuccessMsg(success)}
+                    {loading && <h3>Loading.....</h3>}
+                  </div>
+                  {avatar ? (
+                    <img
+                      style={{ maxWidth: 1000 }}
+                      className="report_image"
+                      src={`http://localhost:5000/${avatar["image"]["filePath"]}`}
+                      alt="img"
+                    />
+                  ) : (
+                    ""
+                  )}
+                  <h6 align="center"> Change Profile Image</h6>
+                  <input
+                    type="file"
+                    className="form-control"
+                    name="file"
+                    id="file_up"
+                    onChange={handleSubmit}
+                  />
+
+                  <div className="add_btn_diet">
+                    <Button
+                      type="submit"
+                      className="add_btn"
+                      variant="contained"
+                      onClick={() => {
+                        handlePrediction(avatar["image"]["filePath"]);
+                      }}
+                      color="white"
+                    >
+                      <font className="add_btn_diet_font"> predict</font>
+                    </Button>
+                  </div>
+                </div>
+                
+              </div>
+              <div className="prediction_body">
+                {ans?( <div className="add_btn">hello :{ans}</div>):(' ')}
+               
+              </div>
+              <pre></pre>
+              <pre></pre>
+              <pre></pre>
+              <pre></pre>
+            </Col>
+            <Col
+              className="body_feature_column"
+              style={{ position: "fixed" }}
+              sm={2}
+            >
+              {ShowFeatureButtons()}
+            </Col>
+          </Row>
+        </Container>
       </div>
-      <div className="add_btn">hello :{ans}</div>
-    </div>
+    </>
+    
   );
 }
 
