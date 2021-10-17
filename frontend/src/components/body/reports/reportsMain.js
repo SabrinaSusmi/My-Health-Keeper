@@ -185,7 +185,7 @@ function ReportsMain() {
                 
               </div>
               <div className="prediction_body">
-                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. So please consult with a doctor to become sure.</div>):(' ')}
+                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. <b>So please consult with a doctor to become sure</b></div>):(' ')}
                
               </div>
               <pre></pre>
