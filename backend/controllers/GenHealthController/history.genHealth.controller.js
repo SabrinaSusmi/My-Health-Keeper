@@ -5,13 +5,13 @@ const getMonthlyHistory = async (req, res) => {
     const year = req.headers["year"];
     const months = req.headers["months"];
     console.log(year, "   ", months);
-  
+  const info=[]
     const weightList = [];
     const sysList = [];
     const diasList = [];
     const sugarList = [];
     const pulseList = [];
-    const eachDate = [];
+    const yy=[]
     await genHealthSchema
       .find({ user })
       .then((ans) => {
@@ -21,7 +21,7 @@ const getMonthlyHistory = async (req, res) => {
           // console.log(datess)
           if (year == datess[0] && months == datess[1]) {
             // console.log(hist)
-            eachDate.push(hist["inputDate"].toISOString().slice(0, 10));
+            yy.push(hist["inputDate"].toISOString().slice(0, 10));
             if (hist["infoTitle"] == "Pulse") {
               // console.log(hist["info"]);
               pulseList.push(hist["info"]);
@@ -45,15 +45,11 @@ const getMonthlyHistory = async (req, res) => {
           }
           // console.log(histDate)
         });
+        const eachDate = [...new Set(yy)];
+
         console.log(
-          sugarList,
-          "   ",
-          weightList,
-          "    ",
-          pulseList,
-          "  ",
-          sysList
-        );
+          sugarList
+                );
         res.send({
           date: eachDate,
           sugar: sugarList,
@@ -61,35 +57,14 @@ const getMonthlyHistory = async (req, res) => {
           pulse: pulseList,
           sys: sysList,
           dias: diasList,
+          info:info
         });
-        // console.log(ans);
+        
       })
       .catch((err) => {
         console.log(err);
       });
-    // await genHealthSchema.find({ user }, (err, dataList) => {
-    //   if (err) {
-    //     console.log("Health info get :" + err);
-    //   }
-    //   if (dataList) {
-    //     dataList.forEach((data) => {
-    //       console.log(data)
-  
-    //       // .toISOString().slice(0,10)
-    //       // const dbYear = data.inputDate.toString().slice(0, 10);
-    //       // console.log(dbYear)
-    //       // const dbMonth = data.inputDate.getMonth().toString().slice(0, 10);
-    //       // console.log(dbMonth)
-  
-    //       // if (year == dbYear && months ==dbMonth ) {
-    //       //   infolist.push(data);
-    //       // }
-  
-    //     });
-    //     console.log(infolist[0]);
-    //     res.send(infolist);
-    //   }
-    // });
+    
   };
 
 module.exports={ getMonthlyHistory}
