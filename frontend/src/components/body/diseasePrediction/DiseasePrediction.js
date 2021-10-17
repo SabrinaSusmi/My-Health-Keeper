@@ -14,6 +14,11 @@ import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowHospitalList from './HospitalList'
 import DeleteIcon from "@material-ui/icons/Delete";
+import * as ReactBootStrap from 'react-bootstrap';
+import { FaDisease } from 'react-icons/fa';
+import { GiClick } from 'react-icons/gi';
+import { FaEye } from 'react-icons/fa';
+import Spinner from 'react-bootstrap/Spinner'
 
 // import AddTaskIcon from '@mui/icons-material/AddTask';
 // import BeenhereIcon from '@mui/icons-material/Beenhere';
@@ -51,6 +56,7 @@ export default function SymptomSelection() {
 
   const [result,setResult]=useState(false)
   const [hotline,setHotline]=useState(false)
+  const [loading,setLoading] = useState(false);
 
   const symptomList = () => {
     let a = [];
@@ -83,6 +89,7 @@ export default function SymptomSelection() {
         setDoctor(res.data.diseaseSpecialist);
         setPercentage(res.data.diseasePercenatge);
         setResult(true)
+        setLoading(true)
         console.log("disease", res.data.diseaseSpecialist);
       });
   };
@@ -136,15 +143,15 @@ export default function SymptomSelection() {
               <div className="steps_section">
                 <div className="steps_section_body">
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <IconButton> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
+                    <div className="steps_item_icon"> <IconButton> <FaDisease style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
                     <div className="steps_item_info">Add Your symptoms<br></br> from the list</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
+                    <div className="steps_item_icon"> <IconButton><GiClick style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
                     <div className="steps_item_info"> Click The button</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
+                    <div className="steps_item_icon"> <IconButton><FaEye style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
                     <div className="steps_item_info">View The probable <br></br> diseases</div>
                   </div>
                 </div>
@@ -234,11 +241,24 @@ export default function SymptomSelection() {
                 </div>
               </div>
               <div className="prediction_body">
-                {result?( <Prediction
+                {/* {result ?( <Prediction
                   getPrediction={disease}
                   percent={percentage}
                   specialist={doctor}
-                />):(' ')}
+                />):('')} */}
+
+                <div>
+                  {loading ? (<Prediction
+                  getPrediction={disease}
+                  percent={percentage}
+                  specialist={doctor}
+                />): ( <div>
+                  <ReactBootStrap.Spinner animation="border" variant="primary" />
+                  <ReactBootStrap.Spinner animation="border" variant="primary" />
+                  <ReactBootStrap.Spinner animation="border" variant="primary" />
+                  </div>)}
+ 
+                </div>
                
               </div>
               <div className="hotline_section">
