@@ -88,18 +88,22 @@ y_test = tr.iloc[:,132]
 
 
 
-def svm():
-    from sklearn import svm
-    sv = svm.SVC(kernel='linear') # Linear Kernel
-    sv=svm.SVC(probability=True)
-    sv.fit(x_train, y_train)
-    y_pred = sv.predict(x_test)
+def knn():
+    from sklearn.neighbors import KNeighborsClassifier
+    knn=KNeighborsClassifier(n_neighbors=100)
+    knn.fit(x_train,y_train)
+
+    y_pred=knn.predict(x_test)
     from sklearn import metrics
     print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
+
+
+
     
 
     test_sample = x_test[0:0]
 
+    # symptoms = ["nausea","loss_of_appetite","abdominal_pain","yellowing_of_eyes"]
     symptoms = ['silver_like_dusting', 'acidity',  'malaise','vomiting', 'obesity']
 
     input_test = []
@@ -112,11 +116,17 @@ def svm():
 
     test_sample.loc[0] = np.array(input_test)
 
-    prediction = sv.predict(test_sample)
-    prediction_probability = sv.predict_proba(test_sample)
+    # prediction = knn.predict(test_sample)
+    prediction = knn.predict(test_sample)
+    # prediction_probability = knn.predict_proba(test_sample)
+    prediction_probability = knn.predict_proba(test_sample)
 
+    # print(prediction, prediction_probability)
+
+    # print(prediction_probability)
     disease_list = disease
     prediction_probability_array = prediction_probability[0]
+    # print(prediction_probability_array)
     ind = -1
     top_probability_prediction = []
     top_disease_prediction = []
@@ -142,6 +152,6 @@ def svm():
     print(top_probability_prediction)
 
       
-svm()
+knn()
 
 
