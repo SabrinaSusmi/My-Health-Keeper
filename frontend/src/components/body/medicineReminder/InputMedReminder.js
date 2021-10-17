@@ -156,10 +156,11 @@ function InputMedReminder() {
       width: "60%",
       marginLeft: "20%",
       marginBottom: "2%",
+      color : "#ffffff"
     },
     notchedOutline: {
-      borderWidth: "1px",
-      borderColor: "#fd8412 !important ",
+      borderWidth: "0px",
+      borderColor: "##04161e !important ",
     },
   }));
 
@@ -173,7 +174,11 @@ function InputMedReminder() {
       <div className="labels"> Medicine Name</div>
 
       <TextField
-        
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -188,6 +193,11 @@ function InputMedReminder() {
       <div className="labels"> Description</div>
 
       <TextField
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -202,6 +212,11 @@ function InputMedReminder() {
       <div className="labels"> Start Date</div>
 
       <TextField
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -218,6 +233,11 @@ function InputMedReminder() {
       />
       <div className="labels"> End Date</div>
       <TextField
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -237,6 +257,11 @@ function InputMedReminder() {
       {inputFields.map((inputField, index) => (
         <div className="textfield" key={index}>
           <TextField
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline
+              }
+            }}
             className="textfield"
             variant="outlined"
             required

@@ -163,7 +163,7 @@ function DisplayMedReminders() {
 
       <div className="done_med_body">
         <div className="med_done_header">
-          <h3>Done Medicines</h3>
+          <h3>Completed Medicines</h3>
         </div>
         <div className="done_med_box">
         {doneMedReminderList.map((medicines) => (
