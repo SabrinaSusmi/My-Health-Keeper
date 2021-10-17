@@ -15,10 +15,10 @@ import { COLORS } from "../../themeColors";
 import ShowHospitalList from './HospitalList'
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as ReactBootStrap from 'react-bootstrap';
-import { FaDisease } from 'react-icons/fa';
+import { RiHeartAddFill } from 'react-icons/ri';
 import { GiClick } from 'react-icons/gi';
-import { FaEye } from 'react-icons/fa';
-import Spinner from 'react-bootstrap/Spinner'
+import { AiOutlineFundView } from 'react-icons/ai';
+
 
 // import AddTaskIcon from '@mui/icons-material/AddTask';
 // import BeenhereIcon from '@mui/icons-material/Beenhere';
@@ -142,7 +142,7 @@ export default function SymptomSelection() {
               <div className="steps_section">
                 <div className="steps_section_body">
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <IconButton> <FaDisease style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
+                    <div className="steps_item_icon"> <IconButton> <RiHeartAddFill style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
                     <div className="steps_item_info">Add Your symptoms<br></br> from the list</div>
                   </div>
                   <div className="steps_section_item">
@@ -150,7 +150,7 @@ export default function SymptomSelection() {
                     <div className="steps_item_info"> Click The button</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <IconButton><FaEye style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
+                    <div className="steps_item_icon"> <IconButton><AiOutlineFundView style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
                     <div className="steps_item_info">View The probable <br></br> diseases</div>
                   </div>
                 </div>
