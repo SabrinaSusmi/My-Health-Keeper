@@ -50,6 +50,7 @@ export default function AddFiles() {
       })
       .then((res) => {
         console.log("    hghytcfh    ", res.data.description);
+
         // setDesc(res.data.description);
         setMediaFiles(res.data);
       });
@@ -64,26 +65,16 @@ export default function AddFiles() {
       })
       .then((res) => {
         // console.log(res.data);
-        history.push("/specialized-health-information");
+        // history.push("/view-files");
         setSpHealthNotes(res.data);
       });
   };
-  const deleteFolder = async (folderId) => {
-    await axios
-      .delete("http://localhost:5000/api/deleteFolder/" + folderId, {
-        headers: { Authorization: token },
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
-    const removedMed = [...spHealthNotes].filter((el) => el._id !== folderId);
-    setSpHealthNotes(removedMed);
-  };
+
   const [multipleFiles, setMultipleFiles] = useState("");
   const MultipleFileChange = (e) => {
     setMultipleFiles(e.target.files);
   };
-  const descrip = state.description;
+  let descrip = state.description;
   const folderName = state.folder;
   const fileLength = state.numberOfFiles;
 
@@ -128,17 +119,24 @@ export default function AddFiles() {
   const updateDesc = async (folderId) => {
     // e.preventDefault();
     // const description=e.target.value
-    console.log("sddd ", description);
+    let jj;
+    if (description.length > 0) {
+      jj = description;
+    } else {
+      jj = descrip;
+    }
+    console.log("sddd ", jj);
     console.log("folderId ", folderId);
     await axios
       .patch(
         "http://localhost:5000/api/updateSpecializedHealthInfo/" + folderId,
-        { description },
+        { jj },
         {
           headers: { Authorization: token },
         }
       )
       .then((response) => {
+        descrip = state.description;
         showSPHealthNotes();
       })
       .catch((error) => {
@@ -149,7 +147,16 @@ export default function AddFiles() {
 
   return (
     <div className={classes.root}>
-      <div class="bg_image">
+      <div
+        class="bg_image"
+        style={{
+          backgroundImage: "url(/img/sp9.jpg)",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "50vh",
+        }}
+      >
         <Container
           style={{
             display: "flex",
@@ -167,67 +174,103 @@ export default function AddFiles() {
           <pre></pre> <pre></pre> <pre></pre>
           <Row className="body_feature_row">
             <Col
-              className="body_feature_column"
-              style={{ position: "fixed" }}
-              sm={2}
-            >
-              {ShowFeatureButtons()}
-            </Col>
-            <Col
               style={{
-                marginLeft: 150,
+                // marginLeft: 150,
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              <h2
-                align="center"
-                style={{
-                  color: "rgb(46, 47, 65)",
-                  textShadow: "2px 2px #d1b66c",
-                }}
-              >
-                &nbsp; {folderName}
-              </h2>
-              <div className='notes'>
-{descrip}
-
+              <div className="sp_header_content"></div>
+              <div className="description_section">
+                <div>
+                  {/* <img src="../../../static/images/quote.png"/> */}
+                  <h2
+                    align="center"
+                    style={{
+                      color: "rgb(46, 47, 65)",
+                      textShadow: "2px 2px #d1b66c",
+                    }}
+                  >
+                    &nbsp; {folderName}
+                  </h2>{" "}
+                </div>
               </div>
-              <div >
-                <TextareaAutosize
-                className='notes_edit'
-                  // label={descriptions}
-                  id="description"
-                  defaultValue={descrip}
-                  value={description}
-                  onChange={handleDesc}
-                  type="text"
-                  name="description"
-                >
-                  {/* {state.description} */}
-                </TextareaAutosize>
-              </div>
-
-              <div className="heading">
-                <div className="spHealth_reminder_buttons">
-                  <div className="viewFiles_Btn">
-                    <Button
-                      className="viewFiles_addBtn"
-                      onClick={updateFiles}
-                      multiple
-                    >
-                      <h5>
-                        <b>Save&nbsp;</b>
-                      </h5>
-                    </Button>
-                    <input
-                      type="file"
-                      onChange={(e) => {
-                        MultipleFileChange(e);
-                      }}
-                      multiple
-                    ></input>
-                  </div>
+              <Container>
+                <Row>
+                  <Col item xs={6} style={{ paddingLeft: "20%" }}>
+                    <div className="notes">
+                      <p style={{ fontWeight: 400, fontSize: 17 }}>{descrip}</p>
+                    </div>
+                  </Col>
+                  <Col item xs={6} style={{ paddingRight: "20%" }}>
+                    <div>
+                      <TextareaAutosize
+                        className="notes_edit"
+                        // label={descriptions}
+                        id="description"
+                        defaultValue={descrip}
+                        value={description}
+                        onChange={handleDesc}
+                        type="text"
+                        placeholder={
+                          "Type to change your notes. Remember your previous notes will be replaced. "
+                        }
+                        // rows='4'
+                        name="description"
+                      >
+                        {/* {state.description} */}
+                      </TextareaAutosize>
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col item xs={12} style={{ paddingLeft: "20%" ,marginTop:'3%'}}>
+                    <div className="viewFiles_Btn">
+                      <input
+                        type="file"
+                        onChange={(e) => {
+                          MultipleFileChange(e);
+                        }}
+                        multiple
+                      ></input>
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col
+                    item
+                    xs={12}
+                    style={{ paddingLeft: "74%", paddingRight: 0 }}
+                  >
+                    <div className="viewFiles_Btn">
+                      <Button
+                        className="viewFiles_addBtn"
+                        onClick={updateFiles}
+                        multiple
+                      >
+                        <h5>
+                          <b>Save&nbsp;</b>
+                        </h5>
+                      </Button>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+<hr style={{color:'#d1b66c'}}></hr>
+             
+              <div className="description_section" style={{marginBottom:'2%'}}>
+              <div className="sp_file_add_body_image"></div>
+                <div style={{paddingTop:'5%'}}>
+                  {/* <img src="../../../static/images/quote.png"/> */}
+                  <h2
+                    align="center"
+                    style={{
+                      color: "rgb(46, 47, 65)",
+                      textShadow: "2px 2px #d1b66c",
+                    }}
+                  >
+                   All of your Files
+                  </h2>{" "}
                 </div>
               </div>
 
@@ -239,7 +282,7 @@ export default function AddFiles() {
                   </h3>
                 </div>
               ) : (
-                <div style={{ minHeight: "600px" }}>
+                <div style={{ minHeight: "600px",marginLeft:120 }}>
                   <Grid container spacing={1} direction="row">
                     {mediaFiles.map((element) => (
                       <div>
@@ -317,6 +360,13 @@ export default function AddFiles() {
                   </Grid>
                 </div>
               )}
+            </Col>
+            <Col
+              className="body_feature_column"
+              style={{ position: "fixed" }}
+              sm={2}
+            >
+              {ShowFeatureButtons()}
             </Col>
           </Row>
         </Container>

@@ -18,10 +18,8 @@
   margin-left: auto;
   margin-top: 0px;
 }
-.heading > .spHealth_reminder_buttons > .viewFiles_Btn {
-  display: inline-block;
-}
-.heading > .spHealth_reminder_buttons > .viewFiles_Btn > .viewFiles_addBtn {
+
+ .viewFiles_addBtn {
   width: auto;
   height: 30px;
   text-justify: center;
@@ -32,10 +30,18 @@
   cursor: pointer;
   font-weight: bold;
 }
-.heading > .reminder_buttons > .viewFiles_Btn > .viewFiles_addBtn:hover {
-  background-color: #063742;
-  color: white;
+ .viewFiles_addBtn:hover {
+  text-shadow: 2px 2px rgb(46, 47, 65) ;
+    color: #d1b66c;
+    border:rgb(46, 47, 65) 1px solid ;
 }
+.sp_file_add_body_image{
+  width: 100%;
+  background-image: url("../images/sp91.jpg");
+  padding: 0;
+  position: absolute;
+}
+
 .media_card {
   cursor: pointer;
   display: inline-block;
@@ -50,7 +56,28 @@
   border-radius: 6px;
   background-color: #f1bf36be;
 }
-
+.notes{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+  padding-bottom: 4%;
+ 
+  border: #d1b66c 1px solid;
+  border-radius: 4px;
+  background-color: #f1bf36be;
+}
+.notes_edit{
+  padding: 2%;
+  width: 100%;
+  padding-top: 1%;
+   display: flex;
+   min-height: 100%;
+  justify-content: center;
+  border: #d1b66c 1px solid;
+}
 /* pdf files */
 
 .mainPdf > .pdfViewer {
