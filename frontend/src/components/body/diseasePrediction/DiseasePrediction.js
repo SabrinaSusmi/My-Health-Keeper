@@ -18,6 +18,8 @@ import * as ReactBootStrap from 'react-bootstrap';
 import { RiHeartAddFill } from 'react-icons/ri';
 import { GiClick } from 'react-icons/gi';
 import { AiOutlineFundView } from 'react-icons/ai';
+//import {MdAdsClick} from '@react-icons/ai'
+import { MdAddTask } from "react-icons/md";
 
 
 // import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -144,15 +146,15 @@ export default function SymptomSelection() {
                 <div className="steps_section_body">
                   <div className="steps_section_item">
                     <div className="steps_item_icon"> <IconButton> <RiHeartAddFill style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
-                    <div className="steps_item_info">Add Your symptoms<br></br> from the list</div>
+                    <div className="steps_item_info">Add your symptoms<br></br> from the list</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <IconButton><GiClick style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
-                    <div className="steps_item_info"> Click The button</div>
+                    <div className="steps_item_icon"> <IconButton><MdAddTask style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
+                    <div className="steps_item_info"> Click the button</div>
                   </div>
                   <div className="steps_section_item">
                     <div className="steps_item_icon"> <IconButton><AiOutlineFundView style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
-                    <div className="steps_item_info">View The probable <br></br> diseases</div>
+                    <div className="steps_item_info">View he probable <br></br> diseases</div>
                   </div>
                 </div>
               </div>
