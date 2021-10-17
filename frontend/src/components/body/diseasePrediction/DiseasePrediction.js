@@ -166,7 +166,7 @@ export default function SymptomSelection() {
                     <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
                     <br></br>
                     <div className="symptom">
-                      Symptom 1 : {" "}
+                      Symptom 1 :
                       <Select
                         id="s1"
                         name="s1"
@@ -179,7 +179,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 2 : {" "}
+                      Symptom 2 : 
                       
                       <Select
                         id="s2"
@@ -193,7 +193,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 3 : {" "}
+                      Symptom 3 : 
                       
                       <Select
                         id="s3"
@@ -207,7 +207,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 4 : {" "}
+                      Symptom 4 :
                       
                       <Select
                         id="s4"
@@ -221,7 +221,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 5 : {" "}
+                      Symptom 5 :
                       
                       <Select
                         id="s5"
@@ -250,11 +250,11 @@ export default function SymptomSelection() {
                 />):('')} */}
 
                 <div>
-                  {loading ? (<Prediction
+                  {loading ? (<>{result ?( <Prediction
                   getPrediction={disease}
                   percent={percentage}
                   specialist={doctor}
-                />): ( <div>
+                />):('')} </>): ( <div>
                   <ReactBootStrap.Spinner style={{height:50, width:50}} animation="border" variant="primary" />
                   </div>)}
  
@@ -277,7 +277,9 @@ export default function SymptomSelection() {
               className="body_feature_column"
               style={{ position: "fixed" }}
               sm={2}
-            >
+            >   <pre></pre>
+            <pre></pre>
+            <pre></pre>
               {ShowFeatureButtons()}
             </Col>
           </Row>

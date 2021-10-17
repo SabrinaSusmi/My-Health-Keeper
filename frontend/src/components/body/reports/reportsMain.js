@@ -9,6 +9,7 @@ import { Container, Row, Col } from "react-grid-system";
 import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import DeleteIcon from "@material-ui/icons/Delete";
+import * as ReactBootStrap from 'react-bootstrap';
 import {
   showSuccessMsg,
   showErrMsg,
@@ -36,16 +37,19 @@ function ReportsMain() {
   const { state } = useLocation();
   const { user } = auth;
   const [loading, setLoading] = useState(false);
+  const [resultLoading,setResultLoading] = useState(true);
   const { err, success } = data;
   const [ans, setAns] = useState("");
 
   const handlePrediction = async (img) => {
+    setResultLoading(false);
     // console.log(img);
     await axios
       .get("http://localhost:5000/reports", {
         headers: { Authorization: token, img: img },
       })
       .then((res) => {
+        setResultLoading(true)
         const output = res.data.ans;
         // console.log(parseFloat(res.data.ans));
         if (res.data.ans == 0.0) {
@@ -151,8 +155,8 @@ function ReportsMain() {
                   </div>
                   {avatar ? (
                     <img
-                    style={{ maxWidth: 600, marginBottom:30, marginLeft:50 }}
-                                          className="report_image"
+                      style={{ maxWidth: 600, marginBottom:30, marginLeft:50 }}
+                      className="report_image"
                       src={`http://localhost:5000/${avatar["image"]["filePath"]}`}
                       alt="img"
                     />
@@ -185,7 +189,14 @@ function ReportsMain() {
                 
               </div>
               <div className="prediction_body">
-                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate.<b> So please consult with a doctor to become sure.</b></div>):(' ')}
+                <div>
+                  {resultLoading ? (""): ( <div>
+                  <ReactBootStrap.Spinner style={{height:50, width:50}} animation="border" variant="primary" />
+                  </div>)}
+
+                </div>
+                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. <b>So please consult with a doctor to be sure.</b></div>):(' ')}
+                {/* {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. <b>So please consult with a doctor to become sure</b></div>):(' ')} */}
                
               </div>
               <pre></pre>
