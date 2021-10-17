@@ -134,6 +134,7 @@ function ReportsMain() {
           <font className="add_btn_diet_font"> predict</font>
         </Button>
       </div>
+      <div className="add_btn">hello :{ans}</div>
     </div>
   );
 }
