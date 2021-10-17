@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "../../../static/Styling/spViewFiles.css";
 import { useSelector } from "react-redux";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
@@ -6,11 +6,12 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalImage from "react-modal-image";
 import LazyLoad from "react-lazyload";
-import { Button, Grid, Link } from "@material-ui/core";
+import { Button, Grid, Link, TextareaAutosize } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import PdfView from "./pdfView";
 import Modal from "react-bootstrap/Modal";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { UserIDContext } from "../../../App";
 
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
@@ -35,26 +36,54 @@ export default function AddFiles() {
   // const inputRef = useRef(null);
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
+  const userID = useContext(UserIDContext);
 
   const [mediaFiles, setMediaFiles] = useState([]);
+  const [description, setDesc] = useState("");
   const { state } = useLocation();
-
+  const [spHealthNotes, setSpHealthNotes] = useState([]);
+  let history = useHistory();
   const showMediaFiles = async (state) => {
     await axios
       .get("http://localhost:5000/api/getFolderItems", {
         headers: { Authorization: token, folderid: state._id },
       })
       .then((res) => {
-        console.log("    hghytcfh    ", res.data);
+        console.log("    hghytcfh    ", res.data.description);
+        // setDesc(res.data.description);
         setMediaFiles(res.data);
       });
   };
+  const showSPHealthNotes = async () => {
+    let spID = localStorage.getItem("userID");
 
+    console.log("sp id     ", spID);
+    await axios
+      .get("http://localhost:5000/api/get-specializedHealthInfo", {
+        headers: { Authorization: token, userid: userID },
+      })
+      .then((res) => {
+        // console.log(res.data);
+        history.push("/specialized-health-information");
+        setSpHealthNotes(res.data);
+      });
+  };
+  const deleteFolder = async (folderId) => {
+    await axios
+      .delete("http://localhost:5000/api/deleteFolder/" + folderId, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+    const removedMed = [...spHealthNotes].filter((el) => el._id !== folderId);
+    setSpHealthNotes(removedMed);
+  };
   const [multipleFiles, setMultipleFiles] = useState("");
   const MultipleFileChange = (e) => {
     setMultipleFiles(e.target.files);
   };
-
+  const descrip = state.description;
   const folderName = state.folder;
   const fileLength = state.numberOfFiles;
 
@@ -65,7 +94,7 @@ export default function AddFiles() {
   const updateFiles = async () => {
     const formData = new FormData();
     console.log("swdxs", state.folder);
-
+    updateDesc(state._id);
     for (let i = 0; i < multipleFiles.length; i++) {
       formData.append("files", multipleFiles[i]);
     }
@@ -90,6 +119,30 @@ export default function AddFiles() {
       .then(showMediaFiles(state))
       .catch((err) => {
         console.log(err);
+      });
+  };
+  const handleDesc = async (e) => {
+    e.preventDefault();
+    setDesc(e.target.value);
+  };
+  const updateDesc = async (folderId) => {
+    // e.preventDefault();
+    // const description=e.target.value
+    console.log("sddd ", description);
+    console.log("folderId ", folderId);
+    await axios
+      .patch(
+        "http://localhost:5000/api/updateSpecializedHealthInfo/" + folderId,
+        { description },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((response) => {
+        showSPHealthNotes();
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
   const classes = useStyles();
@@ -127,6 +180,34 @@ export default function AddFiles() {
                 flexDirection: "column",
               }}
             >
+              <h2
+                align="center"
+                style={{
+                  color: "rgb(46, 47, 65)",
+                  textShadow: "2px 2px #d1b66c",
+                }}
+              >
+                &nbsp; {folderName}
+              </h2>
+              <div className='notes'>
+{descrip}
+
+              </div>
+              <div >
+                <TextareaAutosize
+                className='notes_edit'
+                  // label={descriptions}
+                  id="description"
+                  defaultValue={descrip}
+                  value={description}
+                  onChange={handleDesc}
+                  type="text"
+                  name="description"
+                >
+                  {/* {state.description} */}
+                </TextareaAutosize>
+              </div>
+
               <div className="heading">
                 <div className="spHealth_reminder_buttons">
                   <div className="viewFiles_Btn">
@@ -150,15 +231,6 @@ export default function AddFiles() {
                 </div>
               </div>
 
-              <h2
-                align="center"
-                style={{
-                  color: "rgb(46, 47, 65)",
-                  textShadow: "2px 2px #d1b66c",
-                }}
-              >
-                &nbsp; {folderName}
-              </h2>
               <pre></pre>
               {fileLength == 0 ? (
                 <div style={{ minHeight: "600px" }}>
