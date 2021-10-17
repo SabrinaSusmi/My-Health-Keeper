@@ -94,32 +94,60 @@ function InputMedReminder() {
 
     //username = user.name;
     //doses = inputFields;
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/medReminder",
-        {
-          username: user.name,
-          medname,
-          descriptionmed,
-          startdate,
-          enddate,
-          doses: inputFields,
-          userEmail: user.email,
-        },
-        {
-          headers: { Authorization: token },
-        }
-      );
+    console.log(startdate);
+    if(enddate > startdate) {
+      console.log("yes");
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/medReminder",
+          {
+            username: user.name,
+            medname,
+            descriptionmed,
+            startdate,
+            enddate,
+            doses: inputFields,
+            userEmail: user.email,
+          },
+          {
+            headers: { Authorization: token },
+          }
+        );
 
+        setMedicine({
+          ...medicine,
+          err: "",
+          success: "Medicine added Successfully!",
+        });
+        // console.log(res.data.msg);
+  
+        // if(res.data.msg=="End Date must be later than Start Date") {
+        //   setMedicine({
+        //     ...medicine,
+        //     err: "End Date must be later than Start Date",
+        //     success: "",
+        //   });
+  
+        // }else {
+        //   setMedicine({
+        //     ...medicine,
+        //     err: "",
+        //     success: "Medicine added Successfully!",
+        //   });
+        // }
+        history.push("/display-medicine-reminderList");
+      } catch (err) {
+        err.response.data.msg &&
+          setMedicine({ ...medicine, err: err.response.data.msg, success: "" });
+      }
+
+    } else {
+      console.log("no");
       setMedicine({
         ...medicine,
-        err: "",
-        success: "Medicine added Successfully!",
+        err: "End Date must be later than Start Date",
+        success: "",
       });
-      history.push("/display-medicine-reminderList");
-    } catch (err) {
-      err.response.data.msg &&
-        setMedicine({ ...medicine, err: err.response.data.msg, success: "" });
     }
   };
 
