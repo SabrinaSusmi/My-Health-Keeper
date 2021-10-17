@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Grid, Button, Select, MenuItem, makeStyles, IconButton } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import "../../../static/Styling/diseasePrediction.css";
-import "../../../static/Styling/dp.css"
 import { getSymptomsList } from "./SymptomsList";
 import axios from "axios";
 import Prediction from "./Prediction";

@@ -272,7 +272,7 @@ setIsPaid(res.data)
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <TextField
-className={classes.emailField}                      type="email"
+                      className={classes.emailField}                      type="email"
                       name="email"
                       id="email"
                       defaultValue={user.email}
