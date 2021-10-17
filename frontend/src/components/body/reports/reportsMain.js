@@ -1,8 +1,7 @@
 import { Link, Redirect, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import "../../../static/Styling/diseasePrediction.css";
-import "../../../static/Styling/dp.css"
+import "../../../static/Styling/reports.css"
 import axios from "axios";
 import { ShowHeader } from "../../header/Header";
 import { ShowFeatureButtons } from "../../header/featureButton";
@@ -133,13 +132,13 @@ function ReportsMain() {
             <Col style={{ display: "flex", flexDirection: "column" }}>
               {" "}
               &nbsp;
-              <div className="disease_header_content">
+              <div className="reports_header_content">
                 <pre></pre> <pre></pre> <pre></pre>
               </div>
-              <div className="description_section_dp">
+              <div className="description_section_reports">
                 <p>Upload an X-ray image and find out if you have pneumonia.</p>
               </div>
-              <div className="symptom_list_body">
+              <div className="reports_upload_body">
               <div
                   className="report_image_div"
                   onMouseOver={() => setIsHovered(true)}
@@ -160,7 +159,7 @@ function ReportsMain() {
                   ) : (
                     ""
                   )}
-                  <h6 align="center"> Change Profile Image</h6>
+                  <h6 align="center"> Upload an xray image Profile Image</h6>
                   <input
                     type="file"
                     className="form-control"

@@ -1,0 +1,26 @@
+.reports_header_content{
+    color: #522d58;
+    text-align: center;
+    height: 50vh;
+  }
+  
+  .description_section_reports {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3.5em;
+    color: rgb(0, 0, 204);
+    font-weight: 520;
+    /* border: black 1px solid; */
+  }
+
+  .reports_upload_body {
+      width: 70%;
+      margin: 2em auto;
+  }
+
+  .form-control_reports {
+
+  }
+  
