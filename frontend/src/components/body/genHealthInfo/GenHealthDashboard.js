@@ -240,7 +240,7 @@ function GenHealthDashboard() {
           <div className="med_header_content">
             {/* <p>All your medicine scheduled in one place!</p> */}
           </div>
-          <div className="reminder_buttons">
+          <div className="reminder_buttons" >
             <Button  style={{ marginLeft: "40%", marginTop:"1%", backgroundColor:"#ADD8E6"}} variant="outlined">
             <Link
               href="/general-health-information"
@@ -390,6 +390,17 @@ function GenHealthDashboard() {
               }}
             />
           </div>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
+          <pre></pre>
         </Col>
         <Col
           className="body_feature_column"
