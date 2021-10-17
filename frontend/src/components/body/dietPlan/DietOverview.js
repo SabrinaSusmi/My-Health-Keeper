@@ -27,7 +27,7 @@ export default function DietOverview() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        setConsumed(res.data.consumedCalories);
+        setConsumed(res.data.consumedCalories-res.data.burnedCalories);
         setRequired(res.data.requiredCalories);
         setRemaining(res.data.requiredCalories - res.data.consumedCalories);
         const percentage =
