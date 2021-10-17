@@ -87,7 +87,7 @@ export default function FoodHistoryTable() {
       <pre></pre>
       <pre></pre>
       <pre></pre>
-      <div style={{color:'#155844',marginLeft:'37%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}><h4><u>Summary Of The Day 😀</u></h4></div>
+      <div style={{color:'#155844',marginLeft:'39%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}><h4><u>Summary Of The Day</u></h4></div>
       <pre></pre>
       <pre></pre>
       <Table hover size="md" style={{width:'40%',marginLeft:'29%',alignItems:'center',justifyContent:'center'}}>
