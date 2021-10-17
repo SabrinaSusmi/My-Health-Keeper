@@ -8,159 +8,134 @@ import {
 } from "../../utils/notification/Notification";
 import profile from "../../../static/Styling/profile.css";
 import {
-    Button,
-    TextField,
-    IconButton,
-    InputLabel,
-    FormControl,
-  } from "@material-ui/core";
+  Button,
+  TextField,
+  IconButton,
+  InputLabel,
+  FormControl,
+} from "@material-ui/core";
 
 const initialState = {
-    err: "",
-    success: "",
+  err: "",
+  success: "",
 };
 
 function ReportsMain() {
-    const [avatar, setAvatar] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-    const [data, setData] = useState(initialState);
-    const auth = useSelector((state) => state.auth);
-    const token = useSelector((state) => state.token);
-    const { state } = useLocation();
-    const { user } = auth;
-    const [loading, setLoading] = useState(false);
-    const { err, success } = data;
-    // const showAvatar = async (state) => {
-    //   await axios
-    //     .get("http://localhost:5000/user/get_profile_image", {
-    //       headers: { Authorization: token },
-    //     })
-    //     .then((res) => {
-    //       setAvatar(res.data);
-    //     });
-    // };
+  const [avatar, setAvatar] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [data, setData] = useState(initialState);
+  const auth = useSelector((state) => state.auth);
+  const token = useSelector((state) => state.token);
+  const { state } = useLocation();
+  const { user } = auth;
+  const [loading, setLoading] = useState(false);
+  const { err, success } = data;
+  const [ans, setAns] = useState("");
 
-    // useEffect(async () => {
-    //   showAvatar(state);
-    // }, []);
+  const handlePrediction = async (img) => {
+    // console.log(img);
+    await axios
+      .get("http://localhost:5000/reports", {
+        headers: { Authorization: token, img: img },
+      })
+      .then((res) => {
+        const output = res.data.ans;
+        // console.log(parseFloat(res.data.ans));
+        if (res.data.ans == 0.0) {
+          setAns("NOT Pneumonia");
+        } else {
+          setAns("Pneumonia");
+        }
+      });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  // console.log(ans);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        console.log("reports 1");
+    // console.log("reports 1");
 
-        const file = e.target.files[0];
-        console.log("reports 2, ",file);
+    const file = e.target.files[0];
+    // console.log("reports 2, ", file);
 
-        let formData = new FormData();
-      formData.append("file", file);
+    let formData = new FormData();
+    formData.append("file", file);
 
-      console.log("reports 3");
+    setLoading(true);
+    // console.log("sxsxdasxds ", formData);
+    await axios
+      .post("http://localhost:5000/reports_predict", formData, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        console.log("reports ", res.data["filePath"]);
+        setAvatar(res.data);
+      })
+      .catch((err) => {
+        console.log("err reports : ", err);
+      });
 
-        setLoading(true);
-        console.log("sxsxdasxds ", formData);
-        await axios.post(
-          "http://localhost:5000/reports_predict",
-          formData,
-          {
-            headers: { Authorization: token },
-          }
-        ).then((res) => {
-            console.log("reports ", res.data['filePath']);
-            setAvatar(res.data)
-          })
-          .catch((err) => {
-            console.log("err reports : ", err)
-          });
+    setLoading(false);
+  };
+  // console.log("reports ", avatar['image']['filePath']);
 
-        setLoading(false);
-        
-      };
-      // console.log("reports ", avatar['image']['filePath']);
+  // const changeAvatar = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const file = e.target.files[0];
 
-    // const changeAvatar = async (e) => {
-    //   e.preventDefault();
-    //   try {
-    //     const file = e.target.files[0];
+  //     if (!file)
+  //       return setData({
+  //         ...data,
+  //         err: "No files were uploaded.",
+  //         success: "",
+  //       });
 
-    //     if (!file)
-    //       return setData({
-    //         ...data,
-    //         err: "No files were uploaded.",
-    //         success: "",
-    //       });
-
-    //     if (file.size > 1024 * 1024)
-    //       return setData({ ...data, err: "Size too large.", success: "" });
-
-    //     if (file.type !== "image/jpeg" && file.type !== "image/png")
-    //       return setData({
-    //         ...data,
-    //         err: "File format is incorrect.",
-    //         success: "",
-    //       });
-
-    //     let formData = new FormData();
-    //     formData.append("file", file);
-
-    //     setLoading(true);
-    //     console.log("sxsxdasxds ", formData);
-    //     const res = await axios.post(
-    //       "http://localhost:5000/user/set_profile_image",
-    //       formData,
-    //       {
-    //         headers: { Authorization: token },
-    //       }
-    //     );
-
-    //     setLoading(false);
-    //     showAvatar();
-    //   } catch (err) {
-    //     setData({ ...data, err: err.response.data.msg, success: "" });
-    //   }
-    // };
-
-    return (
-      <div
-        className="report_image_div"
-        onMouseOver={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-          <div>
-          {err && showErrMsg(err)}
-          {success && showSuccessMsg(success)}
-          {loading && <h3>Loading.....</h3>}
-        </div>
-       {avatar?( <img
-       style={{maxWidth:1000}}
+  return (
+    <div
+      className="report_image_div"
+      onMouseOver={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div>
+        {err && showErrMsg(err)}
+        {success && showSuccessMsg(success)}
+        {loading && <h3>Loading.....</h3>}
+      </div>
+      {avatar ? (
+        <img
+          style={{ maxWidth: 1000 }}
           className="report_image"
-          src={`http://localhost:5000/${avatar['image']['filePath']}`}
+          src={`http://localhost:5000/${avatar["image"]["filePath"]}`}
           alt="img"
-        />):('')}
-        <h6 align="center"> Change Profile Image</h6>
-            <input
-              type="file"
-              className="form-control"
-              name="file"
-              id="file_up"
-              onChange={handleSubmit}
-            />
+        />
+      ) : (
+        ""
+      )}
+      <h6 align="center"> Change Profile Image</h6>
+      <input
+        type="file"
+        className="form-control"
+        name="file"
+        id="file_up"
+        onChange={handleSubmit}
+      />
 
-        <div className="add_btn_diet">
+      <div className="add_btn_diet">
         <Button
           type="submit"
           className="add_btn"
           variant="contained"
-          // onClick={handleSubmit}
+          onClick={() => {
+            handlePrediction(avatar["image"]["filePath"]);
+          }}
           color="white"
         >
           <font className="add_btn_diet_font"> predict</font>
         </Button>
       </div>
-      </div>
-      
-    );
-
+    </div>
+  );
 }
 
 export default ReportsMain;
