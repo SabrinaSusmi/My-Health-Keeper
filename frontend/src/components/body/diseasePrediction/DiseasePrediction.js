@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Button, Select, MenuItem, makeStyles, IconButton } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import "../../../static/Styling/diseasePrediction.css";
+import "../../../static/Styling/dp.css"
 import { getSymptomsList } from "./SymptomsList";
 import axios from "axios";
 import Prediction from "./Prediction";
@@ -13,6 +14,11 @@ import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import ShowHospitalList from './HospitalList'
 import DeleteIcon from "@material-ui/icons/Delete";
+import * as ReactBootStrap from 'react-bootstrap';
+import { RiHeartAddFill } from 'react-icons/ri';
+import { GiClick } from 'react-icons/gi';
+import { AiOutlineFundView } from 'react-icons/ai';
+
 
 // import AddTaskIcon from '@mui/icons-material/AddTask';
 // import BeenhereIcon from '@mui/icons-material/Beenhere';
@@ -50,6 +56,7 @@ export default function SymptomSelection() {
 
   const [result,setResult]=useState(false)
   const [hotline,setHotline]=useState(false)
+  const [loading,setLoading] = useState(true);
 
   const symptomList = () => {
     let a = [];
@@ -62,6 +69,7 @@ export default function SymptomSelection() {
   const classes = useStyles();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(false)
     await axios
       .get(
         "http://localhost:5000/disease-prediction",
@@ -82,6 +90,7 @@ export default function SymptomSelection() {
         setDoctor(res.data.diseaseSpecialist);
         setPercentage(res.data.diseasePercenatge);
         setResult(true)
+        setLoading(true)
         console.log("disease", res.data.diseaseSpecialist);
       });
   };
@@ -111,17 +120,16 @@ export default function SymptomSelection() {
           }}
         >
           <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader('#ffffff')}
+            {ShowHeader(COLORS.diseasePrediction)}
           </div>
           <pre></pre>
-          <pre></pre> <pre></pre> <pre></pre> <pre></pre>
           <pre></pre>
           <Row className="body_feature_row">
             <Col style={{ display: "flex", flexDirection: "column" }}>
               {" "}
               &nbsp;
               <div className="disease_header_content">
-                <pre></pre> <pre></pre> <pre></pre>
+                <pre></pre> 
                 {/* <h1>
                   {" "}
                   Identify possible conditions and treatments<br></br> based on
@@ -135,15 +143,15 @@ export default function SymptomSelection() {
               <div className="steps_section">
                 <div className="steps_section_body">
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <IconButton> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
+                    <div className="steps_item_icon"> <IconButton> <RiHeartAddFill style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
                     <div className="steps_item_info">Add Your symptoms<br></br> from the list</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
+                    <div className="steps_item_icon"> <IconButton><GiClick style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
                     <div className="steps_item_info"> Click The button</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <DeleteIcon style= {{color : "#dadfe6", fontSize : "8rem" }}/></div>
+                    <div className="steps_item_icon"> <IconButton><AiOutlineFundView style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
                     <div className="steps_item_info">View The probable <br></br> diseases</div>
                   </div>
                 </div>
@@ -233,11 +241,22 @@ export default function SymptomSelection() {
                 </div>
               </div>
               <div className="prediction_body">
-                {result?( <Prediction
+                {/* {result ?( <Prediction
                   getPrediction={disease}
                   percent={percentage}
                   specialist={doctor}
-                />):(' ')}
+                />):('')} */}
+
+                <div>
+                  {loading ? (<Prediction
+                  getPrediction={disease}
+                  percent={percentage}
+                  specialist={doctor}
+                />): ( <div>
+                  <ReactBootStrap.Spinner style={{height:50, width:50}} animation="border" variant="primary" />
+                  </div>)}
+ 
+                </div>
                
               </div>
               <div className="hotline_section">
