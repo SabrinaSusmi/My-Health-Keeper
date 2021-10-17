@@ -3,21 +3,53 @@ const app = require("../app");
 const chai = require("chai");
 const should = require('should');
 const User = require("../controllers/user.controllers/profile.controllers");
-var token = ""
+var context = describe;
 
-// describe("Payment Status", () => {
-//     it("Get payment status", (done) => {
-//         request(app).get("/user_payment_status").set(User).expect("Payment done", done).expect(200);
-//     });
-//   });
 
-  describe('GET /getFoodHistory', () => {
-    it('respond with a list of all food', (done) =>{
-        request(app)
-            .get('users/getFoodHistory')
-            .set("Date",'Sun, 17 Oct 2021 13:33:57 GMT'+token)
-            .expect(200, done).then((res)=>{expect(res.body.message).to.equal("List Not found")})
+
+
+
+describe('Users', function () {
+ 
+    it('should create a user', function () {
+
+      request(app)
+      .post('/user/signup')
+      .field('name', 'foogie')
+      .field('email', 'foo@gmail.com')
+      .field('password', 'Foo1234556')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res){
+        if(err){
+            console.log("error");
+            
+        }
+        else {
+            console.log(res);
+           
+        }
+    });
     });
 });
 
+
+describe('GenHealth History api', function () {
+
+  it('GET /history', () => { 
+      return request(app)
+      .get('/genHealthHistory').expect('Content-Type','application/json; charset=utf-8')
+      .expect(200)
+  })
+})
+
+describe('GET /user', function(req,res) {
+  -  it('respond with json', ()=> {
+      return request(app)
+        .get('/')
+        .set('Accept', 'application/json')
+        .expect('Content-Type','text/html; charset=utf-8')
+        .expect(200);
+    });
+  });
 
