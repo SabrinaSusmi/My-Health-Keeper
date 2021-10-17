@@ -29,6 +29,7 @@ function GenHealthHistoryTable() {
     e.preventDefault();
     let sugarLists = [];
     let pulseLists = [];
+    let weightLists=[]
     let sysLists = [];
     let diasLists = [];
     let datelists = [];
@@ -39,21 +40,21 @@ function GenHealthHistoryTable() {
       .then((res) => {
         console.log(res.data);
         // let suga=[]
-        for (let i = 0; i < res.data.date.length; i++) {
-let          suga=[]
+//         for (let i = 0; i < res.data.date.length; i++) {
+// let          suga=[]
    
-          suga['sugar']=(res.data.sugar[i]);
-          suga['weight']=(res.data.weight[i]);
-          sugarLists.push(res.data.sugar[i]);
-          sugarLists.push(res.data.weight[i]);
-          sugarLists.push(res.data.pulse[i]);
-          sugarLists.push(res.data.sys[i]);
-          sugarLists.push(res.data.dias[i]);
-          sugarLists.push(res.data.date[i]);
-          console.log(suga)
-          setdateList(suga)
-        }
-        // let weightLists = [];
+//           suga['sugar']=(res.data.sugar[i]);
+//           suga['weight']=(res.data.weight[i]);
+//           sugarLists.push(res.data.sugar[i]);
+//           sugarLists.push(res.data.weight[i]);
+//           sugarLists.push(res.data.pulse[i]);
+//           sugarLists.push(res.data.sys[i]);
+//           sugarLists.push(res.data.dias[i]);
+//           sugarLists.push(res.data.date[i]);
+//           console.log(suga)
+//           setdateList(suga)
+//         }
+//         // let weightLists = [];
 
         // for (let i = 0; i < sugarLists.length; i += 6) {
         //   console.log('weightLists.length ',weightLists.length, i)
@@ -83,43 +84,43 @@ let          suga=[]
 
           // console.log("sus ", weightList);
 
-        // res.data.sugar.forEach((element) => {
-        //   sugarLists.push(element);
-        //   // setsugarList(element);
-        // });
-        // res.data.weight.forEach((element) => {
-        //   weightLists.push(element);
-        //   // setweightList(element);
-        // });
-        // res.data.pulse.forEach((element) => {
-        //   pulseLists.push(element);
-        //   // setpulseList(element);
-        // });
-        // res.data.sys.forEach((element) => {
-        //   sysLists.push(element);
-        //   // setsysList(element);
-        // });
-        // res.data.dias.forEach((element) => {
-        //   diasLists.push(element);
-        //   // setdiasList(element);
-        // });
-        // res.data.date.forEach((element) => {
-        //   datelists.push(element);
-        //   // setdiasList(element);
-        // });
+        res.data.sugar.forEach((element) => {
+          sugarLists.push(element);
+          // setsugarList(element);
+        });
+        res.data.weight.forEach((element) => {
+          weightLists.push(element);
+          // setweightList(element);
+        });
+        res.data.pulse.forEach((element) => {
+          pulseLists.push(element);
+          // setpulseList(element);
+        });
+        res.data.sys.forEach((element) => {
+          sysLists.push(element);
+          // setsysList(element);
+        });
+        res.data.dias.forEach((element) => {
+          diasLists.push(element);
+          // setdiasList(element);
+        });
+        res.data.date.forEach((element) => {
+          datelists.push(element);
+          // setdiasList(element);
+        });
       })
       .catch((err) => {
         console.log(err, "Geeeeeen");
       });
-console.log(weightList)
+
     setsugarList(sugarLists);
     setpulseList(pulseLists);
-    // setweightList(weightLists);
+    setweightList(weightLists);
     setsysList(sysLists);
     setdiasList(diasLists);
     setdateList(datelists);
   };
-
+  console.log('sugarLists ',sugarList)
   return (
     <div>
       <pre></pre>
@@ -216,19 +217,18 @@ console.log(weightList)
 
           <tbody>
             <div>
-              {/* {
-    runCallback(() => {
-      const rows = [];
-      for (var i = 0; i < 3; i++) {
-        rows.push(dateList[i]);
-        rows.push(weightList[i]);
-        rows.push(sugarList[i]);
-        rows.push(pulseList[i]);
-        rows.push(sysList[i]);
-        rows.push(diasList[i]);      }
-      return rows;
-    })
-  } */}
+            {dateList.map((food, index) => (
+              <tr
+                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
+              >
+                <td>{dateList[index]}</td>
+                <td>{weightList[index]}</td>
+                <td>{sugarList[index]}</td>
+                <td>{pulseList[index]}</td>
+                <td>{diasList[index]+'/'+sysList[index]}</td>
+               
+              </tr>
+            ))}
             </div>
           </tbody>
         </Table>

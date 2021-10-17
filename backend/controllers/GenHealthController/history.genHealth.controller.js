@@ -48,7 +48,7 @@ const getMonthlyHistory = async (req, res) => {
         const eachDate = [...new Set(yy)];
 
         console.log(
-          eachDate,
+          sugarList
                 );
         res.send({
           date: eachDate,
