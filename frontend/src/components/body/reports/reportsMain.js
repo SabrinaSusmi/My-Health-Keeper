@@ -47,10 +47,15 @@ function ReportsMain() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const file = e.target.files[0];
+        console.log("reports 1");
+
+        const file = e.target.files;
+        console.log("reports 2");
 
         let formData = new FormData();
       formData.append("file", file);
+
+      console.log("reports 3");
 
         setLoading(true);
         console.log("sxsxdasxds ", formData);
