@@ -212,19 +212,18 @@ function GenHealthDashboard() {
     sugarChart();
   }, []);
   return (
+    <div 
+    style={{
+      backgroundImage: "url(/img/genH1.jpg)",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "50vh",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed"
+  }}>
     <Container
-      className="body_container"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        margin: 0,
-        maxWidth: 1900,
-        height: 3200,
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        padding: 0,
-        backgroundColor: COLORS.genHealthBackground,
-        marginRight: 0,
+        display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0
       }}
     >
       <div style={{ backgroundColor: "black", color: "black" }}>
@@ -234,16 +233,13 @@ function GenHealthDashboard() {
       <pre></pre> <pre></pre> <pre></pre> <pre></pre>
       <pre></pre>
       <Row className="body_feature_row">
+        
         <Col
-          className="body_feature_column"
-          style={{ position: "fixed" }}
-          sm={2}
+          style={{ display: "flex", flexDirection: "column" }}
         >
-          {ShowFeatureButtons()}
-        </Col>
-        <Col
-          style={{ marginLeft: 130, display: "flex", flexDirection: "column" }}
-        >
+          <div className="med_header_content">
+            {/* <p>All your medicine scheduled in one place!</p> */}
+          </div>
           <div className="reminder_buttons">
             <Button  style={{ marginLeft: "40%", marginTop:"1%", backgroundColor:"#ADD8E6"}} variant="outlined">
             <Link
@@ -264,6 +260,7 @@ function GenHealthDashboard() {
           </div>
 
           <div class="container">
+            <pre></pre>
           <h4>
               Your Blood Pressure for last 7 days<h6>normal range 120/80</h6>{" "}
             </h4>
@@ -295,6 +292,7 @@ function GenHealthDashboard() {
                 },
               }}
             />
+            <pre></pre>
             <h4>
               Your Pulse for last 7 days{" "}
               <h6>normal rate for an adult: 70-100</h6>{" "}
@@ -328,6 +326,7 @@ function GenHealthDashboard() {
               }}
             />
 
+            <pre></pre>
             <h4>Your Sugar Level for last 7 days </h4>
 
             <Line
@@ -360,7 +359,7 @@ function GenHealthDashboard() {
             />
 
            
-
+<pre></pre>
             <h4>Weight for Last 7 days</h4>
             <Line
               data={weightChartData}
@@ -392,8 +391,16 @@ function GenHealthDashboard() {
             />
           </div>
         </Col>
+        <Col
+          className="body_feature_column"
+          style={{ position: "fixed" }}
+          sm={2}
+        >
+          {ShowFeatureButtons()}
+        </Col>
       </Row>
     </Container>
+    </div>
   );
 }
 
