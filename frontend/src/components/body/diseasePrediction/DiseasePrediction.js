@@ -122,14 +122,13 @@ export default function SymptomSelection() {
             {ShowHeader(COLORS.diseasePrediction)}
           </div>
           <pre></pre>
-          <pre></pre> <pre></pre> <pre></pre> <pre></pre>
           <pre></pre>
           <Row className="body_feature_row">
             <Col style={{ display: "flex", flexDirection: "column" }}>
               {" "}
               &nbsp;
               <div className="disease_header_content">
-                <pre></pre> <pre></pre> <pre></pre>
+                <pre></pre> 
                 {/* <h1>
                   {" "}
                   Identify possible conditions and treatments<br></br> based on
