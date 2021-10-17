@@ -37,8 +37,10 @@ export default function ViewFolderProps(props) {
   return (
     <div variant="outlined" className="sp_reminder_card">
       <div className="folder_name">
-        <h2 className="folderName"><b>{props.note.folder}</b></h2>
-
+        <h3 className="folderName">
+          <b>{props.note.folder}</b>
+        </h3>
+ 
         <div className="noteDates">
           Created at: {props.note.noteDate.substring(0, 10)}
         </div>
@@ -89,7 +91,7 @@ export default function ViewFolderProps(props) {
         >
           <EditIcon />
         </IconButton>
-
+<div >
         <IconButton
           component={Link}
           to={{
@@ -101,7 +103,12 @@ export default function ViewFolderProps(props) {
           title="View Attached Files"
         >
           <VisibilityIcon />
+        
         </IconButton>
+        <br></br>
+        View Details
+        </div>
+<div>
         <IconButton
           className="viewBtn"
           data-toggle="tooltip"
@@ -110,6 +117,9 @@ export default function ViewFolderProps(props) {
         >
           <DeleteIcon />
         </IconButton>
+        <br></br>
+        Delete folder
+        </div>
       </CardActions>
       <EditNotesModal
         key={props.note.folder}

@@ -75,15 +75,12 @@
   background: transparent;
   border: rgb(233, 175, 15) 2px solid;
 }
-.sp_reminder_card:hover {
-  font-weight: bold;
-}
+
 
 
 
 .folderName:hover {
-  font-weight: bold;
-}
+  }
 
 
 .folder_name {
@@ -98,15 +95,15 @@
   padding: 0%;
 }
 
-.clrCardAction > .viewBtn {
+ .viewBtn {
   align-items: flex-end;
   color: rgb(55, 57, 80);
   padding-top: 0%;
 }
 
-.reminder_card > .viewBtn:hover {
-  background-color: #cdecf9;
-  color: #063742;
+ .viewBtn:hover {
+  background-color: #f5fbfd;
+  color: #ff9900;
 }
 
 .fileButton {
