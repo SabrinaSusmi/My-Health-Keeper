@@ -73,7 +73,8 @@ const deleteFolder = async (req, res) => {
 
 const getallSpecializedHealthInfo = async (req, res, next) => {
   try {
-    let user = req.headers["userid"];
+
+    let user = req.user.id;
 
     // console.log("user          ", user);
     const files = await MultipleFile.find({ user });
