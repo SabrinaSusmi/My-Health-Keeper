@@ -45,52 +45,10 @@ export default function ViewFolderProps(props) {
           Created at: {props.note.noteDate.substring(0, 10)}
         </div>
       </div>
-
-      <div
-        className={
-          (clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          }),
-          "SPiconBtn")
-        }
-        // value={visible}
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-      >
-        {/* {props.note.description.substring(0, 100)} */}
-        {visible ? (
-          <h4
-            className="clrDiv"
-            data-toggle="tooltip"
-            title="Click To View Details"
-          >
-            <pre></pre>
-            View Notes<pre></pre>
-            <pre></pre>
-          </h4>
-        ) : (
-          <div>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <h5>{props.note.description}</h5>
-              </CardContent>
-            </Collapse>
-          </div>
-        )}
-      </div>
-
+<pre></pre>
+<pre></pre><pre></pre>
       <CardActions className="clrCardAction">
-        <IconButton
-          className="viewBtn"
-          data-toggle="tooltip"
-          title="Edit Your Notes"
-          key={props.note.folder}
-          value={props.note.description}
-          // onClick={() => setEditing(true)}
-          onClick={openSpEditModal}
-        >
-          <EditIcon />
-        </IconButton>
+       
 <div >
         <IconButton
           component={Link}
