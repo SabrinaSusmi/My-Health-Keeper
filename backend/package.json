@@ -39,7 +39,7 @@
   },
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha 'Tests/users.test.js'"
+    "test": "Jest"
   },
   "keywords": [],
   "author": "",
