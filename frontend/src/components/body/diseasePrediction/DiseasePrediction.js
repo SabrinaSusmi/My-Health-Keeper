@@ -250,11 +250,11 @@ export default function SymptomSelection() {
                 />):('')} */}
 
                 <div>
-                  {loading ? (<Prediction
+                  {loading ? (<div>{result ?( <Prediction
                   getPrediction={disease}
                   percent={percentage}
                   specialist={doctor}
-                />): ( <div>
+                />):('')}</div>): ( <div>
                   <ReactBootStrap.Spinner style={{height:50, width:50}} animation="border" variant="primary" />
                   </div>)}
  
