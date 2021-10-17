@@ -133,7 +133,7 @@ export const ShowFeatureButtons = () => {
         <Link
           style={{ textDecoration: "none" }}
           className="sidebar-icon-link"
-          to="/"
+          to="/report-analysis"
           component={NavLink}
         >
           <Button

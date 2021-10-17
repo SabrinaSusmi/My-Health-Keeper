@@ -31,7 +31,7 @@ import DiseasePrediction from "./components/body/diseasePrediction/DiseasePredic
 import MenstrualDemo from "./components/body/MenstrualCycle/MenstrualDemo";
 import MenstrualTips from "./components/body/MenstrualCycle/MenstrualTips";
 import DietProgress from "./components/body/dietPlan/DietProgress";
-
+import ReportsMain from "./components/body/reports/reportsMain";
 export const UserIDContext = React.createContext();
 function App() {
   const dispatch = useDispatch();
@@ -85,7 +85,11 @@ function App() {
               <Route path="/signup" component={Signup} exact />
               {/* <Header /> */}
               <Route path="/home" component={isLogged ? Home : Login} exact />
-
+              <Route
+                path="/report-analysis"
+                component={isLogged ? ReportsMain : Login}
+                exact
+              />
               <Route
                 path="/user/activate/:activation_token"
                 component={ActivationEmail}
