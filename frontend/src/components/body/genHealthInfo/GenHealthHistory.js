@@ -21,10 +21,11 @@ function GenHealthHistoryTable() {
   const [sugar, setSugar] = useState([]);
   const [pulse, setPulse] = useState([]);
   const [weight, setWeight] = useState([]);
-  const [bp, setBp] = useState([]);
+  const [sys, setSys] = useState([]);
+  const [dias, setDias] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
-  const [info, setInfo] = useState([]);
+  
 
 
 
@@ -43,18 +44,23 @@ function GenHealthHistoryTable() {
        
        res.data.sugar.forEach((element)=>{
         sugarList.push(element);
+        setSugar(sugarList);
        })
        res.data.weight.forEach((element)=>{
         weightList.push(element);
+        setWeight(weightList)
        })
        res.data.pulse.forEach((element)=>{
         pulseList.push(element);
+        setPulse(pulseList)
        })
        res.data.sys.forEach((element)=>{
         sysList.push(element);
+        setSys(sysList)
        })
        res.data.dias.forEach((element)=>{
         diasList.push(element);
+        setDias(diasList)
        })
 
       })
@@ -150,17 +156,30 @@ function GenHealthHistoryTable() {
           </thead>
 
           <tbody>
-            {info.map((value, index) => (
+           
               <tr
-                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
+                style={{color: "#f7900a" }}
               >
-                <td>{value.weightList}</td>
-                <td>{value.sugarList}</td>
-                <td>{value.pulseList}</td>
-                <td>{value.sysList}</td>
-                <td>{value.diasList}</td>
+                
+                {weight.map((value,index)=>(
+                  <td>{value.weightList}</td>
+                ))}
+                 {sugar.map((value,index)=>(
+                   <td>{value.sugarList}</td>
+                ))}
+                 {pulse.map((value,index)=>(
+                 <td>{value.pulseList}</td>
+                ))}
+                 {sys.map((value,index)=>(
+                 <td>{value.sysList}</td>
+                ))}
+                 {dias.map((value,index)=>(
+                   <td>{value.diasList}</td>
+                ))}
+            
+                
               </tr>
-            ))}
+            
           </tbody>
         </Table>
       </div>
