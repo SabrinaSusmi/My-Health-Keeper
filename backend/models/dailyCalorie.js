@@ -11,6 +11,10 @@ const dailyCalorie = new mongoose.Schema({
   requiredCalories: {
     type:Number
   },
+  burnedCalories:{
+    type:Number,
+    default:0
+  },
   date: {
     type: Date,
 
