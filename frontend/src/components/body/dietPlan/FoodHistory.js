@@ -11,7 +11,7 @@ import { TextField } from "@material-ui/core";
 export default function FoodHistoryTable() {
   const token = useSelector((state) => state.token);
   const [foodList, setFoodList] = useState([]);
-
+  const [burntCal, setBurntCal] = useState([])
   const getFoodDetailsTable = async (e) => {
     e.preventDefault();
     const historyDate = e.target.value;
@@ -24,10 +24,19 @@ export default function FoodHistoryTable() {
       .then((res) => {
         setFoodList(res.data);
       });
+      getCalorieBurnt(historyDate);
   };
-  // useEffect(async () => {
-  //   getFoodDetailsTable();
-  // }, []);
+
+  const getCalorieBurnt = async (historyDate) => {
+    await axios
+      .get("http://localhost:5000/diet-plan/getCalorieBurnt", {
+        headers: { Authorization: token, dates: historyDate },
+      })
+      .then((res) => {
+        setBurntCal(res.data);
+      });
+  };
+  
 
   return (
     <div>
@@ -54,11 +63,10 @@ export default function FoodHistoryTable() {
         <Table hover size="sm" style={{width:'67%',marginLeft:'16.5%'}}>
           <thead>
             <tr style={{ background: "transparent" }}>
-              <th>Meal Description</th>
-              <th>Item Name</th>
-              <th>Quantity (servings)</th>
-              <th>Calories Consumed (kcal)</th>
-              <th></th>
+              <th> Meal Description </th>
+              <th> Item Name </th>
+              <th> Quantity (per servings) </th>
+              <th> Consumed Calories (per servings)</th>
             </tr>
           </thead>
 
@@ -76,6 +84,32 @@ export default function FoodHistoryTable() {
           </tbody>
         </Table>
       </div>
+      <pre></pre>
+      <pre></pre>
+      <pre></pre>
+      <div style={{color:'#155844',marginLeft:'37%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}><h4><u>Summary Of The Day 😀</u></h4></div>
+      <pre></pre>
+      <pre></pre>
+      <Table hover size="md" style={{width:'40%',marginLeft:'29%',alignItems:'center',justifyContent:'center'}}>
+          <thead>
+            <tr style={{ background: "transparent" }}>
+              <th> Required Calories (kcal) </th>
+              <th> Calories Consumed (kcal) </th>
+              <th> Calories Burnt for the day(kcal) </th>
+            </tr>
+          </thead>
+          <tbody>
+            {burntCal.map((cal, index) => (
+              <tr
+                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
+              >
+                <td>{cal.requiredCalories}</td>
+                <td>{cal.consumedCalories}</td>
+                <td>{cal.burnedCalories}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
     </div>
   );
 }
