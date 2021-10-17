@@ -65,7 +65,8 @@ export default function FoodHistoryTable() {
             <tr style={{ background: "transparent" }}>
               <th> Meal Description </th>
               <th> Item Name </th>
-              <th> Quantity (servings) </th>
+              <th> Quantity (per servings) </th>
+              <th> Consumed Calories (per servings)</th>
             </tr>
           </thead>
 
@@ -77,12 +78,16 @@ export default function FoodHistoryTable() {
                 <td>{food.meal}</td>
                 <td>{food.food}</td>
                 <td>{food.quantity}</td>
+                <td>{food.consumedCalories}</td>
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
       <pre></pre>
+      <pre></pre>
+      <pre></pre>
+      <div style={{color:'#155844',marginLeft:'37%',  marginTop:'3%',fontSize:20,fontWeight:'bold'}}><h4><u>Summary Of The Day 😀</u></h4></div>
       <pre></pre>
       <pre></pre>
       <Table hover size="md" style={{width:'40%',marginLeft:'29%',alignItems:'center',justifyContent:'center'}}>
