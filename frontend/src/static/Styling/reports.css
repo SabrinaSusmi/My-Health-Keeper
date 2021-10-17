@@ -1,0 +1,14 @@
+.report_image_div {
+    height: 300px;
+    padding: 3%;
+    padding-top: 0px;
+  }
+
+.report_image {
+    border-radius: 12px;
+    min-height: 75%;
+    max-height: 75%;
+    min-width: 1000;
+
+  }
+  

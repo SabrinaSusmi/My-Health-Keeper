@@ -49,8 +49,8 @@ function ReportsMain() {
 
         console.log("reports 1");
 
-        const file = e.target.files;
-        console.log("reports 2");
+        const file = e.target.files[0];
+        console.log("reports 2, ",file);
 
         let formData = new FormData();
       formData.append("file", file);
@@ -66,7 +66,7 @@ function ReportsMain() {
             headers: { Authorization: token },
           }
         ).then((res) => {
-            console.log("reports ", res);
+            console.log("reports ", res.data['filePath']);
             setAvatar(res.data)
           })
           .catch((err) => {
@@ -76,6 +76,7 @@ function ReportsMain() {
         setLoading(false);
         
       };
+      // console.log("reports ", avatar['image']['filePath']);
 
     // const changeAvatar = async (e) => {
     //   e.preventDefault();
@@ -121,7 +122,7 @@ function ReportsMain() {
 
     return (
       <div
-        className="profile_image_div"
+        className="report_image_div"
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -130,18 +131,19 @@ function ReportsMain() {
           {success && showSuccessMsg(success)}
           {loading && <h3>Loading.....</h3>}
         </div>
-        {/* <img
-          className="profile_image"
-          src={`http://localhost:5000/${avatar.filePath}`}
+       {avatar?( <img
+       style={{maxWidth:1000}}
+          className="report_image"
+          src={`http://localhost:5000/${avatar['image']['filePath']}`}
           alt="img"
-        /> */}
+        />):('')}
         <h6 align="center"> Change Profile Image</h6>
             <input
               type="file"
               className="form-control"
               name="file"
               id="file_up"
-            //   onChange={changeAvatar}
+              onChange={handleSubmit}
             />
 
         <div className="add_btn_diet">
@@ -149,7 +151,7 @@ function ReportsMain() {
           type="submit"
           className="add_btn"
           variant="contained"
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
           color="white"
         >
           <font className="add_btn_diet_font"> predict</font>
