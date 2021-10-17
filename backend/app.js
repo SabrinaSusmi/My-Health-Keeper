@@ -11,6 +11,7 @@ const dietPlanRoutes=require('./routers/dietPlan.routers')
 const spHealthInformationRoutes = require("./routers/specializedHealthInformation.routers");
 const diseasePrediction=require('./routers/diseasePrediction.routers')
 const genHealth =require('./routers/genHealth.route')
+const reports = require('./routers/reports.router')
 const path = require("path");
 
 const app = express();
@@ -30,6 +31,7 @@ app.use("/user", authRoutes);
 app.use(diseasePrediction)
 app.use("/payment", paymentRoutes);
 app.use(genHealth)
+app.use(reports);
 app.get('/',(req,res)=> {
     res.send(`App running`)
 })
