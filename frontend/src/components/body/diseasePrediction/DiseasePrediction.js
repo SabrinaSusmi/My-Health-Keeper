@@ -278,6 +278,11 @@ export default function SymptomSelection() {
               style={{ position: "fixed" }}
               sm={2}
             >
+              <pre></pre>
+              <pre></pre>
+              <pre></pre><pre></pre>
+              <pre></pre>
+              <pre></pre>
               {ShowFeatureButtons()}
             </Col>
           </Row>

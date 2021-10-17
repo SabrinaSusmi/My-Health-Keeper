@@ -64,6 +64,10 @@
   
   }
 
+  .MuiGrid-root > .item >.MuiGrid-item:hover {
+    transition: all 0.4s ease-in-out;
+  }
+
   .featureText_design{
     font-weight: bold;
   }
