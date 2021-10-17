@@ -18,6 +18,7 @@
 .reports_upload_body {
     width: 70%;
     margin: 2em auto;
+    margin-bottom: 0;
 }
 
 .report_image_div {
@@ -36,14 +37,16 @@
 
 .reports_prediction {
     border: 2px solid rgb(0, 0, 204);
+    border-radius: 25px;
     padding: 20px;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 .reports_predict_btn {
   margin: 2em auto;
   width: 150px;
-
+  margin-bottom: 0;
 }
 
 .reports_predict_btn > .add_btn{
