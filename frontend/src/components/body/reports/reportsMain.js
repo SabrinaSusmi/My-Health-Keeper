@@ -151,7 +151,7 @@ function ReportsMain() {
                   </div>
                   {avatar ? (
                     <img
-                      style={{ maxWidth: 1000 }}
+                      style={{ maxWidth: 600, marginBottom:30, marginLeft:50 }}
                       className="report_image"
                       src={`http://localhost:5000/${avatar["image"]["filePath"]}`}
                       alt="img"
@@ -185,7 +185,7 @@ function ReportsMain() {
                 
               </div>
               <div className="prediction_body">
-                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. Please consult with a doctor to become sure.</div>):(' ')}
+                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. So please consult with a doctor to become sure.</div>):(' ')}
                
               </div>
               <pre></pre>
