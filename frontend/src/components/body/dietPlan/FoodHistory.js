@@ -66,8 +66,6 @@ export default function FoodHistoryTable() {
               <th> Meal Description </th>
               <th> Item Name </th>
               <th> Quantity (servings) </th>
-              <th> Required Calories (kcal) </th>
-              <th> Calories Consumed (kcal) </th>
             </tr>
           </thead>
 
@@ -79,8 +77,6 @@ export default function FoodHistoryTable() {
                 <td>{food.meal}</td>
                 <td>{food.food}</td>
                 <td>{food.quantity}</td>
-                <td>{food.requiredCalories}</td>
-                <td>{food.consumedCalories}</td>
               </tr>
             ))}
           </tbody>
@@ -89,9 +85,11 @@ export default function FoodHistoryTable() {
       <pre></pre>
       <pre></pre>
       <pre></pre>
-      <Table hover size="sm" style={{width:'20%',marginLeft:'39%',alignItems:'center',justifyContent:'center'}}>
+      <Table hover size="md" style={{width:'40%',marginLeft:'29%',alignItems:'center',justifyContent:'center'}}>
           <thead>
             <tr style={{ background: "transparent" }}>
+              <th> Required Calories (kcal) </th>
+              <th> Calories Consumed (kcal) </th>
               <th> Calories Burnt for the day(kcal) </th>
             </tr>
           </thead>
@@ -100,6 +98,8 @@ export default function FoodHistoryTable() {
               <tr
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
+                <td>{cal.requiredCalories}</td>
+                <td>{cal.consumedCalories}</td>
                 <td>{cal.burnedCalories}</td>
               </tr>
             ))}
