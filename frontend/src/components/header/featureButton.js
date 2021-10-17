@@ -80,7 +80,52 @@ export const ShowFeatureButtons = () => {
           </Button>
         </Link>
       </Grid>
-
+      <Grid item className="item">
+        <Link
+          style={{ textDecoration: "none" }}
+          className="sidebar-icon-link"
+          to="/specialized-health-information"
+          component={NavLink}
+        >
+          {" "}
+          <Button
+            className="spHealthButton"
+            // data-toggle="tooltip"
+            // title="Specialized Health Information"
+            onMouseEnter={() => setIsSPShown(true)}
+            onMouseLeave={() => setIsSPShown(false)}
+          >
+            {isSPShown ? (
+              <h7 className="featureText_design">Health Journal</h7>
+            ) : (
+              <LocalHospitalIcon />
+            )}
+          </Button>
+        </Link>
+      </Grid>
+      <Grid item className="item">
+        <Link
+          style={{ textDecoration: "none" }}
+          className="sidebar-icon-link"
+          to="/display-medicine-reminderList"
+          component={NavLink}
+        >
+          <Button
+            className="medicineReminderButton"
+            // data-toggle="tooltip"
+            // title="Medicine Reminder"
+            onMouseEnter={() => setIsMedShown(true)}
+            onMouseLeave={() => setIsMedShown(false)}
+          >
+            {isMedShown ? (
+              <h7 className="featureText_design">Medicine Reminder</h7>
+            ) : (
+              <AddAlertIcon />
+            )}
+          </Button>
+        </Link>
+      </Grid>
+      
       <Grid item className="item">
         <Link
           style={{ textDecoration: "none" }}
@@ -105,29 +150,7 @@ export const ShowFeatureButtons = () => {
         </Link>
       </Grid>
 
-      <Grid item className="item">
-        <Link
-          style={{ textDecoration: "none" }}
-          className="sidebar-icon-link"
-          to="/specialized-health-information"
-          component={NavLink}
-        >
-          {" "}
-          <Button
-            className="spHealthButton"
-            // data-toggle="tooltip"
-            // title="Specialized Health Information"
-            onMouseEnter={() => setIsSPShown(true)}
-            onMouseLeave={() => setIsSPShown(false)}
-          >
-            {isSPShown ? (
-              <h7 className="featureText_design">Health Journal</h7>
-            ) : (
-              <LocalHospitalIcon />
-            )}
-          </Button>
-        </Link>
-      </Grid>
+      
 
       <Grid item className="item">
         <Link
@@ -176,28 +199,7 @@ export const ShowFeatureButtons = () => {
         </Link>
       </Grid>
 
-      <Grid item className="item">
-        <Link
-          style={{ textDecoration: "none" }}
-          className="sidebar-icon-link"
-          to="/display-medicine-reminderList"
-          component={NavLink}
-        >
-          <Button
-            className="medicineReminderButton"
-            // data-toggle="tooltip"
-            // title="Medicine Reminder"
-            onMouseEnter={() => setIsMedShown(true)}
-            onMouseLeave={() => setIsMedShown(false)}
-          >
-            {isMedShown ? (
-              <h7 className="featureText_design">Medicine Reminder</h7>
-            ) : (
-              <AddAlertIcon />
-            )}
-          </Button>
-        </Link>
-      </Grid>
+     
       {genderOfTheUser()}
     </div>
   );
