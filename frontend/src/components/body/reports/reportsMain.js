@@ -60,7 +60,7 @@ function ReportsMain() {
         setLoading(true);
         console.log("sxsxdasxds ", formData);
         await axios.post(
-          "http://localhost:5000/reports",
+          "http://localhost:5000/reports_predict",
           formData,
           {
             headers: { Authorization: token },
