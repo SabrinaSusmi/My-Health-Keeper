@@ -1,14 +1,65 @@
+.reports_header_content{
+  color: #522d58;
+  text-align: center;
+  height: 50vh;
+}
+
+.description_section_reports {
+  width: 60%;
+  margin: 0 auto;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3.5em;
+  color: rgb(0, 0, 204);
+  font-weight: 520;
+  /* border: black 1px solid; */
+}
+
+.reports_upload_body {
+    width: 70%;
+    margin: 2em auto;
+}
+
 .report_image_div {
-    height: 300px;
-    padding: 3%;
-    padding-top: 0px;
-  }
+    width: 60%;
+    margin: 0 auto;
+}
+
+.report_image_div h6 {
+    color: rgb(0, 0, 204);
+    font-size: 1.1em;
+}
 
 .report_image {
-    border-radius: 12px;
-    min-height: 75%;
-    max-height: 75%;
-    min-width: 1000;
+    max-width: 90%;
+}
 
-  }
-  
+.reports_prediction {
+    border: 2px solid rgb(0, 0, 204);
+    padding: 20px;
+    font-size: 1.1rem;
+}
+
+.reports_predict_btn {
+  margin: 2em auto;
+  width: 150px;
+
+}
+
+.reports_predict_btn > .add_btn{
+  background-color: transparent;
+  border: 2px solid rgb(0, 0, 204);
+  color: rgb(0, 0, 204);
+  font-weight: bold;
+  padding: 10px;
+  width: 150px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.reports_predict_btn > .add_btn:hover {
+  background-color: rgb(0, 0, 204);
+  color: #ffffff;
+  box-shadow: none;
+}
