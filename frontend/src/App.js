@@ -16,13 +16,12 @@ import ResetPassword from "./components/body/auth/ResetPassword";
 import ActivationEmail from "./components/body/auth/ActivationEmail";
 import Profile from "./components/body/profile/Profile";
 import Home from "./components/body/home/Home";
-
+import GenHealthHistory from "./components/body/genHealthInfo/GenHealthHistory";
 import MedicineInput from "./components/body/medicineReminder/InputMedReminder";
 import DisplayMedicineReminders from "./components/body/medicineReminder/DisplayMedReminders";
 import MenstrualCycle from "./components/body/MenstrualCycle/MenstrualCycle";
 import HealthInfo from "./components/body/genHealthInfo/HealthInfo";
 import GenHealthDashboard from "./components/body/genHealthInfo/GenHealthDashboard";
-import GenHealthHistoryTable from "./components/body/genHealthInfo/GenHealthHistory";
 import MedicineDose from "./components/body/medicineReminder/MedDoses";
 import specializedHealthInfo from "./components/body/specializedHealthInfo/specializedHealthInfo";
 import ViewFiles from "./components/body/specializedHealthInfo/ViewFiles";
@@ -30,9 +29,9 @@ import DietPlan from "./components/body/dietPlan/DietPlan";
 import DietGoalSetter from "./components/body/dietPlan/DietGoalSetter";
 import DiseasePrediction from "./components/body/diseasePrediction/DiseasePrediction";
 import MenstrualDemo from "./components/body/MenstrualCycle/MenstrualDemo";
+import MenstrualTips from "./components/body/MenstrualCycle/MenstrualTips";
 import DietProgress from "./components/body/dietPlan/DietProgress";
 import ReportsMain from "./components/body/reports/reportsMain";
-
 export const UserIDContext = React.createContext();
 function App() {
   const dispatch = useDispatch();
@@ -66,35 +65,7 @@ function App() {
   const { isLogged } = auth;
 
   localStorage.setItem("userID", auth.user._id);
-  const showSPHealthNotes = () => {
-    // console.log("id     ",  auth.user._id);
-    axios
-      .get("http://localhost:5000/api/get-specializedHealthInfo", {
-        headers: { Authorization: token, userid: auth.user._id },
-      })
-      .then((res) => {
-        // console.log("apppp             ",res.data);
-        // setSpHealthNotes(res.data);
-        // localStorage.setItem("spUser",res.data[0].user)
-      });
-  };
-  showSPHealthNotes();
-
-  const getMenstrualInfo = async () => {
-    const id = auth.user._id;
-    axios
-      .get(`http://localhost:5000/user/is-initial-data-available`, {
-        headers: { Authorization: token, userid: id },
-      })
-      .then((response) => {
-        const data1 = response.data.user;
-        localStorage.setItem("UserMenstrualInfo", data1);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  getMenstrualInfo();
+  
 
   return (
     <>
@@ -114,7 +85,11 @@ function App() {
               <Route path="/signup" component={Signup} exact />
               {/* <Header /> */}
               <Route path="/home" component={isLogged ? Home : Login} exact />
-
+              <Route
+                path="/report-analysis"
+                component={isLogged ? ReportsMain : Login}
+                exact
+              />
               <Route
                 path="/user/activate/:activation_token"
                 component={ActivationEmail}
@@ -140,17 +115,12 @@ function App() {
                 component={isLogged ? MenstrualCycle : Login}
                 exact
               />
+
               <Route
-                path="/report-analysis"
-                component={isLogged ? ReportsMain : Login}
+                path="/menstrual-cycle_demo"
+                component={isLogged ? MenstrualDemo : Login}
                 exact
               />
-
-<Route
-          path="/menstrual-cycle_demo"
-          component={isLogged ? MenstrualDemo : Login}
-          exact
-        />
               <Route
                 path="/general-health-dashboard"
                 component={isLogged ? GenHealthDashboard : Login}
@@ -162,16 +132,21 @@ function App() {
                 exact
               />
               <Route
-                path="/general-health-history"
-                component={isLogged ? GenHealthHistoryTable : Login}
-                exact
-              />
-              <Route
                 path="/medicine-doses"
                 component={isLogged ? MedicineDose : Login}
                 exact
               />
+               <Route
+        path="/general-health-history"
+        component={isLogged ? GenHealthHistory : Login}
+        exact
+        />
 
+<Route
+                path="/display-menstrual_tips"
+                component={isLogged ? MenstrualTips : Login}
+                exact
+              />
               <Route
                 path="/specialized-health-information"
                 component={isLogged ? specializedHealthInfo : Login}
@@ -200,7 +175,7 @@ function App() {
                 exact
               />
 
-<Route
+              <Route
                 path="/diet-plans/progress"
                 component={isLogged ? DietProgress : Login}
                 exact

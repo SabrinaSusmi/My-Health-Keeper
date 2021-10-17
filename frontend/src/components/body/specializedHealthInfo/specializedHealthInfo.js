@@ -93,7 +93,7 @@ export default function SpecializedHealthInfo() {
               }}
             >
               <div className="sp_header_content">
-                <p>Welcome to the route for HEALTHY life!</p>
+               
               </div>
               <div className="description_section">
                 <div>

@@ -27,10 +27,7 @@ import ViewNotesSection from "./ViewNotesSection";
 
 export default function MenstrualDemo() {
   const auth = useSelector((state) => state.auth);
-  const { user, isLogged } = auth;
-
-  const [isNotesAvailable, setisNotesAvailable] = useState(false);
-
+  
   const [isViewEnabled, setisViewEnabled] = useState(false);
 
   useEffect(() => {
@@ -104,7 +101,52 @@ export default function MenstrualDemo() {
                           contentHeight="auto"
                           events={[
                             {
+                              date: "2021-09-01",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-09-02",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-09-03",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-09-04",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-09-05",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-10-04",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
                               date: "2021-10-05",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-10-06",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-10-07",
+                              backgroundColor: "red",
+                              display: "background",
+                            },
+                            {
+                              date: "2021-10-08",
                               backgroundColor: "red",
                               display: "background",
                             },

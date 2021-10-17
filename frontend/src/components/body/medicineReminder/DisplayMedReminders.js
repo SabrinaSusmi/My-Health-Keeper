@@ -95,7 +95,7 @@ function DisplayMedReminders() {
       backgroundAttachment: "fixed"
   }}>
        <Container  style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
-    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.medicineBackground)}</div>
+    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader('#ffffff')}</div>
     
     
     <pre></pre>
@@ -110,6 +110,7 @@ function DisplayMedReminders() {
         <p>All your medicine scheduled in one place!</p>
       </div>
       <MedDoses />
+
 
       <div className="ongoing_med_body">
         <div className="overlay_med"></div>

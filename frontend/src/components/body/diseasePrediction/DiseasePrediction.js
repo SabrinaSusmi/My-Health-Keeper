@@ -111,7 +111,7 @@ export default function SymptomSelection() {
           }}
         >
           <div style={{ backgroundColor: "black", color: "black" }}>
-            {ShowHeader(COLORS.diseasePrediction)}
+            {ShowHeader('#ffffff')}
           </div>
           <pre></pre>
           <pre></pre> <pre></pre> <pre></pre> <pre></pre>

@@ -57,7 +57,7 @@ export default function ViewFolderProps(props) {
       >
         {/* {props.note.description.substring(0, 100)} */}
         {visible ? (
-          <h5
+          <h4
             className="clrDiv"
             data-toggle="tooltip"
             title="Click To View Details"
@@ -65,7 +65,7 @@ export default function ViewFolderProps(props) {
             <pre></pre>
             View Notes<pre></pre>
             <pre></pre>
-          </h5>
+          </h4>
         ) : (
           <div>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
