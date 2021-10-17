@@ -2,9 +2,9 @@ const { spawn } = require("child_process");
 const ReportModel = require("../models/reports.model");
 const reports = async (req, res) => {
   //const { s1, s2, s3, s4, s5 } = req.headers;
-   console.log("hello", req.file)
+  //  console.log("hello", req.file)
   const image = req.file.path.split("\\");
-  console.log(image[1]);
+  // console.log(image[1]);
   const reportsave = new ReportModel({
     fileName: req.file.originalname,
     filePath: req.file.path,
@@ -14,24 +14,39 @@ const reports = async (req, res) => {
   reportsave
     .save()
     .then(() => {
-      ReportModel.find({filePath: req.file.path}).then((ans)=>{res.send({image:ans})}).catch((e)=>{console.log(e)})
+      ReportModel.find({ filePath: req.file.path })
+        .then((ans) => {
+          // console.log("hhhh ", ans[0]);
+
+          res.send({ image: ans[0] });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     })
     .catch((er) => {
       console.log(er);
     });
-  // const imgPath = "../backend/ML/" + image[1];
-  // console.log("imgPath ", imgPath);
-  // const pyProg = spawn("python", ["../backend/ML/reports.py", imgPath]);
-
-  // pyProg.stdout.on("data", function (data) {
-  //   const ans = data.toString();
-  //   console.log(ans);
-  // });
-  // pyProg.on("close", function (code) {
-  //   console.log(code);
-  // });
 };
 
+const prediction = async (req, res) => {
+  try {
+    const img=req.headers['img']
+const image=img.split('\\')
+    const imgPath = "../backend/uploads/" + image[1];
+    console.log("imgPath ", imgPath);
+    const pyProg = spawn("python", ["../backend/ML/reports.py", imgPath]);
+
+    pyProg.stdout.on("data", function (data) {
+      const ans = data.toString();
+      console.log(ans);
+      res.send({ ans: ans });
+    });
+    pyProg.on("close", function (code) {
+      console.log(code);
+    });
+  } catch {}
+};
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return "0 Bytes";
@@ -43,4 +58,4 @@ const fileSizeFormatter = (bytes, decimal) => {
     parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + " " + sizes[index]
   );
 };
-module.exports = { reports };
+module.exports = { reports, prediction };
