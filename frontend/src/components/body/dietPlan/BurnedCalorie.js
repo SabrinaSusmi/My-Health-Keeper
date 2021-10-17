@@ -25,10 +25,13 @@ export default function BurnedCalories() {
   }, []);
   return (
     <div>
-        <h3>Burnt some calories today?</h3>
+        <h3 style={{color:'#6f9a37',marginBottom:4}}>Burnt some calories today?</h3>
+        
 Track the amount of calories you've burn everyday
 <br></br>
-              <TextField
+              
+               <div className="add_burn_diet">
+               <TextField
                 type="text"
                 id="burnedCalories"
                 name="burnedCalories"
@@ -40,13 +43,14 @@ Track the amount of calories you've burn everyday
               ></TextField>
               <Button
                 type="submit"
-                // className="add_btn"
+                className="burn_btn"
                 variant="contained"
                 onClick={saveBurnCal}
                 color="white"
               >
                 <font> save</font>
               </Button>
+              </div>
     </div>
   );
 }
