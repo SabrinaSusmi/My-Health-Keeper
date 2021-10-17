@@ -29,16 +29,16 @@
 
 .info_item {
   border: rgb(250, 131, 131) 2px solid;
-  margin: 2em;
+  margin: 1em 2em;
   border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 200px;
   text-align: center;
   align-items: center;
   justify-content: center;
   display: flex;
   padding: 10px;
-  box-shadow: 2px 2px 2px 2px rgb(248, 214, 217);
+  /* box-shadow: 2px 2px 2px 2px rgb(248, 214, 217); */
 }
 
 .info_item p {
@@ -51,7 +51,7 @@
 }
 
 .mens_cal {
-  margin: 2em 2em 0 2em;
+  margin: 2em 2em 0 7em;
 }
 
 .cal_body {
@@ -142,14 +142,13 @@
 }
 
 .mens_header_content {
-  margin-top: 120px;
   color: #CA4D62;
-  height: 30vh;
+  height: 60vh;
   text-align: center;
 }
 .mens_calendar_body {
   /* border: #007cba 1px solid; */
-  /* margin-top: 2rem; */
+  margin-top: 4rem;
   background-image: url("../images/mens_pink.jpg");
   background-size: cover;
   background-attachment: fixed;

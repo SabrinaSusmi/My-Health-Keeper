@@ -52,10 +52,10 @@ export default function MenstrualDemo() {
       <div
         className="reminder"
         style={{
-          backgroundImage: "url(/img/CycleTrack.jpg)",
+          backgroundImage: "url(/img/mens1.jpg)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "50vh",
+          height: "60vh",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
         }}
@@ -82,15 +82,14 @@ export default function MenstrualDemo() {
                 <pre></pre>
                 {/* <span style={{color:'white',fontSize:43,fontWeight:550}}><i>TRACK YOUR PERIODS LIKE A PRO</i></span> */}
               </div>
+              <div className="mens_info">
+                {UserMenstrualCircleInfo()}
+              </div>
               <div className="mens_calendar_body">
                 <div className="mens_overlay"></div>
                 <div className="mens">
                   <div className="mens_body">
-                    <div className="mens_info">
-                      {UserMenstrualCircleInfo()}
-
-                      {ShowBasicMensData()}
-                    </div>
+                  {ShowBasicMensData()}
                     <div className="mens_cal">
                       <div className="cal_body">
                         <FullCalendar
@@ -158,15 +157,15 @@ export default function MenstrualDemo() {
                 </div>
               </div>
               <div className="mens_journal_body">
-                <div className="mens_overlay"></div>
+                {/* <div className="mens_overlay"></div> */}
                 <div className="med_ongoing_header">
                   <h2 style={{ color: "#CA4D62" }}>Your Journal at a Glance</h2>
                 </div>
-              </div>
-              <div className="mens_calendar_body">
-                <div className="mens_overlay"></div>
+                <div className="mens_journal_body">
                   {ViewNotesSection()}
               </div>
+              </div>
+              
             </Col>
             <Col
               className="body_feature_column"
