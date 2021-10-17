@@ -5,7 +5,7 @@ const getMonthlyHistory = async (req, res) => {
     const year = req.headers["year"];
     const months = req.headers["months"];
     console.log(year, "   ", months);
-  
+  const info=[]
     const weightList = [];
     const sysList = [];
     const diasList = [];
@@ -21,6 +21,7 @@ const getMonthlyHistory = async (req, res) => {
           // console.log(datess)
           if (year == datess[0] && months == datess[1]) {
             // console.log(hist)
+            info.push[hist]
             eachDate.push(hist["inputDate"].toISOString().slice(0, 10));
             if (hist["infoTitle"] == "Pulse") {
               // console.log(hist["info"]);
@@ -61,8 +62,8 @@ const getMonthlyHistory = async (req, res) => {
           pulse: pulseList,
           sys: sysList,
           dias: diasList,
+          info:info
         });
-        // console.log(ans);
       })
       .catch((err) => {
         console.log(err);

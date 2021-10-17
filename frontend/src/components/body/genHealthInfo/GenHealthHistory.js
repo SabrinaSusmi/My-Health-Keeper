@@ -11,7 +11,7 @@ import axios from "axios";
 import { TextField } from "@material-ui/core";
 
 function GenHealthHistoryTable() {
-    const [sugarList, setsugarList] = useState();
+  const [sugarList, setsugarList] = useState();
   const [weightList, setweightList] = useState([]);
   const [diasList, setdiasList] = useState([]);
   const [pulseList, setpulseList] = useState([]);
@@ -24,70 +24,7 @@ function GenHealthHistoryTable() {
   const [year, setYear] = useState("0");
   const [info, setInfo] = useState([]);
 
-
-
-  const runCallback = (cb) => {
-    return cb();
-  };
-const [rows,setRows]=useState([])
-const secPop=()=>{
-  const hhh=[]
-  for (let i = 0; i < sysList.length; i++) {
-    console.log(typeof diasList, "       ", pulseList.length, "   ", i);
-    hhh.push(dateList[i]);
-    hhh.push(weightList[i]);
-    hhh.push(sugarList[i]);
-    hhh.push(pulseList[i]);
-    hhh.push(sysList[i]);
-    hhh.push(diasList[i]);
-    setRows(hhh)
-  }
-  
-}
-console.log("bgyhg ",rows)
-
-
-
-  const populateTable = () => {
-    let rows = [];
-    for (let i = 0; i < sysList.length; i++) {
-      console.log(typeof diasList, "       ", pulseList.length, "   ", i);
-      rows.push(dateList[i]);
-      rows.push(weightList[i]);
-      rows.push(sugarList[i]);
-      rows.push(pulseList[i]);
-      rows.push(sysList[i]);
-      rows.push(diasList[i]);
-    }
-     
-<div>
-  {
-    runCallback(() => {
-      const row = [];
-      for (var i = 0; i < 5; i++) {
-        rows.push(dateList[i]);
-        rows.push(weightList[i]);
-        rows.push(sugarList[i]);
-        rows.push(pulseList[i]);
-        rows.push(sysList[i]);
-        rows.push(diasList[i]);      }
-      return row;
-    })
-  }
-</div>
-      
-      /* <tr
-        // style={i % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
-      ><td>{dateList[i]}</td>
-        <td>{weightList[i]}</td>
-        <td>{sugarList[i]}</td>
-        <td>{pulseList[i]}</td>
-        <td>{sysList[i]}</td>
-        <td>{diasList[i]}</td>
-      </tr> */
-    
-  };
-
+ 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
     let sugarLists = [];
@@ -137,9 +74,7 @@ console.log("bgyhg ",rows)
     setdiasList(diasLists);
     setdateList(datelists);
 
-    secPop()
   };
-  console.log(sugarList);
 
   return (
     <div>
@@ -236,11 +171,9 @@ console.log("bgyhg ",rows)
           </thead>
 
           <tbody>
-            {/* {populateTable()} */}
-            {/* {secPop()} */}
-            {/* {console.log(rows)} */}
+           
             <div>
-  {/* {
+              {/* {
     runCallback(() => {
       const rows = [];
       for (var i = 0; i < 3; i++) {
@@ -253,8 +186,8 @@ console.log("bgyhg ",rows)
       return rows;
     })
   } */}
-</div>
-            </tbody>
+            </div>
+          </tbody>
         </Table>
       </div>
     </div>
