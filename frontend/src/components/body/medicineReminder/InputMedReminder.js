@@ -94,32 +94,60 @@ function InputMedReminder() {
 
     //username = user.name;
     //doses = inputFields;
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/medReminder",
-        {
-          username: user.name,
-          medname,
-          descriptionmed,
-          startdate,
-          enddate,
-          doses: inputFields,
-          userEmail: user.email,
-        },
-        {
-          headers: { Authorization: token },
-        }
-      );
+    console.log(startdate);
+    if(enddate > startdate) {
+      console.log("yes");
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/medReminder",
+          {
+            username: user.name,
+            medname,
+            descriptionmed,
+            startdate,
+            enddate,
+            doses: inputFields,
+            userEmail: user.email,
+          },
+          {
+            headers: { Authorization: token },
+          }
+        );
 
+        setMedicine({
+          ...medicine,
+          err: "",
+          success: "Medicine added Successfully!",
+        });
+        // console.log(res.data.msg);
+  
+        // if(res.data.msg=="End Date must be later than Start Date") {
+        //   setMedicine({
+        //     ...medicine,
+        //     err: "End Date must be later than Start Date",
+        //     success: "",
+        //   });
+  
+        // }else {
+        //   setMedicine({
+        //     ...medicine,
+        //     err: "",
+        //     success: "Medicine added Successfully!",
+        //   });
+        // }
+        history.push("/display-medicine-reminderList");
+      } catch (err) {
+        err.response.data.msg &&
+          setMedicine({ ...medicine, err: err.response.data.msg, success: "" });
+      }
+
+    } else {
+      console.log("no");
       setMedicine({
         ...medicine,
-        err: "",
-        success: "Medicine added Successfully!",
+        err: "End Date must be later than Start Date",
+        success: "",
       });
-      history.push("/display-medicine-reminderList");
-    } catch (err) {
-      err.response.data.msg &&
-        setMedicine({ ...medicine, err: err.response.data.msg, success: "" });
     }
   };
 
@@ -128,10 +156,11 @@ function InputMedReminder() {
       width: "60%",
       marginLeft: "20%",
       marginBottom: "2%",
+      color : "#ffffff"
     },
     notchedOutline: {
-      borderWidth: "1px",
-      borderColor: "#fd8412 !important ",
+      borderWidth: "0px",
+      borderColor: "##04161e !important ",
     },
   }));
 
@@ -145,7 +174,11 @@ function InputMedReminder() {
       <div className="labels"> Medicine Name</div>
 
       <TextField
-        
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -160,6 +193,11 @@ function InputMedReminder() {
       <div className="labels"> Description</div>
 
       <TextField
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -174,6 +212,11 @@ function InputMedReminder() {
       <div className="labels"> Start Date</div>
 
       <TextField
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -190,6 +233,11 @@ function InputMedReminder() {
       />
       <div className="labels"> End Date</div>
       <TextField
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline
+          }
+        }}
         className={classes.textfield_input}
         variant="outlined"
         required
@@ -209,6 +257,11 @@ function InputMedReminder() {
       {inputFields.map((inputField, index) => (
         <div className="textfield" key={index}>
           <TextField
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline
+              }
+            }}
             className="textfield"
             variant="outlined"
             required
