@@ -222,6 +222,30 @@ const burnCalorie = async (req, res) => {
       console.log(ss);
     });
 };
+const getCaloriesBurnt = async (req, res) => {
+  let user = req.user.id;
+  const dates = req.headers["dates"];
+  const bcalList = [];
+  dailyCalorie.find({ user }, (err, List) => {
+    if (err) {
+
+      console.log("Diet food get :" + err);
+    }
+    if (List) {
+
+      List.forEach((cal) => {
+        const dbDate = cal.date.toISOString().slice(0, 10);
+        if (dates == dbDate) {
+          bcalList.push(cal);
+        }
+
+      });
+
+      res.send(bcalList);
+    }
+  });
+};
+
 module.exports = {
   postFood,
   getFood,
@@ -230,4 +254,5 @@ module.exports = {
   getDietSummaryOfTheDay,
   getFoodHistory,
   burnCalorie,
+  getCaloriesBurnt,
 };
