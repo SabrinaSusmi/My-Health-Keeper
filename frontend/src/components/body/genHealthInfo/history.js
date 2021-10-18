@@ -16,20 +16,91 @@ function GenHealthHistoryTable() {
   const [diasList, setdiasList] = useState([]);
   const [pulseList, setpulseList] = useState([]);
   const [sysList, setsysList] = useState([]);
-  const [dateList, setdateList] = useState([[]]);
+  const [dateList, setdateList] = useState([]);
 
   const token = useSelector((state) => state.token);
   const [healthInfo, setHealthInfo] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
   const [info, setInfo] = useState([]);
-  console.log("susy ", dateList);
+
+  const runCallback = (cb) => {
+    return cb();
+  };
+  const [allInfo, setAllInfo] = useState([]);
+  const secPop = () => {
+    const hhh = [];
+    for (let i = 0; i < sysList.length; i++) {
+      console.log(typeof diasList, "       ", pulseList.length, "   ", i);
+      hhh.push(dateList[i]);
+      hhh.push(weightList[i]);
+      hhh.push(sugarList[i]);
+      hhh.push(pulseList[i]);
+      hhh.push(sysList[i]);
+      hhh.push(diasList[i]);
+      setAllInfo(hhh);
+    }
+    thirdPop();
+  };
+  const [third, setThird] = useState([]);
+
+  const thirdPop = () => {
+    let pp = [];
+    for (let i = 0; i < sysList.length; i += 6) {
+      console.log("date ", allInfo[i], " ", i);
+      for (let j = i; j < i + 6; j++) {
+        console.log('daaaa ',allInfo[j],'   ',j)
+        pp.push(allInfo[j]);
+      }
+      setThird(pp);
+    }
+  };
+  // console.log("bgyhg ",allInfo)
+  // console.log("third ",third)
+
+  const populateTable = () => {
+    let rows = [];
+    for (let i = 0; i < sysList.length; i++) {
+      console.log(typeof diasList, "       ", pulseList.length, "   ", i);
+      rows.push(dateList[i]);
+      rows.push(weightList[i]);
+      rows.push(sugarList[i]);
+      rows.push(pulseList[i]);
+      rows.push(sysList[i]);
+      rows.push(diasList[i]);
+    }
+
+    <div>
+      {runCallback(() => {
+        const row = [];
+        for (var i = 0; i < 5; i++) {
+          rows.push(dateList[i]);
+          rows.push(weightList[i]);
+          rows.push(sugarList[i]);
+          rows.push(pulseList[i]);
+          rows.push(sysList[i]);
+          rows.push(diasList[i]);
+        }
+        return row;
+      })}
+    </div>;
+
+    /* <tr
+        // style={i % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
+      ><td>{dateList[i]}</td>
+        <td>{weightList[i]}</td>
+        <td>{sugarList[i]}</td>
+        <td>{pulseList[i]}</td>
+        <td>{sysList[i]}</td>
+        <td>{diasList[i]}</td>
+      </tr> */
+  };
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
     let sugarLists = [];
+    let weightLists = [];
     let pulseLists = [];
-    let weightLists=[]
     let sysLists = [];
     let diasLists = [];
     let datelists = [];
@@ -38,52 +109,6 @@ function GenHealthHistoryTable() {
         headers: { Authorization: token, months: selectedDate, year: year },
       })
       .then((res) => {
-        console.log(res.data);
-        // let suga=[]
-//         for (let i = 0; i < res.data.date.length; i++) {
-// let          suga=[]
-   
-//           suga['sugar']=(res.data.sugar[i]);
-//           suga['weight']=(res.data.weight[i]);
-//           sugarLists.push(res.data.sugar[i]);
-//           sugarLists.push(res.data.weight[i]);
-//           sugarLists.push(res.data.pulse[i]);
-//           sugarLists.push(res.data.sys[i]);
-//           sugarLists.push(res.data.dias[i]);
-//           sugarLists.push(res.data.date[i]);
-//           console.log(suga)
-//           setdateList(suga)
-//         }
-//         // let weightLists = [];
-
-        // for (let i = 0; i < sugarLists.length; i += 6) {
-        //   console.log('weightLists.length ',weightLists.length, i)
-        //   // while(weightLists.length>0){
-        //   //   weightLists.pop()
-        //   // }
-          
-        //  for(let j=i;j<i+6;j++){
-         
-        //   console.log('j ',weightLists)
-        //   weightLists.push(sugarLists[j]);
-        //   weightLists.push(sugarLists[j+1]);
-        //   weightLists.push(sugarLists[j+2]);
-        //   weightLists.push(sugarLists[j+3]);
-        //   weightLists.push(sugarLists[j+4]);
-        //   weightLists.push(sugarLists[j+5]);
-        //  }
-        //  const eachDate = [...new Set(weightLists)];
-
-        //   setweightList(...new Set(weightLists))
-         
-          //  }
-
-
-
-
-
-          // console.log("sus ", weightList);
-
         res.data.sugar.forEach((element) => {
           sugarLists.push(element);
           // setsugarList(element);
@@ -119,8 +144,11 @@ function GenHealthHistoryTable() {
     setsysList(sysLists);
     setdiasList(diasLists);
     setdateList(datelists);
+
+    secPop();
   };
-  console.log('sugarLists ',sugarList)
+  console.log(sugarList);
+
   return (
     <div>
       <pre></pre>
@@ -216,19 +244,23 @@ function GenHealthHistoryTable() {
           </thead>
 
           <tbody>
+            {/* {populateTable()} */}
+            {/* {secPop()} */}
+            {/* {console.log(rows)} */}
             <div>
-            {dateList.map((food, index) => (
-              <tr
-                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
-              >
-                <td>{dateList[index]}</td>
-                <td>{weightList[index]}</td>
-                <td>{sugarList[index]}</td>
-                <td>{pulseList[index]}</td>
-                <td>{diasList[index]+'/'+sysList[index]}</td>
-               
-              </tr>
-            ))}
+              {/* {
+    runCallback(() => {
+      const rows = [];
+      for (var i = 0; i < 3; i++) {
+        rows.push(dateList[i]);
+        rows.push(weightList[i]);
+        rows.push(sugarList[i]);
+        rows.push(pulseList[i]);
+        rows.push(sysList[i]);
+        rows.push(diasList[i]);      }
+      return rows;
+    })
+  } */}
             </div>
           </tbody>
         </Table>
