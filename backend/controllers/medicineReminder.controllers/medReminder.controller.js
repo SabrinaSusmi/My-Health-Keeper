@@ -22,7 +22,7 @@ todayDate.setDate(todayDate.getDate()-1)
 };
 
 const getCompleteMedicine = async (req, res) => {
-let user = req.user.id;
+  let user = req.user.id;
 const todayDate=new Date()
 todayDate.setDate(todayDate.getDate()-1)
 console.log('today ',todayDate)
