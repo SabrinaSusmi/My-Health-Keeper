@@ -128,7 +128,7 @@ exports.SSLCommerz_payment_init = async (req, res) => {
           // console.log("res2 ", res2);
         });
       } else {
-        console.log("res11 ", res1);
+        // console.log("res11 ", res1);
         const SMSPayment = new PaymentModel({
           user,
           phone,
