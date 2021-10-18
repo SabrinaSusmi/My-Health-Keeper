@@ -244,6 +244,7 @@ setIsPaid(res.data)
                       src={`http://localhost:5000/${avatar.filePath}`}
                       alt="img"
                     />
+                    <div></div>
                     {isHovered && (
                       <>
                         <h6 align="center"> Change Profile Image</h6>
