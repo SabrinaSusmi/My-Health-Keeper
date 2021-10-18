@@ -89,4 +89,31 @@ const getMonthlyHistory = async (req, res) => {
     // });
   };
 
-module.exports={ getMonthlyHistory}
+  const getGenData = async (req, res) => {
+    let user = req.user.id;
+
+    const year = req.headers["year"];
+    const months = req.headers["months"];
+    let chart_data = [];
+  let chart_date = [];
+
+    await genHealthSchema
+      .find({ user, infoTitle : req.params.gen })
+      .then((ans) => {
+        ans.forEach((hist) => {
+          const histDate = hist["inputDate"].toISOString().slice(0, 10);
+          const datess = histDate.split("-");
+          // console.log(datess)
+          if (year == datess[0] && months == datess[1]) {
+            chart_data.push(ans);
+            // chart_date.push(ans.inputDate.toISOString().slice(0, 10));
+          }
+        }
+        
+        )
+        res.send({ infoData: chart_data });
+      })
+
+  };
+
+module.exports={ getMonthlyHistory, getGenData}
