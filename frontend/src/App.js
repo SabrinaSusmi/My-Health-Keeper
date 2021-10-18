@@ -73,7 +73,7 @@ function App() {
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/" component={isLogged ? Home : Landing} exact />
+              <Route path="/" component={isLogged ? GenHealthDashboard : Landing} exact />
               {/* <Route path="/my-healtKeeper" component={Landing} exact />  */}
               <Route path="/forgot_password" component={ForgotPassword} exact />
               <Route
