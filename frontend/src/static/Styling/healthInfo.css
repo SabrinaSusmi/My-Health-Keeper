@@ -76,3 +76,19 @@ color: white;
 .container h6 {
   color: black;
 }
+
+.gen_history_table_header {
+  width: 90%;
+  margin-left: 5.5em;
+}
+
+.gen_history_table_header span {
+  font-size: 1.1 rem;
+  font-weight: 550;
+  margin: 0 2em;
+}
+
+.gen_history_table {
+  width: 60%;
+  margin: 4em auto;
+}

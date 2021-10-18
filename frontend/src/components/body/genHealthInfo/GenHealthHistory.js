@@ -11,7 +11,7 @@ import axios from "axios";
 import { TextField } from "@material-ui/core";
 
 function GenHealthHistoryTable() {
-  const [sugarList, setsugarList] = useState();
+  const [sugarList, setsugarList] = useState([]);
   const [weightList, setweightList] = useState([]);
   const [diasList, setdiasList] = useState([]);
   const [pulseList, setpulseList] = useState([]);
@@ -200,19 +200,24 @@ function GenHealthHistoryTable() {
             <VisibilityIcon />
           </IconButton>
         </div>
-        <div className="diet_info_item_progress"></div>
-        <pre></pre>
-        <pre></pre>
+        <div className="gen_history_table">
+        <div className="gen_history_table_header">
+          <span>Date</span>
+          <span>Weight</span>
+          <span>Sugar</span>
+          <span>Pulse Rate</span>
+          <span>Blood Pressure</span>
+        </div>
         <Table hover size="sm">
           <thead>
-            <tr style={{ background: "transparent" }}>
+            {/* <tr style={{ background: "transparent" }}>
               <th>Date</th>
               <th>Weight</th>
               <th>Sugar level</th>
               <th>Pulse Rate</th>
               <th>Systolic Blood Pressure</th>
               <th>Diastolic Blood Pressure</th>
-            </tr>
+            </tr> */}
           </thead>
 
           <tbody>
@@ -221,10 +226,10 @@ function GenHealthHistoryTable() {
               <tr
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
-                <td>{dateList[index]}</td>
-                <td>{weightList[index]}</td>
-                <td>{sugarList[index]}</td>
-                <td>{pulseList[index]}</td>
+                <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{dateList[index]} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                <td>{weightList[index]}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                <td>{sugarList[index]}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td>{pulseList[index]}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</td>
                 <td>{diasList[index]+'/'+sysList[index]}</td>
                
               </tr>
@@ -232,6 +237,10 @@ function GenHealthHistoryTable() {
             </div>
           </tbody>
         </Table>
+        </div>
+        <pre></pre>
+        <pre></pre>
+        
       </div>
     </div>
   );
