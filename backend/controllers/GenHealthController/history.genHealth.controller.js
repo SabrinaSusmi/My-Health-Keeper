@@ -64,7 +64,29 @@ const getMonthlyHistory = async (req, res) => {
       .catch((err) => {
         console.log(err);
       });
-    
+    // await genHealthSchema.find({ user }, (err, dataList) => {
+    //   if (err) {
+    //     console.log("Health info get :" + err);
+    //   }
+    //   if (dataList) {
+    //     dataList.forEach((data) => {
+    //       console.log(data)
+  
+    //       // .toISOString().slice(0,10)
+    //       // const dbYear = data.inputDate.toString().slice(0, 10);
+    //       // console.log(dbYear)
+    //       // const dbMonth = data.inputDate.getMonth().toString().slice(0, 10);
+    //       // console.log(dbMonth)
+  
+    //       // if (year == dbYear && months ==dbMonth ) {
+    //       //   infolist.push(data);
+    //       // }
+  
+    //     });
+    //     console.log(infolist[0]);
+    //     res.send(infolist);
+    //   }
+    // });
   };
 
 module.exports={ getMonthlyHistory}
