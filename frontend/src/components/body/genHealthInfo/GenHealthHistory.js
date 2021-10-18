@@ -7,8 +7,16 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { Select, IconButton } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+// import { ShowFeatureButtons } from "../../header/featureButton";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from "../../../static/Styling/featureButton.css";
+
+import { COLORS } from "../../themeColors";
 
 function GenHealthHistoryTable() {
   const [sugarList, setsugarList] = useState([]);
@@ -78,27 +86,52 @@ function GenHealthHistoryTable() {
   };
   console.log("sugarLists ", sugarList);
   return (
-    <div>
+    <div style={{
+      backgroundImage: "url(/img/genH1.jpg)",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "50vh",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed"}}>
+        <Container
+      style={{
+        display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0
+      }}
+    >
+      <div style={{ backgroundColor: "black", color: "black" }}>
+        {ShowHeader(COLORS.genHealthBackground)}
+      </div>
       <pre></pre>
+      <pre></pre> <pre></pre> <pre></pre> <pre></pre>
       <pre></pre>
-      <div style={{ backgroundColor: "#e8fbe8", height: "auto" }}>
-        <pre></pre>
+      <Row className="body_feature_row">
 
+      <Col style={{ display: "flex", flexDirection: "column" }}>
+            <div className="med_header_content">
+              {/* <p>All your medicine scheduled in one place!</p> */}
+            </div>
+
+
+            <div >
+        <pre></pre>
         <div
           style={{
-            color: "#155844",
-            marginLeft: "30%",
-            marginTop: "3%",
+            
+            marginLeft: "26%",
+            // marginTop: "30%",
             fontSize: 20,
             fontWeight: "bold",
           }}
         >
           {" "}
-          📅 View Your Monthly General Health Information Details
+          <p style={{fontSize:29, color:'#f78309',fontWeight:'bold'}}>
+          View Your Monthly General Health Information Details
+
+          </p>
         </div>
-        <div style={{ color: "#155844", marginLeft: "30%", marginTop: "3%" }}>
+       
           <Select
-            // className={classes.formControl}
+            style={{ color: "#155844", marginLeft: "36%", marginTop: "2%" }}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -121,10 +154,8 @@ function GenHealthHistoryTable() {
             <option value={"12"}>December</option>
           </Select>
 
-          <br></br>
-          <br></br>
           <Select
-            // className={classes.formControl}
+            style={{ color: "#155844", marginLeft: "6%", marginTop: "1%", marginRight:'4%'}}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -148,69 +179,73 @@ function GenHealthHistoryTable() {
             <option value={"2012"}>2012</option>
             <option value={"2011"}>2011</option>
           </Select>
-          {/* <br></br>
-          <br></br>
-          <Select
-            // className={classes.formControl}
-            type="text"
-            id="selectedMonth"
-            name="selectedMonth"
-            className="year_progress_select"
-            // defaultValue={currentMonth}
-            value={year}
-            onChange={(e) => setType(e.target.value)}
-            // padding="10px"
-            label="selectedMonth"
-          >
-            <option value="0">Select Type</option>
-            <option value={"bp"}>Blood Pressure</option>
-            <option value={"pulse"}>Pulse</option>
-            <option value={"sugar"}>Sugar</option>
-            <option value={"weight"}>Weight</option>
-            
-          </Select>      */}
-
           <IconButton
             onClick={(e) => getMonthlyGenInfo(e)}
             style={{ padding: 0 }}
           >
-            <VisibilityIcon />
+            <p style={{fontSize:15,marginTop:'5px', color:'#f78309',fontWeight:'bold'}}>OK</p>
+            
+            {/* <VisibilityIcon /> */}
           </IconButton>
-        </div>
+        
         <div className="diet_info_item_progress"></div>
         <pre></pre>
         <pre></pre>
-        <Table hover size="sm">
-          <thead>
-            <tr style={{ background: "transparent" }}>
-              <th>
+        <div style={{marginLeft:"20%", marginRight:"20%" }}>
+        <Table hover size="sm"style={{ background: "transparent" }}>
+          <thead  style={{ background: "transparent", marginLeft:"20%", marginRight:"20%" }}>
+            <tr>
+              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Weight
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Sugar level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pulse Rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blood Pressure 
-                
+                Sugar level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Pulse Rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blood Pressure 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </th>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody style={{ background: "transparent", marginLeft:"20%", marginRight:"20%" }}>
             <div>
               {dateList.map((food, index) => (
                 <tr
                   style={
                     index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }
                   }
-                >
-                  <td>{dateList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  <td>{weightList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                >  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <td>{dateList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td>{weightList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>{sugarList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>{pulseList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>{diasList[index] + "/" + sysList[index]}</td>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </tr>
               ))}
             </div>
           </tbody>
         </Table>
+        </div>
+        <div> <br></br> <br></br><br></br><br></br><br></br><br></br><br></br></div>
       </div>
+
+            </Col>
+
+
+
+
+
+
+
+      <Col
+          className="body_feature_column"
+          style={{ position: "fixed" }}
+          sm={2}
+        >
+          {ShowFeatureButtons()}
+        </Col>
+      </Row>
+    </Container>
+    
     </div>
   );
 }
