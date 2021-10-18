@@ -18,6 +18,8 @@ import * as ReactBootStrap from 'react-bootstrap';
 import { RiHeartAddFill } from 'react-icons/ri';
 import { GiClick } from 'react-icons/gi';
 import { AiOutlineFundView } from 'react-icons/ai';
+//import {MdAdsClick} from '@react-icons/ai'
+import { MdAddTask } from "react-icons/md";
 
 
 // import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -56,7 +58,7 @@ export default function SymptomSelection() {
 
   const [result,setResult]=useState(false)
   const [hotline,setHotline]=useState(false)
-  const [loading,setLoading] = useState(false);
+  const [loading,setLoading] = useState(true);
 
   const symptomList = () => {
     let a = [];
@@ -69,6 +71,7 @@ export default function SymptomSelection() {
   const classes = useStyles();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(false)
     await axios
       .get(
         "http://localhost:5000/disease-prediction",
@@ -143,15 +146,15 @@ export default function SymptomSelection() {
                 <div className="steps_section_body">
                   <div className="steps_section_item">
                     <div className="steps_item_icon"> <IconButton> <RiHeartAddFill style= {{color : "#dadfe6", fontSize : "8rem" }}/> </IconButton> </div>
-                    <div className="steps_item_info">Add Your symptoms<br></br> from the list</div>
+                    <div className="steps_item_info">Add your symptoms<br></br> from the list</div>
                   </div>
                   <div className="steps_section_item">
-                    <div className="steps_item_icon"> <IconButton><GiClick style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
-                    <div className="steps_item_info"> Click The button</div>
+                    <div className="steps_item_icon"> <IconButton><MdAddTask style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
+                    <div className="steps_item_info"> Click the button</div>
                   </div>
                   <div className="steps_section_item">
                     <div className="steps_item_icon"> <IconButton><AiOutlineFundView style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
-                    <div className="steps_item_info">View The probable <br></br> diseases</div>
+                    <div className="steps_item_info">View he probable <br></br> diseases</div>
                   </div>
                 </div>
               </div>
@@ -163,7 +166,7 @@ export default function SymptomSelection() {
                     <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
                     <br></br>
                     <div className="symptom">
-                      Symptom 1 : {" "}
+                      Symptom 1 :
                       <Select
                         id="s1"
                         name="s1"
@@ -176,7 +179,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 2 : {" "}
+                      Symptom 2 : 
                       
                       <Select
                         id="s2"
@@ -190,7 +193,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 3 : {" "}
+                      Symptom 3 : 
                       
                       <Select
                         id="s3"
@@ -204,7 +207,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 4 : {" "}
+                      Symptom 4 :
                       
                       <Select
                         id="s4"
@@ -218,7 +221,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 5 : {" "}
+                      Symptom 5 :
                       
                       <Select
                         id="s5"
@@ -247,14 +250,12 @@ export default function SymptomSelection() {
                 />):('')} */}
 
                 <div>
-                  {loading ? (<Prediction
+                  {loading ? (<>{result ?( <Prediction
                   getPrediction={disease}
                   percent={percentage}
                   specialist={doctor}
-                />): ( <div>
-                  <ReactBootStrap.Spinner animation="border" variant="primary" />
-                  <ReactBootStrap.Spinner animation="border" variant="primary" />
-                  <ReactBootStrap.Spinner animation="border" variant="primary" />
+                />):('')} </>): ( <div>
+                  <ReactBootStrap.Spinner style={{height:50, width:50}} animation="border" variant="primary" />
                   </div>)}
  
                 </div>
@@ -276,7 +277,9 @@ export default function SymptomSelection() {
               className="body_feature_column"
               style={{ position: "fixed" }}
               sm={2}
-            >
+            >   <pre></pre>
+            <pre></pre>
+            <pre></pre>
               {ShowFeatureButtons()}
             </Col>
           </Row>
