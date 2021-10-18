@@ -7,9 +7,16 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { Select, IconButton } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import { ShowFeatureButtons } from "../../header/featureButton";
+// import { ShowFeatureButtons } from "../../header/featureButton";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
+import { ShowHeader } from "../../header/Header";
+import { ShowFeatureButtons } from "../../header/featureButton";
+// import { makeStyles } from "@material-ui/core/styles";
+import { Container, Row, Col } from "react-grid-system";
+import featureButton from "../../../static/Styling/featureButton.css";
+
+import { COLORS } from "../../themeColors";
 
 function GenHealthHistoryTable() {
   const [sugarList, setsugarList] = useState([]);
@@ -86,23 +93,45 @@ function GenHealthHistoryTable() {
       height: "50vh",
       backgroundPosition: "center",
       backgroundAttachment: "fixed"}}>
-      <div style={{ height: "auto" }}>
+        <Container
+      style={{
+        display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0
+      }}
+    >
+      <div style={{ backgroundColor: "black", color: "black" }}>
+        {ShowHeader(COLORS.genHealthBackground)}
+      </div>
+      <pre></pre>
+      <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+      <pre></pre>
+      <Row className="body_feature_row">
+
+      <Col style={{ display: "flex", flexDirection: "column" }}>
+            <div className="med_header_content">
+              {/* <p>All your medicine scheduled in one place!</p> */}
+            </div>
+
+
+            <div >
         <pre></pre>
         <div
           style={{
-            color: "#155844",
-            marginLeft: "30%",
-            marginTop: "30%",
+            
+            marginLeft: "26%",
+            // marginTop: "30%",
             fontSize: 20,
             fontWeight: "bold",
           }}
         >
           {" "}
-          📅 View Your Monthly General Health Information Details
+          <p style={{fontSize:29, color:'#f78309',fontWeight:'bold'}}>
+          View Your Monthly General Health Information Details
+
+          </p>
         </div>
        
           <Select
-            style={{ color: "#155844", marginLeft: "30%", marginTop: "2%" }}
+            style={{ color: "#155844", marginLeft: "36%", marginTop: "2%" }}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -126,7 +155,7 @@ function GenHealthHistoryTable() {
           </Select>
 
           <Select
-            style={{ color: "#155844", marginLeft: "10%", marginTop: "1%" }}
+            style={{ color: "#155844", marginLeft: "6%", marginTop: "1%", marginRight:'4%'}}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -154,7 +183,9 @@ function GenHealthHistoryTable() {
             onClick={(e) => getMonthlyGenInfo(e)}
             style={{ padding: 0 }}
           >
-            <VisibilityIcon />
+            <p style={{fontSize:15,marginTop:'5px', color:'#f78309',fontWeight:'bold'}}>👉🏻Click Here To View Details</p>
+            
+            {/* <VisibilityIcon /> */}
           </IconButton>
         
         <div className="diet_info_item_progress"></div>
@@ -196,6 +227,25 @@ function GenHealthHistoryTable() {
         </div>
         <div> <br></br> <br></br><br></br><br></br><br></br><br></br><br></br></div>
       </div>
+
+            </Col>
+
+
+
+
+
+
+
+      <Col
+          className="body_feature_column"
+          style={{ position: "fixed" }}
+          sm={2}
+        >
+          {ShowFeatureButtons()}
+        </Col>
+      </Row>
+    </Container>
+    
     </div>
   );
 }
