@@ -98,7 +98,7 @@ export const ShowFeatureButtons = () => {
             {isSPShown ? (
               <h7 className="featureText_design">Health Journal</h7>
             ) : (
-              <LocalHospitalIcon />
+              <i style={{fontSize:20}}class="fas fa-book-medical"></i>
             )}
           </Button>
         </Link>
