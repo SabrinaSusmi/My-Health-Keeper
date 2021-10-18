@@ -37,59 +37,19 @@ export default function ViewFolderProps(props) {
   return (
     <div variant="outlined" className="sp_reminder_card">
       <div className="folder_name">
-        <h2 className="folderName"><b>{props.note.folder}</b></h2>
-
+        <h3 className="folderName">
+          <b>{props.note.folder}</b>
+        </h3>
+ 
         <div className="noteDates">
           Created at: {props.note.noteDate.substring(0, 10)}
         </div>
       </div>
-
-      <div
-        className={
-          (clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          }),
-          "SPiconBtn")
-        }
-        // value={visible}
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-      >
-        {/* {props.note.description.substring(0, 100)} */}
-        {visible ? (
-          <h4
-            className="clrDiv"
-            data-toggle="tooltip"
-            title="Click To View Details"
-          >
-            <pre></pre>
-            View Notes<pre></pre>
-            <pre></pre>
-          </h4>
-        ) : (
-          <div>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <h5>{props.note.description}</h5>
-              </CardContent>
-            </Collapse>
-          </div>
-        )}
-      </div>
-
+<pre></pre>
+<pre></pre><pre></pre>
       <CardActions className="clrCardAction">
-        <IconButton
-          className="viewBtn"
-          data-toggle="tooltip"
-          title="Edit Your Notes"
-          key={props.note.folder}
-          value={props.note.description}
-          // onClick={() => setEditing(true)}
-          onClick={openSpEditModal}
-        >
-          <EditIcon />
-        </IconButton>
-
+       
+<div >
         <IconButton
           component={Link}
           to={{
@@ -101,7 +61,12 @@ export default function ViewFolderProps(props) {
           title="View Attached Files"
         >
           <VisibilityIcon />
+        
         </IconButton>
+        <br></br>
+        View Details
+        </div>
+<div>
         <IconButton
           className="viewBtn"
           data-toggle="tooltip"
@@ -110,6 +75,9 @@ export default function ViewFolderProps(props) {
         >
           <DeleteIcon />
         </IconButton>
+        <br></br>
+        Delete folder
+        </div>
       </CardActions>
       <EditNotesModal
         key={props.note.folder}

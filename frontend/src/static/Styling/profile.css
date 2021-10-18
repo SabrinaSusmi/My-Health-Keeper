@@ -131,8 +131,8 @@
   .profile_content {
     flex: "1 0 auto";
     height: 530px;
-    background:linear-gradient(#e0f8ea,#EBFBF2,#eff3f1);
-    background-color: rgb(224 241 241);
+    /* background:linear-gradient(#e0f8ea,#EBFBF2,#eff3f1); */
+    background-color: white;
   }
   .profile_image_div {
     height: 300px;

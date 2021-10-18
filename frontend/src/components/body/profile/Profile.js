@@ -206,8 +206,8 @@ setIsPaid(res.data)
   return (
     <>
       <div>
-      <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,backgroundColor:COLORS.profileBackground,marginRight:0}} >
-    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.profileBackground)}</div>
+      <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div >{ShowHeader(COLORS.profileBackground)}</div>
     
     
      <pre></pre> <pre></pre> <pre></pre>
