@@ -43,13 +43,14 @@ export default function ViewNotesSection () {
         headers: { Authorization: token, dates: selectedEventdate },
       })
       .then((response) => {
-        setmenstrualNotesData(response.data);
-        console.log( response.data);
+        console.log("n ", response.data.length);
         if (!response.data.length == 0) {
           setisNotesAvailable(true);
-        } else {
+          setmenstrualNotesData(response.data);
+        } else if(response.data.length == 0){
           setisNotesAvailable(false);
         }
+        
       })
       .catch((err) => {
         console.log(err);
@@ -61,12 +62,14 @@ export default function ViewNotesSection () {
     //   setisViewEnabled(false);
     // } else setisViewEnabled(true);
   };
-
+console.log("ece " ,isNotesAvailable)
   return (
     <>
       <div>
-        <div style={{color:'#CA4D62',marginLeft:'30%',  marginTop:'3%',fontSize:22,fontWeight:'bold'}}> Select Date</div>
-
+        <h5 style={{color:'#CA4D62',fontSize:25, marginLeft: "30%", marginTop: "3%",marginBottom:'.5%' }}>
+                {" "}
+                Select a date to view your <i>THOUGHTS</i>{" "}
+              </h5>
         <TextField
         InputProps={{
           classes: {
@@ -91,6 +94,7 @@ export default function ViewNotesSection () {
           <div className="notes_body">
            
             {isNotesAvailable ? (
+              
               <div className="notes_data">
                 {menstrualNotesData.map((note) => (
                   <div className="notes_card">
@@ -101,10 +105,8 @@ export default function ViewNotesSection () {
                 ))}
               </div>
             ) : (
-              <h5 style={{color:'#CA4D62',fontSize:25, marginLeft: "36%", marginTop: "3%",marginBottom:'4%' }}>
-                {" "}
-                Select a date to view your <i>THOUGHTS</i>{" "}
-              </h5>
+              // 
+              ''
             )}
           </div>
        }
