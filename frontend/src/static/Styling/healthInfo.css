@@ -46,7 +46,7 @@ padding-bottom: 0px;
 }
 
 .root >.details>.content>.summary_btn:hover{
-background-color: #106f85; 
+background-color: #047973; 
 color: white;
 }
 
@@ -57,7 +57,9 @@ color: white;
   
   /* grid-template-columns: auto auto auto;   */
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  width: 50%;
+  text-align: center;
   
 }
 .container div {
@@ -65,4 +67,12 @@ color: white;
   height: 670px;
   border-radius: 10px;
   padding: 10px;
+}
+
+.container h4{
+  color: #047973;
+}
+
+.container h6 {
+  color: black;
 }

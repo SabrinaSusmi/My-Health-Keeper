@@ -11,19 +11,20 @@ import axios from "axios";
 import { TextField } from "@material-ui/core";
 
 function GenHealthHistoryTable() {
-  const [sugarList, setsugarList] = useState();
+  const [sugarList, setsugarList] = useState([]);
   const [weightList, setweightList] = useState([]);
   const [diasList, setdiasList] = useState([]);
   const [pulseList, setpulseList] = useState([]);
   const [sysList, setsysList] = useState([]);
-  const [dateList, setdateList] = useState([[]]);
+  const [dateList, setdateList] = useState([]);
 
   const token = useSelector((state) => state.token);
-  const [healthInfo, setHealthInfo] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
-  const [info, setInfo] = useState([]);
-  console.log("susy ", dateList);
+const [type,setType]=useState('')
+
+const [isBp,setIsBp]=useState()
+
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
@@ -39,51 +40,7 @@ function GenHealthHistoryTable() {
       })
       .then((res) => {
         console.log(res.data);
-        // let suga=[]
-//         for (let i = 0; i < res.data.date.length; i++) {
-// let          suga=[]
-   
-//           suga['sugar']=(res.data.sugar[i]);
-//           suga['weight']=(res.data.weight[i]);
-//           sugarLists.push(res.data.sugar[i]);
-//           sugarLists.push(res.data.weight[i]);
-//           sugarLists.push(res.data.pulse[i]);
-//           sugarLists.push(res.data.sys[i]);
-//           sugarLists.push(res.data.dias[i]);
-//           sugarLists.push(res.data.date[i]);
-//           console.log(suga)
-//           setdateList(suga)
-//         }
-//         // let weightLists = [];
-
-        // for (let i = 0; i < sugarLists.length; i += 6) {
-        //   console.log('weightLists.length ',weightLists.length, i)
-        //   // while(weightLists.length>0){
-        //   //   weightLists.pop()
-        //   // }
-          
-        //  for(let j=i;j<i+6;j++){
-         
-        //   console.log('j ',weightLists)
-        //   weightLists.push(sugarLists[j]);
-        //   weightLists.push(sugarLists[j+1]);
-        //   weightLists.push(sugarLists[j+2]);
-        //   weightLists.push(sugarLists[j+3]);
-        //   weightLists.push(sugarLists[j+4]);
-        //   weightLists.push(sugarLists[j+5]);
-        //  }
-        //  const eachDate = [...new Set(weightLists)];
-
-        //   setweightList(...new Set(weightLists))
-         
-          //  }
-
-
-
-
-
-          // console.log("sus ", weightList);
-
+       
         res.data.sugar.forEach((element) => {
           sugarLists.push(element);
           // setsugarList(element);
@@ -192,6 +149,27 @@ function GenHealthHistoryTable() {
             <option value={"2012"}>2012</option>
             <option value={"2011"}>2011</option>
           </Select>
+          {/* <br></br>
+          <br></br>
+          <Select
+            // className={classes.formControl}
+            type="text"
+            id="selectedMonth"
+            name="selectedMonth"
+            className="year_progress_select"
+            // defaultValue={currentMonth}
+            value={year}
+            onChange={(e) => setType(e.target.value)}
+            // padding="10px"
+            label="selectedMonth"
+          >
+            <option value="0">Select Type</option>
+            <option value={"bp"}>Blood Pressure</option>
+            <option value={"pulse"}>Pulse</option>
+            <option value={"sugar"}>Sugar</option>
+            <option value={"weight"}>Weight</option>
+            
+          </Select>      */}
 
           <IconButton
             onClick={(e) => getMonthlyGenInfo(e)}
@@ -221,13 +199,20 @@ function GenHealthHistoryTable() {
               <tr
                 style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
               >
+
+
+
                 <td>{dateList[index]}</td>
                 <td>{weightList[index]}</td>
                 <td>{sugarList[index]}</td>
                 <td>{pulseList[index]}</td>
                 <td>{diasList[index]+'/'+sysList[index]}</td>
                
+
+
               </tr>
+
+              
             ))}
             </div>
           </tbody>
