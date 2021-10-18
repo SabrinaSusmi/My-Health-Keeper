@@ -7,6 +7,7 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { Select, IconButton } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { ShowFeatureButtons } from "../../header/featureButton";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
 
@@ -78,17 +79,20 @@ function GenHealthHistoryTable() {
   };
   console.log("sugarLists ", sugarList);
   return (
-    <div>
-      <pre></pre>
-      <pre></pre>
-      <div style={{ backgroundColor: "#e8fbe8", height: "auto" }}>
+    <div style={{
+      backgroundImage: "url(/img/genH1.jpg)",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "50vh",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed"}}>
+      <div style={{ height: "auto" }}>
         <pre></pre>
-
         <div
           style={{
             color: "#155844",
             marginLeft: "30%",
-            marginTop: "3%",
+            marginTop: "30%",
             fontSize: 20,
             fontWeight: "bold",
           }}
@@ -96,9 +100,9 @@ function GenHealthHistoryTable() {
           {" "}
           📅 View Your Monthly General Health Information Details
         </div>
-        <div style={{ color: "#155844", marginLeft: "30%", marginTop: "3%" }}>
+       
           <Select
-            // className={classes.formControl}
+            style={{ color: "#155844", marginLeft: "30%", marginTop: "2%" }}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -121,10 +125,8 @@ function GenHealthHistoryTable() {
             <option value={"12"}>December</option>
           </Select>
 
-          <br></br>
-          <br></br>
           <Select
-            // className={classes.formControl}
+            style={{ color: "#155844", marginLeft: "10%", marginTop: "1%" }}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -148,35 +150,13 @@ function GenHealthHistoryTable() {
             <option value={"2012"}>2012</option>
             <option value={"2011"}>2011</option>
           </Select>
-          {/* <br></br>
-          <br></br>
-          <Select
-            // className={classes.formControl}
-            type="text"
-            id="selectedMonth"
-            name="selectedMonth"
-            className="year_progress_select"
-            // defaultValue={currentMonth}
-            value={year}
-            onChange={(e) => setType(e.target.value)}
-            // padding="10px"
-            label="selectedMonth"
-          >
-            <option value="0">Select Type</option>
-            <option value={"bp"}>Blood Pressure</option>
-            <option value={"pulse"}>Pulse</option>
-            <option value={"sugar"}>Sugar</option>
-            <option value={"weight"}>Weight</option>
-            
-          </Select>      */}
-
           <IconButton
             onClick={(e) => getMonthlyGenInfo(e)}
             style={{ padding: 0 }}
           >
             <VisibilityIcon />
           </IconButton>
-        </div>
+        
         <div className="diet_info_item_progress"></div>
         <pre></pre>
         <pre></pre>
@@ -214,6 +194,7 @@ function GenHealthHistoryTable() {
           </tbody>
         </Table>
         </div>
+        <div> <br></br> <br></br><br></br><br></br><br></br><br></br><br></br></div>
       </div>
     </div>
   );
