@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Select, IconButton } from "@material-ui/core";
+import { Button, Link, TextField, Select, IconButton } from "@material-ui/core";
 import "../../../static/Styling/dietProgress.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -12,6 +12,7 @@ import { ShowFeatureButtons } from "../../header/featureButton";
 import { Container, Row, Col } from "react-grid-system";
 
 import { COLORS } from "../../themeColors";
+import { element } from "prop-types";
 
 const initialState = {
   selectedMonth: "",
