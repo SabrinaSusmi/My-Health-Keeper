@@ -270,7 +270,7 @@ function GeneralHealthInfo() {
                         👣 Weight
                       </Typography>
                       <div className="margin">
-                        <Grid container alignItems="flex-end">
+                        <Grid container  alignItems="flex-end">
                           <Grid item>
                             <LocalHospitalRoundedIcon />
                           </Grid>

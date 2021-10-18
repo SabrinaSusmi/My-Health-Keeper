@@ -205,21 +205,27 @@ setIsPaid(res.data)
 
   return (
     <>
-      <div>
-      <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,backgroundColor:COLORS.profileBackground,marginRight:0}} >
-    <div style={{backgroundColor:'black', color:'black'}} >{ShowHeader(COLORS.profileBackground)}</div>
+      <div
+        class="bg_image"
+        style={{
+          backgroundImage: "url(/img/profile.jpg)",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "50vh",
+        }}
+      >
+      <Container className='body_container' style={{display: 'flex', flexDirection: 'column' ,margin:0,maxWidth:1900,padding:0,marginRight:0}} >
+    <div >{ShowHeader(COLORS.profileBackground)}</div>
     
     
      <pre></pre> <pre></pre> <pre></pre>
     <pre></pre>
     <Row className='body_feature_row' >
-      <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
-      <pre></pre>
-    <pre></pre>
-        {ShowFeatureButtons()}</Col>
-      <Col style={{ marginLeft:150 ,display: 'flex', flexDirection: 'column'}}>
-        <div>
-          {err && showErrMsg(err)}
+     
+      <Col style={{ display: 'flex', flexDirection: 'column'}}>
+      <div className="sp_header_content">
+                 {err && showErrMsg(err)}
           {success && showSuccessMsg(success)}
           {loading && <h3>Loading.....</h3>}
         </div>
@@ -238,6 +244,7 @@ setIsPaid(res.data)
                       src={`http://localhost:5000/${avatar.filePath}`}
                       alt="img"
                     />
+                    <div></div>
                     {isHovered && (
                       <>
                         <h6 align="center"> Change Profile Image</h6>
@@ -270,7 +277,7 @@ setIsPaid(res.data)
                     <label className="profile_label" htmlFor="email">
                       Email
                     </label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <TextField
 className={classes.emailField}                      type="email"
                       name="email"
@@ -285,7 +292,7 @@ className={classes.emailField}                      type="email"
                     <label className="profile_label" htmlFor="phone">
                       Phone
                     </label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <TextField
                       type="text"
                       name="phone"
@@ -392,6 +399,10 @@ className={classes.emailField}                      type="email"
               </Button>
         </div>
         </Col>
+        <Col className='body_feature_column' style={{ position:'fixed' }} sm={2}>
+      <pre></pre>
+    <pre></pre>
+        {ShowFeatureButtons()}</Col>
     </Row>
   </Container>
       </div>

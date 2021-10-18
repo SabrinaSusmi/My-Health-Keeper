@@ -32,7 +32,7 @@ export default function DietOverview() {
         setRemaining(res.data.requiredCalories - res.data.consumedCalories);
         const percentage =
           parseFloat(
-            res.data.consumedCalories / res.data.requiredCalories
+            (res.data.consumedCalories-res.data.burnedCalories) / res.data.requiredCalories
           ).toFixed(4) * 100;
         setMultipleProgress(percentage);
         console.log(res.data);

@@ -7,6 +7,7 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { Select, IconButton } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { ShowFeatureButtons } from "../../header/featureButton";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
 
@@ -16,20 +17,20 @@ function GenHealthHistoryTable() {
   const [diasList, setdiasList] = useState([]);
   const [pulseList, setpulseList] = useState([]);
   const [sysList, setsysList] = useState([]);
-  const [dateList, setdateList] = useState([[]]);
+  const [dateList, setdateList] = useState([]);
 
   const token = useSelector((state) => state.token);
-  const [healthInfo, setHealthInfo] = useState([]);
   const [selectedDate, setSelectedDate] = useState("0");
   const [year, setYear] = useState("0");
-  const [info, setInfo] = useState([]);
-  console.log("susy ", dateList);
+  const [type, setType] = useState("");
+
+  const [isBp, setIsBp] = useState();
 
   const getMonthlyGenInfo = async (e) => {
     e.preventDefault();
     let sugarLists = [];
     let pulseLists = [];
-    let weightLists=[]
+    let weightLists = [];
     let sysLists = [];
     let diasLists = [];
     let datelists = [];
@@ -39,50 +40,6 @@ function GenHealthHistoryTable() {
       })
       .then((res) => {
         console.log(res.data);
-        // let suga=[]
-//         for (let i = 0; i < res.data.date.length; i++) {
-// let          suga=[]
-   
-//           suga['sugar']=(res.data.sugar[i]);
-//           suga['weight']=(res.data.weight[i]);
-//           sugarLists.push(res.data.sugar[i]);
-//           sugarLists.push(res.data.weight[i]);
-//           sugarLists.push(res.data.pulse[i]);
-//           sugarLists.push(res.data.sys[i]);
-//           sugarLists.push(res.data.dias[i]);
-//           sugarLists.push(res.data.date[i]);
-//           console.log(suga)
-//           setdateList(suga)
-//         }
-//         // let weightLists = [];
-
-        // for (let i = 0; i < sugarLists.length; i += 6) {
-        //   console.log('weightLists.length ',weightLists.length, i)
-        //   // while(weightLists.length>0){
-        //   //   weightLists.pop()
-        //   // }
-          
-        //  for(let j=i;j<i+6;j++){
-         
-        //   console.log('j ',weightLists)
-        //   weightLists.push(sugarLists[j]);
-        //   weightLists.push(sugarLists[j+1]);
-        //   weightLists.push(sugarLists[j+2]);
-        //   weightLists.push(sugarLists[j+3]);
-        //   weightLists.push(sugarLists[j+4]);
-        //   weightLists.push(sugarLists[j+5]);
-        //  }
-        //  const eachDate = [...new Set(weightLists)];
-
-        //   setweightList(...new Set(weightLists))
-         
-          //  }
-
-
-
-
-
-          // console.log("sus ", weightList);
 
         res.data.sugar.forEach((element) => {
           sugarLists.push(element);
@@ -120,19 +77,22 @@ function GenHealthHistoryTable() {
     setdiasList(diasLists);
     setdateList(datelists);
   };
-  console.log('sugarLists ',sugarList)
+  console.log("sugarLists ", sugarList);
   return (
-    <div>
-      <pre></pre>
-      <pre></pre>
-      <div style={{ backgroundColor: "#e8fbe8", height: "auto" }}>
+    <div style={{
+      backgroundImage: "url(/img/genH1.jpg)",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "50vh",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed"}}>
+      <div style={{ height: "auto" }}>
         <pre></pre>
-
         <div
           style={{
             color: "#155844",
             marginLeft: "30%",
-            marginTop: "3%",
+            marginTop: "30%",
             fontSize: 20,
             fontWeight: "bold",
           }}
@@ -140,9 +100,9 @@ function GenHealthHistoryTable() {
           {" "}
           📅 View Your Monthly General Health Information Details
         </div>
-        <div style={{ color: "#155844", marginLeft: "30%", marginTop: "3%" }}>
+       
           <Select
-            // className={classes.formControl}
+            style={{ color: "#155844", marginLeft: "30%", marginTop: "2%" }}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -165,10 +125,8 @@ function GenHealthHistoryTable() {
             <option value={"12"}>December</option>
           </Select>
 
-          <br></br>
-          <br></br>
           <Select
-            // className={classes.formControl}
+            style={{ color: "#155844", marginLeft: "10%", marginTop: "1%" }}
             type="text"
             id="selectedMonth"
             name="selectedMonth"
@@ -192,55 +150,51 @@ function GenHealthHistoryTable() {
             <option value={"2012"}>2012</option>
             <option value={"2011"}>2011</option>
           </Select>
-
           <IconButton
             onClick={(e) => getMonthlyGenInfo(e)}
             style={{ padding: 0 }}
           >
             <VisibilityIcon />
           </IconButton>
-        </div>
-        <div className="gen_history_table">
-        <div className="gen_history_table_header">
-          <span>Date</span>
-          <span>Weight</span>
-          <span>Sugar</span>
-          <span>Pulse Rate</span>
-          <span>Blood Pressure</span>
-        </div>
-        <Table hover size="sm">
-          <thead>
-            {/* <tr style={{ background: "transparent" }}>
-              <th>Date</th>
-              <th>Weight</th>
-              <th>Sugar level</th>
-              <th>Pulse Rate</th>
-              <th>Systolic Blood Pressure</th>
-              <th>Diastolic Blood Pressure</th>
-            </tr> */}
+        
+        <div className="diet_info_item_progress"></div>
+        <pre></pre>
+        <pre></pre>
+        <div style={{marginLeft:"20%", marginRight:"20%" }}>
+        <Table hover size="sm"style={{ background: "transparent" }}>
+          <thead  style={{ background: "transparent", marginLeft:"20%", marginRight:"20%" }}>
+            <tr>
+              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Weight
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Sugar level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Pulse Rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blood Pressure 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </th>
+            </tr>
           </thead>
 
-          <tbody>
+          <tbody style={{ background: "transparent", marginLeft:"20%", marginRight:"20%" }}>
             <div>
-            {dateList.map((food, index) => (
-              <tr
-                style={index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }}
-              >
-                <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{dateList[index]} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
-                <td>{weightList[index]}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
-                <td>{sugarList[index]}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</td>
-                <td>{pulseList[index]}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</td>
-                <td>{diasList[index]+'/'+sysList[index]}</td>
-               
-              </tr>
-            ))}
+              {dateList.map((food, index) => (
+                <tr
+                  style={
+                    index % 2 ? { color: "#0777c2" } : { color: "#f7900a" }
+                  }
+                >  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <td>{dateList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td>{weightList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td>{sugarList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td>{pulseList[index]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td>{diasList[index] + "/" + sysList[index]}</td>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </tr>
+              ))}
             </div>
           </tbody>
         </Table>
         </div>
-        <pre></pre>
-        <pre></pre>
-        
+        <div> <br></br> <br></br><br></br><br></br><br></br><br></br><br></br></div>
       </div>
     </div>
   );

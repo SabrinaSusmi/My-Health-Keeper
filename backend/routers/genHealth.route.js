@@ -14,7 +14,7 @@ const {
   postHealthInfo,
 } = require("../controllers/GenHealthController/saveGenHealthInfo.controller");
 const {
-  getMonthlyHistory, getGenData
+  getMonthlyHistory,
 } = require("../controllers/GenHealthController/history.genHealth.controller");
 
 router.post("/addGenHealth", auth, postHealthInfo);
@@ -26,6 +26,5 @@ router.get("/getChart/Bp_dias", auth, getBpDiasData);
 router.get("/getChart/Pulse", auth, getPulseData);
 router.get("/genHealthHistory", auth, getHistory);
 router.get("/genHealthMonthlyHistory", auth, getMonthlyHistory);
-router.get("/genHealthMonthlyHistory/:gen", auth, getGenData);
 
 module.exports = router;

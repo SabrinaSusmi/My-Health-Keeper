@@ -32,7 +32,6 @@ import MenstrualDemo from "./components/body/MenstrualCycle/MenstrualDemo";
 import MenstrualTips from "./components/body/MenstrualCycle/MenstrualTips";
 import DietProgress from "./components/body/dietPlan/DietProgress";
 import ReportsMain from "./components/body/reports/reportsMain";
-import GenHisDemo from "./components/body/genHealthInfo/GenHisDemo";
 export const UserIDContext = React.createContext();
 function App() {
   const dispatch = useDispatch();

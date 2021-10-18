@@ -209,7 +209,6 @@ function ReportsMain() {
               style={{ position: "fixed" }}
               sm={2}
             >
-              
               {ShowFeatureButtons()}
             </Col>
           </Row>

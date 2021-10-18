@@ -128,23 +128,32 @@
     display: "flex";
     flex-direction: column;
   }
+  .body_container{
+    /* background:linear-gradient(#eff3f1,#EBFBF2,#e0f8ea); */
+   /* background-color: #61f3c7ad; */
+  }
+  
+  
   .profile_content {
     flex: "1 0 auto";
     height: 530px;
-    background:linear-gradient(#e0f8ea,#EBFBF2,#eff3f1);
-    background-color: rgb(224 241 241);
+    background:linear-gradient(#61f3aaad,#EBFBF2,#eff3f1);
+    background-color: #61f3c7ad;
   }
   .profile_image_div {
     height: 300px;
     padding: 3%;
     padding-top: 0px;
+    /* display: flex;
+    justify-content: center; */
   }
   .profile_image {
+  
     border-radius: 12px;
     min-height: 75%;
     max-height: 75%;
     min-width: 100%;
-  }
+      }
   
   .profile_label {
     /* font-weight: bold; */
@@ -171,7 +180,7 @@
       font-size: 18px;
   }
   .profile_upgrade_btn{
-      background-color: rgb(199, 228, 228);
+      background-color: #61f3aaad;
      
       height: 40px;
       width: 125px;
@@ -180,12 +189,12 @@
       margin-left: 35%;
   }
   .profile_upgrade_btn:hover{
-      background-color: rgb(155, 182, 182);
+      background-color: #61f3c7;
   
   }
   
   .profile_save_btn{
-      background-color: rgb(199, 228, 228);
+      background-color: #61f3aaad;
       height: 41px;
       width: 150px;
       border-radius: 8px;
@@ -195,5 +204,5 @@
   }
 
   .profile_save_btn:hover{
-    background-color: rgb(155, 182, 182);
+    background-color: #61f3c7;
   }

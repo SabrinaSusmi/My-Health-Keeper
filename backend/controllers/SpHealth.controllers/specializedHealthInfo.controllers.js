@@ -42,12 +42,12 @@ const saveSpecializedHealthInfo = async (req, res) => {
 
 const updateSpecializedHealthInfo = async (req, res) => {
   let folder = req.params.folderId;
-  let {  description } = req.body;
+  let {  jj } = req.body;
 
   await MultipleFile.findOneAndUpdate(
     {_id:  folder },
     {
-      description,
+      description:jj,
      
     }
   )

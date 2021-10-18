@@ -74,6 +74,15 @@
   border-radius: 15px;
   font-size: 15px;
 }
+.predict_button>.predict:hover{
+  justify-content: center;
+  color: white;
+  
+  color: #075AC9;
+  background-color: transparent;
+  /* font-weight: bold; */
+  border: 2px solid rgb(0, 0, 204);
+}
 
 
 .disease_main>.hotline_number{
@@ -145,7 +154,7 @@ background-color: transparent;
 padding: 12px;
 padding-top: 18px;
 border-radius: 15px;
-width: 30%;
+width: 33%;
 font-weight: 550;
 text-align: center;
 border: 2px solid rgb(0, 0, 204);
