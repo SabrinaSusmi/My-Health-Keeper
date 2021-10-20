@@ -73,7 +73,7 @@ export default function DietPlan() {
             }}
           >
             <div className="food_header_content">
-              <p>Welcome to the route for HEALTHY life!</p>
+              <p style={{fontSize : "1.2rem", marginTop : "9em"}}>Welcome to the route for HEALTHY life!</p>
             </div>
             <div className="food_overview">
               <div className="food_overview_header">

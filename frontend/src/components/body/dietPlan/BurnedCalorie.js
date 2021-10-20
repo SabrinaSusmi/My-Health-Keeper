@@ -25,9 +25,10 @@ export default function BurnedCalories() {
   }, []);
   return (
     <div>
-        <h3 style={{color:'#6f9a37',marginBottom:4}}>Burnt some calories today?</h3>
+        <h3 style={{color:'#6f9a37',marginBottom:"2em", fontWeight : 650 }}>Burnt some calories today?</h3>
         
 Track the amount of calories you've burn everyday
+<br></br>
 <br></br>
               
                <div className="add_burn_diet">
