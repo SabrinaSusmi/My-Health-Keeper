@@ -55,6 +55,7 @@ A reminder (sms and email notification) will be given to the user approximately 
 2. ReactJs
 3. MongoDB
 4. NodeJs
+5. Python
 
 ## Environment setup
 The project is modular so it has separate frontend and backend. And the whole propject was developed in VS Code.
