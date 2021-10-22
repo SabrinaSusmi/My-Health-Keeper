@@ -140,7 +140,7 @@ function ReportsMain() {
                 <pre></pre> <pre></pre> <pre></pre>
               </div>
               <div className="description_section_reports">
-                <p>Upload an X-ray image and find out if you have pneumonia.</p>
+                <p>Upload a chest X-ray image and find out if you have pneumonia.</p>
               </div>
               <div className="reports_upload_body">
               <div
@@ -163,7 +163,7 @@ function ReportsMain() {
                   ) : (
                     ""
                   )}
-                  <h6 align="center"> Upload a chest x-ray Image</h6>
+                  <h6 align="center"> Upload the Image</h6>
                   <input
                     type="file"
                     className="form-control"
@@ -195,10 +195,23 @@ function ReportsMain() {
                   </div>)}
 
                 </div>
-                {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. <b>So please consult with a doctor to be sure.</b></div>):(' ')}
+                {ans?( <div className="reports_prediction">{ans} <br></br> Our prediction is <b>NOT</b> 100% accurate. <b>So please consult with a doctor to be sure.</b><div className="reports_predict_btn">
+                    <Button
+                      type="submit"
+                      className="add_btn"
+                      variant="contained"
+                      onClick={() => {
+                        setAns(false)
+                      }}
+                      color="white"
+                    >
+                      <font className="add_btn_diet_font"> Ok</font>
+                    </Button>
+                  </div></div>):(' ')}
                 {/* {ans?( <div className="reports_prediction">{ans} <br></br> Our model is only 83% accurate. <b>So please consult with a doctor to become sure</b></div>):(' ')} */}
                
               </div>
+              
               <pre></pre>
               <pre></pre>
               <pre></pre>
