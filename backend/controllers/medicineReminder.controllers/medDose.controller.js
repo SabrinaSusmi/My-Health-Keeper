@@ -4,7 +4,12 @@ const sendEmail = require("../sendMail.Controllers");
 const PaymentModel = require("../../models/Payment.models");
 const sendSMS = require("../SMS.controllers");
 
+
 setInterval(() => {
+  let medicines = [];
+let isSetReminder;
+let remindObject;
+let counts = 0;
   medConfirmation.find({}, (err, reminder) => {
     if (err) {
       console.log("medConfirmation notification: ", err);
@@ -12,12 +17,13 @@ setInterval(() => {
     if (reminder) {
       for (i = 0; i < reminder.length; i++) {
         if (!reminder[i].isReminded) {
-          var input = reminder[i].medtime;
+          var dbMedtime = reminder[i].medtime;
 
-          var input1 = reminder[i].meddate;
-          const q = new Date(input1);
-          const aaq = q.toISOString().slice(0, 11) + input + ":00.00";
-          const time1 = new Date(aaq);
+          var dbMedDate = reminder[i].meddate;
+          const convertDateToDate = new Date(dbMedDate);
+          const convertDateToString =
+            convertDateToDate.toISOString().slice(0, 11) + dbMedtime + ":00.00";
+          const time1 = new Date(convertDateToString);
 
           if (time1.getTime() - Date.now() < 0) {
             console.log(time1.getTime() - Date.now());
@@ -31,31 +37,45 @@ setInterval(() => {
                 if (err) {
                   console.log(err);
                 }
-
-                UserModel.find({ email: remind.userEmail }).then((res1) => {
-                  const userPhone = res1[0].phone;
-                  let username = res1[0].name;
-                  let msg = `Medicine REMINDER for ${username}!!\nYou should take ${remind.medname} at ${remind.medtime}!!`;
-                  PaymentModel.find({
-                    user: remind.user,
-                    paymentDone: true,
-                  }).then((res2) => {
-                    sendEmail(remind.userEmail, "", msg, "", "");
-                    if (res2.length > 0) {
-                      sendSMS(userPhone, msg);
-                    } else {
-                      console.log("pay first");
-                    }
-                  });
-                });
+                medicines.push(remind.medname);
+                isSetReminder = remind.isReminded;
+                console.log("set reminder: ", remind.isReminded);
+                remindObject = remind;
               }
             );
           }
         }
       }
     }
+    // console.log("pay fi ", medicines);
+    if (medicines.length > 0 && counts == 0) {
+      console.log("pay fi ", counts);
+      setReminder(medicines,remindObject);
+    }
   });
 }, 1000);
+const setReminder = (medicines,remindObject) => {
+  console.log("wewe ", medicines);
+  console.log("wewedscc ", remindObject);
+  UserModel.find({ email: remindObject.userEmail }).then((res1) => {
+    const userPhone = res1[0].phone;
+    let username = res1[0].name;
+    let msg = `Medicine REMINDER for ${username}!!\nYou should take ${medicines} at ${remindObject.medtime}!!`;
+    PaymentModel.find({
+      user: remindObject.user,
+      paymentDone: true,
+    }).then((res2) => {
+      // sendEmail(remindObject.userEmail, "", msg, "", "");
+      console.log("mff ", msg);
+      if (res2.length > 0) {
+        sendSMS(userPhone, msg);
+      } else {
+        console.log("pay first");
+      }
+      counts = 1;
+    });
+  });
+};
 const getDoses = async (req, res) => {
   let user = req.user.id;
   const date1 = new Date();
