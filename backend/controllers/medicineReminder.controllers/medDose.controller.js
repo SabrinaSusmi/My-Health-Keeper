@@ -3,13 +3,10 @@ const UserModel = require("../../models/userModel");
 const sendEmail = require("../sendMail.Controllers");
 const PaymentModel = require("../../models/Payment.models");
 const sendSMS = require("../SMS.controllers");
-let medicines = [];
-let isSetReminder;
-let remindObject;
-let counts = 0;
+let medicineList = [];
+let userMedicineReminderObject;
 
 setInterval(() => {
- 
   medConfirmation.find({}, (err, reminder) => {
     if (err) {
       console.log("medConfirmation notification: ", err);
@@ -37,37 +34,40 @@ setInterval(() => {
                 if (err) {
                   console.log(err);
                 }
-                medicines.push(remind.medname);
-               
-                console.log("set reminder: ", remind.isReminded);
-                remindObject = remind;
+                medicineList.push(remind.medname);
+
+                // console.log("new med set reminder: ", medicines, 'empty object ',remindObject);
+                userMedicineReminderObject = remind;
               }
             );
           }
         }
       }
     }
-    // console.log("pay fi ", medicines);
-    if (medicines.length > 0 && counts == 0) {
-      console.log("pay fi ", counts);
+    // console.log("meds ", medicineList.length);
+    if (medicineList.length > 0 ) {
+      console.log("new med : ", medicineList, 'filled object ',userMedicineReminderObject);
       setReminder();
-      medicines.splice(0,medicines.length)
+      // setTimeout(function () {
+      //   //setItem(InitialState);
+      // }, 2000);
     }
   });
-}, 1000);
-const setReminder = () => {
-  console.log("wewe ", medicines);
-  console.log("wewedscc ", remindObject);
-  UserModel.find({ email: remindObject.userEmail }).then((res1) => {
+}, 10000);
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const setReminder = async () => {
+  console.log("setReminder->medicineList  ", medicineList);
+  console.log("setReminder->userMedicineReminderObject ", userMedicineReminderObject);
+  UserModel.find({ email: userMedicineReminderObject.userEmail }).then((res1) => {
     const userPhone = res1[0].phone;
     let username = res1[0].name;
-    let msg = `Medicine REMINDER for ${username}!!\nYou should take ${medicines} at ${remindObject.medtime}!!`;
+    let msg = `Medicine REMINDER for ${username}!!\nYou should take ${medicineList} at ${userMedicineReminderObject.medtime}!!`;
     PaymentModel.find({
-      user: remindObject.user,
+      user: userMedicineReminderObject.user,
       paymentDone: true,
     }).then((res2) => {
-      // sendEmail(remindObject.userEmail, "", msg, "", "");
-      console.log("mff ", msg);
+      sendEmail(remindObject.userEmail, "", msg, "", "");
+      // console.log("mff ", msg);
       if (res2.length > 0) {
         sendSMS(userPhone, msg);
       } else {
@@ -76,6 +76,10 @@ const setReminder = () => {
       counts = 1;
     });
   });
+  await delay(2000);
+  medicineList.splice(0, medicineList.length);
+  // console.log("pay hbfi ", medicineList);
+  for (var member in userMedicineReminderObject) delete userMedicineReminderObject[member];
 };
 const getDoses = async (req, res) => {
   let user = req.user.id;
