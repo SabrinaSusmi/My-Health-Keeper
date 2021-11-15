@@ -3,13 +3,13 @@ const UserModel = require("../../models/userModel");
 const sendEmail = require("../sendMail.Controllers");
 const PaymentModel = require("../../models/Payment.models");
 const sendSMS = require("../SMS.controllers");
-
-
-setInterval(() => {
-  let medicines = [];
+let medicines = [];
 let isSetReminder;
 let remindObject;
 let counts = 0;
+
+setInterval(() => {
+ 
   medConfirmation.find({}, (err, reminder) => {
     if (err) {
       console.log("medConfirmation notification: ", err);
@@ -38,7 +38,7 @@ let counts = 0;
                   console.log(err);
                 }
                 medicines.push(remind.medname);
-                isSetReminder = remind.isReminded;
+               
                 console.log("set reminder: ", remind.isReminded);
                 remindObject = remind;
               }
@@ -50,11 +50,12 @@ let counts = 0;
     // console.log("pay fi ", medicines);
     if (medicines.length > 0 && counts == 0) {
       console.log("pay fi ", counts);
-      setReminder(medicines,remindObject);
+      setReminder();
+      medicines.splice(0,medicines.length)
     }
   });
 }, 1000);
-const setReminder = (medicines,remindObject) => {
+const setReminder = () => {
   console.log("wewe ", medicines);
   console.log("wewedscc ", remindObject);
   UserModel.find({ email: remindObject.userEmail }).then((res1) => {
