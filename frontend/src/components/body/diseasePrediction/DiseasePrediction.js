@@ -166,7 +166,7 @@ export default function SymptomSelection() {
                     <h3 style={{color:'#412146'}}>         Select Your Symptoms</h3>
                     <br></br>
                     <div className="symptom">
-                      Symptom 1 :
+                      Major Symptom (1) :
                       <Select
                         id="s1"
                         name="s1"
@@ -179,7 +179,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 2 : 
+                      Major Symptom (2) : 
                       
                       <Select
                         id="s2"
@@ -193,7 +193,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 3 : 
+                     Major Symptom (3) : 
                       
                       <Select
                         id="s3"
@@ -207,7 +207,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 4 :
+                    &nbsp;  &nbsp;    &nbsp;&nbsp;   Other Symptom :
                       
                       <Select
                         id="s4"
@@ -221,7 +221,7 @@ export default function SymptomSelection() {
                       </Select>
                     </div>
                     <div className="symptom">
-                      Symptom 5 :
+                    &nbsp;&nbsp;&nbsp;   &nbsp;  Other Symptom :
                       
                       <Select
                         id="s5"
