@@ -80,14 +80,14 @@ export default function DietOverview() {
             }}
           >
             <CircularProgressbar
-              value={multipleProgress}
-              text={`${multipleProgress}%`}
+              value={(multipleProgress).toFixed(2)}
+              text={`${(multipleProgress).toFixed(2)}%`}
               styles={buildStyles({
                 rotation: 0.25,
                 strokeLinecap: "butt",
                 textSize: "16px",
                 pathTransitionDuration: 0.5,
-                pathColor: `rgba(56, 153, 56, ${multipleProgress / 100})`,
+                pathColor: `rgba(56, 153, 56, ${(multipleProgress / 100)})`,
                 textColor: "#373950",
                 textSize: 25,
                 trailColor: "white",
