@@ -61,15 +61,15 @@ const setReminder = async () => {
   UserModel.find({ email: userMedicineReminderObject.userEmail }).then((res1) => {
     const userPhone = res1[0].phone;
     let username = res1[0].name;
-    let msg = `Medicine REMINDER for ${username}!!\nYou should take ${medicineList} at ${userMedicineReminderObject.medtime}!!`;
+    let reminderMsg = `MEDICINE REMINDER\n\n${username}, at ${userMedicineReminderObject.medtime} you need to take ${medicineList} medicine(s)`;
     PaymentModel.find({
       user: userMedicineReminderObject.user,
       paymentDone: true,
     }).then((res2) => {
-      sendEmail(remindObject.userEmail, "", msg, "", "");
+      sendEmail(userMedicineReminderObject.userEmail, "", reminderMsg, "", "");
       // console.log("mff ", msg);
       if (res2.length > 0) {
-        sendSMS(userPhone, msg);
+        sendSMS(userPhone, reminderMsg);
       } else {
         console.log("pay first");
       }
@@ -79,7 +79,7 @@ const setReminder = async () => {
   await delay(2000);
   medicineList.splice(0, medicineList.length);
   // console.log("pay hbfi ", medicineList);
-  for (var member in userMedicineReminderObject) delete userMedicineReminderObject[member];
+  for (var item in userMedicineReminderObject) delete userMedicineReminderObject[item];
 };
 const getDoses = async (req, res) => {
   let user = req.user.id;
