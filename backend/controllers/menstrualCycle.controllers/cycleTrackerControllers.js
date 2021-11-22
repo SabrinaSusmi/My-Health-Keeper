@@ -2,6 +2,8 @@ const Cycle = require("../../models/periodTracker.model");
 const sendMail = require("../sendMail.Controllers");
 const sendSMS = require("../SMS.controllers");
 const UserModel = require("../../models/userModel");
+const Menstrual2ndCircleData=require('../../models/MenstrualCircleData.models')
+
 
 setInterval(() => {
   Cycle.find({}, (err, reminder) => {
@@ -102,6 +104,8 @@ const cycleTrackerControllers = {
         .then((ans) => {
           const ss = endDate + "T00:00:00.000Z";
           const currentEndDate = new Date(ss);
+          const start = startDate + "T00:00:00.000Z";
+          const currentStartDate = new Date(start);
           const lastEndDate = ans[0]["endDate"];
           console.log(currentEndDate, "         ", lastEndDate);
 
@@ -109,9 +113,11 @@ const cycleTrackerControllers = {
           let diff = Math.abs(currentEndDate - lastEndDate);
           let cycleLength = diff / (1000 * 60 * 60 * 24);
           console.log("mens  ", cycleLength);
+          saveMenstrual2ndCircleData(currentEndDate, currentStartDate, user, startDate, endDate, cycleLength, res);
+          
           Cycle.findOneAndUpdate(
             { user: user },
-            {
+            { 
               startDate: startDate,
               endDate: endDate,
               isReminded: false,
@@ -175,3 +181,24 @@ const cycleTrackerControllers = {
 };
 
 module.exports = cycleTrackerControllers;
+function saveMenstrual2ndCircleData(currentEndDate, currentStartDate, user, startDate, endDate, cycleLength, res) {
+  let durationDiff = Math.abs(currentEndDate - currentStartDate);
+  let duration = durationDiff / (1000 * 60 * 60 * 24);
+  const initialinfo = new Menstrual2ndCircleData({
+    user: user,
+    startDate: startDate,
+    endDate: endDate,
+    duration: duration,
+    cycleLength: cycleLength,
+  });
+  initialinfo
+    .save()
+    .then(() => {
+     
+    })
+    .catch((err) => {
+      console.log('Menstrual2ndCircleData: ', err);
+      return res.status(500).json({ msg: err.message });
+    });
+}
+
