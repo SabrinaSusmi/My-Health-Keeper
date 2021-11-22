@@ -49,12 +49,26 @@ export default function UserMenstrualCircleInfo() {
           <b>{numberOfDaysSinceLastCycle}</b> days since last period.
         </p>
       </div>
-      <div className="info_item">
-        <p>
-          The last cycle was <b> {lastCycleLength} </b>days long.
-        </p>
-      </div>
       <div>
+      <Button
+          // to="/display-menstrual_tips"
+          // component={NavLink}
+          className="info_item"
+          style={{
+            cursor: "pointer",
+            color: "black",
+            borderRadius: "50%",
+            fontSize: "10px",
+            border: "rgb(250, 131, 131) 2px solid",
+          }}
+        >
+          <p style={{ fontSize: "12px", fontStyle: "none" }}>
+            <pre></pre>The last cycle was <b> {lastCycleLength} </b>days long 
+          </p>
+        </Button>
+      
+      </div>
+      <div style={{paddingLeft:'2.5%'}}>
         <Button
           to="/display-menstrual_tips"
           component={NavLink}
