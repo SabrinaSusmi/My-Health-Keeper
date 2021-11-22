@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { Button, Link } from "@material-ui/core";
+import HistoryModal from "./HistoryModal";
+
 export default function UserMenstrualCircleInfo() {
   const token = useSelector((state) => state.token);
   const auth = useSelector((state) => state.auth);
@@ -10,6 +12,8 @@ export default function UserMenstrualCircleInfo() {
   const [numberOfDaysSinceLastCycle, setNumberOfDaysSinceLastCycle] =
     useState("");
   const [lastCycleLength, setCycleLength] = useState("");
+  const [showHistoryModal, setShowHistoryModal] = useState(false);
+  const openHistoryModal = () => setShowHistoryModal(true);
 
   const getNumberOfDaysSinceLastCycle = async () => {
     axios
@@ -53,6 +57,7 @@ export default function UserMenstrualCircleInfo() {
       <Button
           // to="/display-menstrual_tips"
           // component={NavLink}
+          onClick={openHistoryModal}
           className="info_item"
           style={{
             cursor: "pointer",
@@ -66,7 +71,10 @@ export default function UserMenstrualCircleInfo() {
             <pre></pre>The last cycle was <b> {lastCycleLength} </b>days long 
           </p>
         </Button>
-      
+        <HistoryModal
+                    showWeightModal={showHistoryModal}
+                    setShowWeightModal={setShowHistoryModal}
+                  />
       </div>
       <div style={{paddingLeft:'2.5%'}}>
         <Button
