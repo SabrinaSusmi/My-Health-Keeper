@@ -154,7 +154,7 @@ export default function SymptomSelection() {
                   </div>
                   <div className="steps_section_item">
                     <div className="steps_item_icon"> <IconButton><AiOutlineFundView style= {{color : "#dadfe6", fontSize : "8rem" }}/></IconButton></div>
-                    <div className="steps_item_info">View he probable <br></br> diseases</div>
+                    <div className="steps_item_info">View the probable <br></br> diseases</div>
                   </div>
                 </div>
               </div>
