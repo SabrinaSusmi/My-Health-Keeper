@@ -54,7 +54,7 @@ export default function UserMenstrualCircleInfo() {
         </p>
       </div>
       <div>
-      <Button
+        <Button
           // to="/display-menstrual_tips"
           // component={NavLink}
           onClick={openHistoryModal}
@@ -68,15 +68,15 @@ export default function UserMenstrualCircleInfo() {
           }}
         >
           <p style={{ fontSize: "12px", fontStyle: "none" }}>
-            <pre></pre>The last cycle was <b> {lastCycleLength} </b>days long 
+            <pre></pre>The last cycle was <b> {lastCycleLength} </b>days long
           </p>
         </Button>
         <HistoryModal
-                    showWeightModal={showHistoryModal}
-                    setShowWeightModal={setShowHistoryModal}
-                  />
+          showWeightModal={showHistoryModal}
+          setShowWeightModal={setShowHistoryModal}
+        />
       </div>
-      <div style={{paddingLeft:'2.5%'}}>
+      <div style={{ paddingLeft: "2.5%" }}>
         <Button
           to="/display-menstrual_tips"
           component={NavLink}
