@@ -215,7 +215,6 @@ function GenHealthDashboard() {
   useEffect(() => {
     weightChart();
     bpChart();
-    // bpDiasChart();
     pulseChart();
     sugarChart();
   }, []);
@@ -245,12 +244,11 @@ function GenHealthDashboard() {
           {ShowHeader(COLORS.genHealthBackground)}
         </div>
         <pre></pre>
-        <pre></pre> <pre></pre> <pre></pre> <pre></pre>
+        <pre></pre> <pre></pre> <pre></pre>
         <pre></pre>
         <Row className="body_feature_row">
           <Col style={{ display: "flex", flexDirection: "column" }}>
             <div className="med_header_content">
-              {/* <p>All your medicine scheduled in one place!</p> */}
             </div>
             <div className="reminder_buttons">
               <Button
