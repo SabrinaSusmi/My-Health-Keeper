@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { Button, Link } from "@material-ui/core";
-import HistoryModal from "./HistoryModal";
+import HistoryModal from "./MenstrualHistoryModal";
 
 export default function UserMenstrualCircleInfo() {
   const token = useSelector((state) => state.token);
