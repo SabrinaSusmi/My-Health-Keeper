@@ -68,8 +68,10 @@ const cycleTrackerControllers = {
           // console.log(typeof(date2),'   ',typeof(currentDate))
           let diff = Math.abs(currentEndDate - lastEndDate);
           let cycleLength = diff / (1000 * 60 * 60 * 24);
+          let durationDiff = Math.abs(currentEndDate - currentStartDate);
+          let duration = durationDiff / (1000 * 60 * 60 * 24);
           console.log("mens  ", cycleLength);
-          saveMenstrual2ndCircleData(currentEndDate, currentStartDate, user, startDate, endDate, cycleLength, res);
+          saveMenstrual2ndCircleData( user, startDate, endDate, cycleLength, res,duration);
           
           Cycle.findOneAndUpdate(
             { user: user },
@@ -78,6 +80,7 @@ const cycleTrackerControllers = {
               endDate: endDate,
               isReminded: false,
               cycleLength: cycleLength,
+              duration:duration,
             }
           ).then(() => {
             console.log("updateInitialData ", startDate);
@@ -137,9 +140,8 @@ const cycleTrackerControllers = {
 };
 
 module.exports = cycleTrackerControllers;
-function saveMenstrual2ndCircleData(currentEndDate, currentStartDate, user, startDate, endDate, cycleLength, res) {
-  let durationDiff = Math.abs(currentEndDate - currentStartDate);
-  let duration = durationDiff / (1000 * 60 * 60 * 24);
+function saveMenstrual2ndCircleData( user, startDate, endDate, cycleLength, res,duration) {
+
   const initialinfo = new Menstrual2ndCircleData({
     user: user,
     startDate: startDate,
