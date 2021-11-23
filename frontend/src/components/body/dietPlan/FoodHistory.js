@@ -33,6 +33,7 @@ export default function FoodHistoryTable() {
         headers: { Authorization: token, dates: historyDate },
       })
       .then((res) => {
+        console.log(res.data)
         setBurntCal(res.data);
       });
   };

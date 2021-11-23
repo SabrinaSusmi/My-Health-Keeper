@@ -147,8 +147,6 @@ const deleteFood = async (req, res) => {
   });
 };
 
-
-
 const getFoodMenu = async (req, res) => {
   calorie_charts
     .find()
@@ -228,24 +226,20 @@ const getCaloriesBurnt = async (req, res) => {
   const bcalList = [];
   dailyCalorie.find({ user }, (err, List) => {
     if (err) {
-
       console.log("Diet food get :" + err);
     }
     if (List) {
-
       List.forEach((cal) => {
         const dbDate = cal.date.toISOString().slice(0, 10);
         if (dates == dbDate) {
           bcalList.push(cal);
         }
-
       });
 
       res.send(bcalList);
     }
   });
 };
-
 module.exports = {
   postFood,
   getFood,

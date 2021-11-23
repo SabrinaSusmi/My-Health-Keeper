@@ -65,7 +65,6 @@ function App() {
   const { isLogged } = auth;
 
   localStorage.setItem("userID", auth.user._id);
-  
 
   return (
     <>
@@ -73,7 +72,11 @@ function App() {
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/" component={isLogged ? GenHealthDashboard : Landing} exact />
+              <Route
+                path="/"
+                component={isLogged ? GenHealthDashboard : Landing}
+                exact
+              />
               {/* <Route path="/my-healtKeeper" component={Landing} exact />  */}
               <Route path="/forgot_password" component={ForgotPassword} exact />
               <Route
@@ -136,13 +139,13 @@ function App() {
                 component={isLogged ? MedicineDose : Login}
                 exact
               />
-               <Route
-        path="/general-health-history"
-        component={isLogged ? GenHealthHistory : Login}
-        exact
-        />
+              <Route
+                path="/general-health-history"
+                component={isLogged ? GenHealthHistory : Login}
+                exact
+              />
 
-<Route
+              <Route
                 path="/display-menstrual_tips"
                 component={isLogged ? MenstrualTips : Login}
                 exact
