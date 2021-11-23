@@ -16,6 +16,7 @@ import featureButton from "../../../static/Styling/featureButton.css";
 
 import { COLORS } from "../../themeColors";
 import WeightInfo from "./WeightInfo";
+import BpInfo from "./BpInfo";
 
 function GenHealthDashboard() {
   const token = useSelector((state) => state.token);
@@ -25,8 +26,12 @@ function GenHealthDashboard() {
   const [pulseChartData, setPulseChartData] = useState({});
   const [sugarChartData, setSugarChartData] = useState({});
   const [showWeightInfo, setShowWeightInfo] = useState(false);
+  const [showBpInfo, setShowBpInfo] = useState(false);
   const viewWeightInfo = () => {
     setShowWeightInfo((prev) => !prev);
+  };
+  const viewBpInfo = () => {
+    setShowBpInfo((prev) => !prev);
   };
 
   const weightChart = () => {
@@ -279,20 +284,21 @@ function GenHealthDashboard() {
                   backgroundColor: "#f7ae63",
                 }}
                 variant="outlined"
-                onClick={viewWeightInfo}
+                onClick={viewBpInfo}
               >
                   Add Today's Information
               </Button>
-              {showWeightInfo ? (
+              {showBpInfo ? (
                   <div>
-                    <WeightInfo isVisible={() => viewWeightInfo()} />
+                    <BpInfo isVisible={() => viewBpInfo()} />
                   </div>
                 ) : (
                   ""
                 )}
+                <pre></pre>
                 <h5  style={{ color: "#f78309",}}>
                 Your Blood Pressure for last 7 days<h6>(normal range 120/80)</h6>
-              </h5>
+              </h5> 
               <Line
                 data={bpChartData}
                 options={{
@@ -386,8 +392,31 @@ function GenHealthDashboard() {
                   },
                 }}
               />
-
+              
               <pre></pre>
+              <h2 >
+              👣 Weight
+              </h2>
+             <Button
+                style={{
+                  marginLeft: "30%",
+                  marginRight: "30%",
+                  marginTop: "1%",
+                  backgroundColor: "#f7ae63",
+                }}
+                variant="outlined"
+                onClick={viewWeightInfo}
+              >
+                  Add Today's Information
+              </Button>
+              {showWeightInfo ? (
+                  <div>
+                    <WeightInfo isVisible={() => viewWeightInfo()} />
+                  </div>
+                ) : (
+                  ""
+                )}
+               <pre></pre>
               <h4  style={{ color: "#f78309",}}>Your Weight for Last 7 days</h4>
               <Line
                 data={weightChartData}
