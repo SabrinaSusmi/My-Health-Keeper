@@ -113,7 +113,7 @@ export default function UserMenstrualCircleInfo() {
             <pre></pre>The last cycle was <b> {lastCycleDuration} </b>days long
           </p>
         </Button>
-        <HistoryModal
+        <DurationModal
           showWeightModal={showDurationHistoryModal}
           setShowWeightModal={setShowDurationHistoryModal}
         />
