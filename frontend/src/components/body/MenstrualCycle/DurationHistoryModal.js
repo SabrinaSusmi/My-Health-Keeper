@@ -59,8 +59,8 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
         res.data.durationLengthArray.forEach((element) => {
           durationLengthArray.push(element);
         });
-        durationLengthArray.push(22);
-        durationLengthArray.push(32);
+        durationLengthArray.push(10);
+        // durationLengthArray.push(32);
         // res.data.req_cal.forEach((element) => {
         //   req_cal_data.push(element);
         // });
