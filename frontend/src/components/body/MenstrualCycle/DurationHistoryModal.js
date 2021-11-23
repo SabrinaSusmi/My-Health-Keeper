@@ -43,18 +43,20 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
     let durationLengthArray = [];
     // let req_cal_data = [];
     let monthArray = [];
+    setYear(e.target.value)
+    let SelectedYear=e.target.value
     e.preventDefault();
-    console.log(year);
+    console.log(SelectedYear);
     await axios
       .get(
         "http://localhost:5000/user/getGraphData",
 
         {
-          headers: { Authorization: token, year: year },
+          headers: { Authorization: token, year: SelectedYear },
         }
       )
       .then((res) => {
-        console.log(year);
+        console.log(SelectedYear);
         res.data.durationLengthArray.forEach((element) => {
           durationLengthArray.push(element);
         });
@@ -106,10 +108,11 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
       >
         <Modal.Header>
           <Modal.Title>
-            <h4>Visualize Your Menstruation Data </h4>
+            <h4>Duration of Each Cycle </h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <div style={{display:'flex',justifyContent:'center'}}>
           <Select
             // className={classes.formControl}
             type="text"
@@ -118,7 +121,7 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
             className="menstrual_year_progress_select"
             // defaultValue={currentMonth}
             value={year}
-            onChange={(e) => setYear(e.target.value)}
+            onChange={(e) => handleSubmit(e)}
             // padding="10px"
             label="selectedMonth"
           >
@@ -137,11 +140,12 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
             <option value={"2012"}>2012</option>
             <option value={"2011"}>2011</option>
           </Select>
-          <IconButton onClick={(e) => handleSubmit(e)} style={{ padding: 0 }}>
+          </div>
+          {/* <IconButton onClick={(e) => handleSubmit(e)} style={{ padding: 0 }}>
             <VisibilityIcon />
-          </IconButton>
+          </IconButton> */}
           <br></br>
-          Duration of Each Cycle
+          <pre></pre>
           <Bar
             data={consumedCaloriesData}
             options={{

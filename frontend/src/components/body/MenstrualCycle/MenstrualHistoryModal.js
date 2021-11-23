@@ -44,17 +44,19 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
     // let req_cal_data = [];
     let monthArray = [];
     e.preventDefault();
-    console.log(year);
+    setYear(e.target.value)
+    let Selectedyear=e.target.value
+    console.log(Selectedyear);
     await axios
       .get(
         "http://localhost:5000/user/getGraphData",
 
         {
-          headers: { Authorization: token, year: year },
+          headers: { Authorization: token, year: Selectedyear },
         }
       )
       .then((res) => {
-        console.log(year);
+        console.log(Selectedyear);
         res.data.cycleLengthArray.forEach((element) => {
           cycleLengthArray.push(element);
         });
@@ -106,10 +108,11 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
       >
         <Modal.Header>
           <Modal.Title>
-            <h4>Visualize Your Menstruation Data </h4>
+            <h4>Number Of Days Between Two Cycle </h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div style={{display:'flex',justifyContent:'center'}}>
           <Select
             // className={classes.formControl}
             type="text"
@@ -118,7 +121,7 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
             className="menstrual_year_progress_select"
             // defaultValue={currentMonth}
             value={year}
-            onChange={(e) => setYear(e.target.value)}
+            onChange={(e) => handleSubmit(e)}
             // padding="10px"
             label="selectedMonth"
           >
@@ -137,11 +140,11 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
             <option value={"2012"}>2012</option>
             <option value={"2011"}>2011</option>
           </Select>
-          <IconButton onClick={(e) => handleSubmit(e)} style={{ padding: 0 }}>
-            <VisibilityIcon />
-          </IconButton>
+          
+          </div>
+       
           <br></br>
-          Number Of Days Between Two Cycle
+          <pre></pre>{" "}
           <Line
             data={consumedCaloriesData}
             options={{
