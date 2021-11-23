@@ -13,5 +13,6 @@ router.get("/is-initial-data-available",auth,cycleTrackerCtrl.isInitialDataAvail
 router.get('/get_last_period_days_number',auth,cycleTrackerPastDataControllers.getTotalDaysSincePeriod)
 router.get('/last_cycle_length',auth,cycleTrackerPastDataControllers.getCycleLength)
 router.get('/getGraphData',auth,cycleTrackerPastDataControllers.getGraphData)
+router.get('/last_cycle_duration',auth,cycleTrackerPastDataControllers.getDurationOfLastCycle)
 
 module.exports = router;
