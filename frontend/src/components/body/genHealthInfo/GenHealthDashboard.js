@@ -17,6 +17,8 @@ import featureButton from "../../../static/Styling/featureButton.css";
 import { COLORS } from "../../themeColors";
 import WeightInfo from "./WeightInfo";
 import BpInfo from "./BpInfo";
+import PulseInfo from "./PulseInfo";
+import SugarInfo from "./SugarInfo";
 
 function GenHealthDashboard() {
   const token = useSelector((state) => state.token);
@@ -27,11 +29,19 @@ function GenHealthDashboard() {
   const [sugarChartData, setSugarChartData] = useState({});
   const [showWeightInfo, setShowWeightInfo] = useState(false);
   const [showBpInfo, setShowBpInfo] = useState(false);
+  const [showPulseInfo, setShowPulseInfo] = useState(false);
+  const [showSugarInfo, setShowSugarInfo] = useState(false);
   const viewWeightInfo = () => {
     setShowWeightInfo((prev) => !prev);
   };
   const viewBpInfo = () => {
     setShowBpInfo((prev) => !prev);
+  };
+  const viewPulseInfo = () => {
+    setShowPulseInfo((prev) => !prev);
+  };
+  const viewSugarInfo = () => {
+    setShowSugarInfo((prev) => !prev);
   };
 
   const weightChart = () => {
@@ -326,6 +336,29 @@ function GenHealthDashboard() {
                 }}
               />
               <pre></pre>
+              <h2 >
+              💓 Pulse Rate
+              </h2>
+              <Button
+                style={{
+                  marginLeft: "30%",
+                  marginRight: "30%",
+                  marginTop: "1%",
+                  backgroundColor: "#f7ae63",
+                }}
+                variant="outlined"
+                onClick={viewPulseInfo}
+              >
+                  Add Today's Information
+              </Button>
+              {showPulseInfo ? (
+                  <div>
+                    <PulseInfo isVisible={() => viewPulseInfo()} />
+                  </div>
+                ) : (
+                  ""
+                )}
+                <pre></pre>
               <h4  style={{ color: "#f78309",}}>
                 Your Pulse for last 7 days{" "}
                 <h6>normal rate for an adult: 70-100</h6>{" "}
@@ -359,7 +392,30 @@ function GenHealthDashboard() {
                 }}
               />
 
-              <pre></pre>
+<pre></pre>
+              <h2 >
+              🎚 Sugar Level
+              </h2>
+              <Button
+                style={{
+                  marginLeft: "30%",
+                  marginRight: "30%",
+                  marginTop: "1%",
+                  backgroundColor: "#f7ae63",
+                }}
+                variant="outlined"
+                onClick={viewSugarInfo}
+              >
+                  Add Today's Information
+              </Button>
+              {showSugarInfo ? (
+                  <div>
+                    <SugarInfo isVisible={() => viewSugarInfo()} />
+                  </div>
+                ) : (
+                  ""
+                )}
+                <pre></pre>
               <h4  style={{ color: "#f78309",}}>Your Sugar Level for last 7 days </h4>
 
               <Line
