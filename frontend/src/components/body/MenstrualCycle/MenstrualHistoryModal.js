@@ -141,8 +141,7 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
           <IconButton onClick={(e) => handleSubmit(e)} style={{ padding: 0 }}>
             <VisibilityIcon />
           </IconButton>
-          <Grid container >
-            <Grid item xs={5}>
+        
             <br></br>
 Cycle Length
           <Line
@@ -175,43 +174,7 @@ Cycle Length
           />
 
 
-            </Grid>
-            <Grid item xs={5}>
-            <br></br>
-Cycle Length
-          <Line
-            data={consumedCaloriesData}
-            options={{
-              responsive: true,
-              title: { text: "Cycle Length", display: true },
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 12,
-                      beginAtZero: true,
-                    },
-                    gridLines: {
-                      display: false,
-                    },
-                  },
-                ],
-                xAxes: [
-                  {
-                    gridLines: {
-                      display: false,
-                    },
-                  },
-                ],
-              },
-            }}
-          />
-
-
-            </Grid>
-            </Grid>
-
+         
 
         </Modal.Body>
         <Modal.Footer>
