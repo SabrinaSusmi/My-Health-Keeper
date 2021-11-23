@@ -86,7 +86,7 @@ export default function UserMenstrualCircleInfo() {
           }}
         >
           <p style={{ fontSize: "12px", fontStyle: "none" }}>
-            <pre></pre>The last cycle was <b> {lastCycleLength} </b>days long
+            <pre></pre>The last cycle length:  <b> {lastCycleLength} </b>days 
           </p>
         </Button>
         <HistoryModal
@@ -110,7 +110,7 @@ export default function UserMenstrualCircleInfo() {
           }}
         >
           <p style={{ fontSize: "12px", fontStyle: "none" }}>
-            <pre></pre>The last cycle was <b> {lastCycleDuration} </b>days long
+            <pre></pre>The last cycle duration: <b> {lastCycleDuration} </b>days 
           </p>
         </Button>
         <DurationModal
