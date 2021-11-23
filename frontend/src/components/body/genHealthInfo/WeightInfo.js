@@ -68,7 +68,6 @@ function WeightInfo({ showWeightInfo, setShowWeightInfo}) {
 
   return (
               <div data-toggle="tooltip">
-                  <hr></hr>
                 <Card>
                     <CardContent>
                       {errW && showErrMsg(errW)}
