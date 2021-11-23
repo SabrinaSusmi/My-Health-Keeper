@@ -12,5 +12,6 @@ router.patch("/update-menstrual-data",auth,cycleTrackerCtrl.updateInitialData)
 router.get("/is-initial-data-available",auth,cycleTrackerCtrl.isInitialDataAvailable)
 router.get('/get_last_period_days_number',auth,cycleTrackerPastDataControllers.getTotalDaysSincePeriod)
 router.get('/last_cycle_length',auth,cycleTrackerPastDataControllers.getCycleLength)
+router.get('/getGraphData',auth,cycleTrackerPastDataControllers.getGraphData)
 
 module.exports = router;
