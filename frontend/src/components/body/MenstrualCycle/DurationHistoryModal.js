@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from "react";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import "react-responsive-modal/styles.css";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Select, IconButton,Grid } from "@material-ui/core";
+import { Button, Select, IconButton, Grid } from "@material-ui/core";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -32,8 +31,8 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
           label: "Number Of Days",
           fill: false,
           lineTension: 0.5,
-          backgroundColor: "#6aa84f",
-          borderColor: "#6aa84f",
+          backgroundColor: "#f58da2c9",
+          borderColor: "#f58da2c9",
           borderWidth: 2,
         },
       ],
@@ -78,8 +77,8 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
               label: "Number Of Days",
               fill: false,
               lineTension: 0.5,
-              backgroundColor: "#f4bf20",
-              borderColor: "#f4bf20",
+              backgroundColor: "#f58da2c9",
+              borderColor: "#f58da2c9",
               borderWidth: 2,
               pointRadius: 5,
             },
@@ -100,7 +99,6 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
     <>
       <Modal
         size="lg"
-       
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showWeightModal}
@@ -142,10 +140,9 @@ const DurationHistoryModal = ({ showWeightModal, setShowWeightModal }) => {
           <IconButton onClick={(e) => handleSubmit(e)} style={{ padding: 0 }}>
             <VisibilityIcon />
           </IconButton>
-         
-            <br></br>
-Cycle Length
-          <Line
+          <br></br>
+          Duration of Each Cycle
+          <Bar
             data={consumedCaloriesData}
             options={{
               responsive: true,
@@ -173,11 +170,6 @@ Cycle Length
               },
             }}
           />
-
-
-          
-
-
         </Modal.Body>
         <Modal.Footer>
           <Button

@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import "react-responsive-modal/styles.css";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Select, IconButton,Grid } from "@material-ui/core";
+import { Button, Select, IconButton, Grid } from "@material-ui/core";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -31,8 +31,8 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
           label: "Number Of Days",
           fill: false,
           lineTension: 0.5,
-          backgroundColor: "#6aa84f",
-          borderColor: "#6aa84f",
+          backgroundColor: "#f8889e",
+          borderColor: "#f8889e",
           borderWidth: 2,
         },
       ],
@@ -77,8 +77,8 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
               label: "Number Of Days",
               fill: false,
               lineTension: 0.5,
-              backgroundColor: "#f4bf20",
-              borderColor: "#f4bf20",
+              backgroundColor: "#f8889e",
+              borderColor: "#f8889e",
               borderWidth: 2,
               pointRadius: 5,
             },
@@ -99,7 +99,6 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
     <>
       <Modal
         size="lg"
-       
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showWeightModal}
@@ -141,9 +140,8 @@ const HistoryModal = ({ showWeightModal, setShowWeightModal }) => {
           <IconButton onClick={(e) => handleSubmit(e)} style={{ padding: 0 }}>
             <VisibilityIcon />
           </IconButton>
-        
-            <br></br>
-Cycle Length
+          <br></br>
+          Number Of Days Between Two Cycle
           <Line
             data={consumedCaloriesData}
             options={{
@@ -172,10 +170,6 @@ Cycle Length
               },
             }}
           />
-
-
-         
-
         </Modal.Body>
         <Modal.Footer>
           <Button
