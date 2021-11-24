@@ -1,17 +1,16 @@
 const fs = require("fs");
 const fastcsv = require("fast-csv");
-const burnedChart = require("../models/caloriesChart.models");
+const burnedChart = require("../models/BurnedChart.models");
 
-const saveCalorieToDB = () => {
+const saveBurnedCaloriesToDB = () => {
   let stream = fs.createReadStream("../backend/utilities/BurnedChart.csv");
   let csvData = [];
   let csvStream = fastcsv
     .parse()
     .on("data", function (data) {
       csvData.push({
-        category: data[0], 
-        name: data[1],
-        qty: 1,
+        activity: data[0], 
+        time:data[1],
         calories: data[2],
       });
     })
@@ -34,4 +33,4 @@ const saveCalorieToDB = () => {
   stream.pipe(csvStream);
 };
 
-module.exports = saveCalorieToDB;
+module.exports = saveBurnedCaloriesToDB;

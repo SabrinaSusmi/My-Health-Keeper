@@ -158,6 +158,17 @@ const getFoodMenu = async (req, res) => {
     });
 };
 
+const getBurnedCalorieList = async (req, res) => {
+  calorie_charts
+    .find()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 const getFoodHistory = async (req, res) => {
   let user = req.user.id;
   const dates = req.headers["dates"];
@@ -249,4 +260,5 @@ module.exports = {
   getFoodHistory,
   burnCalorie,
   getCaloriesBurnt,
+  getBurnedCalorieList,
 };

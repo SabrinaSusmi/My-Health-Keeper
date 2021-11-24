@@ -39,5 +39,6 @@ app.get('/',(req,res)=> {
 
 const saveCalorieToDB=require('./utilities/calorieChart')
 saveCalorieToDB()
-
+const saveBurnedCaloriesToDB=require('./utilities/calorieBurnChart')
+saveBurnedCaloriesToDB()
 module.exports = app;
