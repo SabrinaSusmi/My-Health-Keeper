@@ -285,13 +285,21 @@ function GenHealthDashboard() {
               marginLeft: "20%",
               marginBottom: "1%"
             }}>
-            <Button variant="outlined" onClick={goToBpSection}> Record Your Blood Pressure</Button>
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToBpSection}> Record Your Blood Pressure</Button>
             {" "} {" "} {" "} {" "}
-            <Button variant="outlined" onClick={goToPulseSection}> Record Your Pulse Rate</Button>
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToPulseSection}> Record Your Pulse Rate</Button>
             {" "} {" "} {" "} {" "}
-            <Button variant="outlined" onClick={goToSugarSection}> Record Your Sugar Level</Button>
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToSugarSection}> Record Your Sugar Level</Button>
             {" "} {" "} {" "} {" "}
-            <Button variant="outlined" onClick={goToWeightSection}> Record Your Weight</Button>
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToWeightSection}> Record Your Weight</Button>
             </div>
 
               <Button
