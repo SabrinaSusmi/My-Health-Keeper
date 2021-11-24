@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../../static/Styling/medicineReminder.css";
 import "../../../static/Styling/healthInfo.css";
 import { Button, IconButton, Link, Grid } from "@material-ui/core";
@@ -229,6 +229,12 @@ function GenHealthDashboard() {
     sugarChart();
   }, []);
 
+  const BpSection = useRef(null)
+  const PulseSection = useRef(null)
+  const SugarSection = useRef(null)
+  const WeightSection = useRef(null)
+
+
   return (
     <div
       style={{
@@ -296,7 +302,7 @@ function GenHealthDashboard() {
 
             <div class="container">
               <pre></pre>
-              <h2 >
+              <h2 ref={BpSection}>
                🩸 Blood Pressure
               </h2>
               <Button
@@ -351,7 +357,7 @@ function GenHealthDashboard() {
                 }}
               />
               <pre></pre>
-              <h2 >
+              <h2 ref={PulseSection}>
               💓 Pulse Rate
               </h2>
               <Button
@@ -408,7 +414,7 @@ function GenHealthDashboard() {
               />
 
 <pre></pre>
-              <h2 >
+              <h2 ref={SugarSection}>
               🎚 Sugar Level
               </h2>
               <Button
@@ -463,7 +469,7 @@ function GenHealthDashboard() {
               />
               
               <pre></pre>
-              <h2 >
+              <h2 ref={WeightSection}>
               👣 Weight
               </h2>
              <Button
