@@ -3,7 +3,7 @@ const calorie_charts = require("../../models/caloriesChart.models");
 const DietTargetModel = require("../../models/diet.targetModel");
 const dailyCalorie = require("../../models/dailyCalorie");
 const { findOne } = require("../../models/consumedCalories.model");
-
+const burnedCalChart = require("../../models/BurnedChart.models");
 const postFood = async (req, res) => {
   let user = req.user.id;
 
@@ -159,9 +159,11 @@ const getFoodMenu = async (req, res) => {
 };
 
 const getBurnedCalorieList = async (req, res) => {
-  calorie_charts
+  burnedCalChart
     .find()
     .then((data) => {
+      console.log(data);
+
       res.send(data);
     })
     .catch((err) => {
