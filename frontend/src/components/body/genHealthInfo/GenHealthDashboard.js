@@ -240,6 +240,7 @@ function GenHealthDashboard() {
         backgroundAttachment: "fixed",
       }}
     >
+      
       <Container
         style={{
           display: "flex",
@@ -254,13 +255,27 @@ function GenHealthDashboard() {
           {ShowHeader(COLORS.genHealthBackground)}
         </div>
         <pre></pre>
-        <pre></pre> <pre></pre> <pre></pre>
+        <pre></pre>
         <pre></pre>
         <Row className="body_feature_row">
           <Col style={{ display: "flex", flexDirection: "column" }}>
             <div className="med_header_content">
             </div>
             <div className="reminder_buttons">
+            <div
+             style={{
+              marginLeft: "20%",
+              marginBottom: "1%"
+            }}>
+            <Button variant="outlined"> Record Your Blood Pressure</Button>
+            {" "} {" "} {" "} {" "}
+            <Button variant="outlined"> Record Your Pulse Rate</Button>
+            {" "} {" "} {" "} {" "}
+            <Button variant="outlined"> Record Your Sugar Level</Button>
+            {" "} {" "} {" "} {" "}
+            <Button variant="outlined"> Record Your Weight</Button>
+            </div>
+
               <Button
                 style={{
                   marginLeft: "45%",
