@@ -8,17 +8,14 @@ import { COLORS } from "../../themeColors";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const InitialState = {
-  meal: "",
-  food: "",
-  quantity: "",
-  err: "",
-  success: "",
+  
+  calAmount: "",
+ 
 };
 
 export default function BurnedCalories() {
   const [burnCal, setBurnCal] = useState("");
-  const [riceItem, setRiceItem] = useState([]);
-  const [item, setItem] = useState(InitialState);
+  const [burnedCalListItem, setBurnedCalListItem] = useState([]);
 
   // const history = useHistory();
   const token = useSelector((state) => state.token);
@@ -26,19 +23,22 @@ export default function BurnedCalories() {
 
   const getRice = async () => {
     await axios
-      .get("http://localhost:5000/diet-plan/getFoodMenu", {
+      .get("http://localhost:5000/diet-plan/getBurnedCalorieList", {
         headers: { Authorization: token },
       })
-      .then((res) => setRiceItem(res.data));
+      .then((res) => setBurnedCalListItem(res.data));
   };
-  const options = riceItem.map((option) => {
-    const initialLetter = option.category;
+  const listoptions = burnedCalListItem.map((option) => {
+    // const initialLetter = option.activity;
     return {
-      initialLetter,
+      // initialLetter,
       ...option,
     };
   });
+  console.log("listoptions ",listoptions)
+  const [item, setItem] = useState(InitialState);
 
+  const {calAmount } = item;
 
   const saveBurnCal = async (e) => {
     e.preventDefault();
@@ -69,14 +69,17 @@ export default function BurnedCalories() {
       Track the amount of calories you've burn everyday
       <br></br>
       <div className="add_burn_diet">
-      <Autocomplete className='food_name_select'
-          onChange={(event, value) => setItem({ food: value.name })}
+        {console.log('food', listoptions)}
+      <Autocomplete className='add_burn_diet'
+          options={listoptions}
+          onChange={(event, value) => setItem({ calAmount: value.activity })}
           getOptionSelected={(option, value) => option.id === value.id}
-          options={options.sort(
-            (a, b) => -b.initialLetter.localeCompare(a.initialLetter)
-          )}
-          groupBy={(option) => option.initialLetter}
-          getOptionLabel={(option) => option.name}
+          
+          // options={options.sort(
+          //   (a, b) => -b.initialLetter.localeCompare(a.initialLetter)
+          // )}
+          // groupBy={(option) => option.initialLetter}
+          // getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField  {...params} label="Food Name" />}
         />
 {/*         
