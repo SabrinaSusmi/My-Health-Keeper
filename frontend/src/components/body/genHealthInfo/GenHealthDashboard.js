@@ -235,6 +235,18 @@ function GenHealthDashboard() {
   const WeightSection = useRef(null)
 
 
+  const goToBpSection = () => window.scrollTo({top: BpSection.current.offsetTop, 
+  behavior:"smooth"})
+
+  const goToPulseSection = () => window.scrollTo({top: PulseSection.current.offsetTop, 
+    behavior:"smooth"})
+
+  const goToSugarSection = () => window.scrollTo({top: SugarSection.current.offsetTop, 
+      behavior:"smooth"})
+
+  const goToWeightSection = () => window.scrollTo({top: WeightSection.current.offsetTop, 
+        behavior:"smooth"})
+
   return (
     <div
       style={{
@@ -273,13 +285,13 @@ function GenHealthDashboard() {
               marginLeft: "20%",
               marginBottom: "1%"
             }}>
-            <Button variant="outlined"> Record Your Blood Pressure</Button>
+            <Button variant="outlined" onClick={goToBpSection}> Record Your Blood Pressure</Button>
             {" "} {" "} {" "} {" "}
-            <Button variant="outlined"> Record Your Pulse Rate</Button>
+            <Button variant="outlined" onClick={goToPulseSection}> Record Your Pulse Rate</Button>
             {" "} {" "} {" "} {" "}
-            <Button variant="outlined"> Record Your Sugar Level</Button>
+            <Button variant="outlined" onClick={goToSugarSection}> Record Your Sugar Level</Button>
             {" "} {" "} {" "} {" "}
-            <Button variant="outlined"> Record Your Weight</Button>
+            <Button variant="outlined" onClick={goToWeightSection}> Record Your Weight</Button>
             </div>
 
               <Button
@@ -302,7 +314,8 @@ function GenHealthDashboard() {
 
             <div class="container">
               <pre></pre>
-              <h2 ref={BpSection}>
+              <div  ref={BpSection}>
+              <h2 >
                🩸 Blood Pressure
               </h2>
               <Button
@@ -314,6 +327,7 @@ function GenHealthDashboard() {
                 }}
                 variant="outlined"
                 onClick={viewBpInfo}
+               
               >
                   Add Today's Information
               </Button>
@@ -356,8 +370,10 @@ function GenHealthDashboard() {
                   },
                 }}
               />
+              </div>
               <pre></pre>
-              <h2 ref={PulseSection}>
+              <div ref={PulseSection}>
+              <h2 >
               💓 Pulse Rate
               </h2>
               <Button
@@ -412,9 +428,10 @@ function GenHealthDashboard() {
                   },
                 }}
               />
-
+               </div>
 <pre></pre>
-              <h2 ref={SugarSection}>
+              <div ref={SugarSection}>
+              <h2 >
               🎚 Sugar Level
               </h2>
               <Button
@@ -467,9 +484,10 @@ function GenHealthDashboard() {
                   },
                 }}
               />
-              
+              </div>
               <pre></pre>
-              <h2 ref={WeightSection}>
+              <div ref={WeightSection}>
+              <h2 >
               👣 Weight
               </h2>
              <Button
@@ -521,6 +539,7 @@ function GenHealthDashboard() {
                   },
                 }}
               />
+              </div>
             </div>
             <pre></pre>
             <pre></pre>
