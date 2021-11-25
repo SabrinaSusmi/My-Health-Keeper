@@ -8,9 +8,9 @@ const saveBurnedCaloriesToDB = () => {
   let csvStream = fastcsv
     .parse()
     .on("data", function (data) {
-      csvData.push({
-        activity: data[0], 
-        time:data[1],
+      csvData.push({ 
+        activity: data[0],
+        time: data[1],
         calories: data[2],
       });
     })
@@ -20,13 +20,15 @@ const saveBurnedCaloriesToDB = () => {
       // console.log(csvData);
       for (let i = 0; i < csvData.length; i++) {
         // console.log(csvData[i]["name"]);
-        burnedChart.findOne({ name: csvData[i]["name"] }).then((ans) => {
-          if (!ans) {
-            burnedChart.create(csvData[i], (err, res) => {
-              if (err) throw err;
-            });
-          }
-        });
+        burnedChart
+          .findOne({ activity: csvData[i]["activity"] })
+          .then((ans) => {
+            if (!ans) {
+              burnedChart.create(csvData[i], (err, res) => {
+                if (err) throw err;
+              });
+            }
+          });
       }
     });
 

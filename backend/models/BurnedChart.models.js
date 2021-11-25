@@ -11,7 +11,7 @@ const burnedChart = new mongoose.Schema({
   },
   
   calories: {
-    type: Number,
+    type: String,
     required: true,
   },
 });

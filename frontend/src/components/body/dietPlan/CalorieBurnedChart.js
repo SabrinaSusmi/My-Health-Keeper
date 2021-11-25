@@ -23,27 +23,27 @@ export default function CalorieConsumptionChart() {
   }, []);
   return (
     <>
-           
-          <Table hover size="md">
-            <thead>
+          
+          <Table hover size="md" style={{'display': 'block',justifyContent:'center',width:'650px',marginLeft:'27%'}}>
+            <thead style={{'display': 'block',justifyContent:'center',width:'800px'}}>
               <tr style={{ background: "transparent" }}>
-                <th>Activity (User's Weight)</th>
-                <th>Duration</th>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <th>Activity (User's Weight)</th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <th>Duration</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <th>Burned Calories (kcal)</th>
 
                 
               </tr>
             </thead>
 
-            <tbody>
+            <tbody style={{'height': '500px', 'overflow':'scroll', 'display': 'block',paddingTop:'1%'}}>
               {calorieShedList.map((burnedCal, index) => (
                 <tr
                   style={
                     index % 2 ? { color: "#6f9a37" } : { color: "#f7900a" }
                   }
                 >
-                  <td>{burnedCal.activity}</td>
-                  <td>{burnedCal.time}</td>
+                  <td>{burnedCal.activity}</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <td>{burnedCal.time}</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <td>{burnedCal.calories}</td>
                 </tr>
               ))}
