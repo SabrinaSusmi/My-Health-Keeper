@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../../static/Styling/medicineReminder.css";
 import "../../../static/Styling/healthInfo.css";
 import { Button, IconButton, Link, Grid } from "@material-ui/core";
@@ -229,6 +229,24 @@ function GenHealthDashboard() {
     sugarChart();
   }, []);
 
+  const BpSection = useRef(null)
+  const PulseSection = useRef(null)
+  const SugarSection = useRef(null)
+  const WeightSection = useRef(null)
+
+
+  const goToBpSection = () => window.scrollTo({top: BpSection.current.offsetTop, 
+  behavior:"smooth"})
+
+  const goToPulseSection = () => window.scrollTo({top: PulseSection.current.offsetTop, 
+    behavior:"smooth"})
+
+  const goToSugarSection = () => window.scrollTo({top: SugarSection.current.offsetTop, 
+      behavior:"smooth"})
+
+  const goToWeightSection = () => window.scrollTo({top: WeightSection.current.offsetTop, 
+        behavior:"smooth"})
+
   return (
     <div
       style={{
@@ -240,6 +258,7 @@ function GenHealthDashboard() {
         backgroundAttachment: "fixed",
       }}
     >
+      
       <Container
         style={{
           display: "flex",
@@ -254,13 +273,35 @@ function GenHealthDashboard() {
           {ShowHeader(COLORS.genHealthBackground)}
         </div>
         <pre></pre>
-        <pre></pre> <pre></pre> <pre></pre>
+        <pre></pre>
         <pre></pre>
         <Row className="body_feature_row">
           <Col style={{ display: "flex", flexDirection: "column" }}>
             <div className="med_header_content">
             </div>
             <div className="reminder_buttons">
+            <div
+             style={{
+              marginLeft: "20%",
+              marginBottom: "1%"
+            }}>
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToBpSection}> Record Your Blood Pressure</Button>
+            {" "} {" "} {" "} {" "}
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToPulseSection}> Record Your Pulse Rate</Button>
+            {" "} {" "} {" "} {" "}
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToSugarSection}> Record Your Sugar Level</Button>
+            {" "} {" "} {" "} {" "}
+            <Button style={{
+                  color: "#f7ae63",
+                }} variant="outlined" onClick={goToWeightSection}> Record Your Weight</Button>
+            </div>
+
               <Button
                 style={{
                   marginLeft: "45%",
@@ -281,6 +322,7 @@ function GenHealthDashboard() {
 
             <div class="container">
               <pre></pre>
+              <div  ref={BpSection}>
               <h2 >
                🩸 Blood Pressure
               </h2>
@@ -293,6 +335,7 @@ function GenHealthDashboard() {
                 }}
                 variant="outlined"
                 onClick={viewBpInfo}
+               
               >
                   Add Today's Information
               </Button>
@@ -335,7 +378,9 @@ function GenHealthDashboard() {
                   },
                 }}
               />
+              </div>
               <pre></pre>
+              <div ref={PulseSection}>
               <h2 >
               💓 Pulse Rate
               </h2>
@@ -391,8 +436,9 @@ function GenHealthDashboard() {
                   },
                 }}
               />
-
+               </div>
 <pre></pre>
+              <div ref={SugarSection}>
               <h2 >
               🎚 Sugar Level
               </h2>
@@ -446,8 +492,9 @@ function GenHealthDashboard() {
                   },
                 }}
               />
-              
+              </div>
               <pre></pre>
+              <div ref={WeightSection}>
               <h2 >
               👣 Weight
               </h2>
@@ -500,6 +547,7 @@ function GenHealthDashboard() {
                   },
                 }}
               />
+              </div>
             </div>
             <pre></pre>
             <pre></pre>

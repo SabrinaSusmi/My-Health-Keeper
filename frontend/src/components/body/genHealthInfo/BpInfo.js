@@ -68,13 +68,11 @@ function BpInfo({ showBpInfo, setShowBpInfo}) {
 
   return (
               <div data-toggle="tooltip">
-                <Card>
-                    <CardContent>
-                    {errB && showErrMsg(errB)}
+                 {errB && showErrMsg(errB)}
                     {successB && showSuccessMsg(successB)}
                       <Typography component="h5" variant="h5">
                       🩸 Blood Pressure (systolic/diastolic)
-                      </Typography> <pre></pre>
+                      </Typography> 
                           <InvertColorsIcon />
                           <TextField
                             label="120/80"
@@ -90,8 +88,7 @@ function BpInfo({ showBpInfo, setShowBpInfo}) {
                         >
                           <AddCircleOutlineRoundedIcon className="playIcon" />
                         </IconButton>
-                    </CardContent>
-                </Card>
+               
               </div>
     
   );
