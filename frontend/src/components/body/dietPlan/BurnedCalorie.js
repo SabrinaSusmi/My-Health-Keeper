@@ -3,7 +3,7 @@ import { Button, Link, TextField, Select, IconButton } from "@material-ui/core";
 import "../../../static/Styling/dietProgress.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
-
+import CalorieConsumptionChart from './CalorieBurnedChart'
 import { COLORS } from "../../themeColors";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
@@ -16,10 +16,12 @@ const InitialState = {
 export default function BurnedCalories() {
   const [burnCal, setBurnCal] = useState("");
   const [burnedCalListItem, setBurnedCalListItem] = useState([]);
-
+  const [hotline,setHotline]=useState(false)
   // const history = useHistory();
   const token = useSelector((state) => state.token);
-
+  const viewBpInfo = () => {
+    setHotline((prev)=>!prev);
+  };
 
   const getRice = async () => {
     await axios
@@ -70,19 +72,8 @@ export default function BurnedCalories() {
       <br></br>
       <div className="add_burn_diet">
         {console.log('food', listoptions)}
-      <Autocomplete className='add_burn_diet'
-          options={listoptions}
-          onChange={(event, value) => setItem({ calAmount: value.activity })}
-          getOptionSelected={(option, value) => option.id === value.id}
-          
-          // options={options.sort(
-          //   (a, b) => -b.initialLetter.localeCompare(a.initialLetter)
-          // )}
-          // groupBy={(option) => option.initialLetter}
-          // getOptionLabel={(option) => option.name}
-          renderInput={(params) => <TextField  {...params} label="Food Name" />}
-        />
-{/*         
+  
+        
         <TextField
           type="text"
           id="burnedCalories"
@@ -92,7 +83,7 @@ export default function BurnedCalories() {
           onChange={(e) => {
             setBurnCal(e.target.value);
           }}
-        ></TextField> */}
+        ></TextField>
         <Button
           type="submit"
           className="burn_btn"
@@ -102,6 +93,15 @@ export default function BurnedCalories() {
         >
           <font> save</font>
         </Button>
+        
+        <div className="burnList">
+               
+                  <Button variant='text' className="chartList_btn" onClick={()=>{ viewBpInfo();}}  >view calorie consumption chart</Button>
+                  <br></br>         
+              {console.log(hotline)}
+                {hotline?(<div><CalorieConsumptionChart isVisible={() => viewBpInfo()}/></div>):("")}
+              </div>
+   
       </div>
     </div>
   );
