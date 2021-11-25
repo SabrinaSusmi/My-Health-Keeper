@@ -8,18 +8,18 @@ import axios from "axios";
 
 export default function CalorieConsumptionChart() {
   const token = useSelector((state) => state.token);
-  const [foodList, setFoodList] = useState([]);
+  const [calorieShedList, setCalorieShedList] = useState([]);
 
-  const getRice = async () => {
+  const getBurnedChart = async () => {
     await axios
       .get("http://localhost:5000/diet-plan/getBurnedCalorieList", {
         headers: { Authorization: token },
       })
-      .then((res) => setFoodList(res.data));
+      .then((res) => setCalorieShedList(res.data));
   };
-  {console.log("food", foodList)}
+  {console.log("food", calorieShedList)}
   useEffect(() => {
-    getRice();
+    getBurnedChart();
   }, []);
   return (
     <>
@@ -36,15 +36,15 @@ export default function CalorieConsumptionChart() {
             </thead>
 
             <tbody>
-              {foodList.map((food, index) => (
+              {calorieShedList.map((burnedCal, index) => (
                 <tr
                   style={
                     index % 2 ? { color: "#6f9a37" } : { color: "#f7900a" }
                   }
                 >
-                  <td>{food.activity}</td>
-                  <td>{food.time}</td>
-                  <td>{food.calories}</td>
+                  <td>{burnedCal.activity}</td>
+                  <td>{burnedCal.time}</td>
+                  <td>{burnedCal.calories}</td>
                 </tr>
               ))}
             </tbody>
