@@ -62,12 +62,12 @@ color: white;
   text-align: center;
   
 }
-.container div {
+/* .container div {
   background:transparent;
   height: 670px;
   border-radius: 10px;
   padding: 10px;
-}
+} */
 
 .container h4{
   color: #047973;
@@ -75,4 +75,11 @@ color: white;
 
 .container h6 {
   color: black;
+}
+
+.genHealth_input{
+  background:transparent;
+  height: 30px;
+  border-radius: 10px;
+  padding: 10px;
 }

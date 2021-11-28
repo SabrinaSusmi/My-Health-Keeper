@@ -246,7 +246,7 @@ function GenHealthDashboard() {
 
   const goToWeightSection = () => window.scrollTo({top: WeightSection.current.offsetTop, 
         behavior:"smooth"})
-
+  
   return (
     <div
       style={{
@@ -324,7 +324,7 @@ function GenHealthDashboard() {
               <pre></pre>
               <div  ref={BpSection}>
               <h2 >
-               🩸 Blood Pressure
+                Blood Pressure
               </h2>
               <Button
                 style={{

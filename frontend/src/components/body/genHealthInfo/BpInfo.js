@@ -70,12 +70,10 @@ function BpInfo({ showBpInfo, setShowBpInfo}) {
               <div data-toggle="tooltip">
                  {errB && showErrMsg(errB)}
                     {successB && showSuccessMsg(successB)}
-                      <Typography component="h5" variant="h5">
-                      🩸 Blood Pressure (systolic/diastolic)
-                      </Typography> 
+                     <pre></pre>
                           <InvertColorsIcon />
                           <TextField
-                            label="120/80"
+                            label="120/80(systolic/diastolic)"
                             id="infoBp"
                             name="infoBp"
                             value={infoBp}
