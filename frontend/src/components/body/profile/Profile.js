@@ -277,8 +277,8 @@ function Profile() {
                             placeholder="Your name"
                             onChange={handleChange}
                           />
-                        </div>
-                        <div className="profile_input">
+                          <br></br>
+                          <br></br>
                           <label className="profile_label" htmlFor="email">
                             Email
                           </label>
@@ -292,8 +292,8 @@ function Profile() {
                             placeholder="Your email address"
                             disabled
                           />
-                        </div>
-                        <div className="profile_input">
+                          <br></br>
+                          <br></br>
                           <label className="profile_label" htmlFor="phone">
                             Phone
                           </label>
@@ -307,6 +307,7 @@ function Profile() {
                             onChange={handleChange}
                           />
                         </div>
+                        
                       </CardContent>
                     </div>
                   </Card>

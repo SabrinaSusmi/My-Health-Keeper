@@ -106,39 +106,38 @@
   
   .card_body_profile {
     width: 80%;
-    margin-left: 8%;
-    display: grid;
+    margin-left: 40%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    /* display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.2rem;
-    margin-top: 2.5%;
+    margin-top: 2.5%; */
     
     /* box-shadow: 2px 2px 6px 0px  rgba(0,0,0,1); */
   }
   .profile_root {
-    display: "flex";
+    /* display: "flex";
     align-items: center;
-    justify-content: center;
-    width: 80%;
-    margin: 1%;
-    margin-left: 9%;
+    justify-content: center; */
+    width: 50%;
+    margin: 0 auto;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px rgb(191, 197, 197),transparent;
+    margin-bottom: 1em;
+    /* box-shadow: 2px 2px 2px rgb(191, 197, 197),transparent; */
   }
   .profile_div {
     display: "flex";
     flex-direction: column;
   }
-  .body_container{
-    /* background:linear-gradient(#eff3f1,#EBFBF2,#e0f8ea); */
-   /* background-color: #61f3c7ad; */
-  }
   
   
   .profile_content {
-    flex: "1 0 auto";
-    height: 530px;
-    background:linear-gradient(#61f3aaad,#EBFBF2,#eff3f1);
-    background-color: #61f3c7ad;
+    /* flex: "1 0 auto"; */
+    margin: 0 auto;
+    height: 550px;
+    /* background:linear-gradient(#61f3aaad,#EBFBF2,#eff3f1);
+    background-color: #61f3c7ad; */
   }
   .profile_image_div {
     height: 300px;
@@ -163,6 +162,7 @@
     font-size: 18px;
   }
   .profile_input {
+    width: 50%;
     margin: 0 auto;
     margin-bottom: 19px;
   }
