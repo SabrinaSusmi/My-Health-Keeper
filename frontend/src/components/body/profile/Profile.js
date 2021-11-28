@@ -317,37 +317,7 @@ function Profile() {
                     <div className="profile_div">
                       <CardContent className="profile_content">
                         <Grid className="grid_profile">
-                          <Card className="card_grid_profile">
-                            <CardContent className="card_content_grid_profile">
-                              <h5 align="center">
-                                <b>UPGRADE TO PREMIUM</b>
-                              </h5>
-                              Get SMS alert for Daily Medicines for just 100bdt
-                              per month
-                              <pre></pre> <pre></pre>
-                              <h6>
-                                {" "}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <b>
-                                  SMS Alert
-                                  Activated&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                </b>
-                                {isPaid ? "🟢" : "🔴"}
-                              </h6>
-                              <div className="profile_upgrade_btn">
-                                &nbsp;&nbsp; &nbsp;{" "}
-                                <Button
-                                  align="center"
-                                  variant="text"
-                                  onClick={onHandleCheckout}
-                                >
-                                  UPGRADE
-                                </Button>
-                              </div>
-                            </CardContent>
-                          </Card>
-
-                          <Card className="card_grid_profile">
+                        <Card className="card_grid_profile">
                             <CardContent className="card_content_grid_profile">
                               <h7>
                                 <b>PERSONAL INFORMATION</b>
@@ -410,6 +380,35 @@ function Profile() {
                               </div>
                             </CardContent>
                           </Card>
+                          <Card className="card_grid_profile">
+                            <CardContent className="card_content_grid_profile">
+                              <h5 align="center">
+                                <b>UPGRADE TO PREMIUM</b>
+                              </h5>
+                              Get SMS alert for Daily Medicines for just 100bdt
+                              per month
+                              <pre></pre> <pre></pre>
+                              <h6>
+                                {" "}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>
+                                  SMS Alert
+                                  Activated :&nbsp;&nbsp;&nbsp;&nbsp;
+                                </b>
+                                {isPaid ? "🟢" : "🔴"}
+                              </h6>
+                              <div className="profile_upgrade_btn">
+                                &nbsp;&nbsp; &nbsp;{" "}
+                                <Button
+                                  align="center"
+                                  variant="text"
+                                  onClick={onHandleCheckout}
+                                >
+                                  UPGRADE
+                                </Button>
+                              </div>
+                            </CardContent>
+                          </Card>
                         </Grid>
                       </CardContent>
                     </div>
@@ -418,7 +417,7 @@ function Profile() {
               </div>
               <div className="profile_save_btn">
                 <Button varient="text" onClick={handleUpdate}>
-                  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; save
+                  save Changes
                 </Button>
               </div>
             </Col>

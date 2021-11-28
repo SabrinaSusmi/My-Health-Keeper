@@ -136,6 +136,8 @@
     /* flex: "1 0 auto"; */
     margin: 0 auto;
     height: 550px;
+    border: none;
+    box-shadow: none;
     /* background:linear-gradient(#61f3aaad,#EBFBF2,#eff3f1);
     background-color: #61f3c7ad; */
   }
@@ -174,18 +176,21 @@
   .card_grid_profile {
     display: grid;
     margin: 2.6%;
-   
-   
+  }
+
+  .card_content_grid_profile {
+    width: 70%;
+    margin: 0 auto;
   }
   .grid_profile_input {
       margin:12px;
       font-size: 18px;
   }
   .profile_upgrade_btn{
-      background-color: #61f3aaad;
-     
+      /* background-color: #61f3aaad; */
+      border: 1.5px solid black;
       height: 40px;
-      width: 125px;
+      width: 140px;
       border-radius: 8px;
       margin-top: 10%;
       margin-left: 35%;
@@ -196,13 +201,18 @@
   }
   
   .profile_save_btn{
-      background-color: #61f3aaad;
-      height: 41px;
-      width: 150px;
+      background-color: #37e68ead;
+      /* border: 1.5px solid black; */
+      height: 50px;
+      width: 180px;
       border-radius: 8px;
       margin-top: 2%;
       margin-left: 42%;
+      margin: 0 auto;
       margin-bottom: 5%;
+      text-align: center;
+      padding: 5px;
+      font-weight: bold;
   }
 
   .profile_save_btn:hover{
