@@ -38,7 +38,7 @@ const getMonthlyDietData = async (req, res) => {
         consume_cal: consumed_cal_data,
         req_cal: req_cal_data,
         cal_date: cal_date,
-        totalCal: totalCal / 30,
+        totalCal: (totalCal / 30).toFixed(2),
         burn_data:burn_data,
       });
     }

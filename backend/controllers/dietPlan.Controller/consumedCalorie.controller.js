@@ -3,7 +3,7 @@ const calorie_charts = require("../../models/caloriesChart.models");
 const DietTargetModel = require("../../models/diet.targetModel");
 const dailyCalorie = require("../../models/dailyCalorie");
 const { findOne } = require("../../models/consumedCalories.model");
-
+const burnedCalChart = require("../../models/BurnedChart.models");
 const postFood = async (req, res) => {
   let user = req.user.id;
 
@@ -147,12 +147,23 @@ const deleteFood = async (req, res) => {
   });
 };
 
-
-
 const getFoodMenu = async (req, res) => {
   calorie_charts
     .find()
     .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+const getBurnedCalorieList = async (req, res) => {
+  burnedCalChart
+    .find()
+    .then((data) => {
+      console.log(data);
+
       res.send(data);
     })
     .catch((err) => {
@@ -228,24 +239,20 @@ const getCaloriesBurnt = async (req, res) => {
   const bcalList = [];
   dailyCalorie.find({ user }, (err, List) => {
     if (err) {
-
       console.log("Diet food get :" + err);
     }
     if (List) {
-
       List.forEach((cal) => {
         const dbDate = cal.date.toISOString().slice(0, 10);
         if (dates == dbDate) {
           bcalList.push(cal);
         }
-
       });
 
       res.send(bcalList);
     }
   });
 };
-
 module.exports = {
   postFood,
   getFood,
@@ -255,4 +262,5 @@ module.exports = {
   getFoodHistory,
   burnCalorie,
   getCaloriesBurnt,
+  getBurnedCalorieList,
 };
