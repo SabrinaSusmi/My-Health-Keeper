@@ -15,7 +15,7 @@ import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
       <font  className="sidebar-options-color" >
           <FitnessCenterIcon />
@@ -26,7 +26,7 @@ export const mainListItems = (
           <ListItemText primary="General Health Information" />
         </font>
       </Link>
-    </ListItem>
+    </ListItem> */}
     <ListItem button>
       <ListItemIcon>
       <font  className="sidebar-options-color" >
@@ -52,7 +52,7 @@ export const mainListItems = (
       </Link>
      
     </ListItem>
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
       <font  className="sidebar-options-color" >
           <AssessmentIcon />
@@ -64,8 +64,8 @@ export const mainListItems = (
         </font>
       </Link>
      
-    </ListItem>
-    <ListItem button>
+    </ListItem> */}
+    {/* <ListItem button>
       <ListItemIcon>
       <font  className="sidebar-options-color" >
           <HealingIcon />
@@ -77,7 +77,7 @@ export const mainListItems = (
         </font>
       </Link>
       
-    </ListItem>
+    </ListItem> */}
     <ListItem button>
       <ListItemIcon>
       <font  className="sidebar-options-color" >

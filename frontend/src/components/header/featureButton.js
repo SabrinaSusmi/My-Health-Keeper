@@ -57,7 +57,7 @@ export const ShowFeatureButtons = () => {
 
   return (
     <div className="div">
-      <Grid item className="item">
+      {/* <Grid item className="item">
         <Link
           style={{ textDecoration: "none" }}
           className="sidebar-icon-link"
@@ -79,7 +79,7 @@ export const ShowFeatureButtons = () => {
             )}
           </Button>
         </Link>
-      </Grid>
+      </Grid> */}
       <Grid item className="item">
         <Link
           style={{ textDecoration: "none" }}
@@ -152,7 +152,7 @@ export const ShowFeatureButtons = () => {
 
       
 
-      <Grid item className="item">
+      {/* <Grid item className="item">
         <Link
           style={{ textDecoration: "none" }}
           className="sidebar-icon-link"
@@ -173,9 +173,9 @@ export const ShowFeatureButtons = () => {
             )}
           </Button>{" "}
         </Link>
-      </Grid>
+      </Grid> */}
 
-      <Grid item className="item">
+      {/* <Grid item className="item">
         <Link
           style={{ textDecoration: "none" }}
           className="sidebar-icon-link"
@@ -197,7 +197,7 @@ export const ShowFeatureButtons = () => {
             )}
           </Button>
         </Link>
-      </Grid>
+      </Grid> */}
 
      
       {genderOfTheUser()}
